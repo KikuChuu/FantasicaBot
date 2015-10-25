@@ -12,7 +12,7 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 #include %A_ScriptDir%\includes\ErrorHandlers\QuestErrorHandler.ahk
 
 ;------- INITIALIZE -------
-Init_globals()
+Init_globals() ; Found in GlobalConstants.ahk
 ;--------------------------
 
 WinGet, programId, List, Bluestacks App Player
@@ -32,7 +32,8 @@ waitobject(selectepisode_button) ;wait for quest screen to load (i used the 'sel
 
 if quest >= 4
 {
-	scroll(840, 870, 840, 190) ;scroll the list to select quests over level 5
+	global QUEST_X1, QUEST_Y1, QUEST_X2, QUEST_Y2
+	scroll(QUEST_X1, QUEST_Y1, QUEST_X2, QUEST_Y2) ;scroll the list to select quests over level 5
 }
 
 questindex := assignquest(quest) ;assign a quest img path 

@@ -436,62 +436,7 @@ FindCoordinate(Byref X, Byref Y)
 	static row:= 0
 	static col:= 0
 		
-	if (REVELATIONTOWER == 1)
-	{
-		global SCAN_START_X, SCAN_START_Y, SCAN_TILE_SIZE
-		StartX := SCAN_START_X
-		StartY := SCAN_START_Y
-		TileSize := SCAN_TILE_SIZE / 2
-		MapMaxRow := 14 
-		MapMaxCol := 14 
-
-		if (QUICKSCAN == 1) ;half-time scan
-		{
-			SLEEPTEMP := SLEEPTIME // 2
-		}
-		else if (QUICKSCAN == 2) ;instant scan
-		{
-			SLEEPTEMP := 1
-		}
-		else ;scan are regular speed
-		{
-			SLEEPTEMP := SLEEPTIME
-		}
-		loop
-		{
-			while row <= MapMaxRow
-			{
-				CurrentRowCoord := StartY + (row * TileSize)
-				while col <= MapMaxCol
-				{
-					CurrentColCoord := StartX + (col * TileSize)
-					PixelGetColor, tileColor, %CurrentColCoord%, %CurrentRowCoord%
-					comparisonColor := tileColor
-					;if (QUICKSCAN == 1)
-					;{
-					Sleep SLEEPTEMP
-					;}
-					PixelGetColor, tileColor, %CurrentColCoord%, %CurrentRowCoord%
-					;MsgBox %tileColor% to %comparisonColor% %row% %col%
-					SB_SetText("Scanning for available coordinates (" . CurrentColCoord . "x" . CurrentRowCoord . ")" )
-					if (tileColor <> comparisonColor && CurrentColCoord <> RESTRICTPLACEMENTON_COL1 && CurrentColCoord <> RESTRICTPLACEMENTON_COL2)
-					{
-						X := CurrentColCoord
-						Y := CurrentRowCoord
-						col++
-						;SB_SetText("Scanning for available coordinates (" . CurrentColCoord . "x" . CurrentRowCoord . ")" )
-						return
-					}
-					col++
-				}
-				row++
-				col := 0
-			}
-			row := 0 ;scanned the entire map, starting from beginning
-		}
-	
-	}
-	else if (LEVELBOT == 1)
+    if (LEVELBOT == 1)
 	{
 	    global SCAN_START_X, SCAN_START_Y, SCAN_TILE_SIZE
 		StartX := SCAN_START_X
