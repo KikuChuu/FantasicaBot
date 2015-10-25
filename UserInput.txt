@@ -1,0 +1,32 @@
+;General Specification
+;---------------------
+	SLEEPTIME = 100 ;DELAY OF BUTTON CLICKS
+	QUICKSCAN = 2 	; 2 = reduce delay of unit placement scan to 1ms (not accurate)
+			; 1 = reduce delay of unit placement scan by half	of SLEEPTIME
+		      	; 0 = regular SLEEPTIME delay			
+
+;Training Specification
+;----------------------
+	MAXTP = 300 ;your maximum training points
+		
+;Quest Selection Specification
+;-----------------------------		 	 				  
+	QUEST = 4 ; Enter 1,2,3,4,5,6, or 7					 
+														 
+;Quest Battle specification
+;--------------------------												 
+	DEPLOY_NUMBER = 1 	;number of units to deploy		 
+	SORTINDEX = 0 		;land = 1, air = 2, sea = 3, default = 0
+	TYPEINDEX = 0 		;Melee = 1, missile = 2, magic = 3, all = 0
+	LEVELBOT = 1		;0 = no, 1 = set starting point specifically for quest 2-7 
+;Event specification
+;-------------------
+	TIME_ELIXIR = 0
+	SEARCHLIMIT := 2
+	
+	;Revelations Event
+	;-----------------
+		SELECTEDTOWER := 2	;0 = agony, 1 = chains, 2 = light 
+		FIGHTBOSS = 0 		;0 = flee, 1 = fight
+		;REVELATIONTOWER := 0 	;1 = yes, it is this event and will affect the unit placement algorithm
+						; 0 = no, it is not this event and use the default unit placement algorithm

@@ -1,0 +1,689 @@
+﻿#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
+; #Warn  ; Enable warnings to assist with detecting common errors.
+SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
+SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
+
+
+;Takes a int and returns the relative STARTQUEST#_BUTTON constant
+AssignQuest(QuestNum)
+{
+	Global STARTQUEST1_BUTTON, STARTQUEST2_BUTTON, STARTQUEST3_BUTTON, STARTQUEST4_BUTTON, STARTQUEST5_BUTTON, STARTQUEST6_BUTTON, STARTQUEST7_BUTTON
+	
+	if QuestNum = 1
+		return %STARTQUEST1_BUTTON%
+	else if QuestNum = 2
+		return %STARTQUEST2_BUTTON%
+	else if QuestNum = 3
+		return %STARTQUEST3_BUTTON%
+	else if QuestNum = 4
+		return %STARTQUEST4_BUTTON%
+	else if QuestNum = 5
+		return %STARTQUEST5_BUTTON%
+	else if QuestNum = 6
+		return %STARTQUEST6_BUTTON%
+	else if QuestNum  = 7
+		return %STARTQUEST7_BUTTON%
+	else
+		MsgBox, 0, Invalid Quest Assignment, Soooorrrry, we don't support quest %QuestNum%.
+}
+
+;Call ally
+;AllyPower sort by damage (land = 1, air = 2, sea = 3, no sort = 0 (default))
+;AllyType is sort by type (melee = 1, missile = 2, magic = 3, no specific type = 0 (default))
+CallAlly(AllyPower=0, AllyType=0) 
+{
+	global SLEEPTIME, BACKQUEST_BUTTON, BACKTOEVENT_BUTTON, CALLALLY_BUTTON, CARDBACK_BUTTON, DEPLOYALLY1_BUTTON, DEPLOYALLY2_BUTTON, DEPLOYALLY3_BUTTON, CHOOSEQUESTCOMPLETED_BUTTON 
+	global CALLALLYPAGE_TEXT, CANCELPLACEMENT_BUTTON, CONFIRMUNITPLACEMENT_BUTTON, EVENT_ICON, NEXTPAGE_BUTTON, PAGE10ALLYLIST_TEXT, RESTRICTPLACMENTON_COL1, RESTRICTPLACMENTON_COL2, SORTBYAIRATK_BUTTON, SORTBYDEFAULT_BUTTON, SORTBYGROUNDATK_BUTTON, SORTBYSEAATK_BUTTON, STARTBATTLE_BUTTON
+	
+	WaitObject(CALLALLY_BUTTON) ;wait on ally button
+	ClickObject(CALLALLY_BUTTON) ;go to ally list
+	
+	while not DetectObject(CALLALLY_BUTTON)
+	{
+		if DetectObject(BACKQUEST_BUTTON) ;some useful code to break out of forever loop
+		{
+			break
+		}
+		else if (DetectObject(CHOOSEQUESTCOMPLETED_BUTTON)) ;if some discrete chance that quest ends (returns to my page) and leaves bot stuck in clicking ally button
+		{
+			return
+		}
+		else if (DetectObject(BACKTOEVENT_BUTTON)) 
+		{
+			return
+		}
+	}
+	;if no allies, exit ally list and skip body
+	if AllyPower = 0
+	{
+		if not (DetectObject(DEPLOYALLY1_BUTTON) || DetectObject(DEPLOYALLY2_BUTTON) || DetectObject(DEPLOYALLY3_BUTTON))
+		{
+			ClickObject(BACKQUEST_BUTTON)
+			WaitObject(CALLALLY_BUTTON)
+			return 0
+		}
+		else
+		{
+			ChooseAlly()
+			WaitObject(CANCELPLACEMENT_BUTTON)
+		}
+		
+	}
+	else if AllyPower = 1
+	{
+		;SORT BY GROUND ATK
+		while not DetectObject(SORTBYGROUNDATK_BUTTON)
+		{
+			if DetectObject(SORTBYDEFAULT_BUTTON)
+			{
+				WaitObject(SORTBYDEFAULT_BUTTON)
+				ClickObject(SORTBYDEFAULT_BUTTON)
+			}
+			if DetectObject(SORTBYAIRATK_BUTTON)
+			{
+				WaitObject(SORTBYAIRATK_BUTTON)
+				ClickObject(SORTBYAIRATK_BUTTON)
+			}
+			if DetectObject(SORTBYSEAATK_BUTTON)
+			{
+				WaitObject(SORTBYSEAATK_BUTTON)
+				ClickObject(SORTBYSEAATK_BUTTON)
+			}
+		}
+		if not ChooseAlly() ;if no ally was chosen, exit out of ally list
+		{
+			ClickObject(BACKQUEST_BUTTON)
+			WaitObject(CALLALLY_BUTTON)
+			return 0
+		}
+	}
+	
+	else if AllyPower = 2
+	{
+		;SORT BY AIR ATK
+		while not DetectObject(SORTBYAIRATK_BUTTON)
+		{
+			if DetectObject(SORTBYGROUNDATK_BUTTON)
+			{
+				WaitObject(SORTBYGROUNDATK_BUTTON)
+				ClickObject(SORTBYGROUNDATK_BUTTON)
+			}
+			if DetectObject(SORTBYSEAATK_BUTTON)
+			{
+				WaitObject(SORTBYSEAATK_BUTTON)
+				ClickObject(SORTBYSEAATK_BUTTON)
+			}
+			if DetectObject(SORTBYDEFAULT_BUTTON)
+			{
+				WaitObject(SORTBYDEFAULT_BUTTON)
+				ClickObject(SORTBYDEFAULT_BUTTON)
+			}
+		}
+		if not ChooseAlly() ;if no ally was chosen, exit out of ally list
+		{
+			ClickObject(BACKQUEST_BUTTON)
+			WaitObject(CALLALLY_BUTTON)
+			return 0
+		}
+	}
+	else if AllyPower = 3
+	{
+		;SORT BY SEA ATK
+		while not DetectObject(SORTBYSEAATK_BUTTON)
+		{
+			if DetectObject(SORTBYAIRATK_BUTTON)
+			{
+				WaitObject(SORTBYAIRATK_BUTTON)
+				ClickObject(SORTBYAIRATK_BUTTON)
+			}
+			if DetectObject(SORTBYDEFAULT_BUTTON)
+			{
+				WaitObject(SORTBYDEFAULT_BUTTON)
+				ClickObject(SORTBYDEFAULT_BUTTON)
+			}
+			if DetectObject(SORTBYGROUNDATK_BUTTON)
+			{
+				WaitObject(SORTBYGROUNDATK_BUTTON)
+				ClickObject(SORTBYGROUNDATK_BUTTON)
+			}
+		}
+		if not ChooseAlly() ;if no ally was chosen, exit out of ally list
+		{
+			ClickObject(BACKQUEST_BUTTON)
+			WaitObject(CALLALLY_BUTTON)
+			return 0
+		}
+	}
+	FindCoordinate(MapX, MapY) ;FindCoordinate() modifies MapX and MapY to valid coordinates
+	; if (MapX = RESTRICTPLACMENTON_COL1)																				; LIKELY TO CHANGE THESE LINES OF CODE
+		; FindCoordinate(MapX, MapY)
+	; else if (MapX = RESTRICTPLACMENTON_COL2)
+		; FindCoordinate(MapX, MapY)
+	PlaceUnitAt(MapX, MapY)	;Place unit at (MapX, MapY)
+	
+	;Find valid coordinates and place unit
+	while not DetectObject(CONFIRMUNITPLACEMENT_BUTTON)
+	{
+		FindCoordinate(MapX, MapY) ;modifies MapX and MapY to valid coordinates
+		PlaceUnitAt(MapX, MapY)	;Place unit at (MapX, MapY)
+	}
+	WaitObject(CONFIRMUNITPLACEMENT_BUTTON)
+	ClickObject(CONFIRMUNITPLACEMENT_BUTTON)
+	
+	while DetectObject(CANCELPLACEMENT_BUTTON) 
+	{
+		Sleep SLEEPTIME
+	}
+	return 1
+}
+
+;Chooses an ally from the ally list
+;returns 0 if no ally is available
+ChooseAlly()
+{
+	global DEPLOYALLY1_BUTTON, DEPLOYALLY2_BUTTON, DEPLOYALLY3_BUTTON, NEXTPAGE_BUTTON, NONEXTPAGE_BUTTON
+	while not DetectObject(NONEXTPAGE_BUTTON)
+	{
+		if DetectObject(DEPLOYALLY1_BUTTON)
+		{
+			WaitObject(DEPLOYALLY1_BUTTON)
+			ClickObject(DEPLOYALLY1_BUTTON)
+			return 1
+		}
+		else if DetectObject(DEPLOYALLY2_BUTTON)
+		{
+			WaitObject(DEPLOYALLY2_BUTTON)
+			ClickObject(DEPLOYALLY2_BUTTON)
+			return 1
+		}
+		else if DetectObject(DEPLOYALLY3_BUTTON)
+		{
+			WaitObject(DEPLOYALLY3_BUTTON)
+			ClickObject(DEPLOYALLY3_BUTTON)
+			return 1
+		}
+		else 
+		{
+			WaitObject(NEXTPAGE_BUTTON)
+			ClickObject(NEXTPAGE_BUTTON)
+			;some lag may occur here which ends the loop
+		}
+	}
+	
+	if DetectObject(DEPLOYALLY1_BUTTON)
+	{
+		WaitObject(DEPLOYALLY1_BUTTON)
+		ClickObject(DEPLOYALLY1_BUTTON)
+		return 1
+	}
+	
+	return 0
+}
+
+
+DeployUnit(AllyPower = 0, AllyType = 0)
+{
+	global BACKQUEST_BUTTON, CANCELPLACEMENT_BUTTON, CONFIRMUNITPLACEMENT_BUTTON, DEPLOYUNIT_BUTTON, SLEEPTIME, DEPLOYUNIT1_BUTTON, UNIT1_INVISIBLEBUTTON, 
+	global UNITALL_BUTTON, UNITMISSILE_BUTTON, UNITMAGIC_BUTTON, UNITMELEE_BUTTON, UNITFAVORITEON_BUTTON
+	WaitObject(DEPLOYUNIT_BUTTON) ;Waits for the 'Deploy_Unit' button
+	ClickObject(DEPLOYUNIT_BUTTON) ;Click the 'Deploy Unit' button
+	WaitObject(BACKQUEST_BUTTON)
+	while DetectObject(UNIT1_INVISIBLEBUTTON) ;Recover unit point until we have enough points to deploy a unit in slot 1
+	{
+		ClickObject(BACKQUEST_BUTTON)
+		Sleep SLEEPTIME
+		WaitObject(DEPLOYUNIT_BUTTON) ;Waits for the 'Deploy_Unit' button
+		ClickObject(DEPLOYUNIT_BUTTON) ;Click the 'Deploy Unit' button
+		WaitObject(BACKQUEST_BUTTON) 
+	}
+	
+	if AllyType = 0 ;all
+	{
+		while not DetectObject(UNITALL_BUTTON)
+		{
+			if DetectObject(UNITMELEE_BUTTON)
+			{
+				WaitObject(UNITMELEE_BUTTON)
+				ClickObject(UNITMELEE_BUTTON)
+				;WaitObject(UNITMISSILE_BUTTON)
+			}
+			if DetectObject(UNITMISSILE_BUTTON)
+			{
+				WaitObject(UNITMISSILE_BUTTON)
+				ClickObject(UNITMISSILE_BUTTON)
+				;WaitObject(UNITMAGIC_BUTTON)
+			}
+			if DetectObject(UNITMAGIC_BUTTON)
+			{
+				WaitObject(UNITMAGIC_BUTTON)
+				ClickObject(UNITMAGIC_BUTTON)
+				;WaitObject(UNITALL_BUTTON)
+			}
+		}
+	}
+	else if AllyType = 1 ;melee
+	{
+		while not DetectObject(UNITMELEE_BUTTON)
+		{
+			if DetectObject(UNITMISSILE_BUTTON)
+			{
+				WaitObject(UNITMISSILE_BUTTON)
+				ClickObject(UNITMISSILE_BUTTON)
+				;WaitObject(UNITMAGIC_BUTTON)
+			}
+			if DetectObject(UNITMAGIC_BUTTON)
+			{
+				WaitObject(UNITMAGIC_BUTTON)
+				ClickObject(UNITMAGIC_BUTTON)
+				;WaitObject(UNITALL_BUTTON)
+			}
+			if DetectObject(UNITALL_BUTTON)
+			{
+				WaitObject(UNITALL_BUTTON)
+				ClickObject(UNITALL_BUTTON)
+				;WaitObject(UNITMELEE_BUTTON)
+			}
+		}
+	}
+	else if AllyType = 2 ;missile
+	{
+		while not DetectObject(UNITMISSILE_BUTTON)
+		{
+			if DetectObject(UNITMAGIC_BUTTON)
+			{
+				WaitObject(UNITMAGIC_BUTTON)
+				ClickObject(UNITMAGIC_BUTTON)
+				;WaitObject(UNITALL_BUTTON)
+			}
+			if DetectObject(UNITALL_BUTTON)
+			{
+				WaitObject(UNITALL_BUTTON)
+				ClickObject(UNITALL_BUTTON)
+				;WaitObject(UNITMELEE_BUTTON)
+			}
+			if DetectObject(UNITMELEE_BUTTON)
+			{
+				WaitObject(UNITMELEE_BUTTON)
+				ClickObject(UNITMELEE_BUTTON)
+				;WaitObject(UNITMISSILE_BUTTON)
+			}
+		}
+	}
+	else if AllyType = 3 ;magic
+	{
+		while not DetectObject(UNITMAGIC_BUTTON)
+		{
+			if DetectObject(UNITALL_BUTTON)
+			{
+				WaitObject(UNITALL_BUTTON)
+				ClickObject(UNITALL_BUTTON)
+				;WaitObject(UNITMELEE_BUTTON)
+			}
+			if DetectObject(UNITMELEE_BUTTON)
+			{
+				WaitObject(UNITMELEE_BUTTON)
+				ClickObject(UNITMELEE_BUTTON)
+				;WaitObject(UNITMISSILE_BUTTON)
+			}
+			if DetectObject(UNITMISSILE_BUTTON)
+			{
+				WaitObject(UNITMISSILE_BUTTON)
+				ClickObject(UNITMISSILE_BUTTON)
+				;WaitObject(UNITMAGIC_BUTTON)
+			}
+		}
+	}
+	;Choose a unit from slot 1 to deploy
+	WaitObject(DEPLOYUNIT1_BUTTON)
+	ClickObject(DEPLOYUNIT1_BUTTON)
+	WaitObject(CANCELPLACEMENT_BUTTON) ;Ensure we are ready to place unit on 'BATTLE FIELD'
+	
+	FindCoordinate(MapX, MapY) ;FindCoordinate() modifies MapX and MapY to valid coordinates
+	PlaceUnitAt(MapX, MapY)	;Place unit at (MapX, MapY)
+	
+	while not DetectObject(CONFIRMUNITPLACEMENT_BUTTON)
+	{
+		FindCoordinate(MapX, MapY) ;Find coordinate modifies MapX and MapY to valid coordinates
+		PlaceUnitAt(MapX, MapY)	;Place unit at MapX, MapY
+	}
+	WaitObject(CONFIRMUNITPLACEMENT_BUTTON)
+	ClickObject(CONFIRMUNITPLACEMENT_BUTTON)
+	
+	while DetectObject(CANCELPLACEMENT_BUTTON) ;busy wait until unit placement is done (in case of lag)
+	{
+		Sleep SLEEPTIME
+	}
+}
+
+EventBoss(allycount=0)
+{
+	global BACKQUEST_BUTTON, BACKTOEVENT_BUTTON, CALLALLY_BUTTON, DEPLOY_NUMBER, DEPLOYUNIT_BUTTON, SORTINDEX, TRAINEVENT_BUTTON, ENTERTOWER_BUTTON, ENTERNEWTOWER_BUTTON, TOWERCOMPLETEREWARDCARDBACK_BUTTON
+	
+	WaitObject(DEPLOYUNIT_BUTTON) ;wait for deploy button
+		
+	PixelGetColor, bossSampleColor, 945, 125
+	
+	;Boss list: Agastache -- Bergamot -- King Mandragora -- Marjoram -- Lilith -- Anne -- Verde
+	if (bossSampleColor = 0x6760a8 || bossSampleColor = 0x8686BB || bossSampleColor = 0x569EA8 || bossSampleColor = 0xB0BFE3 || bossSampleColor = 0xCEBEC5 || bossSampleColor = 0xE0E0D6 || bossSampleColor = 0xD3D2BF)
+	{
+		SORTINDEX = 1 ;land
+		TYPEINDEX = 1 ;all
+	}
+	else if (bossSampleColor = 0x5B6D72 || bossSampleColor = 0x423C38 || bossSampleColor = 0x99B2A5 || bossSampleColor = 0xA5B9CD) ;Boss List: Fennel -- Witch -- Paars -- Pale
+	{
+		SORTINDEX = 2 ;air
+		TYPEINDEX = 2 ;all
+	}
+	else if (bossSampleColor = 0x8CBCDE || bossSampleColor = 0x6794A4 || bossampleColor = 0x777B76) ;Boss List: Rosemary -- Amarelo
+	{
+		SORTINDEX = 3 ;sea
+		TYPEINDEX = 3 ;magic
+	}
+	else 
+	{
+		SORTINDEX = 0
+	}	
+		
+	while (A_index <= DEPLOY_NUMBER AND DetectObject(DEPLOYUNIT_BUTTON))
+		DeployUnit(SORTINDEX, TYPEINDEX)
+	
+	;call ally equal to int parameter
+	while (allycount > 0)
+	{
+		if DetectObject(CALLALLY_BUTTON)
+		{
+			CallAlly(SORTINDEX)
+			allycount--
+		}
+		else
+			break
+	}
+
+	;loop while the two buttons in the condition is not visible
+	while not (DetectObject(BACKTOEVENT_BUTTON) || DetectObject(TRAINEVENT_BUTTON) || DetectObject(ENTERTOWER_BUTTON)) 
+	{
+		SendEvent {Click 800, 400}
+		Sleep 1000
+		Gui, Add, Text, x20 y20 h100 w400 , Waiting for quest to end.
+	}
+	
+	if DetectObject(BACKTOEVENT_BUTTON)
+	{
+		WaitObject(BACKTOEVENT_BUTTON) ;Basically waits until questing ends and we get our results
+		ClickObject(BACKTOEVENT_BUTTON)
+		
+		while DetectObject(BACKTOEVENT_BUTTON)
+		{
+			;busy wait until screen transitions
+		}
+		
+		if DetectObject(TOWERCOMPLETEREWARDCARDBACK_BUTTON)
+		{
+			WaitObject(TOWERCOMPLETEREWARDCARDBACK_BUTTON)
+			ClickObject(TOWERCOMPLETEREWARDCARDBACK_BUTTON)
+			
+			WaitObject(BACKTOEVENT_BUTTON) ;Returns to the results page from the card we get our results
+			ClickObject(BACKTOEVENT_BUTTON)
+		}
+	}
+	return
+}
+
+FindCoordinate(Byref X, Byref Y)
+{
+	global SLEEPTIME, RESTRICTPLACEMENTON_COL1, RESTRICTPLACEMENTON_COL2, QUICKSCAN, REVELATIONTOWER, LEVELBOT
+	;declare our static vars here
+	static row:= 0
+	static col:= 0
+		
+	if (REVELATIONTOWER == 1)
+	{
+		global SCAN_START_X, SCAN_START_Y, SCAN_TILE_SIZE
+		StartX := SCAN_START_X
+		StartY := SCAN_START_Y
+		TileSize := SCAN_TILE_SIZE / 2
+		MapMaxRow := 14 
+		MapMaxCol := 14 
+
+		if (QUICKSCAN == 1) ;half-time scan
+		{
+			SLEEPTEMP := SLEEPTIME // 2
+		}
+		else if (QUICKSCAN == 2) ;instant scan
+		{
+			SLEEPTEMP := 1
+		}
+		else ;scan are regular speed
+		{
+			SLEEPTEMP := SLEEPTIME
+		}
+		loop
+		{
+			while row <= MapMaxRow
+			{
+				CurrentRowCoord := StartY + (row * TileSize)
+				while col <= MapMaxCol
+				{
+					CurrentColCoord := StartX + (col * TileSize)
+					PixelGetColor, tileColor, %CurrentColCoord%, %CurrentRowCoord%
+					comparisonColor := tileColor
+					;if (QUICKSCAN == 1)
+					;{
+					Sleep SLEEPTEMP
+					;}
+					PixelGetColor, tileColor, %CurrentColCoord%, %CurrentRowCoord%
+					;MsgBox %tileColor% to %comparisonColor% %row% %col%
+					SB_SetText("Scanning for available coordinates (" . CurrentColCoord . "x" . CurrentRowCoord . ")" )
+					if (tileColor <> comparisonColor && CurrentColCoord <> RESTRICTPLACEMENTON_COL1 && CurrentColCoord <> RESTRICTPLACEMENTON_COL2)
+					{
+						X := CurrentColCoord
+						Y := CurrentRowCoord
+						col++
+						;SB_SetText("Scanning for available coordinates (" . CurrentColCoord . "x" . CurrentRowCoord . ")" )
+						return
+					}
+					col++
+				}
+				row++
+				col := 0
+			}
+			row := 0 ;scanned the entire map, starting from beginning
+		}
+	
+	}
+	else if (LEVELBOT == 1)
+	{
+	    global SCAN_START_X, SCAN_START_Y, SCAN_TILE_SIZE
+		StartX := SCAN_START_X
+		StartY := SCAN_START_Y
+		TileSize := SCAN_TILE_SIZE
+		MapMaxRow := 7 ;starting with row 0
+		MapMaxCol := 7 ;starting with col 0	
+		
+		if (QUICKSCAN == 1)
+		{
+			SLEEPTEMP := SLEEPTIME // 2
+		}
+		else if (QUICKSCAN == 2)
+		{
+			SLEEPTEMP := 1
+		}
+		else
+		{
+			SLEEPTEMP := SLEEPTIME
+		}
+		
+		loop
+		{
+			while row <= MapMaxRow
+			{
+				;msgbox row is . %row%
+				CurrentRowCoord := StartY + (row * TileSize)
+				while col <= MapMaxCol
+				{
+					CurrentColCoord := StartX + (col * TileSize)
+					PixelGetColor, tileColor, %CurrentColCoord%, %CurrentRowCoord%
+					comparisonColor := tileColor
+					;if (QUICKSCAN == 1)
+					;{
+					Sleep SLEEPTEMP
+					;}
+					PixelGetColor, tileColor, %CurrentColCoord%, %CurrentRowCoord%
+					;MsgBox %tileColor% to %comparisonColor% %row% %col%
+					SB_SetText("Scanning for available coordinates (" . CurrentColCoord . "x" . CurrentRowCoord . ")" )
+					if (tileColor <> comparisonColor)
+					{
+						X := CurrentColCoord
+						Y := CurrentRowCoord
+						col++
+						;SB_SetText("Scanning for available coordinates (" . CurrentColCoord . "x" . CurrentRowCoord . ")" )
+						return
+					}
+					col++
+				}
+				row++
+				col := 0
+			}
+			row := 0 ;scanned the entire map, starting from beginning
+		}
+	}
+	else
+	{
+		global SCAN_START_X, SCAN_START_Y, SCAN_TILE_SIZE
+		StartX := SCAN_START_X
+		StartY := SCAN_START_Y
+		TileSize := SCAN_TILE_SIZE / 2
+		MapMaxRow := 14 ;starting with row 0
+		MapMaxCol := 14 ;starting with col 0
+		
+		
+		if (QUICKSCAN == 1)
+		{
+			SLEEPTEMP := SLEEPTIME // 2
+		}
+		else if (QUICKSCAN == 2)
+		{
+			SLEEPTEMP := 1
+		}
+		else
+		{
+			SLEEPTEMP := SLEEPTIME
+		}
+		
+		loop
+		{   
+			while row <= MapMaxRow
+			{
+				;msgbox row is . %row%
+				CurrentRowCoord := StartY + (row * TileSize)
+				while col <= (MapMaxCol)
+				{
+					CurrentColCoord := StartX + (col * TileSize)
+					PixelGetColor, tileColor, %CurrentColCoord%, %CurrentRowCoord%
+					comparisonColor := tileColor
+					;if (QUICKSCAN == 1)
+					;{
+					Sleep SLEEPTEMP
+					;}
+					PixelGetColor, tileColor, %CurrentColCoord%, %CurrentRowCoord%
+					;MsgBox %tileColor% to %comparisonColor% %row% %col%
+					SB_SetText("Scanning for available coordinates (" . CurrentColCoord . "x" . CurrentRowCoord . ")")
+					if (tileColor <> comparisonColor)
+					{
+						X := CurrentColCoord
+						Y := CurrentRowCoord
+						col++
+						;SB_SetText("Scanning for available coordinates (" . CurrentColCoord . "x" . CurrentRowCoord . ")" )
+						return
+					}
+					col++
+				}
+				row++
+				col := 0
+                                switch++
+			}
+			row := 0 ;scanned the entire map, starting from beginning
+		}
+	}
+}
+
+PlaceUnitAt(CoordX, CoordY)
+{
+	SetTimer, TimeOut, 5000
+	global SLEEPTIME
+	PixelGetColor, PixColor, %CoordX%, %CoordY%
+	PixState := PixColor
+	while PixState = PixColor
+	{
+		SendEvent { Click down %CoordX%, %CoordY%}
+		Sleep SLEEPTIME
+		PixelGetColor, PixState, %CoordX%, %CoordY%
+		SendEvent { Click up }
+	}
+	Sleep SLEEPTIME
+	
+	TimeOut:
+		return
+}
+
+;Scrolls down a list
+Scroll(X_init, Y_init, X_end, Y_end)
+{
+	global SLEEPTIME
+	SetDefaultMouseSpeed 0
+	MouseMove %X_init%, %Y_init% 
+	Sleep SLEEPTIME
+	SetDefaultMouseSpeed 100
+	SendEvent { Click down }{ Click up %X_end%, %Y_end%}
+	SetDefaultMouseSpeed 0
+	Sleep SLEEPTIME
+}
+
+SelectEpisode(CURRENTEPISODE, EPISODE)
+{
+	SetDefaultMouseSpeed, 100
+	i := CURRENTEPISODE - (EPISODE + 5)
+	loop, %i%
+	{
+		SendEvent {Click 816, 600, down}{click 816, 715, up}
+		Sleep 500
+	}
+	
+	if (i = -5)		;current quest
+	{
+		Click 956, 755 down
+		Sleep 500
+		Click up
+	}
+	else if (i = -4)	;1 episode before current quest
+	{
+		Click 956, 629 down
+		Sleep 500
+		Click up
+	}
+	else if (i= -3) 	;2 episodes before current quest
+	{
+		Click 956, 514 down
+		Sleep 500
+		Click up
+	}
+	else if (i= -2)	;3 episodes before current quest
+	{
+		Click 956, 399 down
+		Sleep 500
+		Click up
+	}
+	else if (i= -1)	;4 episodes before current quest
+	{
+		Click 956, 284 down
+		Sleep 500
+		Click up
+	}
+	else			;whichever episode is at the top of the screen
+	{
+		Click 956, 169 down
+		Sleep 500
+		Click up
+	}
+	SetDefaultMouseSpeed, 50
+}
