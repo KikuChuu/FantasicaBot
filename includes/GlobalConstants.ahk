@@ -4,39 +4,96 @@
 	;RESTRICTPLACEMENTON_ROW1 = 0
 	;RESTRICTPLACEMENTON_ROW2 = 0
 	
-;FANTASICA SCREEN DIMENSION
-;--------------------------
-X1 := 0
-Y1 := 0
-X2 := 1920
-Y2 := 1080
-
-BLUESTACK_WINDOW_TITLE := "Bluestacks App Player"
-SCAN_START_X := 0 ; QuestProcedure.ahk
-SCAN_START_Y := 0 ; QuestProcedure.ahk
-SCAN_TILE_SIZE := 0 ; QuestProcedure.ahk
+	
+BLUESTACK_WINDOW_TITLE := "Bluestacks App Player" ; Emulator title
 
 Init_globals()
 {
+  global BLUESTACK_WINDOW_TITLE
   global X1, Y1, X2, Y2
-  global SCAN_START_X, SCAN_START_Y, BLUESTACK_WINDOW_TITLE, SCAN_TILE_SIZE
+  global SCAN_START_X, SCAN_START_Y, SCAN_TILE_SIZE ;
+  global QUEST_ICON, QUEST2_ICON ; Main page menu items
+  global SELECTEPISODE_BUTTON,STARTQUEST1_BUTTON,STARTQUEST2_BUTTON 
+  global                      STARTQUEST3_BUTTON,STARTQUEST4_BUTTON
+  global                      STARTQUEST5_BUTTON,STARTQUEST6_BUTTON
+  global                      STARTQUEST7_BUTTON
+  
+  global DEPLOYUNIT_BUTTON, CALLALLY_BUTTON
+  global                    CANCELPLACEMENT_BUTTON, CONFIRMUNITPLACEMENT_BUTTON
+  global DEPLOYUNIT1_BUTTON, UNIT1_INVISIBLEBUTTON, UNITFAVORITEON_BUTTON
+  global DEPLOYALLY1_BUTTON, DEPLOYALLY2_BUTTON, DEPLOYALLY3_BUTTON
+  global                     NEXTPAGE_BUTTON, NONEXTPAGE_BUTTON, CALLALLYPAGE_TEXT
+  global                     BACKQUEST_BUTTON, SORTBYDEFAULT_BUTTON
+  global                     SORTBYGROUNDATK_BUTTON, SORTBYAIRATK_BUTTON
+  global                     SORTBYSEAATK_BUTTON, UNITALL_BUTTON
+  global                     UNITMELEE_BUTTON, UNITMISSILE_BUTTON, UNITMAGIC_BUTTON
+  global BACKTOEVENT_BUTTON, CHOOSEQUESTCOMPLETED_BUTTON, MYPAGE_BUTTON
+  global                     TOWERCOMPLETEREWARDCARDBACK_BUTTON
+  
   WinGetPos,,,width, height, %BLUESTACK_WINDOW_TITLE%
   if (width == 677 && height = 1102)
   {
 	SCAN_START_X := 239
     SCAN_START_Y := 233
 	SCAN_TILE_SIZE := 79
+	
+	QUEST_ICON := "FANTASICA IMAGES\MainPage\iconquest-1920_1080.png" ;Quest icon on home page
   }
   else if (width == 1920 && height == 1080)
   {
     SCAN_START_X := 702
     SCAN_START_Y := 132
 	SCAN_TILE_SIZE := 75
+	
+	QUEST_ICON := "FANTASICA IMAGES\MainPage\iconquest-1920_1080.png" ;Quest icon on home page
+	QUEST2_ICON := "FANTASICA IMAGES\MainPage\iconquest2-1920_1080.png" ;Quest icon on home page
+	
+	SELECTEPISODE_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonselectepisode-1920_1080.png" ;The 'Select Episode' button for quest
+	STARTQUEST1_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest1-1920_1080.png" ;quest #1
+	STARTQUEST2_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest2-1920_1080.png" ;quest #2
+	STARTQUEST3_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest3-1920_1080.png" ;quest #3
+	STARTQUEST4_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest4-1920_1080.png" ;quest #4
+	STARTQUEST5_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest5-1920_1080.png" ;quest #5
+	STARTQUEST6_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest6-1920_1080.png" ;quest #6
+	STARTQUEST7_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest7-1920_1080.png" ;quest #7 
+	
+	CALLALLY_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttoncallally-1920_1080.png ;the call ally button in questing
+	CANCELPLACEMENT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttoncancelplacement-1920_1080.png ; the cancel placement button
+	CONFIRMUNITPLACEMENT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttonconfirmunitplacement-1920_1080.png ;confirm the location to place unit
+	DEPLOYUNIT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttondeployunit-1920_1080.png	;The 'Deploy' button during questing
+	
+	DEPLOYUNIT1_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\Unit\buttondeployunit1-1920_1080.png ;first unit in the 'Deploy List'
+	UNITFAVORITEON_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\Unit\buttonunitfavoriteon-1920_1080.png ;favorite on
+	UNIT1_INVISIBLEBUTTON = FANTASICA IMAGES\Quest\QuestBattle\Unit\invisiblebuttonunit1-1920_1080.png ;first unit when unable to deploy (due to insufficient unit cost)
+
+	DEPLOYALLY1_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\Ally\buttondeployally1-1920_1080.png ;ally1 top of the list
+	DEPLOYALLY2_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\Ally\buttondeployally2-1920_1080.png	;ally2 second on the list
+	DEPLOYALLY3_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\Ally\buttondeployally3-1920_1080.png	;ally3 third on the list
+	NEXTPAGE_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\Ally\buttonnextpage(allylist)-1920_1080.png ;the 'next page' button on the ally selection
+	NONEXTPAGE_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\Ally\buttonnonextpage(allylist)-1920_1080.png ;the 'no next page' button on the ally selection
+	
+	CALLALLYPAGE_TEXT = FANTASICA IMAGES\Quest\QuestBattle\Ally\textcallallypage-1920_1080.png ;the page titled 'Call Ally'
+	
+	BACKQUEST_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\BothUnitAlly\buttonbackallyselection-1920_1080.png ;the back button found in quest's unit selection
+	SORTBYDEFAULT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\BothUnitAlly\buttonsortbydefault-1920_1080.png ;no specific sort
+	SORTBYGROUNDATK_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\BothUnitAlly\buttonsortbygroundatk-1920_1080.png ;Sort unit by strongest land to weakest
+	SORTBYAIRATK_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\BothUnitAlly\buttonsortbyairatk-1920_1080.png ;sort unit by strongest air to weakest
+	SORTBYSEAATK_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\BothUnitAlly\buttonsortbyseaatk-1920_1080.png ;sort unit by strongest sea to weakest
+	UNITALL_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\BothUnitAlly\buttonunitall-1920_1080.png ;type all
+	UNITMELEE_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\BothUnitally\buttonunitmelee-1920_1080.png ; type melee
+	UNITMISSILE_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\BothUnitally\buttonunitmissile-1920_1080.png ;type missile
+	UNITMAGIC_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\BothUnitally\buttonunitmagic-1920_1080.png ;type magic
+	
+	BACKTOEVENT_BUTTON = FANTASICA IMAGES\Quest\QuestResult\buttonbacktoevent(completed)-1920_1080.png ; The 'Back to Event' button after defeating a event boss encountered during training
+	CHOOSEQUESTCOMPLETED_BUTTON = FANTASICA IMAGES\Quest\QuestResult\buttonchoosequest(completed)-1920_1080.png ;The 'Choose Quest' button on the results page after completing a quest
+	MYPAGE_BUTTON = FANTASICA IMAGES\Quest\QuestResult\buttonmypage-1920_1080.png ;The 'My Page' button on the results page after questing
+	TOWERCOMPLETEREWARDCARDBACK_BUTTON = FANTASICA IMAGES\Quest\QuestResult\buttonbacktowercompleterewardcard-1920_1080.png ;The back button on reward card received upon completion of the tower
   }
   
   X2 := width
   Y2 := height
 }
+
 
 ;MainPage
 ;--------
@@ -65,59 +122,7 @@ TRAINING3_ICON = FANTASICA IMAGES\MainPage\icontraining3.png ;Training icon on h
 MYPAGEID_TEXT = FANTASICA IMAGES\MainPage\textmypageid.png ;The text called "id" at the very top of the fantasica homepage
 MYPAGEID2_TEXT = FANTASICA IMAGES\MainPage\textmypageidarena.png ;The text called "id" at the very topof the fantasica homepage, but offset due to arena info
 
-;Quest
-;-----
-	;QuestBattle
-	;-----------
-		;Ally
-		;----
-		DEPLOYALLY1_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\Ally\buttondeployally1.png ;ally1 top of the list
-		DEPLOYALLY2_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\Ally\buttondeployally2.png	;ally2 second on the list
-		DEPLOYALLY3_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\Ally\buttondeployally3.png	;ally3 third on the list
-		NEXTPAGE_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\Ally\buttonnextpage(allylist).png ;the 'next page' button on the ally selection
-		NONEXTPAGE_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\Ally\buttonnonextpage(allylist).png ;the 'no next page' button on the ally selection
-		
-		CALLALLYPAGE_TEXT = FANTASICA IMAGES\Quest\QuestBattle\Ally\textcallallypage.png ;the page titled 'Call Ally'
-		
-		;BothUnitAlly
-		;------------
-		BACKQUEST_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\BothUnitAlly\buttonbackallyselection.png ;the back button found in quest's unit selection
-		SORTBYDEFAULT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\BothUnitAlly\buttonsortbydefault.png ;no specific sort
-		SORTBYGROUNDATK_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\BothUnitAlly\buttonsortbygroundatk.png ;Sort unit by strongest land to weakest
-		SORTBYAIRATK_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\BothUnitAlly\buttonsortbyairatk.png ;sort unit by strongest air to weakest
-		SORTBYSEAATK_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\BothUnitAlly\buttonsortbyseaatk.png ;sort unit by strongest sea to weakest
-		UNITALL_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\BothUnitAlly\buttonunitall.png ;type all
-		UNITMELEE_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\BothUnitally\buttonunitmelee.png ; type melee
-		UNITMISSILE_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\BothUnitally\buttonunitmissile.png ;type missile
-		UNITMAGIC_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\BothUnitally\buttonunitmagic.png ;type magic
-		
-		;Unit
-		;----
-		DEPLOYUNIT1_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\Unit\buttondeployunit1.png ;first unit in the 'Deploy List'
-		UNITFAVORITEON_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\Unit\buttonunitfavoriteon.png ;favorite on
-		UNIT1_INVISIBLEBUTTON = FANTASICA IMAGES\Quest\QuestBattle\Unit\invisiblebuttonunit1.png ;first unit when unable to deploy (due to insufficient unit cost)
-			
-	CALLALLY_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttoncallally.png ;the call ally button in questing
-	CANCELPLACEMENT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttoncancelplacement.png ; the cancel placement button
-	CONFIRMUNITPLACEMENT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttonconfirmunitplacement.png ;confirm the location to place unit
-	DEPLOYUNIT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttondeployunit.png	;The 'Deploy' button during questing
-		
-	;QuestResult
-	;-----------
-	BACKTOEVENT_BUTTON = FANTASICA IMAGES\Quest\QuestResult\buttonbacktoevent(completed).png ; The 'Back to Event' button after defeating a event boss encountered during training
-	CHOOSEQUESTCOMPLETED_BUTTON = FANTASICA IMAGES\Quest\QuestResult\buttonchoosequest(completed).png ;The 'Choose Quest' button on the results page after completing a quest
-	MYPAGE_BUTTON = FANTASICA IMAGES\Quest\QuestResult\buttonmypage.png ;The 'My Page' button on the results page after questing
-	TOWERCOMPLETEREWARDCARDBACK_BUTTON = FANTASICA IMAGES\Quest\QuestResult\buttonbacktowercompleterewardcard.png ;The back button on reward card received upon completion of the tower
-	;QuestSelection
-	;--------------
-	SELECTEPISODE_BUTTON = FANTASICA IMAGES\Quest\QuestSelection\buttonselectepisode.png ;The 'Select Episode' button for quest
-	STARTQUEST1_BUTTON = FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest1.png ;quest #1
-	STARTQUEST2_BUTTON = FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest2.png ;quest #2
-	STARTQUEST3_BUTTON = FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest3.png ;quest #3
-	STARTQUEST4_BUTTON = FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest4.png ;quest #4
-	STARTQUEST5_BUTTON = FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest5.png ;quest #5
-	STARTQUEST6_BUTTON = FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest6.png ;quest #6
-	STARTQUEST7_BUTTON = FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest7.png ;quest #7 
+	
 ;Training
 ;--------
 	;ActualTraining
@@ -211,76 +216,3 @@ RESUMEQUESTNO_BUTTON = FANTASICA IMAGES\StartScreen\buttonresumequestno.png ;do 
 	ALLYASSISTZERO_TEXT = FANTASICA IMAGES\Event\TrainingEvent\textallyassistzero.png ;an instance of a dynamic text that indicates no allies
 	ASSISTALLYRESULT_TEXT = FANTASICA IMAGES\Event\TrainingEvent\textassistallyresult.png ;The title of result page after assisting an ally
 	SELECTBOSS_TEXT = FANTASICA IMAGES\Event\TrainingEvent\textselectboss.png ;a static text that is in the failed bosslist page
-	
-	;Shadowflame Citadel
-	;-------------------
-	;BUTTON PATHS
-	ACCEPTBOSSFIGHT_BUTTON = FANTASICA IMAGES\Event\Shadowflame Citadel\buttonacceptbossfight.png ;the 'Yes' button to the boss dialog in arena
-	BATTLE_BUTTON = FANTASICA IMAGES\Event\Shadowflame Citadel\buttonbattle.png ;button to begin battle with another player
-	BATTLEOFHEROES_BUTTON = FANTASICA IMAGES\Event\Shadowflame Citadel\buttonbattleofheroes.png ;the button to transition to the pvp event page
-	;FIGHT_ARENA_BUTTON = FANTASICA IMAGES\Event\Shadowflame Citadel\buttonfight.png ;begin a floor of the arena
-	FIGHTFIRSTHERO_BUTTON = FANTASICA IMAGES\Event\Shadowflame Citadel\buttonfightfirsthero.png ;button to battle against the first hero 
-	FIGHTSECONDHERO_BUTTON = FANTASICA IMAGES\Event\Shadowflame Citadel\buttonfightsecondhero.png ;button to battle against the second hero
-	FIGHTTHIRDHERO_BUTTON = FANTASICA IMAGES\Event\Shadowflame Citadel\buttonfightthirdhero.png ;button to battle against the third hero
-	FLOOR1_BUTTON = FANTASICA IMAGES\Event\Shadowflame Citadel\buttonfloor1.png
-	FLOOR2_BUTTON = FANTASICA IMAGES\Event\Shadowflame Citadel\buttonfloor2.png
-	FLOOR3_BUTTON = FANTASICA IMAGES\Event\Shadowflame Citadel\buttonfloor3.png ;begin floor 3 of the arena
-	FLOOR4_BUTTON = FANTASICA IMAGES\Event\Shadowflame Citadel\buttonfloor4.png ;begin floor 4 of the arena
-	FLOOR5_BUTTON = FANTASICA IMAGES\Event\Shadowflame Citadel\buttonfloor5.png ;begin floor 5 of the arena
-	FLOOR6_BUTTON = FANTASICA IMAGES\Event\Shadowflame Citadel\buttonfloor6.png ;begin floor 6 of the arena
-	SHADOWFLAMECITADELARENA_BUTTON = FANTASICA IMAGES\Event\Shadowflame Citadel\buttonshadowflamecitadelarena.png ;the button to transition to the npc arena event page
-	RETREAT_BUTTON = FANTASICA IMAGES\Event\Shadowflame Citadel\buttonretreat.png ;the 'Retreat' button when you fail an arena
-	SEARCHAGAIN_BUTTON = FANTASICA IMAGES\Event\Shadowflame Citadel\buttonsearchagain.png ;The 'Search Again' button to search for different opponents
-	
-	;TEXT
-	SHADOWFLAMEARENA_TEXT = FANTASICA IMAGES\Event\Shadowflame Citadel\textshadowflamecitadelarena.png ;title page of the npc arena
-	BATTLEOFHEROES_TEXT = FANTASICA IMAGES\Event\Shadowflame Citadel\textbattleofheroescooldown.png ;ready to start battle when found
-	GEMSTONEPALACEOFLIGHTCOOLDOWN9_TEXT = FANTASICA IMAGES\Event\Shadowflame Citadel\textgemstonepalaceoflightcooldown(9-te).png ;ready to start quest when found offset cuz of single digit te)
-	GEMSTONEPALACEOFLIGHTCOOLDOWN_TEXT = FANTASICA IMAGES\Event\Shadowflame Citadel\textgemstonepalaceoflightcooldown.png ;ready to start quest when found
-	GEMSTONEPALACEOFLIGHTCOOLDOWN100_TEXT = FANTASICA IMAGES\Event\Shadowflame Citadel\textgemstonepalaceoflightcooldown(100+te).png ; ;ready to start quest when found (offset cuz of 100+ te)
-	FIRSTFIVESTAR_TEXT = FANTASICA IMAGES\Event\Shadowflame Citadel\textfirstfivestar.png ;first in list 5-star opponent in battle of heroes  
-	FIRSTFOURSTAR_TEXT = FANTASICA IMAGES\Event\Shadowflame Citadel\textfirstfourstar.png ;first in list 4-star opponent in battle of heroes
-	SECONDFIVESTAR_TEXT = FANTASICA IMAGES\Event\Shadowflame Citadel\textsecondfivestar.png ;second in list 5-star opponent in battle of heroes
-	SECONDFOURSTAR_TEXT = FANTASICA IMAGES\Event\Shadowflame Citadel\textsecondfourstar.png ;second in list 4-star opponent in battle of heroes
-	THIRDFIVESTAR_TEXT = FANTASICA IMAGES\Event\Shadowflame Citadel\textthirdfivestar.png ;third in list 5-star opponent in battle of heroes
-	THIRDFOURSTAR_TEXT = FANTASICA IMAGES\Event\Shadowflame Citadel\textthirdfourstar.png ;third in list 4-star opponent in battle of heroes
-	
-	;The Doomsday Tower Revelations
-	;------------------------------
-	ENTERNEWTOWER_BUTTON = FANTASICA IMAGES\Event\RevelationTower\buttonenternewtower.png ; the button to enter a new specific tower
-	ENTERTOWER_BUTTON = FANTASICA IMAGES\Event\RevelationTower\buttonentertower.png ; the button to enter a specific tower
-	FIGHTTOWERBOSS_BUTTON = FANTASICA IMAGES\Event\RevelationTower\buttonfighttowerboss.png ;the button to fight a boss
-	USENIGHTSTONE_BUTTON = FANTASICA IMAGES\Event\RevelationTower\buttonusenightstone.png ;the button to use a nightstone to open the crimston tower
-	
-	;crimson tower not open
-	TOWEROFAGONY_TEXT = FANTASICA IMAGES\Event\RevelationTower\texttowerofagony.png ;the text for tower of agony
-	TOWEROFCHAINS_TEXT = FANTASICA IMAGES\Event\RevelationTower\texttowerofchains.png ;the text for tower of chains
-	TOWEROFLIGHT_TEXT = FANTASICA IMAGES\Event\RevelationTower\texttoweroflight.png ;the text for tower of light
-	CRIMSONTOWER_TEXT = FANTASICA IMAGES\Event\RevelationTower\textthecrimsontower.png ;the text for the crimson tower when it is not up
-	DEMONTOWER_TEXT = FANTASICA IMAGES\Event\RevelationTower\textthedemontower.png ;the text for the demon tower when it not up
-	
-	;crimson tower open
-	TOWEROFAGONY2_TEXT = FANTASICA IMAGES\Event\RevelationTower\texttowerofagony2.png ;the text for tower of agony when the crimson tower is avaiable
-	TOWEROFCHAINS2_TEXT = FANTASICA IMAGES\Event\RevelationTower\texttowerofchains2.png ;the text for tower of chains when the crimson tower is avaiable
-	TOWEROFLIGHT2_TEXT = FANTASICA IMAGES\Event\RevelationTower\texttoweroflight2.png ;the text for tower of light when the crimson tower is avaiable
-	CRIMSONTOWER2_TEXT = FANTASICA IMAGES\Event\RevelationTower\textthecrimsontower2.png ;the text for the crimson tower when it is up
-	DEMONTOWER2_TEXT = FANTASICA IMAGES\Event\RevelationTower\textthedemontower2.png ;the text for the demon tower when it is up
-	CRIMSONTOWERTIMERDOWN_TEXT = FANTASICA IMAGES\Event\RevelationTower\textcrimsontowertimerdown.png ;the timer diplaying 0:00 to indicate the portal to the crimson tower is not available
-	
-	
-		;Inside the tower
-		;----------------
-		TOWERADVANCE_BUTTON = FANTASICA IMAGES\Event\RevelationTower\Tower\buttontoweradvance.png ; advance in the tower
-		TOWERBACK_BUTTON = FANTASICA IMAGES\Event\RevelationTower\Tower\buttontowerback.png ; back button inside the tower
-		NIGHTSTONE_TEXT = FANTASICA IMAGES\Event\RevelationTower\Tower\textnightstone.png ; the timer's background color indicating the portal to the crimson tower is available
-			;Encountered swarm
-			;-----------------
-			FIGHTSWARM_BUTTON = FANTASICA IMAGES\Event\RevelationTower\Tower\buttonfightswarm.png ;accept to fight a swarm
-			FLEESWARM_BUTTON = FANTASICA IMAGES\Event\RevelationTower\Tower\buttonfleeswarm.png ;refuse to fight a swarm and continue advancing the tower
-
-        ; Mysterious Manor
-        ;------------------
-        BATTLESTART_BUTTON = FANTASICA IMAGES\Event\Mysterious Manor\buttonbattlestart.png ; Enter manor
-        BATTLESTARTTE_BUTTON = FANTASICA IMAGES\Event\Mysterious Manor\buttonbattlestarttimeelixir.png ; Enter manor
-        MANOR_MENU = FANTASICA IMAGES\Event\Mysterious Manor\menumanor.png
-        MANOR_BACK_BUTTON = FANTASICA IMAGES\Event\Mysterious Manor\buttonmanorback.png

@@ -28,7 +28,7 @@ ClickObject(Path)
 	ImageSearch, FoundX, FoundY, X1, Y1, X2, Y2, %Path%
 	if ErrorLevel = 2
 	{
-		MsgBox, 0, File Missing(ClickObject), We can't seem to find this file: `n%Path%. >_< `n`n                    Pausing Script.
+		MsgBox, 0, File Missing(ClickObject), We can't seem to find this file: `n%Path%. >_< `n`n Pausing Script.
 		Pause
 	}
 	else if ErrorLevel = 1
