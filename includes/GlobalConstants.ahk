@@ -1,11 +1,9 @@
-﻿	;do not touch these two code line of code, they're for the event
-	;RESTRICTPLACEMENTON_COL1= 966 ;1 = use specific coordinates, 0 = let program automatically find coordinates to place units
-	;RESTRICTPLACEMENTON_COL2 = 651
-	;RESTRICTPLACEMENTON_ROW1 = 0
-	;RESTRICTPLACEMENTON_ROW2 = 0
-	
-	
-BLUESTACK_WINDOW_TITLE := "Bluestacks App Player" ; Emulator title
+﻿#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
+; #Warn  ; Enable warnings to assist with detecting common errors.
+SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
+SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
+
+
 
 Init_globals()
 {
@@ -31,19 +29,35 @@ Init_globals()
   global BACKTOEVENT_BUTTON, CHOOSEQUESTCOMPLETED_BUTTON, MYPAGE_BUTTON
   global                     TOWERCOMPLETEREWARDCARDBACK_BUTTON
   
+  if WinExist("BlueStacks App Player")
+  {
+	BLUESTACK_WINDOW_TITLE := "BlueStacks App Player"
+  }
+  else if WinExist("Bluestacks App Player")
+  {
+	BLUESTACK_WINDOW_TITLE := "Bluestacks App Player"
+  }
+  else
+  {
+	MsgBox % "Did not find any of the following matching window titles: `n"
+			 . "'BlueStacks App Player'`n'Bluestacks App Player'"
+			 . "`nPausing the script."
+	Pause
+  }
+  
   WinGetPos,,,width, height, %BLUESTACK_WINDOW_TITLE%
-  if (width == 677 && height = 1102)
+  if (width == 677 && height == 1102)
   {
     QUEST_X1 := 293
 	QUEST_Y1 := 840
 	QUEST_X2 := 293
 	QUEST_Y2 := 130
 	
-	SCAN_START_X := 239
-    SCAN_START_Y := 233
-	SCAN_TILE_SIZE := 79
+	SCAN_START_X := 167
+    SCAN_START_Y := 67
+	SCAN_TILE_SIZE := 78
 	
-	QUEST_ICON  := "FANTASICA IMAGES\MainPage\iconquest-1102_677.png" ;Quest icon on home page
+	QUEST_ICON := "FANTASICA IMAGES\MainPage\iconquest-1102_677.png" ;Quest icon on home page
 	QUEST2_ICON := "FANTASICA IMAGES\MainPage\iconquest2-1102_677.png" ;Quest icon on home page
 	
 	SELECTEPISODE_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonselectepisode-1102_677.png" ;The 'Select Episode' button for quest
@@ -199,7 +213,8 @@ Init_globals()
   }
   else
   {
-	MsgBox % "Unrecognized Window Size. Don't think this version supports it.`n`nPausing"
+	MsgBox % "Unrecognized Window Size. Don't think this version supports it."
+	         . "`nPausing the script"
 	Pause
   }
   

@@ -15,7 +15,7 @@
 														 
 ;Quest Battle specification
 ;--------------------------												 
-	DEPLOY_NUMBER = 1 	;number of units to deploy		 
+	DEPLOY_NUMBER = 4 	;number of units to deploy		 
 	SORTINDEX = 0 		;land = 1, air = 2, sea = 3, default = 0
 	TYPEINDEX = 0 		;Melee = 1, missile = 2, magic = 3, all = 0
 	LEVELBOT = 1		;0 = no, 1 = set starting point specifically for quest 2-7 

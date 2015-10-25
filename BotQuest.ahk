@@ -15,11 +15,11 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 Init_globals() ; Found in GlobalConstants.ahk
 ;--------------------------
 
-WinGet, programId, List, Bluestacks App Player
-IfWinExist ahk_id %programId1%
+WinGet, programId, List, BlueStacks App Player
+IfWinExist ahk_pid %programId1%
 {
-	WinActivate  Bluestacks App Player
-	WinWaitActive, ahk_id %programId1%, , 2
+	WinActivate, %programId1%
+	WinWaitActive, ahk_pid %programId1%, , 2
 }
 
 ;========================================================
@@ -28,24 +28,34 @@ IfWinExist ahk_id %programId1%
 
 SetTimer, RandomPopupOrCrash, 7000 ;handles crashes, popup advertisements
 
-waitobject(selectepisode_button) ;wait for quest screen to load (i used the 'select episode' button to determine if the quest screen has loaded)
+waitobject(selectepisode_button)
 
 if quest >= 4
 {
-	global QUEST_X1, QUEST_Y1, QUEST_X2, QUEST_Y2
-	scroll(QUEST_X1, QUEST_Y1, QUEST_X2, QUEST_Y2) ;scroll the list to select quests over level 5
+  global QUEST_X1, QUEST_Y1, QUEST_X2, QUEST_Y2
+  scroll(QUEST_X1, QUEST_Y1, QUEST_X2, QUEST_Y2)
 }
 
-questindex := assignquest(quest) ;assign a quest img path 
-waitobject(questindex) ;wait for timer
-sleep 500 ;add an extra delay before beginning quest since fantasica boots you if you click it too fast
+questindex := assignquest(quest)
+waitobject(questindex)
+sleep 500
 
-clickobject(questindex) ;begin quest
-waitobject(DEPLOYUNIT_BUTTON) ;wait for deploy button
+clickobject(questindex)
+waitobject(DEPLOYUNIT_BUTTON)
 
-while A_index < DEPLOY_NUMBER AND DetectObject(DEPLOYUNIT_BUTTON) {
-	DeployUnit()
+while A_index < DEPLOY_NUMBER AND DetectObject(DEPLOYUNIT_BUTTON)
+{
+  DeployUnit()
 }
+
+
+waitobject(DEPLOYUNIT_BUTTON)
+
+while A_index <= DEPLOY_NUMBER AND DetectObject(DEPLOYUNIT_BUTTON)
+{
+  DeployUnit()
+}
+
 while DetectObject(CALLALLY_BUTTON)
 	if (CallAlly(SORTINDEX, TYPEINDEX) == 0)
 	{

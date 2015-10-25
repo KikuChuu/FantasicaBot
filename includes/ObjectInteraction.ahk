@@ -66,8 +66,8 @@ WaitObject(ByRef Path)
 {
 	global X1, X2, Y1, Y2, SLEEPTIME
 	
-	randomX := X2 * 0.40364583333333333333333333333333 ; A ratio obtained by 775 / 1920
-	randomY:= Y2 * 0.39537037037037037037037037037037 ; A ratio obtained by 427 / 1080
+	randomX := 224
+	randomY := 144
 	SB_SetText("Waiting for `n`n" . Path)
 	ImageSearch, FoundX, FoundY, X1, Y1, X2, Y2, %Path%
 	if ErrorLevel = 2
