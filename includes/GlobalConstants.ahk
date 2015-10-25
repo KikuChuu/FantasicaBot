@@ -43,7 +43,7 @@ Init_globals()
     SCAN_START_Y := 233
 	SCAN_TILE_SIZE := 79
 	
-	QUEST_ICON := "FANTASICA IMAGES\MainPage\iconquest-1102_677.png" ;Quest icon on home page
+	QUEST_ICON  := "FANTASICA IMAGES\MainPage\iconquest-1102_677.png" ;Quest icon on home page
 	QUEST2_ICON := "FANTASICA IMAGES\MainPage\iconquest2-1102_677.png" ;Quest icon on home page
 	
 	SELECTEPISODE_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonselectepisode-1102_677.png" ;The 'Select Episode' button for quest

@@ -22,7 +22,7 @@ ClickAt(CoordX, CoordY)
 ;MsgBox if img file is missing
 ;MsgBox if img wasn't found in search
 ;Note: Use with WaitObject(Path) function to ensure 'Searched Failed' MsgBox does not popup
-ClickObject(Path)
+ClickObject(ByRef Path)
 {
 	global SLEEPTIME, X1,X2,Y1,Y2
 	ImageSearch, FoundX, FoundY, X1, Y1, X2, Y2, %Path%
@@ -43,7 +43,7 @@ ClickObject(Path)
 
 ;Return 1 if Object or button is detected
 ;Return 0 if not detected
-DetectObject(Path)
+DetectObject(ByRef Path)
 {
 	global X1,X2,Y1,Y2, BACK_BUTTON
 	
@@ -62,7 +62,7 @@ DetectObject(Path)
 ;Objects are buttons and icons
 ;MsgBox if img file is missing
 ;Loop until img is found. Then move mouse to the upper left coordinates of the img location
-WaitObject(Path)
+WaitObject(ByRef Path)
 {
 	global X1, X2, Y1, Y2, SLEEPTIME
 	

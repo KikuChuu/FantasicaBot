@@ -2,6 +2,14 @@ The UserInput.txt is used as inputs for both scripts.
 Edit the UserInput.txt.
 Run a script.
 
+This scripts supports the following Bluestacks window sizes:
+------------------------------------------------------------
+  - 1102x677
+  - 1282x749
+  - 1920x1080
+  
+...Contact me to update the script and I'll let you know what you need to send me.
+
 Simple
 
 ...except when script breaks;

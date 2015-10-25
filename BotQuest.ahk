@@ -43,7 +43,7 @@ sleep 500 ;add an extra delay before beginning quest since fantasica boots you i
 clickobject(questindex) ;begin quest
 waitobject(DEPLOYUNIT_BUTTON) ;wait for deploy button
 
-while A_index <= DEPLOY_NUMBER AND DetectObject(DEPLOYUNIT_BUTTON) {
+while A_index < DEPLOY_NUMBER AND DetectObject(DEPLOYUNIT_BUTTON) {
 	DeployUnit()
 }
 while DetectObject(CALLALLY_BUTTON)
@@ -66,8 +66,6 @@ if DetectObject(BACKQUEST_BUTTON)
 WaitObject(CHOOSEQUESTCOMPLETED_BUTTON) ;Basically waits until questing ends and we get our results
 ClickObject(CHOOSEQUESTCOMPLETED_BUTTON) ;return to quest selection
 
-waitobject(selectepisode_button) ;wait for quest screen to load (i used the 'select episode' button to determine if the quest screen has loaded)
-
 Reload
 
 
@@ -78,6 +76,9 @@ else
 	Advertisement()
 return
 
+InitGlobals:
+  Init_globals() ; Found in GlobalConstants.ahk
+return
 
 ;QUEST ENDS HERE
 ;========================================================
