@@ -349,39 +349,45 @@ DeployUnit(AllyPower = 0, AllyType = 0)
 	WaitObject(DEPLOYUNIT_BUTTON) ;Waits for the 'Deploy_Unit' button
 	ClickObject(DEPLOYUNIT_BUTTON) ;Click the 'Deploy Unit' button
 	WaitObject(BACKQUEST_BUTTON)
-	while (DetectObject(UNIT1_INVISIBLEBUTTON) && DetectObject(UNIT2_INVISIBLEBUTTON) && DetectObject(UNIT3_INVISIBLEBUTTON) && DetectObject(UNIT4_INVISIBLEBUTTON))  ;Recover unit point until we have enough points to deploy a unit in slot 1
+	loop  ;Recover unit point until we have enough points to deploy a unit in slot 1
 	{
-		ClickObject(BACKQUEST_BUTTON)
-		Sleep SLEEPTIME
-		WaitObject(DEPLOYUNIT_BUTTON) ;Waits for the 'Deploy_Unit' button
-		ClickObject(DEPLOYUNIT_BUTTON) ;Click the 'Deploy Unit' button
-		WaitObject(BACKQUEST_BUTTON) 
-	}
-
-	;Choose a unit to deploy
-	if DetectObject(DEPLOYUNIT1_BUTTON)
-	{
-		WaitObject(DEPLOYUNIT1_BUTTON)
-		ClickObject(DEPLOYUNIT1_BUTTON)
-		WaitObject(CANCELPLACEMENT_BUTTON) ;Ensure we are ready to place unit on 'BATTLE FIELD'
-	}
-	else if DetectObject(DEPLOYUNIT2_BUTTON)
-	{
-		WaitObject(DEPLOYUNIT2_BUTTON)
-		ClickObject(DEPLOYUNIT2_BUTTON)
-		WaitObject(CANCELPLACEMENT_BUTTON) ;Ensure we are ready to place unit on 'BATTLE FIELD'
-	}
-	else if DetectObject(DEPLOYUNIT3_BUTTON)
-	{
-		WaitObject(DEPLOYUNIT3_BUTTON)
-		ClickObject(DEPLOYUNIT3_BUTTON)
-		WaitObject(CANCELPLACEMENT_BUTTON) ;Ensure we are ready to place unit on 'BATTLE FIELD'
-	}
-	else
-	{
-		WaitObject(DEPLOYUNIT4_BUTTON)
-		ClickObject(DEPLOYUNIT4_BUTTON)
-		WaitObject(CANCELPLACEMENT_BUTTON) ;Ensure we are ready to place unit on 'BATTLE FIELD'
+		;Choose a unit to deploy
+		if DetectObject(DEPLOYUNIT1_BUTTON)
+		{
+			WaitObject(DEPLOYUNIT1_BUTTON)
+			ClickObject(DEPLOYUNIT1_BUTTON)
+			WaitObject(CANCELPLACEMENT_BUTTON) ;Ensure we are ready to place unit on 'BATTLE FIELD'
+			break
+		}
+		else if DetectObject(DEPLOYUNIT2_BUTTON)
+		{
+			WaitObject(DEPLOYUNIT2_BUTTON)
+			ClickObject(DEPLOYUNIT2_BUTTON)
+			WaitObject(CANCELPLACEMENT_BUTTON) ;Ensure we are ready to place unit on 'BATTLE FIELD'
+			break
+		}
+		else if DetectObject(DEPLOYUNIT3_BUTTON)
+		{
+			WaitObject(DEPLOYUNIT3_BUTTON)
+			ClickObject(DEPLOYUNIT3_BUTTON)
+			WaitObject(CANCELPLACEMENT_BUTTON) ;Ensure we are ready to place unit on 'BATTLE FIELD'
+			break
+		}
+		else if DetectObject(DEPLOYUNIT4_BUTTON)
+		{
+			WaitObject(DEPLOYUNIT4_BUTTON)
+			ClickObject(DEPLOYUNIT4_BUTTON)
+			WaitObject(CANCELPLACEMENT_BUTTON) ;Ensure we are ready to place unit on 'BATTLE FIELD'
+			break
+		}
+		else
+		{
+			ClickObject(BACKQUEST_BUTTON)
+			Sleep SLEEPTIME
+			WaitObject(DEPLOYUNIT_BUTTON) ;Waits for the 'Deploy_Unit' button
+			ClickObject(DEPLOYUNIT_BUTTON) ;Click the 'Deploy Unit' button
+			WaitObject(BACKQUEST_BUTTON) 
+		}
 	}
 	
 	FindCoordinate(MapX, MapY) ;FindCoordinate() modifies MapX and MapY to valid coordinates
