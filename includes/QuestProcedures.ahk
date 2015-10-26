@@ -32,8 +32,12 @@ AssignQuest(QuestNum)
 ;AllyType is sort by type (melee = 1, missile = 2, magic = 3, no specific type = 0 (default))
 CallAlly(AllyPower=0, AllyType=0) 
 {
-	global SLEEPTIME, BACKQUEST_BUTTON, BACKTOEVENT_BUTTON, CALLALLY_BUTTON, CARDBACK_BUTTON, DEPLOYALLY1_BUTTON, DEPLOYALLY2_BUTTON, DEPLOYALLY3_BUTTON, CHOOSEQUESTCOMPLETED_BUTTON 
-	global CALLALLYPAGE_TEXT, CANCELPLACEMENT_BUTTON, CONFIRMUNITPLACEMENT_BUTTON, EVENT_ICON, NEXTPAGE_BUTTON, PAGE10ALLYLIST_TEXT, RESTRICTPLACMENTON_COL1, RESTRICTPLACMENTON_COL2, SORTBYAIRATK_BUTTON, SORTBYDEFAULT_BUTTON, SORTBYGROUNDATK_BUTTON, SORTBYSEAATK_BUTTON, STARTBATTLE_BUTTON
+	global SLEEPTIME
+    global BACKQUEST_BUTTON, BACKTOEVENT_BUTTON, CALLALLY_BUTTON, CARDBACK_BUTTON, DEPLOYALLY1_BUTTON, DEPLOYALLY2_BUTTON, DEPLOYALLY3_BUTTON, CHOOSEQUESTCOMPLETED_BUTTON 
+	global CALLALLYPAGE_TEXT, CANCELPLACEMENT_BUTTON, CONFIRMUNITPLACEMENT_BUTTON, EVENT_ICON, NEXTPAGE_BUTTON, PAGE10ALLYLIST_TEXT, RESTRICTPLACMENTON_COL1, RESTRICTPLACMENTON_COL2, STARTBATTLE_BUTTON
+	global SORTBYAIRATK_BUTTON, SORTBYDEFAULT_BUTTON, SORTBYGROUNDATK_BUTTON, SORTBYSEAATK_BUTTON
+	global UNITALL_BUTTON, UNITMELEE_BUTTON, UNITMISSILE_BUTTON, UNITMAGIC_BUTTON
+	static hasFilteredAllyListByType := 0
 	
 	WaitObject(CALLALLY_BUTTON) ;wait on ally button
 	ClickObject(CALLALLY_BUTTON) ;go to ally list
@@ -44,7 +48,7 @@ CallAlly(AllyPower=0, AllyType=0)
 		{
 			break
 		}
-		else if (DetectObject(CHOOSEQUESTCOMPLETED_BUTTON)) ;if some discrete chance that quest ends (returns to my page) and leaves bot stuck in clicking ally button
+		else if (DetectObject(CHOOSEQUESTCOMPLETED_BUTTON)) ;if some small chance that quest ends (returns to my page) and leaves bot stuck in clicking ally button
 		{
 			return
 		}
@@ -56,18 +60,25 @@ CallAlly(AllyPower=0, AllyType=0)
 	;if no allies, exit ally list and skip body
 	if AllyPower = 0
 	{
-		if not (DetectObject(DEPLOYALLY1_BUTTON) || DetectObject(DEPLOYALLY2_BUTTON) || DetectObject(DEPLOYALLY3_BUTTON))
+		;SORT BY DEFAULT
+		while not DetectObject(SORTBYDEFAULT_BUTTON)
 		{
-			ClickObject(BACKQUEST_BUTTON)
-			WaitObject(CALLALLY_BUTTON)
-			return 0
+			if DetectObject(SORTBYSEAATK_BUTTON)
+			{
+				WaitObject(SORTBYSEAATK_BUTTON)
+				ClickObject(SORTBYSEAATK_BUTTON)
+			}
+			if DetectObject(SORTBYGROUNDATK_BUTTON)
+			{
+				WaitObject(SORTBYGROUNDATK_BUTTON)
+				ClickObject(SORTBYGROUNDATK_BUTTON)
+			}
+			if DetectObject(SORTBYAIRATK_BUTTON)
+			{
+				WaitObject(SORTBYAIRATK_BUTTON)
+				ClickObject(SORTBYAIRATK_BUTTON)
+			}
 		}
-		else
-		{
-			ChooseAlly()
-			WaitObject(CANCELPLACEMENT_BUTTON)
-		}
-		
 	}
 	else if AllyPower = 1
 	{
@@ -89,12 +100,6 @@ CallAlly(AllyPower=0, AllyType=0)
 				WaitObject(SORTBYSEAATK_BUTTON)
 				ClickObject(SORTBYSEAATK_BUTTON)
 			}
-		}
-		if not ChooseAlly() ;if no ally was chosen, exit out of ally list
-		{
-			ClickObject(BACKQUEST_BUTTON)
-			WaitObject(CALLALLY_BUTTON)
-			return 0
 		}
 	}
 	
@@ -119,12 +124,6 @@ CallAlly(AllyPower=0, AllyType=0)
 				ClickObject(SORTBYDEFAULT_BUTTON)
 			}
 		}
-		if not ChooseAlly() ;if no ally was chosen, exit out of ally list
-		{
-			ClickObject(BACKQUEST_BUTTON)
-			WaitObject(CALLALLY_BUTTON)
-			return 0
-		}
 	}
 	else if AllyPower = 3
 	{
@@ -147,19 +146,127 @@ CallAlly(AllyPower=0, AllyType=0)
 				ClickObject(SORTBYGROUNDATK_BUTTON)
 			}
 		}
-		if not ChooseAlly() ;if no ally was chosen, exit out of ally list
+	}
+	
+	if (!hasFilteredAllyListByType)
+	{
+	    hasFilteredAllyListByType := 1
+		if AllyType == 0
+		{
+			while not DetectObject(UNITAll_BUTTON)
+			{
+				if DetectObject(UNITMAGIC_BUTTON)
+				{
+					WaitObject(UNITMAGIC_BUTTON)
+					ClickObject(UNITMAGIC_BUTTON)
+				}
+				if (DetectObject(UNITMELEE_BUTTON))
+				{
+					WaitObject(UNITMELEE_BUTTON)
+					ClickObject(UNITMELEE_BUTTON)
+				}
+				if DetectObject(UNITMISSILE_BUTTON)
+				{
+					WaitObject(UNITMISSILE_BUTTON)
+					ClickObject(UNITMISSILE_BUTTON)
+				}
+			}
+		}
+		else if (AllyType == 1)
+		{
+			while not DetectObject(UNITMELEE_BUTTON)
+			{
+				if DetectObject(UNITALL_BUTTON)
+				{
+					WaitObject(UNITALL_BUTTON)
+					ClickObject(UNITALL_BUTTON)
+				}
+				if (DetectObject(UNITMISSILE_BUTTON))
+				{
+					WaitObject(UNITMISSILE_BUTTON)
+					ClickObject(UNITMISSILE_BUTTON)
+				}
+				if DetectObject(UNITMAGIC_BUTTON)
+				{
+					WaitObject(UNITMAGIC_BUTTON)
+					ClickObject(UNITMAGIC_BUTTON)
+				}
+			}
+		}
+		else if (AllyType == 2)
+		{
+			while not DetectObject(UNITMISSILE_BUTTON)
+			{
+				if DetectObject(UNITMELEE_BUTTON)
+				{
+					WaitObject(UNITMELEE_BUTTON)
+					ClickObject(UNITMELEE_BUTTON)
+				}
+				if (DetectObject(UNITMAGIC_BUTTON))
+				{
+					WaitObject(UNITMAGIC_BUTTON)
+					ClickObject(UNITMAGIC_BUTTON)
+				}
+				if DetectObject(UNITALL_BUTTON)
+				{
+					WaitObject(UNITALL_BUTTON)
+					ClickObject(UNITALL_BUTTON)
+				}
+			}
+		}
+		else if (AllyType == 3)
+		{
+			while not DetectObject(UNITMAGIC_BUTTON)
+			{
+				if DetectObject(UNITMISSILE_BUTTON)
+				{
+					WaitObject(UNITMISSILE_BUTTON)
+					ClickObject(UNITMISSILE_BUTTON)
+				}
+				if (DetectObject(UNITALL_BUTTON))
+				{
+					WaitObject(UNITALL_BUTTON)
+					ClickObject(UNITALL_BUTTON)
+				}
+				if DetectObject(UNITMELEE_BUTTON)
+				{
+					WaitObject(UNITMELEE_BUTTON)
+					ClickObject(UNITMELEE_BUTTON)
+				}
+			}
+		}
+	}
+	
+	if not ChooseAlly() ;if no ally was chosen, exit out of ally list
+	{
+		while not DetectObject(UNITAll_BUTTON)
+		{
+			if DetectObject(UNITMAGIC_BUTTON)
+			{
+				WaitObject(UNITMAGIC_BUTTON)
+				ClickObject(UNITMAGIC_BUTTON)
+			}
+			if (DetectObject(UNITMELEE_BUTTON))
+			{
+				WaitObject(UNITMELEE_BUTTON)
+				ClickObject(UNITMELEE_BUTTON)
+			}
+			if DetectObject(UNITMISSILE_BUTTON)
+			{
+				WaitObject(UNITMISSILE_BUTTON)
+				ClickObject(UNITMISSILE_BUTTON)
+			}
+		}
+		if not ChooseAlly()
 		{
 			ClickObject(BACKQUEST_BUTTON)
 			WaitObject(CALLALLY_BUTTON)
 			return 0
 		}
 	}
-	FindCoordinate(MapX, MapY) ;FindCoordinate() modifies MapX and MapY to valid coordinates
-	; if (MapX = RESTRICTPLACMENTON_COL1)																				; LIKELY TO CHANGE THESE LINES OF CODE
-		; FindCoordinate(MapX, MapY)
-	; else if (MapX = RESTRICTPLACMENTON_COL2)
-		; FindCoordinate(MapX, MapY)
-	PlaceUnitAt(MapX, MapY)	;Place unit at (MapX, MapY)
+	
+	;FindCoordinate(MapX, MapY) ;FindCoordinate() modifies MapX and MapY to valid coordinates
+	;PlaceUnitAt(MapX, MapY)	;Place unit at (MapX, MapY)
 	
 	;Find valid coordinates and place unit
 	while not DetectObject(CONFIRMUNITPLACEMENT_BUTTON)
@@ -216,6 +323,18 @@ ChooseAlly()
 		ClickObject(DEPLOYALLY1_BUTTON)
 		return 1
 	}
+	else if DetectObject(DEPLOYALLY2_BUTTON)
+	{
+		WaitObject(DEPLOYALLY2_BUTTON)
+		ClickObject(DEPLOYALLY2_BUTTON)
+		return 1
+	}
+	else if DetectObject(DEPLOYALLY3_BUTTON)
+	{
+		WaitObject(DEPLOYALLY3_BUTTON)
+		ClickObject(DEPLOYALLY3_BUTTON)
+		return 1
+	}
 	
 	return 0
 }
@@ -223,12 +342,14 @@ ChooseAlly()
 
 DeployUnit(AllyPower = 0, AllyType = 0)
 {
-	global BACKQUEST_BUTTON, CANCELPLACEMENT_BUTTON, CONFIRMUNITPLACEMENT_BUTTON, DEPLOYUNIT_BUTTON, SLEEPTIME, DEPLOYUNIT1_BUTTON, UNIT1_INVISIBLEBUTTON, 
+	global BACKQUEST_BUTTON, CANCELPLACEMENT_BUTTON, CONFIRMUNITPLACEMENT_BUTTON, DEPLOYUNIT_BUTTON, SLEEPTIME
+	global DEPLOYUNIT1_BUTTON, DEPLOYUNIT2_BUTTON, DEPLOYUNIT3_BUTTON, DEPLOYUNIT4_BUTTON
+	global UNIT1_INVISIBLEBUTTON, UNIT2_INVISIBLEBUTTON, UNIT3_INVISIBLEBUTTON, UNIT4_INVISIBLEBUTTON
 	global UNITALL_BUTTON, UNITMISSILE_BUTTON, UNITMAGIC_BUTTON, UNITMELEE_BUTTON, UNITFAVORITEON_BUTTON
 	WaitObject(DEPLOYUNIT_BUTTON) ;Waits for the 'Deploy_Unit' button
 	ClickObject(DEPLOYUNIT_BUTTON) ;Click the 'Deploy Unit' button
 	WaitObject(BACKQUEST_BUTTON)
-	while DetectObject(UNIT1_INVISIBLEBUTTON) ;Recover unit point until we have enough points to deploy a unit in slot 1
+	while (DetectObject(UNIT1_INVISIBLEBUTTON) && DetectObject(UNIT2_INVISIBLEBUTTON) && DetectObject(UNIT3_INVISIBLEBUTTON) && DetectObject(UNIT4_INVISIBLEBUTTON))  ;Recover unit point until we have enough points to deploy a unit in slot 1
 	{
 		ClickObject(BACKQUEST_BUTTON)
 		Sleep SLEEPTIME
@@ -236,107 +357,32 @@ DeployUnit(AllyPower = 0, AllyType = 0)
 		ClickObject(DEPLOYUNIT_BUTTON) ;Click the 'Deploy Unit' button
 		WaitObject(BACKQUEST_BUTTON) 
 	}
-	
-	if AllyType = 0 ;all
+
+	;Choose a unit to deploy
+	if DetectObject(DEPLOYUNIT1_BUTTON)
 	{
-		while not DetectObject(UNITALL_BUTTON)
-		{
-			if DetectObject(UNITMELEE_BUTTON)
-			{
-				WaitObject(UNITMELEE_BUTTON)
-				ClickObject(UNITMELEE_BUTTON)
-				;WaitObject(UNITMISSILE_BUTTON)
-			}
-			if DetectObject(UNITMISSILE_BUTTON)
-			{
-				WaitObject(UNITMISSILE_BUTTON)
-				ClickObject(UNITMISSILE_BUTTON)
-				;WaitObject(UNITMAGIC_BUTTON)
-			}
-			if DetectObject(UNITMAGIC_BUTTON)
-			{
-				WaitObject(UNITMAGIC_BUTTON)
-				ClickObject(UNITMAGIC_BUTTON)
-				;WaitObject(UNITALL_BUTTON)
-			}
-		}
+		WaitObject(DEPLOYUNIT1_BUTTON)
+		ClickObject(DEPLOYUNIT1_BUTTON)
+		WaitObject(CANCELPLACEMENT_BUTTON) ;Ensure we are ready to place unit on 'BATTLE FIELD'
 	}
-	else if AllyType = 1 ;melee
+	else if DetectObject(DEPLOYUNIT2_BUTTON)
 	{
-		while not DetectObject(UNITMELEE_BUTTON)
-		{
-			if DetectObject(UNITMISSILE_BUTTON)
-			{
-				WaitObject(UNITMISSILE_BUTTON)
-				ClickObject(UNITMISSILE_BUTTON)
-				;WaitObject(UNITMAGIC_BUTTON)
-			}
-			if DetectObject(UNITMAGIC_BUTTON)
-			{
-				WaitObject(UNITMAGIC_BUTTON)
-				ClickObject(UNITMAGIC_BUTTON)
-				;WaitObject(UNITALL_BUTTON)
-			}
-			if DetectObject(UNITALL_BUTTON)
-			{
-				WaitObject(UNITALL_BUTTON)
-				ClickObject(UNITALL_BUTTON)
-				;WaitObject(UNITMELEE_BUTTON)
-			}
-		}
+		WaitObject(DEPLOYUNIT2_BUTTON)
+		ClickObject(DEPLOYUNIT2_BUTTON)
+		WaitObject(CANCELPLACEMENT_BUTTON) ;Ensure we are ready to place unit on 'BATTLE FIELD'
 	}
-	else if AllyType = 2 ;missile
+	else if DetectObject(DEPLOYUNIT3_BUTTON)
 	{
-		while not DetectObject(UNITMISSILE_BUTTON)
-		{
-			if DetectObject(UNITMAGIC_BUTTON)
-			{
-				WaitObject(UNITMAGIC_BUTTON)
-				ClickObject(UNITMAGIC_BUTTON)
-				;WaitObject(UNITALL_BUTTON)
-			}
-			if DetectObject(UNITALL_BUTTON)
-			{
-				WaitObject(UNITALL_BUTTON)
-				ClickObject(UNITALL_BUTTON)
-				;WaitObject(UNITMELEE_BUTTON)
-			}
-			if DetectObject(UNITMELEE_BUTTON)
-			{
-				WaitObject(UNITMELEE_BUTTON)
-				ClickObject(UNITMELEE_BUTTON)
-				;WaitObject(UNITMISSILE_BUTTON)
-			}
-		}
+		WaitObject(DEPLOYUNIT3_BUTTON)
+		ClickObject(DEPLOYUNIT3_BUTTON)
+		WaitObject(CANCELPLACEMENT_BUTTON) ;Ensure we are ready to place unit on 'BATTLE FIELD'
 	}
-	else if AllyType = 3 ;magic
+	else
 	{
-		while not DetectObject(UNITMAGIC_BUTTON)
-		{
-			if DetectObject(UNITALL_BUTTON)
-			{
-				WaitObject(UNITALL_BUTTON)
-				ClickObject(UNITALL_BUTTON)
-				;WaitObject(UNITMELEE_BUTTON)
-			}
-			if DetectObject(UNITMELEE_BUTTON)
-			{
-				WaitObject(UNITMELEE_BUTTON)
-				ClickObject(UNITMELEE_BUTTON)
-				;WaitObject(UNITMISSILE_BUTTON)
-			}
-			if DetectObject(UNITMISSILE_BUTTON)
-			{
-				WaitObject(UNITMISSILE_BUTTON)
-				ClickObject(UNITMISSILE_BUTTON)
-				;WaitObject(UNITMAGIC_BUTTON)
-			}
-		}
+		WaitObject(DEPLOYUNIT4_BUTTON)
+		ClickObject(DEPLOYUNIT4_BUTTON)
+		WaitObject(CANCELPLACEMENT_BUTTON) ;Ensure we are ready to place unit on 'BATTLE FIELD'
 	}
-	;Choose a unit from slot 1 to deploy
-	WaitObject(DEPLOYUNIT1_BUTTON)
-	ClickObject(DEPLOYUNIT1_BUTTON)
-	WaitObject(CANCELPLACEMENT_BUTTON) ;Ensure we are ready to place unit on 'BATTLE FIELD'
 	
 	FindCoordinate(MapX, MapY) ;FindCoordinate() modifies MapX and MapY to valid coordinates
 	PlaceUnitAt(MapX, MapY)	;Place unit at (MapX, MapY)

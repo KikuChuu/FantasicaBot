@@ -67,7 +67,7 @@ WaitObject(ByRef Path)
 	global X1, X2, Y1, Y2, SLEEPTIME
 	
 	randomX := 224
-	randomY := 144
+	randomY := 444
 	SB_SetText("Waiting for `n`n" . Path)
 	ImageSearch, FoundX, FoundY, X1, Y1, X2, Y2, %Path%
 	if ErrorLevel = 2

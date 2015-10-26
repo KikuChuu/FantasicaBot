@@ -11,16 +11,9 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 #include %A_ScriptDir%\includes\QuestProcedures.ahk
 #include %A_ScriptDir%\includes\ErrorHandlers\QuestErrorHandler.ahk
 
-;------- INITIALIZE -------
+;------- INITIALIZE -------------------------
 Init_globals() ; Found in GlobalConstants.ahk
-;--------------------------
-
-WinGet, programId, List, BlueStacks App Player
-IfWinExist ahk_pid %programId1%
-{
-	WinActivate, %programId1%
-	WinWaitActive, ahk_pid %programId1%, , 2
-}
+;--------------------------------------------
 
 ;========================================================
 ;=================== QUEST START =====================
@@ -44,14 +37,6 @@ clickobject(questindex)
 waitobject(DEPLOYUNIT_BUTTON)
 
 while A_index < DEPLOY_NUMBER AND DetectObject(DEPLOYUNIT_BUTTON)
-{
-  DeployUnit()
-}
-
-
-waitobject(DEPLOYUNIT_BUTTON)
-
-while A_index <= DEPLOY_NUMBER AND DetectObject(DEPLOYUNIT_BUTTON)
 {
   DeployUnit()
 }
