@@ -13,7 +13,7 @@ Init_globals() ; Found in GlobalConstants.ahk
 ;=================== QUEST START =====================
 ;========================================================
 
-SetTimer, RandomPopupOrCrash, 5000 ;handles crashes, popup advertisements
+SetTimer, RandomPopupOrCrash, 300000 ;handles crashes, popup advertisements every 5 minutes
 
 waitobject(selectepisode_button)
 
