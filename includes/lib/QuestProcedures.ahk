@@ -312,7 +312,6 @@ ChooseAlly()
 		}
 		else 
 		{
-			WaitObject(NEXTPAGE_BUTTON)
 			ClickObject(NEXTPAGE_BUTTON)
 			;some lag may occur here which ends the loop
 		}

@@ -12,7 +12,7 @@
 ;Quest Selection Specification
 ;-----------------------------
 	QUEST = 7 ; Enter 1,2,3,4,5,6, or 7
-	EPISODE = 61
+	EPISODE = 18
 ;Quest Battle specification
 ;--------------------------												 
 	DEPLOY_NUMBER = 1 	;number of units to deploy

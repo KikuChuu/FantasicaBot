@@ -100,7 +100,7 @@ Init_globals()
     SCAN_START_Y := 68
 	SCAN_TILE_SIZE := 78
 	
-	QUEST1_ICON := "FANTASICA IMAGES\MainPage\iconquest-677_1102.png" ;Quest icon on home page
+	QUEST1_ICON := "FANTASICA IMAGES\MainPage\iconquest1-677_1102.png" ;Quest icon on home page
 	QUEST2_ICON := "FANTASICA IMAGES\MainPage\iconquest2-677_1102.png" ;Quest icon on home page
 	
 	EPISODESELECT1_BUTTON := "FANTASICA IMAGES\Quest\EpisodeSelection\buttonselectepisode1-677_1102.png"
@@ -368,7 +368,7 @@ Init_globals()
     SCAN_START_Y := 132
 	SCAN_TILE_SIZE := 75
 	
-	QUEST1_ICON := "FANTASICA IMAGES\MainPage\iconquest-1920_1080.png" ;Quest icon on home page
+	QUEST1_ICON := "FANTASICA IMAGES\MainPage\iconquest1-1920_1080.png" ;Quest icon on home page
 	QUEST2_ICON := "FANTASICA IMAGES\MainPage\iconquest2-1920_1080.png" ;Quest icon on home page
 	
 	EPISODESELECT1_BUTTON := "FANTASICA IMAGES\Quest\EpisodeSelection\buttonselectepisode1-1920_1080.png"
