@@ -7,7 +7,9 @@ FileEncoding, UTF-8
 
 Log(str="")
 {
+  global X2, Y2
   FormatTime, formattedTime,, yyyy-MM-dd HH:mm:ss: 
-  msg := formattedTime . " " . str . "`n"
-  FileAppend, %msg%, *Log
+  msg := formattedTime . "   " . str . "`n"
+  logname := "Log" . "-" . X2 . "_" . Y2
+  FileAppend, %msg%, *%logname%
 }

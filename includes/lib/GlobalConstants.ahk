@@ -8,7 +8,10 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 Init_globals()
 {
   global BLUESTACK_WINDOW_TITLE
+  global FANTASICAAPP_BUTTON
   global FANTASICA_APP_X1, FANTASICA_APP_X2
+  global FANTASICA_BORDER_X, FANTASICA_BORDER_X
+  global WAIT_X, WAIT_Y
   global QUEST_X1, QUEST_Y1, QUEST_X2, QUEST_Y2 
   global X1, Y1, X2, Y2
   global BINGO_START_X, BINGO_START_Y, BINGO_TILE_SIZE
@@ -81,11 +84,16 @@ Init_globals()
   WinGetPos,,,width, height, %BLUESTACK_WINDOW_TITLE%
   if (width == 677 && height == 1102)
   {
+	FANTASICAAPP_BUTTON := "FANTASICA IMAGES\Bluestack\appfantasica-677_1102.png"
+  
 	FANTASICA_APP_X1 := 100
 	FANTASICA_APP_X2 := 100
 	
-	WAIT_X :=
-	WAIT_Y :=
+	FANTASICA_BORDER_X := 25 ; Any general pixel in the app's border
+	FANTASICA_BORDER_Y := 500
+	
+	WAIT_X := 224
+	WAIT_Y := 444
 	
 	BINGO_START_X := 491
 	BINGO_START_Y := 233
@@ -216,8 +224,16 @@ Init_globals()
   }
   else if (width == 1282 && height == 749)
   {
+	FANTASICAAPP_BUTTON := "FANTASICA IMAGES\Bluestack\appfantasica-1282_749.png"
+  
 	FANTASICA_APP_X1 := 255
 	FANTASICA_APP_X2 := 125
+  
+	FANTASICA_BORDER_X := 20 ; Any general pixel in the app's border
+	FANTASICA_BORDER_Y := 500 ; Any general pixel in the app's border
+  
+  	WAIT_X := 490
+	WAIT_Y := 300
   
   	BINGO_START_X := 491
 	BINGO_START_Y := 233
@@ -348,8 +364,16 @@ Init_globals()
   }
   else if (width == 1920 && height == 1080)
   {
+	FANTASICAAPP_BUTTON := "FANTASICA IMAGES\Bluestack\appfantasica-1920_1080.png"
+  
 	FANTASICA_APP_X1 := 400
 	FANTASICA_APP_X2 := 180
+  
+	FANTASICA_BORDER_X := 20 ; Any general pixel in the app's border
+	FANTASICA_BORDER_Y := 500 ; Any general pixel in the app's border
+  
+  	WAIT_X := 735
+	WAIT_Y := 425
   
   	BINGO_START_X := 745
 	BINGO_START_Y := 330

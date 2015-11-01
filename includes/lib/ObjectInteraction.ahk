@@ -30,14 +30,16 @@ ClickObject(ByRef Path)
 	{
 		;MsgBox, 0, File Missing(ClickObject), We can't seem to find this file: `n%Path%. >_< `n`n Pausing Script.
 		;Pause
-		msg := "File Missing(DetectObject), We can't seem to find this file: " . Path
+		msg := "File Missing(ClickObject), We can't seem to find this file: " . Path
 		SB_SetText(msg)
 		Log(msg)
 	}
 	else if ErrorLevel = 1
+	{
 		msg := "Click Failed, " . Path . " could not be found."
 		SB_SetText(msg)
 		Log(msg)
+	}	
 	else
 	{
 		SB_SetText("Clicking " . Path)
@@ -64,7 +66,9 @@ DetectObject(ByRef Path)
 	}
 	else if ErrorLevel = 1
 	{
-		SB_SetText("NotFound(DetectObject), Image not detected on the screen: " . Path )
+		msg := "NotFound(DetectObject), Image not detected on the screen: " . Path 
+		SB_SetText(msg)
+		Log(msg)
 		return 0
 	}
 	else
@@ -77,14 +81,15 @@ DetectObject(ByRef Path)
 WaitObject(ByRef Path)
 {
 	global X1, X2, Y1, Y2, SLEEPTIME
+	global WAIT_X, WAIT_Y
 	
-	randomX := 224
-	randomY := 444
+	randomX := WAIT_X
+	randomY := WAIT_Y
 	SB_SetText("Waiting for `n`n" . Path)
 	ImageSearch, FoundX, FoundY, X1, Y1, X2, Y2, %Path%
 	if ErrorLevel = 2
 	{
-		msg := "File Missing(DetectObject), We can't seem to find this file: " . Path
+		msg := "File Missing(WaitObject), We can't seem to find this file: " . Path
 		SB_SetText(msg)
 		Log(msg)
 	}	

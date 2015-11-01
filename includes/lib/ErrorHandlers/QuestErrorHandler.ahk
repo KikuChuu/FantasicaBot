@@ -57,19 +57,14 @@ LaunchGame()
 	global SLEEPTIME, STARTGAME_BUTTON, TRAINING_TEXT, TRAINING1_ICON, TRAINING2_ICON, MAYBELATERADVERTISEMENT_BUTTON, CANCELADVERTISEMENT_BUTTON, FANTASICALOADPAGE_TEXT, FORCECLOSEAPP_BUTTON, RESUMEQUESTNO_BUTTON
 	global FANTASICA_APP_X1, FANTASICA_APP_X2
 	global LOGINBONUSMYPAGE_BUTTON
-	;Launch fantastica if at bluestack home screen and some other stuff
-	PixelGetColor, borderColor, 25, 500
-	if (borderColor <> 0x000000)
-	{
-		SB_SetText("Error encountered. Attempting to relaunch the Fantasica.")
-		while (borderColor <> 0x000000)
-		{		
-			Click %FANTASICA_APP_X1%, %FANTASICA_APP_X2% down ;Fantasica Icon 
-			Sleep 500
-			Click up
+	global FANTASICA_BORDER_X, FANTASICA_BORDER_Y
+	global FANTASICAAPP_BUTTON
 	
-			PixelGetColor, borderColor, 40, 500
-		}
+	;Launch fantastica if at bluestack home screen and some other stuff
+	
+	if DetectObject(FANTASICAAPP_BUTTON)
+	{
+		ClickObject(FANTASICAAPP_BUTTON)
 		
 		loop, 120
 		{
@@ -92,8 +87,8 @@ LaunchGame()
 				}
 				Reload
 			}
-		}	
-			
+		}
+		
 		if DetectObject(FANTASICALOADPAGE_TEXT) ; The launch process is expected to has passed this page 40 seconds into the launch process, therefore, skipping the body of this if-statement
 		{
 			Send {ESC}
@@ -107,30 +102,17 @@ LaunchGame()
 			Reload
 		}
 		
-		PixelGetColor, borderColor, 25, 500
-		while (borderColor <> 0x000000)
+		while DetectObject(FANTASICAAPP_BUTTON)
 		{
-			Click %FANTASICA_APP_X1%, %FANTASICA_APP_X2% down ;My app button
-			Sleep 500
-			Click up
-
-			Sleep 500
-	
-			PixelGetColor, borderColor, 25, 500
+			ClickObject(FANTASICAAPP_BUTTON)
 		}
 		
-		ConnectionError()
-		
-		;Wait for start game button to appear	
-		;PixelGetColor, startGameColor, 800, 700
-		;while startGameColor <> 0xE7F6F4
 		while not DetectObject(STARTGAME_BUTTON)
 		{
 			;check maintenance
 			Maintenance()
 			
 			;Decline advertisements
-			;PixelGetColor, startGameColor, 800, 700
 			if DetectObject(MAYBELATERADVERTISEMENT_BUTTON)
 			{
 				WaitObject(MAYBELATERADVERTISEMENT_BUTTON)
