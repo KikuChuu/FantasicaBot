@@ -84,8 +84,8 @@ Init_globals()
   {
 	FANTASICAAPP_BUTTON := "FANTASICA IMAGES\Bluestack\appfantasica-677_1102.png"
 	
-	WAIT_X := 150
-	WAIT_Y := 370
+	WAIT_X := 325
+	WAIT_Y := 380
 	
 	BINGO_START_X := 491
 	BINGO_START_Y := 233
