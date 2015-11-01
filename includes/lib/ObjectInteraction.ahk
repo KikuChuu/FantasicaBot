@@ -68,7 +68,7 @@ DetectObject(ByRef Path)
 	{
 		msg := "NotFound(DetectObject), Image not detected on the screen: " . Path 
 		SB_SetText(msg)
-		Log(msg)
+		;Log(msg)
 		return 0
 	}
 	else
