@@ -3,13 +3,7 @@
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
-#include UserInput.txt
-#include %A_ScriptDir%\includes\GlobalConstants.ahk
-#include %A_ScriptDir%\includes\GuiConstructor.ahk
-#include %A_ScriptDir%\includes\ObjectInteraction.ahk 
-#include %A_ScriptDir%\includes\LoginBingo.ahk
-#include %A_ScriptDir%\includes\QuestProcedures.ahk
-#include %A_ScriptDir%\includes\ErrorHandlers\QuestErrorHandler.ahk
+#include %A_ScriptDir%\includes\IncludeScript.ahk
 
 ;------- INITIALIZE -------------------------
 Init_globals() ; Found in GlobalConstants.ahk
@@ -36,16 +30,25 @@ sleep 500
 clickobject(questindex)
 waitobject(DEPLOYUNIT_BUTTON)
 
-while A_index < DEPLOY_NUMBER AND DetectObject(DEPLOYUNIT_BUTTON)
+hasDeployedAllAllies := 0
+while A_index <= DEPLOY_NUMBER AND DetectObject(DEPLOYUNIT_BUTTON)
 {
-  DeployUnit()
+	DeployUnit()
+  
+	if (!hasDeployedAllAllies)
+	{
+		while DetectObject(CALLALLY_BUTTON)
+		{   
+			if (CallAlly(SORTINDEX, TYPEINDEX) == 0)
+			{
+				hasDeployedAllAllies := 1
+				break
+			}
+		}
+	}
 }
 
-while DetectObject(CALLALLY_BUTTON)
-	if (CallAlly(SORTINDEX, TYPEINDEX) == 0)
-	{
-		break
-	}
+
 
 ;quick fix
 Sleep 500
@@ -101,3 +104,4 @@ Move(coord1,coord2)
 F1::ExitApp
 F2::Pause
 F3::Reload
+F4::LoginBingo()

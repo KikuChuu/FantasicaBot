@@ -55,6 +55,8 @@ LaunchGame()
 {
 	global ALLYPENDINGREQUEST_TEXT, ANNOUNCEMENT_BUTTON, ALLY_TEXT, BACK_BUTTON, MYPAGEID_TEXT, MYPAGEID2_TEXT, QUEST1_ICON, QUEST2_ICON, SELECTEPISODE_BUTTON, CLOSEADVERTISEMENT_BUTTON
 	global SLEEPTIME, STARTGAME_BUTTON, TRAINING_TEXT, TRAINING1_ICON, TRAINING2_ICON, MAYBELATERADVERTISEMENT_BUTTON, CANCELADVERTISEMENT_BUTTON, FANTASICALOADPAGE_TEXT, FORCECLOSEAPP_BUTTON, RESUMEQUESTNO_BUTTON
+	global FANTASICA_APP_X1, FANTASICA_APP_X2
+	global LOGINBONUSMYPAGE_BUTTON
 	;Launch fantastica if at bluestack home screen and some other stuff
 	PixelGetColor, borderColor, 25, 500
 	if (borderColor <> 0x000000)
@@ -62,7 +64,7 @@ LaunchGame()
 		SB_SetText("Error encountered. Attempting to relaunch the Fantasica.")
 		while (borderColor <> 0x000000)
 		{		
-			Click 400, 160 down ;Fantasica Icon 
+			Click %FANTASICA_APP_X1%, %FANTASICA_APP_X2% down ;Fantasica Icon 
 			Sleep 500
 			Click up
 	
@@ -105,26 +107,22 @@ LaunchGame()
 			Reload
 		}
 		
-		PixelGetColor, borderColor, 40, 500
+		PixelGetColor, borderColor, 25, 500
 		while (borderColor <> 0x000000)
 		{
-			Click 620, 150 down ;My app button
+			Click %FANTASICA_APP_X1%, %FANTASICA_APP_X2% down ;My app button
 			Sleep 500
 			Click up
 
 			Sleep 500
-
-			Click 860, 300 down ;Fantasica Icon 
-			Sleep 500
-			Click up
 	
-			PixelGetColor, borderColor, 40, 500
+			PixelGetColor, borderColor, 25, 500
 		}
 		
 		ConnectionError()
 		
 		;Wait for start game button to appear	
-		PixelGetColor, startGameColor, 800, 700
+		;PixelGetColor, startGameColor, 800, 700
 		;while startGameColor <> 0xE7F6F4
 		while not DetectObject(STARTGAME_BUTTON)
 		{
@@ -132,7 +130,7 @@ LaunchGame()
 			Maintenance()
 			
 			;Decline advertisements
-			PixelGetColor, startGameColor, 800, 700
+			;PixelGetColor, startGameColor, 800, 700
 			if DetectObject(MAYBELATERADVERTISEMENT_BUTTON)
 			{
 				WaitObject(MAYBELATERADVERTISEMENT_BUTTON)
@@ -161,14 +159,20 @@ LaunchGame()
 			LoginBingo()
 			Roulette()
 			
-			if DetectObject(ALLYPENDINGREQUEST_TEXT)
+			if DetectObject(LOGINBONUSMYPAGE_BUTTON)
+			{
+				ClickObject(LOGINBONUSMYPAGE_BUTTON)
+				
+				Sleep 5000
+			}
+			else if DetectObject(ALLYPENDINGREQUEST_TEXT)
 			{
 				WaitObject(BACK_BUTTON)
 				ClickObject(BACK_BUTTON)
 				
 				while DetectObject(ALLYPENDINGREQUEST_TEXT)
 				{
-					Sleep SLEEPTIME
+					Sleep 5000
 				}
 			}
 			else if DetectObject(ALLY_TEXT)
@@ -178,7 +182,7 @@ LaunchGame()
 				
 				while DetectObject(ALLY_TEXT)
 				{
-					Sleep SLEEPTIME
+					Sleep 5000
 				}
 			}
 			else if DetectObject(RESUMEQUESTNO_BUTTON)
@@ -186,7 +190,7 @@ LaunchGame()
 				WaitObject(RESUMEQUESTNO_BUTTON)
 				ClickObject(RESUMEQUESTNO_BUTTON)
 				
-				Sleep 1000
+				Sleep 5000
 				
 				;if bug happens around this line of code, uncomment the following code as it should fix the bug (if any)
 				;while DetectObject(RESUMEQUESTNO_BUTTON)
@@ -198,23 +202,20 @@ LaunchGame()
 		
 		Sleep 5000
 		
-		while DetectObject(MYPAGEID2_TEXT)
-		{
-			ConnectionError()
+		; while DetectObject(MYPAGEID2_TEXT)
+		; {
+			; ConnectionError()
 			
-			if DetectObject(ANNOUNCEMENT_BUTTON)
-			{
-				WaitObject(ANNOUNCEMENT_BUTTON)
-				ClickObject(ANNOUNCEMENT_BUTTON)
-			}
-			else 
-			{
-				ClickAt(600, 840)
-			}
-		}
-		
-		;WaitObject(BACK_BUTTON)
-		;ClickObject(BACK_BUTTON)
+			; if DetectObject(ANNOUNCEMENT_BUTTON)
+			; {
+				; WaitObject(ANNOUNCEMENT_BUTTON)
+				; ClickObject(ANNOUNCEMENT_BUTTON)
+			; }
+			; else 
+			; {
+				; ClickAt(224, 444)
+			; }
+		; }
 		
 		while not DetectObject(SELECTEPISODE_BUTTON)
 		{

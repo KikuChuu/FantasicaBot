@@ -261,6 +261,7 @@ CallAlly(AllyPower=0, AllyType=0)
 		{
 			ClickObject(BACKQUEST_BUTTON)
 			WaitObject(CALLALLY_BUTTON)
+			hasFilteredAllyListByType := 0
 			return 0
 		}
 	}
@@ -346,6 +347,7 @@ DeployUnit(AllyPower = 0, AllyType = 0)
 	global DEPLOYUNIT1_BUTTON, DEPLOYUNIT2_BUTTON, DEPLOYUNIT3_BUTTON, DEPLOYUNIT4_BUTTON
 	global UNIT1_INVISIBLEBUTTON, UNIT2_INVISIBLEBUTTON, UNIT3_INVISIBLEBUTTON, UNIT4_INVISIBLEBUTTON
 	global UNITALL_BUTTON, UNITMISSILE_BUTTON, UNITMAGIC_BUTTON, UNITMELEE_BUTTON, UNITFAVORITEON_BUTTON
+	
 	WaitObject(DEPLOYUNIT_BUTTON) ;Waits for the 'Deploy_Unit' button
 	ClickObject(DEPLOYUNIT_BUTTON) ;Click the 'Deploy Unit' button
 	WaitObject(BACKQUEST_BUTTON)
@@ -384,9 +386,15 @@ DeployUnit(AllyPower = 0, AllyType = 0)
 		{
 			ClickObject(BACKQUEST_BUTTON)
 			Sleep SLEEPTIME
-			WaitObject(DEPLOYUNIT_BUTTON) ;Waits for the 'Deploy_Unit' button
-			ClickObject(DEPLOYUNIT_BUTTON) ;Click the 'Deploy Unit' button
-			WaitObject(BACKQUEST_BUTTON) 
+			if DetectObject(DEPLOYUNIT_BUTTON)
+			{
+				ClickObject(DEPLOYUNIT_BUTTON) ;Click the 'Deploy Unit' button
+				WaitObject(BACKQUEST_BUTTON) 
+			}
+			else
+			{
+				return 0
+			}
 		}
 	}
 	

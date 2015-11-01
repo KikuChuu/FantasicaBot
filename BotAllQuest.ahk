@@ -25,6 +25,7 @@ loop
 {
 	while QUEST <= 7
 	{
+		
 		WaitObject(SELECTEPISODE_BUTTON) ;Wait for quest screen to load (I used the 'Select Episode' button to determine if the quest screen has loaded)
 		if QUEST >= 4
 		{
@@ -39,19 +40,30 @@ loop
 		ClickObject(QuestIndex) ;Begin quest
 		
 		WaitObject(DEPLOYUNIT_BUTTON) ;wait for deploy button
+		hasDeployedAllAllies := 0
 		while A_index <= DEPLOY_NUMBER AND DetectObject(DEPLOYUNIT_BUTTON)
-			DeployUnit()
-
-		while DetectObject(CALLALLY_BUTTON)
 		{
-			if not CallAlly()
+			DeployUnit()
+			
+			if (!hasDeployedAllAllies)
 			{
-				break
+				while DetectObject(CALLALLY_BUTTON)
+				{   
+					if (CallAlly(SORTINDEX, TYPEINDEX) == 0)
+					{
+						hasDeployedAllAllies := 1
+						break
+					}
+				}
 			}
 		}
+
 		WaitObject(CHOOSEQUESTCOMPLETED_BUTTON) ;Basically waits until questing ends and we get our results
+		if (DetectObject(QUESTCLEAR_TEXT))
+		{
+			QUEST++
+		}
 		ClickObject(CHOOSEQUESTCOMPLETED_BUTTON) ;return to quest selection
-		QUEST++
 	}
 	WaitObject(SELECTEPISODE_BUTTON)
 	ClickObject(SELECTEPISODE_BUTTON)
@@ -126,7 +138,7 @@ Reload
 ;========================================================
 
 RandomPopupOrCrash:
-if (LaunchGame() || ConnectionError())
+if (LaunchGame() || ConnectionError() || Maintenance())
 	Reload
 else
 {
@@ -167,4 +179,4 @@ F1::ExitApp
 F2::Pause
 F3::Reload
 F4::ConnectionError()
-F5::TestFunction()
+F5::LoginBingo()

@@ -35,9 +35,12 @@ LoginBingo()
 LoginBingoHelperClicker()
 {
 	global LOGINBINGO_TEXT, LOGINBINGOMYPAGE_BUTTON, LOGINBINGORECEIVE_BUTTON
-	startX := 618 ;pixel coord
-	startY := 245 ;pixel coord
-	panelDimension := 92 ;pixels
+	global BINGO_START_X, BINGO_START_Y, BINGO_TILE_SIZE
+	
+	startX := BINGO_START_X ;pixel coord
+	startY := BINGO_START_Y ;pixel coord
+	panelDimension := BINGO_TILE_SIZE ;pixels
+	
 	bingoBoardDimension := 5 ; 5x5 board
 	loop, %bingoBoardDimension%
 	{
@@ -49,6 +52,7 @@ LoginBingoHelperClicker()
 				col := A_index - 1 ;current col to click
 				currentCoordX := startX + (panelDimension * col) ;calculate pixel coord of col
 				currentCoordY := startY + (panelDimension * row) ;calculate pixel coord of row
+				SB_SetText("Clicking at (x, y): " . currentCoordX . ", " . currentCoordY . "`n")
 				;use the coordX and coordY to locate and click the panel
 				SendEvent {Click down %currentCoordX%, %currentCoordY%}
 				Sleep 500

@@ -45,16 +45,21 @@ ClickObject(ByRef Path)
 ;Return 0 if not detected
 DetectObject(ByRef Path)
 {
-	global X1,X2,Y1,Y2, BACK_BUTTON
+	global X1,X2,Y1,Y2, BACK_BUTTON, SLEEEPTIME
 	
 	ImageSearch, FoundX, FoundY, X1, Y1, X2, Y2, %Path%
 	if ErrorLevel = 2
 	{
-		MsgBox, 0, File Missing(DetectObject), We can't seem to find this file: `n%Path%. >_< `n`n                    Pausing Script.
-		Pause
+		SB_SetText("File Missing(DetectObject), We can't seem to find this file: " . Path )
+		Sleep SLEEEPTIME
+		;MsgBox, 0, File Missing(DetectObject), We can't seem to find this file: `n%Path%. >_< `n`n                    Pausing Script.
+		;Pause
 	}
 	else if ErrorLevel = 1
+	{
+		SB_SetText("NotFound(DetectObject), Image not detected on the screen: " . Path )
 		return 0
+	}
 	else
 		return 1
 }
