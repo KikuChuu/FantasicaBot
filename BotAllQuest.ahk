@@ -3,13 +3,7 @@
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
-#include UserInput.txt
-#include %A_ScriptDir%\includes\GlobalConstants.ahk
-#include %A_ScriptDir%\includes\GuiConstructor.ahk
-#include %A_ScriptDir%\includes\ObjectInteraction.ahk 
-#include %A_ScriptDir%\includes\LoginBingo.ahk
-#include %A_ScriptDir%\includes\QuestProcedures.ahk
-#include %A_ScriptDir%\includes\ErrorHandlers\QuestErrorHandler.ahk
+#include %A_ScriptDir%\includes\IncludeScript.ahk
 
 ;------- INITIALIZE -------------------------
 Init_globals() ; Found in GlobalConstants.ahk
@@ -19,7 +13,7 @@ Init_globals() ; Found in GlobalConstants.ahk
 ;=================== QUEST ==============================
 ;========================================================
 
-SetTimer, RandomPopupOrCrash, 5000 ;handles crashes, popup advertisements
+SetTimer, RandomPopupOrCrash, 300000 ;handles crashes, popup advertisements
 
 loop
 {

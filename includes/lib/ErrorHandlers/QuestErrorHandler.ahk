@@ -245,9 +245,7 @@ Maintenance()
 		
 		while not DetectObject(STARTGAME_BUTTON)
 		{	
-			Send {ESC down}
-			Sleep 1000
-			Send {ESC up}
+			Send {ESC}
 			if DetectObject(CONFIRMEXITAPP_BUTTON)
 			{
 			
@@ -258,10 +256,6 @@ Maintenance()
 			else if LaunchGame()
 			{
 				Reload
-			}
-			else 
-			{
-				sleep 1000
 			}
 		}
 	}

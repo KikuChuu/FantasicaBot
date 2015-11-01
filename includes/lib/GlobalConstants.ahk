@@ -172,7 +172,7 @@ Init_globals()
 	
 	MAINTENANCEYES_BUTTON = FANTASICA IMAGES\Maintenance\buttonmaintenanceyes-677_1102.png
 	MAINTENANCEOPTION_BUTTON = FANTASICA IMAGES\Maintenance\buttonoption.png
-	MAINTENANCE_TEXT = FANTASICA IMAGES\Maintenance\textmaintenance.png
+	MAINTENANCE_TEXT = FANTASICA IMAGES\Maintenance\textmaintenance-677_1102.png
 	
 	CONFIRMEXITAPP_BUTTON = FANTASICA IMAGES\Bluestack\buttonconfirmexitapp-677_1102.png ;The 'yes' button when exiting the bluestack app
 	
@@ -306,7 +306,7 @@ Init_globals()
 	
 	MAINTENANCEYES_BUTTON = FANTASICA IMAGES\Maintenance\buttonmaintenanceyes-1282_749.png
 	MAINTENANCEOPTION_BUTTON = FANTASICA IMAGES\Maintenance\buttonoption.png
-	MAINTENANCE_TEXT = FANTASICA IMAGES\Maintenance\textmaintenance.png
+	MAINTENANCE_TEXT = FANTASICA IMAGES\Maintenance\textmaintenance-1282_749.png
 	
 	CONFIRMEXITAPP_BUTTON = FANTASICA IMAGES\Bluestack\buttonconfirmexitapp-1282_749.png ;The 'yes' button when exiting the bluestack app
 	
@@ -440,7 +440,7 @@ Init_globals()
 	
 	MAINTENANCEYES_BUTTON = FANTASICA IMAGES\Maintenance\buttonmaintenanceyes-1920_1080.png
 	MAINTENANCEOPTION_BUTTON = FANTASICA IMAGES\Maintenance\buttonoption.png
-	MAINTENANCE_TEXT = FANTASICA IMAGES\Maintenance\textmaintenance.png
+	MAINTENANCE_TEXT = FANTASICA IMAGES\Maintenance\textmaintenance-1920_1080.png
 	
 	CONFIRMEXITAPP_BUTTON = FANTASICA IMAGES\Bluestack\buttonconfirmexitapp-1920_1080.png ;The 'yes' button when exiting the bluestack app
 	
