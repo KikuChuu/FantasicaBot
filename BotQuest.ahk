@@ -49,7 +49,6 @@ while A_index <= DEPLOY_NUMBER AND DetectObject(DEPLOYUNIT_BUTTON)
 }
 
 
-
 ;quick fix
 Sleep 500
 if DetectObject(BACKQUEST_BUTTON)
@@ -104,4 +103,4 @@ Move(coord1,coord2)
 F1::ExitApp
 F2::Pause
 F3::Reload
-F4::LoginBingo()
+F4::DetectObject("E:/Programmingasdfsdf")

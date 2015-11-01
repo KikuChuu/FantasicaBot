@@ -28,11 +28,16 @@ ClickObject(ByRef Path)
 	ImageSearch, FoundX, FoundY, X1, Y1, X2, Y2, %Path%
 	if ErrorLevel = 2
 	{
-		MsgBox, 0, File Missing(ClickObject), We can't seem to find this file: `n%Path%. >_< `n`n Pausing Script.
-		Pause
+		;MsgBox, 0, File Missing(ClickObject), We can't seem to find this file: `n%Path%. >_< `n`n Pausing Script.
+		;Pause
+		msg := "File Missing(DetectObject), We can't seem to find this file: " . Path
+		SB_SetText(msg)
+		Log(msg)
 	}
 	else if ErrorLevel = 1
-		SB_SetText("Click Failed, " . Path . " could not be found.")
+		msg := "Click Failed, " . Path . " could not be found."
+		SB_SetText(msg)
+		Log(msg)
 	else
 	{
 		SB_SetText("Clicking " . Path)
@@ -50,7 +55,9 @@ DetectObject(ByRef Path)
 	ImageSearch, FoundX, FoundY, X1, Y1, X2, Y2, %Path%
 	if ErrorLevel = 2
 	{
-		SB_SetText("File Missing(DetectObject), We can't seem to find this file: " . Path )
+		msg := "File Missing(DetectObject), We can't seem to find this file: " . Path
+		SB_SetText(msg)
+		Log(msg)
 		Sleep SLEEEPTIME
 		;MsgBox, 0, File Missing(DetectObject), We can't seem to find this file: `n%Path%. >_< `n`n                    Pausing Script.
 		;Pause
@@ -77,8 +84,9 @@ WaitObject(ByRef Path)
 	ImageSearch, FoundX, FoundY, X1, Y1, X2, Y2, %Path%
 	if ErrorLevel = 2
 	{
-		MsgBox, 0, File Missing(WaitObject), We can't seem to find this file: `n%Path%. >_< `n`n                    Pausing Script.
-		Pause
+		msg := "File Missing(DetectObject), We can't seem to find this file: " . Path
+		SB_SetText(msg)
+		Log(msg)
 	}	
 	else if ErrorLevel = 1 
 	{
