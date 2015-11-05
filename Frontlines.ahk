@@ -47,43 +47,7 @@ waitobject(FIGHT_BUTTON)
 ClickObject(FIGHT_BUTTON)
 
 WaitObject(OPPONENT1_BUTTON)
-
-scroll(QUEST_X1, QUEST_Y1, QUEST_X2, QUEST_Y2)
-scroll(QUEST_X1, QUEST_Y1, QUEST_X2, QUEST_Y2)
-scroll(QUEST_X1, QUEST_Y1, QUEST_X2, QUEST_Y2)
-scroll(QUEST_X1, QUEST_Y1, QUEST_X2, QUEST_Y2)
-
-if detectObject(OPPONENT20_BUTTON)
-{
-	waitObject(OPPONENT20_BUTTON)
-	clickObject(OPPONENT20_BUTTON)
-}
-else if detectObject(OPPONENT19_BUTTON)
-{
-	waitObject(OPPONENT19_BUTTON)
-	clickObject(OPPONENT19_BUTTON)
-}
-else if detectObject(OPPONENT18_BUTTON)
-{
-	waitObject(OPPONENT18_BUTTON)
-	clickObject(OPPONENT18_BUTTON)
-}
-else if detectObject(OPPONENT17_BUTTON)
-{
-	waitObject(OPPONENT17_BUTTON)
-	clickObject(OPPONENT17_BUTTON)
-}
-else if detectObject(OPPONENT16_BUTTON)
-{
-	waitObject(OPPONENT16_BUTTON)
-	clickObject(OPPONENT16_BUTTON)
-}
-else
-{
-	msg := "Could not find a valid opponent on opponent selection screen"
-	SB_SetText(msg)
-	Log(msg)
-}
+clickObject(OPPONENT1_BUTTON)
 
 waitObject(SKIP_BUTTON)
 clickObject(SKIP_BUTTON)
