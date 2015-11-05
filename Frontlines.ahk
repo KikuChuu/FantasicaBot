@@ -52,7 +52,7 @@ clickObject(OPPONENT1_BUTTON)
 waitObject(SKIP_BUTTON)
 clickObject(SKIP_BUTTON)
 
-Sleep 5000
+Sleep 3000
 
 if DetectObject(SPEED_BUTTON) 
 {
