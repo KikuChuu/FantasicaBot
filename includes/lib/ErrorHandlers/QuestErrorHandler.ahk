@@ -147,21 +147,19 @@ LaunchGame()
 			}
 			else if DetectObject(ALLYPENDINGREQUEST_TEXT)
 			{
-				WaitObject(BACK_BUTTON)
-				ClickObject(BACK_BUTTON)
-				
 				while DetectObject(ALLYPENDINGREQUEST_TEXT)
 				{
+					WaitObject(BACK_BUTTON)
+					ClickObject(BACK_BUTTON)
 					Sleep 5000
 				}
 			}
 			else if DetectObject(ALLY_TEXT)
-			{
-				WaitObject(BACK_BUTTON)
-				ClickObject(BACK_BUTTON)
-				
+			{	
 				while DetectObject(ALLY_TEXT)
 				{
+					WaitObject(BACK_BUTTON)
+					ClickObject(BACK_BUTTON)
 					Sleep 5000
 				}
 			}

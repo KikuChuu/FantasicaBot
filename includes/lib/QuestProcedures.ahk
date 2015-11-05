@@ -266,9 +266,6 @@ CallAlly(AllyPower=0, AllyType=0)
 		}
 	}
 	
-	;FindCoordinate(MapX, MapY) ;FindCoordinate() modifies MapX and MapY to valid coordinates
-	;PlaceUnitAt(MapX, MapY)	;Place unit at (MapX, MapY)
-	
 	;Find valid coordinates and place unit
 	while not DetectObject(CONFIRMUNITPLACEMENT_BUTTON)
 	{
@@ -312,6 +309,7 @@ ChooseAlly()
 		}
 		else 
 		{
+			WaitObject(NEXTPAGE_BUTTON)
 			ClickObject(NEXTPAGE_BUTTON)
 			;some lag may occur here which ends the loop
 		}
