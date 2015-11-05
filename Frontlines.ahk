@@ -15,6 +15,19 @@ Init_globals() ; Found in GlobalConstants.ahk
 
 SetTimer, RandomPopupOrCrash, 300000 ;handles crashes, popup advertisements every 5 minutes
 
+WaitObject(ASSIST_BUTTON)
+ClickObject(ASSIST_BUTTON)
+WaitObject(ASSIST_BACK_BUTTON)
+
+if DetectObject(REQUESTASSISTANCE_BUTTON)
+{
+	WaitObject(REQUESTASSISTANCE_BUTTON)
+	ClickObject(REQUESTASSISTANCE_BUTTON)
+}
+
+WaitObject(ASSIST_BACK_BUTTON)
+ClickObject(ASSIST_BACK_BUTTON)
+
 waitobject(FIGHT_BUTTON)
 
 while detectObject(CPBAR0_TEXT)

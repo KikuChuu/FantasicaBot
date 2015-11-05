@@ -72,6 +72,9 @@ Init_globals()
   global FRONTLINEBACK_BUTTON
   global REMATCH_BUTTON
   global CPCOUNT_TEXT
+  global ASSIST_BUTTON
+  global ASSIST_BACK_BUTTON
+  global REQUESTASSISTANCE_BUTTON
   
   if WinExist("BlueStacks App Player")
   {
@@ -251,6 +254,10 @@ Init_globals()
 	FRONTLINEBACK_BUTTON := "FANTASICA IMAGES\Event\Frontlines\resultscreen\buttonback-677_1102.png"
 	REMATCH_BUTTON := "FANTASICA IMAGES\Event\Frontlines\resultscreen\buttonrematch-677_1102.png"
     CPCOUNT_TEXT := "FANTASICA IMAGES\Event\Frontlines\resultscreen\textcpcount-677_1102.png"
+	
+	ASSIST_BUTTON  := "FANTASICA IMAGES\Event\Frontlines\maineventscreen\buttonassist-677_1102.png"
+    ASSIST_BACK_BUTTON := "FANTASICA IMAGES\Event\Frontlines\assistscreen\buttonassistback-677_1102.png"
+    REQUESTASSISTANCE_BUTTON := "FANTASICA IMAGES\Event\Frontlines\assistscreen\buttonrequestassistance-677_1102.png"
   }
   else if (width == 1282 && height == 749)
   {
@@ -409,6 +416,10 @@ Init_globals()
 	FRONTLINEBACK_BUTTON := "FANTASICA IMAGES\Event\Frontlines\resultscreen\buttonback-1282_749.png"
 	REMATCH_BUTTON := "FANTASICA IMAGES\Event\Frontlines\resultscreen\buttonrematch-1282_749.png"
     CPCOUNT_TEXT := "FANTASICA IMAGES\Event\Frontlines\resultscreen\textcpcount-1282_749.png"
+	
+	ASSIST_BUTTON  := "FANTASICA IMAGES\Event\Frontlines\maineventscreen\buttonassist-1282_749.png"
+    ASSIST_BACK_BUTTON := "FANTASICA IMAGES\Event\Frontlines\assistscreen\buttonassistback-1282_749.png"
+    REQUESTASSISTANCE_BUTTON := "FANTASICA IMAGES\Event\Frontlines\assistscreen\buttonrequestassistance-1282_749.png"
   }
   else if (width == 1920 && height == 1080)
   {
@@ -567,6 +578,10 @@ Init_globals()
 	FRONTLINEBACK_BUTTON := "FANTASICA IMAGES\Event\Frontlines\resultscreen\buttonback-1920_1080.png"
 	REMATCH_BUTTON := "FANTASICA IMAGES\Event\Frontlines\resultscreen\buttonrematch-1920_1080.png"
     CPCOUNT_TEXT := "FANTASICA IMAGES\Event\Frontlines\resultscreen\textcpcount-1920_1080.png"
+	
+	ASSIST_BUTTON  := "FANTASICA IMAGES\Event\Frontlines\maineventscreen\buttonassist-1920_1080.png"
+    ASSIST_BACK_BUTTON := "FANTASICA IMAGES\Event\Frontlines\assistscreen\buttonassistback-1920_1080.png"
+    REQUESTASSISTANCE_BUTTON := "FANTASICA IMAGES\Event\Frontlines\assistscreen\buttonrequestassistance-1920_1080.png"
   }
   else
   {
