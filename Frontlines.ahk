@@ -26,6 +26,14 @@ if DetectObject(REQUESTASSISTANCE_BUTTON)
 }
 
 WaitObject(ASSIST_BACK_BUTTON)
+if DetectObject(ASSIST_ALL_BUTTON)
+{
+	WaitObject(ASSIST_ALL_BUTTON)
+	ClickObject(ASSIST_ALL_BUTTON)
+	sleep 5000
+}
+
+WaitObject(ASSIST_BACK_BUTTON)
 ClickObject(ASSIST_BACK_BUTTON)
 
 waitobject(FIGHT_BUTTON)
@@ -38,10 +46,7 @@ while detectObject(CPBAR0_TEXT)
 waitobject(FIGHT_BUTTON)
 ClickObject(FIGHT_BUTTON)
 
-while not DetectObject(OPPONENT1_BUTTON)
-{
-	sleep SLEEPTIME
-}
+WaitObject(OPPONENT1_BUTTON)
 
 scroll(QUEST_X1, QUEST_Y1, QUEST_X2, QUEST_Y2)
 scroll(QUEST_X1, QUEST_Y1, QUEST_X2, QUEST_Y2)
