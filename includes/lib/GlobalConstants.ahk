@@ -97,7 +97,169 @@ Init_globals()
   }
   
   WinGetPos,,,width, height, %BLUESTACK_WINDOW_TITLE%
-  if (width == 677 && height == 1102)
+  if (width == 632 && height == 1030)
+  {
+	FANTASICAAPP_BUTTON := "FANTASICA IMAGES\Bluestack\appfantasica-632_1030.png"
+	
+	WAIT_X := 325
+	WAIT_Y := 380
+	
+	BINGO_START_X := 491
+	BINGO_START_Y := 233
+	BINGO_TILE_SIZE := 70
+	
+    QUEST_X1 := 293
+	QUEST_Y1 := 840
+	QUEST_X2 := 293
+	QUEST_Y2 := 130
+	
+	SCAN_START_X := 167
+    SCAN_START_Y := 68
+	SCAN_TILE_SIZE := 78
+	
+	QUEST1_ICON := "FANTASICA IMAGES\MainPage\iconquest1-632_1030.png" ;Quest icon on home page
+	QUEST2_ICON := "FANTASICA IMAGES\MainPage\iconquest2-632_1030.png" ;Quest icon on home page
+	
+	EPISODESELECT1_BUTTON := "FANTASICA IMAGES\Quest\EpisodeSelection\buttonselectepisode1-632_1030.png"
+	EPISODESELECT2_BUTTON := "FANTASICA IMAGES\Quest\EpisodeSelection\buttonselectepisode2-632_1030.png"
+	EPISODESELECT3_BUTTON := "FANTASICA IMAGES\Quest\EpisodeSelection\buttonselectepisode3-632_1030.png"
+	EPISODESELECT4_BUTTON := "FANTASICA IMAGES\Quest\EpisodeSelection\buttonselectepisode4-632_1030.png"
+	EPISODESELECT5_BUTTON := "FANTASICA IMAGES\Quest\EpisodeSelection\buttonselectepisode5-632_1030.png"
+	EPISODESELECT6_BUTTON := "FANTASICA IMAGES\Quest\EpisodeSelection\buttonselectepisode6-632_1030.png"
+	EPISODESELECT7_BUTTON := "FANTASICA IMAGES\Quest\EpisodeSelection\buttonselectepisode7-632_1030.png"
+	EPISODESELECT8_BUTTON := "FANTASICA IMAGES\Quest\EpisodeSelection\buttonselectepisode8-632_1030.png"
+	EPISODESELECT9_BUTTON := "FANTASICA IMAGES\Quest\EpisodeSelection\buttonselectepisode9-632_1030.png"
+	EPISODESELECT10_BUTTON := "FANTASICA IMAGES\Quest\EpisodeSelection\buttonselectepisode10-632_1030.png"
+	
+	EPISODELISTNEXT_BUTTON := "FANTASICA IMAGES\Quest\EpisodeSelection\buttonnextpage-632_1030.png"
+	EPISODELISTNONEXT_BUTTON := "FANTASICA IMAGES\Quest\EpisodeSelection\buttonnonextpage-632_1030.png"
+	
+	SELECTEPISODE_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonselectepisode-632_1030.png" ;The 'Select Episode' button for quest
+	STARTQUEST1_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest1-632_1030.png" ;quest #1
+	STARTQUEST2_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest2-632_1030.png" ;quest #2
+	STARTQUEST3_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest3-632_1030.png" ;quest #3
+	STARTQUEST4_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest4-632_1030.png" ;quest #4
+	STARTQUEST5_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest5-632_1030.png" ;quest #5
+	STARTQUEST6_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest6-632_1030.png" ;quest #6
+	STARTQUEST7_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest7-632_1030.png" ;quest #7 
+	
+	CALLALLY_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttoncallally-632_1030.png ;the call ally button in questing
+	CANCELPLACEMENT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttoncancelplacement-632_1030.png ; the cancel placement button
+	CONFIRMUNITPLACEMENT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttonconfirmunitplacement-632_1030.png ;confirm the location to place unit
+	DEPLOYUNIT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttondeployunit-632_1030.png	;The 'Deploy' button during questing
+	
+	DEPLOYUNIT1_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\Unit\buttondeployunit1-632_1030.png ;first unit in the 'Deploy List'
+	DEPLOYUNIT2_BUTTON := "FANTASICA IMAGES\Quest\QuestBattle\Unit\buttondeployunit2-632_1030.png" ;second unit in the 'Deploy List'
+	DEPLOYUNIT3_BUTTON := "FANTASICA IMAGES\Quest\QuestBattle\Unit\buttondeployunit3-632_1030.png" ;third unit in the 'Deploy List'
+	DEPLOYUNIT4_BUTTON := "FANTASICA IMAGES\Quest\QuestBattle\Unit\buttondeployunit4-632_1030.png" ;fourth unit in the 'Deploy List'
+	UNITFAVORITEON_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\Unit\buttonunitfavoriteon-632_1030.png ;favorite on
+	UNIT1_INVISIBLEBUTTON = FANTASICA IMAGES\Quest\QuestBattle\Unit\invisiblebuttonunit1-632_1030.png ;first unit when unable to deploy (due to insufficient unit cost)
+	UNIT2_INVISIBLEBUTTON = FANTASICA IMAGES\Quest\QuestBattle\Unit\invisiblebuttonunit2-632_1030.png ;second unit when unable to deploy (due to insufficient unit cost)
+	UNIT3_INVISIBLEBUTTON = FANTASICA IMAGES\Quest\QuestBattle\Unit\invisiblebuttonunit3-632_1030.png ;third unit when unable to deploy (due to insufficient unit cost)
+	UNIT4_INVISIBLEBUTTON = FANTASICA IMAGES\Quest\QuestBattle\Unit\invisiblebuttonunit4-632_1030.png ;fourth unit when unable to deploy (due to insufficient unit cost)
+	
+	DEPLOYALLY1_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\Ally\buttondeployally1-632_1030.png ;ally1 top of the list
+	DEPLOYALLY2_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\Ally\buttondeployally2-632_1030.png	;ally2 second on the list
+	DEPLOYALLY3_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\Ally\buttondeployally3-632_1030.png	;ally3 third on the list
+	NEXTPAGE_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\Ally\buttonnextpage(allylist)-632_1030.png ;the 'next page' button on the ally selection
+	NONEXTPAGE_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\Ally\buttonnonextpage(allylist)-632_1030.png ;the 'no next page' button on the ally selection
+	
+	CALLALLYPAGE_TEXT = FANTASICA IMAGES\Quest\QuestBattle\Ally\textcallallypage-632_1030.png ;the page titled 'Call Ally'
+	
+	BACKQUEST_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\BothUnitAlly\buttonbackallyselection-632_1030.png ;the back button found in quest's unit selection
+	SORTBYDEFAULT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\BothUnitAlly\buttonsortbydefault-632_1030.png ;no specific sort
+	SORTBYGROUNDATK_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\BothUnitAlly\buttonsortbygroundatk-632_1030.png ;Sort unit by strongest land to weakest
+	SORTBYAIRATK_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\BothUnitAlly\buttonsortbyairatk-632_1030.png ;sort unit by strongest air to weakest
+	SORTBYSEAATK_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\BothUnitAlly\buttonsortbyseaatk-632_1030.png ;sort unit by strongest sea to weakest
+	UNITALL_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\BothUnitAlly\buttonunitall-632_1030.png ;type all
+	UNITMELEE_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\BothUnitally\buttonunitmelee-632_1030.png ; type melee
+	UNITMISSILE_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\BothUnitally\buttonunitmissile-632_1030.png ;type missile
+	UNITMAGIC_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\BothUnitally\buttonunitmagic-632_1030.png ;type magic
+	
+	BACKTOEVENT_BUTTON = FANTASICA IMAGES\Quest\QuestResult\buttonbacktoevent(completed)-632_1030.png ; The 'Back to Event' button after defeating a event boss encountered during training
+	CHOOSEQUESTCOMPLETED_BUTTON = FANTASICA IMAGES\Quest\QuestResult\buttonchoosequest(completed)-632_1030.png ;The 'Choose Quest' button on the results page after completing a quest
+	MYPAGE_BUTTON = FANTASICA IMAGES\Quest\QuestResult\buttonmypage-632_1030.png ;The 'My Page' button on the results page after questing
+	TOWERCOMPLETEREWARDCARDBACK_BUTTON = FANTASICA IMAGES\Quest\QuestResult\buttonbacktowercompleterewardcard-632_1030.png ;The back button on reward card received upon completion of the tower
+	QUESTCLEAR_TEXT := "FANTASICA IMAGES\Quest\QuestResult\textquestclear-632_1030.png"
+	
+	CONNECTIONERROR_BUTTON := "FANTASICA IMAGES\ErrorRelated\buttonconnectionerror-632_1030.png" ;The 'Yes' button when a connection error has occured.	
+	FORCECLOSEAPP_BUTTON := "FANTASICA IMAGES\ErrorRelated\buttonforcecloseapp-632_1030.png" ;force closes the app
+	CONNECTIONERROR_TEXT := "FANTASICA IMAGES\ErrorRelated\textconnectionerror-632_1030.png" ;the dialog which indicates we need to restart the app
+	FANTASICALOADPAGE_TEXT := "FANTASICA IMAGES\ErrorRelated\textfantasicaloadpage-632_1030.png" ;the background image while fantasica is launching/loading
+	
+	MAINTENANCEYES_BUTTON = FANTASICA IMAGES\Maintenance\buttonmaintenanceyes-632_1030.png
+	MAINTENANCEOPTION_BUTTON = FANTASICA IMAGES\Maintenance\buttonoption.png
+	MAINTENANCE_TEXT = FANTASICA IMAGES\Maintenance\textmaintenance-632_1030.png
+	
+	CONFIRMEXITAPP_BUTTON = FANTASICA IMAGES\Bluestack\buttonconfirmexitapp-632_1030.png ;The 'yes' button when exiting the bluestack app
+	
+	DECLINEADVERTISEMENT_BUTTON = FANTASICA IMAGES\StartScreen\buttondeclineadvertisement-632_1030.png ;the 'No Thanks' button when an advertisement pops up
+	STARTGAME_BUTTON = FANTASICA IMAGES\StartScreen\buttonstartgame-632_1030.png ;start game button 
+	RESUMEQUESTNO_BUTTON = FANTASICA IMAGES\StartScreen\buttonresumequestno-632_1030.png ;do not resume an interrupted quest
+	
+	DECLINEADVERTISEMENTMYPAGE_BUTTON = FANTASICA IMAGES\Advertisement\buttondeclineadvertisement(mypage)-632_1030.png ;advertisement on mypage	
+	MAYBELATERADVERTISEMENT_BUTTON = FANTASICA IMAGES\Advertisement\buttonmaybelateradvertisement-632_1030.png ;the 'maybe' button for the advertisement for other apps at the start screen
+	CANCELADVERTISEMENT_BUTTON = FANTASICA IMAGES\Advertisement\buttoncanceladvertisement-632_1030.png ;cancel button for advertisement of other apps at the start screen
+	CLOSEADVERTISEMENT_BUTTON = FANTASICA IMAGES\Advertisement\buttoncloseadvertisement-632_1030.png ;closes the advertisement by clicking the 'x' button
+	
+	ANNOUNCEMENT_BUTTON = FANTASICA IMAGES\Maintenance\buttonannouncement-632_1030.png
+	
+	ALLY_TEXT = FANTASICA IMAGES\Ally\AllyList\textallies-632_1030.png ;the title of the ally list page
+	ALLYPENDINGREQUEST_TEXT = FANTASICA IMAGES\Ally\AllyPendingRequest\textallywaitingapproval-632_1030.png ; the text title of the ally requests pending page
+	
+	MYPAGEID_TEXT = FANTASICA IMAGES\MainPage\textmypageid-632_1030.png ;The text called "id" at the very top of the fantasica homepage
+	MYPAGEID2_TEXT = FANTASICA IMAGES\MainPage\textmypageidarena-632_1030.png ;The text called "id" at the very topof the fantasica homepage, but offset due to arena info
+	
+	EVENT_ICON = FANTASICA IMAGES\iconmandragoramarch!-632_1030.png ;Event icon on home page. Change this path for every event
+	TRAINING1_ICON = FANTASICA IMAGES\MainPage\icontraining1-632_1030.png ;Training icon on homepage at index 1 (starting with index 0)
+	TRAINING2_ICON = FANTASICA IMAGES\MainPage\icontraining2-632_1030.png ;Training icon on homepage at index 2 (starting with index 0)
+	TRAINING3_ICON = FANTASICA IMAGES\MainPage\icontraining3-632_1030.png ;Training icon on homepage at index 3 (starting with index 0)
+	
+	LOGINBINGOPANEL_ICON = FANTASICA IMAGES\MainPage\Bingo\iconbingopanel-632_1030.png ;login bingo panel
+	LOGINBINGOMYPAGE_BUTTON = FANTASICA IMAGES\MainPage\Bingo\buttonbingomypage-632_1030.png ;button to return to mypage from login bingo
+	LOGINBINGORECEIVE_BUTTON = FANTASICA IMAGES\MainPage\Bingo\buttonbingoreceive-632_1030.png ; receive button when you click a panel in the daily login bingo
+	LOGINBINGO_TEXT = FANTASICA IMAGES\MainPage\Bingo\textbingo-632_1030.png ;"Login Bingo"
+	
+	ROULETTESTART_BUTTON = FANTASICA IMAGES\MainPage\Roulette\buttonstartroulette-632_1030.png ;the start button to start spinning the wheel	
+	ROULETTESTOP_BUTTON = FANTASICA IMAGES\MainPage\Roulette\buttonstoproulette-632_1030.png ;the stop button to stop the wheel
+	ROULETTENINEBLUE3_TEXT = FANTASICA IMAGES\MainPage\Roulette\textnineblue3-632_1030.png ;the blue panel 9 at the 3rd index
+	ROULETTENINEBLUE4_TEXT = FANTASICA IMAGES\MainPage\Roulette\textnineblue4-632_1030.png ;the blue panel 9 at the 4th index
+	ROULETTENINE_TEXT = FANTASICA IMAGES\MainPage\Roulette\textnine-632_1030.png ;the panel 9
+	ROULETTETHREE_TEXT = FANTASICA IMAGES\MainPage\Roulette\textthree-632_1030.png ;the panel 3
+	
+	LOGINBONUSMYPAGE_BUTTON := "FANTASICA IMAGES\MainPage\Bonus\buttonmypage-632_1030.png"
+	
+	BACK_BUTTON = FANTASICA IMAGES\_GeneralPupose\buttonback-632_1030.png ;The back button found in the bottom right corner of the app screen (not the corner of bluestack screen)
+	
+	CPBAR0_TEXT := "FANTASICA IMAGES\Event\Frontlines\maineventscreen\textcpbar0-632_1030.png"
+	CPBAR1_TEXT := "FANTASICA IMAGES\Event\Frontlines\maineventscreen\textcpbar1-632_1030.png"
+	CPBAR2_TEXT := "FANTASICA IMAGES\Event\Frontlines\maineventscreen\textcpbar2-632_1030.png"
+	CPBAR3_TEXT := "FANTASICA IMAGES\Event\Frontlines\maineventscreen\textcpbar3-632_1030.png"
+	TIMER6_TEXT := "FANTASICA IMAGES\Event\Frontlines\maineventscreen\texttimer6-632_1030.png"
+	FIGHT_BUTTON := "FANTASICA IMAGES\Event\Frontlines\maineventscreen\buttonfight-632_1030.png"
+	CRITICAL_BUTTON := "FANTASICA IMAGES\Event\Frontlines\battlescreen\buttoncritical-632_1030.png"
+	DRAIN_BUTTON := "FANTASICA IMAGES\Event\Frontlines\battlescreen\buttondrain-632_1030.png"
+	SPEED_BUTTON := "FANTASICA IMAGES\Event\Frontlines\battlescreen\buttonspeed-632_1030.png"
+	SKIP_BUTTON := "FANTASICA IMAGES\Event\Frontlines\battlescreen\buttonskip-632_1030.png"
+	OPPONENT1_BUTTON := "FANTASICA IMAGES\Event\Frontlines\opponentselectionscreen\buttonopponent1-632_1030.png"
+	OPPONENT2_BUTTON := "FANTASICA IMAGES\Event\Frontlines\opponentselectionscreen\buttonopponent2-632_1030.png"
+	OPPONENT3_BUTTON := "FANTASICA IMAGES\Event\Frontlines\opponentselectionscreen\buttonopponent3-632_1030.png"
+	OPPONENT4_BUTTON := "FANTASICA IMAGES\Event\Frontlines\opponentselectionscreen\buttonopponent4-632_1030.png"
+	OPPONENT5_BUTTON := "FANTASICA IMAGES\Event\Frontlines\opponentselectionscreen\buttonopponent5-632_1030.png"
+	OPPONENT16_BUTTON := "FANTASICA IMAGES\Event\Frontlines\opponentselectionscreen\buttonopponent16-632_1030.png"
+	OPPONENT17_BUTTON := "FANTASICA IMAGES\Event\Frontlines\opponentselectionscreen\buttonopponent17-632_1030.png"
+	OPPONENT18_BUTTON := "FANTASICA IMAGES\Event\Frontlines\opponentselectionscreen\buttonopponent18-632_1030.png"
+	OPPONENT19_BUTTON := "FANTASICA IMAGES\Event\Frontlines\opponentselectionscreen\buttonopponent19-632_1030.png"
+	OPPONENT20_BUTTON := "FANTASICA IMAGES\Event\Frontlines\opponentselectionscreen\buttonopponent20-632_1030.png"
+	FRONTLINEBACK_BUTTON := "FANTASICA IMAGES\Event\Frontlines\resultscreen\buttonback-632_1030.png"
+	REMATCH_BUTTON := "FANTASICA IMAGES\Event\Frontlines\resultscreen\buttonrematch-632_1030.png"
+    CPCOUNT_TEXT := "FANTASICA IMAGES\Event\Frontlines\resultscreen\textcpcount-632_1030.png"
+	
+	ASSIST_BUTTON  := "FANTASICA IMAGES\Event\Frontlines\maineventscreen\buttonassist-632_1030.png"
+    ASSIST_BACK_BUTTON := "FANTASICA IMAGES\Event\Frontlines\assistscreen\buttonassistback-632_1030.png"
+    REQUESTASSISTANCE_BUTTON := "FANTASICA IMAGES\Event\Frontlines\assistscreen\buttonrequestassistance-632_1030.png"
+  }
+  else if (width == 677 && height == 1102)
   {
 	FANTASICAAPP_BUTTON := "FANTASICA IMAGES\Bluestack\appfantasica-677_1102.png"
 	
