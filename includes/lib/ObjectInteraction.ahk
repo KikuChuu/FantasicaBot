@@ -60,6 +60,12 @@ DetectObject(ByRef Path)
 		msg := "File Missing(DetectObject), We can't seem to find this file: " . Path
 		SB_SetText(msg)
 		Log(msg)
+		
+		
+		
+		; TODO ADD DRAG n' DROP function here
+		
+		
 		Sleep SLEEEPTIME
 		;MsgBox, 0, File Missing(DetectObject), We can't seem to find this file: `n%Path%. >_< `n`n                    Pausing Script.
 		;Pause
@@ -87,24 +93,27 @@ WaitObject(ByRef Path)
 	randomY := WAIT_Y
 	SB_SetText("Waiting for `n`n" . Path)
 	ImageSearch, FoundX, FoundY, X1, Y1, X2, Y2, %Path%
-	if ErrorLevel = 2
+	while (ErrorLevel == 2)
 	{
 		msg := "File Missing(WaitObject), We can't seem to find this file: " . Path
 		SB_SetText(msg)
 		Log(msg)
-	}	
-	else if ErrorLevel = 1 
+		
+		
+		
+		; TODO ADD DRAG n' DROP function here
+	}
+	
+	waitStatus := Object()
+	waitStatus[0] := "*"
+	waitStatus[1] := "* *"
+	waitStatus[2] := "* * *"
+	
+	while (ErrorLevel == 1)
 	{
-	    Array := Object()
-		Array[0] := "*"
-		Array[1] := "* *"
-		Array[2] := "* * *"
-		while ErrorLevel = 1
-		{
-			SB_SetText("Waiting for `n`n" . Path . Array[mod(A_Index,3)])
-			SendEvent {Click %randomX%, %randomY% }
-			ImageSearch, FoundX, FoundY, X1, Y1, X2, Y2, %Path%
-		}
+		SB_SetText("Waiting for `n`n" . Path . waitStatus[mod(A_Index,3)])
+		SendEvent {Click %randomX%, %randomY% }
+		ImageSearch, FoundX, FoundY, X1, Y1, X2, Y2, %Path%
 	}
 	Sleep SLEEPTIME
 }
