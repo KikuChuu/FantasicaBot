@@ -13,7 +13,7 @@ Init_globals() ; Found in GlobalConstants.ahk
 ;===================== QUEST START ======================
 ;========================================================
 
-SetTimer, RandomPopupOrCrash, 300000 ;handles crashes, popup advertisements every 5 minutes
+SetTimer, RandomPopupOrCrash, 5000 ;handles crashes, popup advertisements every 5 minutes
 
 WaitObject(ASSIST_BUTTON)
 ClickObject(ASSIST_BUTTON)
@@ -52,7 +52,7 @@ clickObject(OPPONENT1_BUTTON)
 waitObject(SKIP_BUTTON)
 clickObject(SKIP_BUTTON)
 
-Sleep 3000
+Sleep 1500
 
 if DetectObject(SPEED_BUTTON) 
 {
