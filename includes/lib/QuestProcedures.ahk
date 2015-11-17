@@ -581,6 +581,10 @@ FindCoordinate(Byref X, Byref Y)
 		
 		loop
 		{   
+			IfWinNotActive, %BLUESTACK_WINDOW_TITLE%
+			{
+				WinActivate, %BLUESTACK_WINDOW_TITLE%
+			}
 			while row <= MapMaxRow
 			{
 				;msgbox row is . %row%

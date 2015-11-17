@@ -16,9 +16,9 @@
 ;Quest Battle specification
 ;--------------------------												 
 	DEPLOY_NUMBER = 2 	;number of units to deploy
-	SORTINDEX = 0   	;land = 1, air = 2, sea = 3, default = 0
+	SORTINDEX = 1   	;land = 1, air = 2, sea = 3, default = 0
 	TYPEINDEX = 0		;Melee = 1, missile = 2, magic = 3, all = 0
-	LEVELBOT = 1		;0 = no, 1 = set starting point specifically for quest 2-7
+	LEVELBOT = 0		;0 = no, 1 = set starting point specifically for quest 2-7
 	KISSOFDESIRE = 1 	; Use alternate images for this event's battle screen by setting to 1
 ;Event specification
 ;-------------------
