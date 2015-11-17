@@ -7,6 +7,13 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ClickAt(CoordX, CoordY)
 {
 	global SLEEPTIME
+	global BLUESTACK_WINDOW_TITLE
+	
+	IfWinNotActive, %BLUESTACK_WINDOW_TITLE%
+	{
+		WinActivate, %BLUESTACK_WINDOW_TITLE%
+	}
+	
 	PixelGetColor, PixColor, %CoordX%, %CoordY%
 	PixState := PixColor
 	while PixState = PixColor
@@ -25,6 +32,8 @@ ClickAt(CoordX, CoordY)
 ClickObject(ByRef Path)
 {
 	global SLEEPTIME, X1,X2,Y1,Y2
+	global BLUESTACK_WINDOW_TITLE
+	
 	ImageSearch, FoundX, FoundY, X1, Y1, X2, Y2, %Path%
 	if ErrorLevel = 2
 	{
@@ -53,6 +62,12 @@ ClickObject(ByRef Path)
 DetectObject(ByRef Path)
 {
 	global X1,X2,Y1,Y2, BACK_BUTTON, SLEEEPTIME
+	global BLUESTACK_WINDOW_TITLE
+	
+	IfWinNotActive, %BLUESTACK_WINDOW_TITLE%
+	{
+		WinActivate, %BLUESTACK_WINDOW_TITLE%
+	}
 	
 	ImageSearch, FoundX, FoundY, X1, Y1, X2, Y2, %Path%
 	if ErrorLevel = 2
@@ -88,6 +103,9 @@ WaitObject(ByRef Path)
 {
 	global X1, X2, Y1, Y2, SLEEPTIME
 	global WAIT_X, WAIT_Y
+	global BLUESTACK_WINDOW_TITLE
+	
+	WinActivate, %BLUESTACK_WINDOW_TITLE%
 	
 	randomX := WAIT_X
 	randomY := WAIT_Y
@@ -98,9 +116,6 @@ WaitObject(ByRef Path)
 		msg := "File Missing(WaitObject), We can't seem to find this file: " . Path
 		SB_SetText(msg)
 		Log(msg)
-		
-		
-		
 		; TODO ADD DRAG n' DROP function here
 	}
 	
@@ -112,6 +127,11 @@ WaitObject(ByRef Path)
 	while (ErrorLevel == 1)
 	{
 		SB_SetText("Waiting for `n`n" . Path . waitStatus[mod(A_Index,3)])
+		
+		IfWinNotActive, %BLUESTACK_WINDOW_TITLE%
+		{
+			WinActivate, %BLUESTACK_WINDOW_TITLE%
+		}
 		SendEvent {Click %randomX%, %randomY% }
 		ImageSearch, FoundX, FoundY, X1, Y1, X2, Y2, %Path%
 	}

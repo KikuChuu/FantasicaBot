@@ -307,7 +307,7 @@ ChooseAlly()
 			ClickObject(DEPLOYALLY3_BUTTON)
 			return 1
 		}
-		else 
+		else if DetectObject(NEXTPAGE_BUTTON)
 		{
 			WaitObject(NEXTPAGE_BUTTON)
 			ClickObject(NEXTPAGE_BUTTON)
@@ -490,6 +490,8 @@ EventBoss(allycount=0)
 FindCoordinate(Byref X, Byref Y)
 {
 	global SLEEPTIME, RESTRICTPLACEMENTON_COL1, RESTRICTPLACEMENTON_COL2, QUICKSCAN, REVELATIONTOWER, LEVELBOT
+	global BLUESTACK_WINDOW_TITLE
+
 	;declare our static vars here
 	static row:= 0
 	static col:= 0
@@ -518,6 +520,10 @@ FindCoordinate(Byref X, Byref Y)
 		
 		loop
 		{
+			IfWinNotActive, %BLUESTACK_WINDOW_TITLE%
+			{
+				WinActivate, %BLUESTACK_WINDOW_TITLE%
+			}
 			while row <= MapMaxRow
 			{
 				;msgbox row is . %row%
@@ -614,6 +620,13 @@ PlaceUnitAt(CoordX, CoordY)
 {
 	SetTimer, TimeOut, 5000
 	global SLEEPTIME
+	global BLUESTACK_WINDOW_TITLE
+	
+	IfWinNotActive, %BLUESTACK_WINDOW_TITLE%
+	{
+		WinActivate, %BLUESTACK_WINDOW_TITLE%
+	}
+	
 	PixelGetColor, PixColor, %CoordX%, %CoordY%
 	PixState := PixColor
 	while PixState = PixColor

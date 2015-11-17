@@ -114,8 +114,8 @@ while not DetectObject(KOD_TRAININGPOINTS_TEXT)
 	{
 		while (DetectObject(KOD_BOSSFIGHT_BUTTON)) ; fight boss
 		{
-			WaitObject(KOD_BOSSFIGHT_BUTTON)
-			ClickObject(KOD_BOSSFIGHT_BUTTON)
+			WaitObject(KOD_SUMMONALLY_BUTTON)
+			ClickObject(KOD_SUMMONALLY_BUTTON)
 			
 			while (not DetectObject(KOD_BOSSFIGHT_BUTTON))
 			{

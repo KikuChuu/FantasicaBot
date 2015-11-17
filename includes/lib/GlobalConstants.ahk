@@ -93,6 +93,7 @@ Init_globals()
   global KOD_MAXTP_TEXT
   global KOD_USEPOTIONYES_BUTTON
   global KOD_TRAININGWITHPOTION_BUTTON
+  global KOD_SUMMONALLY_BUTTON
   
   if WinExist("BlueStacks App Player")
   {
@@ -182,6 +183,7 @@ Init_globals()
 		KOD_MAXTP_TEXT := "FANTASICA IMAGES\Event\KissOfDesire\textmaxtp-632_1030.png"
 		KOD_TRAININGWITHPOTION_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\buttontrainingwithpotion-632_1030.png"
 		KOD_USEPOTIONYES_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\buttonusepotionyes-632_1030.png"
+		KOD_SUMMONALLY_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\BossFightScreen\buttonsummonally-632_1030.png"
 	}
 	else
 	{
@@ -302,6 +304,7 @@ Init_globals()
     ASSIST_BACK_BUTTON := "FANTASICA IMAGES\Event\Frontlines\assistscreen\buttonassistback-632_1030.png"
     REQUESTASSISTANCE_BUTTON := "FANTASICA IMAGES\Event\Frontlines\assistscreen\buttonrequestassistance-632_1030.png"
 	ASSIST_ALL_BUTTON := "FANTASICA IMAGES\Event\Frontlines\assistscreen\buttonassistall-632_1030.png"
+	KOD_SUMMONALLY_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\BossFightScreen\buttonsummonally-632_1030.png"
   }
   else if (width == 677 && height == 1102)
   {
@@ -370,6 +373,7 @@ Init_globals()
 		KOD_MAXTP_TEXT := "FANTASICA IMAGES\Event\KissOfDesire\textmaxtp-677_1102.png"
 		KOD_TRAININGWITHPOTION_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\buttontrainingwithpotion-677_1102.png"
 		KOD_USEPOTIONYES_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\buttonusepotionyes-677_1102.png"
+		KOD_SUMMONALLY_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\BossFightScreen\buttonsummonally-677_1102.png"
 	}
 	else
 	{
@@ -558,6 +562,7 @@ Init_globals()
 		KOD_MAXTP_TEXT := "FANTASICA IMAGES\Event\KissOfDesire\textmaxtp-1282_749.png"
 		KOD_TRAININGWITHPOTION_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\buttontrainingwithpotion-1282_749.png"
 		KOD_USEPOTIONYES_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\buttonusepotionyes-1282_749.png"
+		KOD_SUMMONALLY_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\BossFightScreen\buttonsummonally-1282_749.png"
 	}
 	else
 	{
@@ -746,6 +751,7 @@ Init_globals()
 		KOD_MAXTP_TEXT := "FANTASICA IMAGES\Event\KissOfDesire\textmaxtp-1920_1080.png"
 		KOD_TRAININGWITHPOTION_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\buttontrainingwithpotion-1920_1080.png"
 		KOD_USEPOTIONYES_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\buttonusepotionyes-1920_1080.png"
+		KOD_SUMMONALLY_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\BossFightScreen\buttonsummonally-1920_1080.png"
 	}
 	else
 	{
