@@ -7,6 +7,7 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 Init_globals()
 {
+  global KISSOFDESIRE
   global BLUESTACK_WINDOW_TITLE
   global FANTASICAAPP_BUTTON
   global WAIT_X, WAIT_Y
@@ -77,6 +78,22 @@ Init_globals()
   global REQUESTASSISTANCE_BUTTON
   global ASSIST_ALL_BUTTON
   
+  global KOD_TRAINING_BUTTON
+  global KOD_ADVANCE_BUTTON
+  global KOD_EVENTPAGE_BUTTON
+  global KOD_CONTINUETRAINING_BUTTON
+  global KOD_FIGHT_BUTTON
+  global KOD_RESULTS_EVENTPAGE_BUTTON
+  global KOD_PROGRESSCOMPLETE_TEXT
+  global KOD_TRAININGPOINTS_TEXT
+  global KOD_BACK_BUTTON
+  global KOD_MYPAGE_BUTTON
+  global KOD_BOSSFIGHT_BUTTON
+  global KOD_HEAL_BUTTON
+  global KOD_MAXTP_TEXT
+  global KOD_USEPOTIONYES_BUTTON
+  global KOD_TRAININGWITHPOTION_BUTTON
+  
   if WinExist("BlueStacks App Player")
   {
 	BLUESTACK_WINDOW_TITLE := "BlueStacks App Player"
@@ -144,10 +161,35 @@ Init_globals()
 	STARTQUEST6_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest6-632_1030.png" ;quest #6
 	STARTQUEST7_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest7-632_1030.png" ;quest #7 
 	
-	CALLALLY_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttoncallally-632_1030.png ;the call ally button in questing
-	CANCELPLACEMENT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttoncancelplacement-632_1030.png ; the cancel placement button
-	CONFIRMUNITPLACEMENT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttonconfirmunitplacement-632_1030.png ;confirm the location to place unit
-	DEPLOYUNIT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttondeployunit-632_1030.png	;The 'Deploy' button during questing
+	if (KISSOFDESIRE == 1)
+	{
+		CALLALLY_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\BattleScreen\buttoncallally-632_1030.png" ;the call ally button in questing
+		CANCELPLACEMENT_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\BattleScreen\buttoncancelplacement-632_1030.png" ; the cancel placement button
+		CONFIRMUNITPLACEMENT_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\BattleScreen\buttonconfirmunitplacement-632_1030.png" ;confirm the location to place unit
+		DEPLOYUNIT_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\BattleScreen\buttondeployunit-632_1030.png"	;The 'Deploy' button during questing
+		KOD_TRAINING_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\buttontraining-632_1030.png"
+	    KOD_ADVANCE_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\TrainingScreen\buttonadvance-632_1030.png"
+		KOD_EVENTPAGE_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\TrainingScreen\buttoneventpage-632_1030.png"
+		KOD_CONTINUETRAINING_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\TrainingScreen\buttoncontinuetraining-632_1030.png"
+		KOD_FIGHT_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\EncounterScreen\buttonfight-632_1030.png"
+		KOD_RESULTS_EVENTPAGE_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\ResultScreen\buttoneventpage-632_1030.png"
+		KOD_PROGRESSCOMPLETE_TEXT := "FANTASICA IMAGES\Event\KissOfDesire\TrainingScreen\textprogresscomplete-632_1030.png"
+		KOD_TRAININGPOINTS_TEXT := "FANTASICA IMAGES\Event\KissOfDesire\TrainingScreen\texttrainingpoints-632_1030.png"
+		KOD_BACK_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\GiftScreen\buttonback-632_1030.png"
+		KOD_MYPAGE_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\buttonmypage-632_1030.png"
+		KOD_BOSSFIGHT_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\BossFightScreen\buttonfight-632_1030.png"
+		KOD_HEAL_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\TrainingScreen\buttonheal-632_1030.png"
+		KOD_MAXTP_TEXT := "FANTASICA IMAGES\Event\KissOfDesire\textmaxtp-632_1030.png"
+		KOD_TRAININGWITHPOTION_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\buttontrainingwithpotion-632_1030.png"
+		KOD_USEPOTIONYES_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\buttonusepotionyes-632_1030.png"
+	}
+	else
+	{
+		CALLALLY_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttoncallally-632_1030.png ;the call ally button in questing
+		CANCELPLACEMENT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttoncancelplacement-632_1030.png ; the cancel placement button
+		CONFIRMUNITPLACEMENT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttonconfirmunitplacement-632_1030.png ;confirm the location to place unit
+		DEPLOYUNIT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttondeployunit-632_1030.png	;The 'Deploy' button during questing
+	}
 	
 	DEPLOYUNIT1_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\Unit\buttondeployunit1-632_1030.png ;first unit in the 'Deploy List'
 	DEPLOYUNIT2_BUTTON := "FANTASICA IMAGES\Quest\QuestBattle\Unit\buttondeployunit2-632_1030.png" ;second unit in the 'Deploy List'
@@ -307,10 +349,35 @@ Init_globals()
 	STARTQUEST6_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest6-677_1102.png" ;quest #6
 	STARTQUEST7_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest7-677_1102.png" ;quest #7 
 	
-	CALLALLY_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttoncallally-677_1102.png ;the call ally button in questing
-	CANCELPLACEMENT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttoncancelplacement-677_1102.png ; the cancel placement button
-	CONFIRMUNITPLACEMENT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttonconfirmunitplacement-677_1102.png ;confirm the location to place unit
-	DEPLOYUNIT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttondeployunit-677_1102.png	;The 'Deploy' button during questing
+	if (KISSOFDESIRE == 1)
+	{
+		CALLALLY_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\BattleScreen\buttoncallally-677_1102.png" ;the call ally button in questing
+		CANCELPLACEMENT_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\BattleScreen\buttoncancelplacement-677_1102.png" ; the cancel placement button
+		CONFIRMUNITPLACEMENT_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\BattleScreen\buttonconfirmunitplacement-677_1102.png" ;confirm the location to place unit
+		DEPLOYUNIT_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\BattleScreen\buttondeployunit-677_1102.png"	;The 'Deploy' button during questing
+		KOD_TRAINING_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\buttontraining-677_1102.png"
+	    KOD_ADVANCE_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\TrainingScreen\buttonadvance-677_1102.png"
+		KOD_EVENTPAGE_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\TrainingScreen\buttoneventpage-677_1102.png"
+		KOD_CONTINUETRAINING_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\TrainingScreen\buttoncontinuetraining-677_1102.png"
+		KOD_FIGHT_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\EncounterScreen\buttonfight-677_1102.png"
+		KOD_RESULTS_EVENTPAGE_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\ResultScreen\buttoneventpage-677_1102.png"
+		KOD_PROGRESSCOMPLETE_TEXT := "FANTASICA IMAGES\Event\KissOfDesire\TrainingScreen\textprogresscomplete-677_1102.png"
+		KOD_TRAININGPOINTS_TEXT := "FANTASICA IMAGES\Event\KissOfDesire\TrainingScreen\texttrainingpoints-677_1102.png"
+		KOD_BACK_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\GiftScreen\buttonback-677_1102.png"
+		KOD_MYPAGE_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\buttonmypage-677_1102.png"
+		KOD_BOSSFIGHT_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\BossFightScreen\buttonfight-677_1102.png"
+		KOD_HEAL_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\TrainingScreen\buttonheal-677_1102.png"
+		KOD_MAXTP_TEXT := "FANTASICA IMAGES\Event\KissOfDesire\textmaxtp-677_1102.png"
+		KOD_TRAININGWITHPOTION_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\buttontrainingwithpotion-677_1102.png"
+		KOD_USEPOTIONYES_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\buttonusepotionyes-677_1102.png"
+	}
+	else
+	{
+		CALLALLY_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttoncallally-677_1102.png ;the call ally button in questing
+		CANCELPLACEMENT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttoncancelplacement-677_1102.png ; the cancel placement button
+		CONFIRMUNITPLACEMENT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttonconfirmunitplacement-677_1102.png ;confirm the location to place unit
+		DEPLOYUNIT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttondeployunit-677_1102.png	;The 'Deploy' button during questing
+	}
 	
 	DEPLOYUNIT1_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\Unit\buttondeployunit1-677_1102.png ;first unit in the 'Deploy List'
 	DEPLOYUNIT2_BUTTON := "FANTASICA IMAGES\Quest\QuestBattle\Unit\buttondeployunit2-677_1102.png" ;second unit in the 'Deploy List'
@@ -470,10 +537,35 @@ Init_globals()
 	STARTQUEST6_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest6-1282_749.png" ;quest #6
 	STARTQUEST7_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest7-1282_749.png" ;quest #7 
 	
-	CALLALLY_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttoncallally-1282_749.png ;the call ally button in questing
-	CANCELPLACEMENT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttoncancelplacement-1282_749.png ; the cancel placement button
-	CONFIRMUNITPLACEMENT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttonconfirmunitplacement-1282_749.png ;confirm the location to place unit
-	DEPLOYUNIT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttondeployunit-1282_749.png	;The 'Deploy' button during questing
+	if (KISSOFDESIRE == 1)
+	{
+		CALLALLY_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\BattleScreen\buttoncallally-1282_749.png" ;the call ally button in questing
+		CANCELPLACEMENT_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\BattleScreen\buttoncancelplacement-1282_749.png" ; the cancel placement button
+		CONFIRMUNITPLACEMENT_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\BattleScreen\buttonconfirmunitplacement-1282_749.png" ;confirm the location to place unit
+		DEPLOYUNIT_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\BattleScreen\buttondeployunit-1282_749.png"	;The 'Deploy' button during questing
+		KOD_TRAINING_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\buttontraining-1282_749.png"
+	    KOD_ADVANCE_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\TrainingScreen\buttonadvance-1282_749.png"
+		KOD_EVENTPAGE_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\TrainingScreen\buttoneventpage-1282_749.png"
+		KOD_CONTINUETRAINING_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\TrainingScreen\buttoncontinuetraining-1282_749.png"
+		KOD_FIGHT_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\EncounterScreen\buttonfight-1282_749.png"
+		KOD_RESULTS_EVENTPAGE_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\ResultScreen\buttoneventpage-1282_749.png"
+		KOD_PROGRESSCOMPLETE_TEXT := "FANTASICA IMAGES\Event\KissOfDesire\TrainingScreen\textprogresscomplete-1282_749.png"
+		KOD_TRAININGPOINTS_TEXT := "FANTASICA IMAGES\Event\KissOfDesire\TrainingScreen\texttrainingpoints-1282_749.png"
+		KOD_BACK_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\GiftScreen\buttonback-1282_749.png"
+		KOD_MYPAGE_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\buttonmypage-1282_749.png"
+		KOD_BOSSFIGHT_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\BossFightScreen\buttonfight-1282_749.png"
+		KOD_HEAL_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\TrainingScreen\buttonheal-1282_749.png"
+		KOD_MAXTP_TEXT := "FANTASICA IMAGES\Event\KissOfDesire\textmaxtp-1282_749.png"
+		KOD_TRAININGWITHPOTION_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\buttontrainingwithpotion-1282_749.png"
+		KOD_USEPOTIONYES_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\buttonusepotionyes-1282_749.png"
+	}
+	else
+	{
+		CALLALLY_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttoncallally-1282_749.png ;the call ally button in questing
+		CANCELPLACEMENT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttoncancelplacement-1282_749.png ; the cancel placement button
+		CONFIRMUNITPLACEMENT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttonconfirmunitplacement-1282_749.png ;confirm the location to place unit
+		DEPLOYUNIT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttondeployunit-1282_749.png	;The 'Deploy' button during questing
+	}
 	
 	DEPLOYUNIT1_BUTTON := "FANTASICA IMAGES\Quest\QuestBattle\Unit\buttondeployunit1-1282_749.png" ;first unit in the 'Deploy List'
 	DEPLOYUNIT2_BUTTON := "FANTASICA IMAGES\Quest\QuestBattle\Unit\buttondeployunit2-1282_749.png" ;second unit in the 'Deploy List'
@@ -633,10 +725,35 @@ Init_globals()
 	STARTQUEST6_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest6-1920_1080.png" ;quest #6
 	STARTQUEST7_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest7-1920_1080.png" ;quest #7 
 	
-	CALLALLY_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttoncallally-1920_1080.png ;the call ally button in questing
-	CANCELPLACEMENT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttoncancelplacement-1920_1080.png ; the cancel placement button
-	CONFIRMUNITPLACEMENT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttonconfirmunitplacement-1920_1080.png ;confirm the location to place unit
-	DEPLOYUNIT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttondeployunit-1920_1080.png	;The 'Deploy' button during questing
+	if (KISSOFDESIRE == 1)
+	{
+		CALLALLY_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\BattleScreen\buttoncallally-1920_1080.png" ;the call ally button in questing
+		CANCELPLACEMENT_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\BattleScreen\buttoncancelplacement-1920_1080.png" ; the cancel placement button
+		CONFIRMUNITPLACEMENT_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\BattleScreen\buttonconfirmunitplacement-1920_1080.png" ;confirm the location to place unit
+		DEPLOYUNIT_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\BattleScreen\buttondeployunit-1920_1080.png"	;The 'Deploy' button during questing
+		KOD_TRAINING_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\buttontraining-1920_1080.png"
+	    KOD_ADVANCE_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\TrainingScreen\buttonadvance-1920_1080.png"
+		KOD_EVENTPAGE_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\TrainingScreen\buttoneventpage-1920_1080.png"
+		KOD_CONTINUETRAINING_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\TrainingScreen\buttoncontinuetraining-1920_1080.png"
+		KOD_FIGHT_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\EncounterScreen\buttonfight-1920_1080.png"
+		KOD_RESULTS_EVENTPAGE_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\ResultScreen\buttoneventpage-1920_1080.png"
+		KOD_PROGRESSCOMPLETE_TEXT := "FANTASICA IMAGES\Event\KissOfDesire\TrainingScreen\textprogresscomplete-1920_1080.png"
+		KOD_TRAININGPOINTS_TEXT := "FANTASICA IMAGES\Event\KissOfDesire\TrainingScreen\texttrainingpoints-1920_1080.png"
+		KOD_BACK_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\GiftScreen\buttonback-1920_1080.png"
+		KOD_MYPAGE_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\buttonmypage-1920_1080.png"
+		KOD_BOSSFIGHT_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\BossFightScreen\buttonfight-1920_1080.png"
+		KOD_HEAL_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\TrainingScreen\buttonheal-1920_1080.png"
+		KOD_MAXTP_TEXT := "FANTASICA IMAGES\Event\KissOfDesire\textmaxtp-1920_1080.png"
+		KOD_TRAININGWITHPOTION_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\buttontrainingwithpotion-1920_1080.png"
+		KOD_USEPOTIONYES_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\buttonusepotionyes-1920_1080.png"
+	}
+	else
+	{
+		CALLALLY_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttoncallally-1920_1080.png ;the call ally button in questing
+		CANCELPLACEMENT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttoncancelplacement-1920_1080.png ; the cancel placement button
+		CONFIRMUNITPLACEMENT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttonconfirmunitplacement-1920_1080.png ;confirm the location to place unit
+		DEPLOYUNIT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttondeployunit-1920_1080.png	;The 'Deploy' button during questing
+	}
 	
 	DEPLOYUNIT1_BUTTON := "fANTASICA IMAGES\Quest\QuestBattle\Unit\buttondeployunit1-1920_1080.png" ;first unit in the 'Deploy List'
 	DEPLOYUNIT2_BUTTON := "FANTASICA IMAGES\Quest\QuestBattle\Unit\buttondeployunit2-1920_1080.png" ;second unit in the 'Deploy List'
