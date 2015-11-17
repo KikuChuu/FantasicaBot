@@ -119,6 +119,7 @@ while not DetectObject(KOD_TRAININGPOINTS_TEXT)
 			
 			while (not DetectObject(KOD_BOSSFIGHT_BUTTON))
 			{
+				SendEvent {Click, %WAIT_X%, %WAIT_Y%}
 				if DetectObject(KOD_MYPAGE_BUTTON)
 				{
 					Reload
