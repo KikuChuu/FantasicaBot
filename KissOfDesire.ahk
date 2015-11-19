@@ -52,8 +52,6 @@ KOD_DOQUEST()
 
 SetTimer, RandomPopupOrCrash, 300000 ;handles crashes, popup advertisements every 5 minutes
 
-;WaitObject(KOD_MAXTP_TEXT)
-
 while not (DetectObject(KOD_TRAININGWITHPOTION_BUTTON) || DetectObject(KOD_TRAINING_BUTTON))
 {
 	SendEvent {Click, %WAIT_X%, %WAIT_Y%}
@@ -69,6 +67,7 @@ if DetectObject(KOD_TRAININGWITHPOTION_BUTTON)
 }
 else
 {
+	WaitObject(KOD_MAXTP_TEXT)
 	WaitObject(KOD_TRAINING_BUTTON)
 	ClickObject(KOD_TRAINING_BUTTON)
 }
@@ -114,8 +113,16 @@ while not DetectObject(KOD_TRAININGPOINTS_TEXT)
 	{
 		while (DetectObject(KOD_BOSSFIGHT_BUTTON)) ; fight boss
 		{
-			WaitObject(KOD_SUMMONALLY_BUTTON)
-			ClickObject(KOD_SUMMONALLY_BUTTON)
+			if DetectObject(KOD_SUMMONALLY_BUTTON)
+			{
+				WaitObject(KOD_SUMMONALLY_BUTTON)
+				ClickObject(KOD_SUMMONALLY_BUTTON)
+			}
+			else if DetectObject(KOD_SUMMONALLY_BUTTON)
+			{
+				WaitObject(KOD_SUMMONALLY_BUTTON)
+				ClickObject(KOD_SUMMONALLY_BUTTON)
+			}
 			
 			while (not DetectObject(KOD_BOSSFIGHT_BUTTON))
 			{

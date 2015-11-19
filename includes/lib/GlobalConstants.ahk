@@ -94,6 +94,11 @@ Init_globals()
   global KOD_USEPOTIONYES_BUTTON
   global KOD_TRAININGWITHPOTION_BUTTON
   global KOD_SUMMONALLY_BUTTON
+  global KOD_LEAVE_BUTTON
+  global KOD_ERISE_TEXT
+  global KOD_LABBETH_TEXT
+  global KOD_SIAM_TEXT
+  global KOD_ARCANA_TEXT
   
   if WinExist("BlueStacks App Player")
   {
@@ -563,6 +568,11 @@ Init_globals()
 		KOD_TRAININGWITHPOTION_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\buttontrainingwithpotion-1282_749.png"
 		KOD_USEPOTIONYES_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\buttonusepotionyes-1282_749.png"
 		KOD_SUMMONALLY_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\BossFightScreen\buttonsummonally-1282_749.png"
+		KOD_LEAVE_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\EncounterScreen\buttonleave-1282_749.png"
+		KOD_ERISE_TEXT := "FANTASICA IMAGES\Event\KissOfDesire\EncounterScreen\texterise-1282_749.png"
+		KOD_SIAM_TEXT := "FANTASICA IMAGES\Event\KissOfDesire\EncounterScreen\textsiam-1282_749.png"
+		KOD_ARCANA_TEXT := "FANTASICA IMAGES\Event\KissOfDesire\EncounterScreen\textarcana-1282_749.png"
+		KOD_LABBETH_TEXT := "FANTASICA IMAGES\Event\KissOfDesire\EncounterScreen\textlabbeth-1282_749.png"
 	}
 	else
 	{

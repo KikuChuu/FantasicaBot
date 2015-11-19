@@ -493,7 +493,7 @@ FindCoordinate(Byref X, Byref Y)
 	global BLUESTACK_WINDOW_TITLE
 
 	;declare our static vars here
-	static row:= 0
+	static row:= 3
 	static col:= 0
 		
     if (LEVELBOT == 1)
