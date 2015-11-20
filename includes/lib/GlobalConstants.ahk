@@ -7,7 +7,7 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 Init_globals()
 {
-  global KISSOFDESIRE
+  global WARRIORLASTOATH
   global BLUESTACK_WINDOW_TITLE
   global FANTASICAAPP_BUTTON
   global WAIT_X, WAIT_Y
@@ -78,27 +78,21 @@ Init_globals()
   global REQUESTASSISTANCE_BUTTON
   global ASSIST_ALL_BUTTON
   
-  global KOD_TRAINING_BUTTON
-  global KOD_ADVANCE_BUTTON
-  global KOD_EVENTPAGE_BUTTON
-  global KOD_CONTINUETRAINING_BUTTON
-  global KOD_FIGHT_BUTTON
-  global KOD_RESULTS_EVENTPAGE_BUTTON
-  global KOD_PROGRESSCOMPLETE_TEXT
-  global KOD_TRAININGPOINTS_TEXT
-  global KOD_BACK_BUTTON
-  global KOD_MYPAGE_BUTTON
-  global KOD_BOSSFIGHT_BUTTON
-  global KOD_HEAL_BUTTON
-  global KOD_MAXTP_TEXT
-  global KOD_USEPOTIONYES_BUTTON
-  global KOD_TRAININGWITHPOTION_BUTTON
-  global KOD_SUMMONALLY_BUTTON
-  global KOD_LEAVE_BUTTON
-  global KOD_ERISE_TEXT
-  global KOD_LABBETH_TEXT
-  global KOD_SIAM_TEXT
-  global KOD_ARCANA_TEXT
+  global WLO_TOCASTLE_BUTTON
+  global WLO_BACK_BUTTON
+  global WLO_PVPFIGHT_BUTTON
+  global WLO_FIGHTHERO1_BUTTON
+  global WLO_BATTLE_BACK_BUTTON
+  global WLO_BATTLE_BUTTON
+  global WLO_SKIP_BUTTON
+  global WLO_RESULTBACK_BUTTON
+  global WLO_ARENA1FIGHT_BUTTON
+  global WLO_ARENA2FIGHT_BUTTON
+  global WLO_ARENA3FIGHT_BUTTON
+  global WLO_ARENA4FIGHT_BUTTON
+  global WLO_ARENA5FIGHT_BUTTON
+  global WLO_ARENA6FIGHT_BUTTON
+  global WLO_ARENABOSSYES_BUTTON
   
   if WinExist("BlueStacks App Player")
   {
@@ -167,28 +161,23 @@ Init_globals()
 	STARTQUEST6_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest6-632_1030.png" ;quest #6
 	STARTQUEST7_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest7-632_1030.png" ;quest #7 
 	
-	if (KISSOFDESIRE == 1)
+	if (WARRIORLASTOATH == 1)
 	{
-		CALLALLY_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\BattleScreen\buttoncallally-632_1030.png" ;the call ally button in questing
-		CANCELPLACEMENT_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\BattleScreen\buttoncancelplacement-632_1030.png" ; the cancel placement button
-		CONFIRMUNITPLACEMENT_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\BattleScreen\buttonconfirmunitplacement-632_1030.png" ;confirm the location to place unit
-		DEPLOYUNIT_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\BattleScreen\buttondeployunit-632_1030.png"	;The 'Deploy' button during questing
-		KOD_TRAINING_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\buttontraining-632_1030.png"
-	    KOD_ADVANCE_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\TrainingScreen\buttonadvance-632_1030.png"
-		KOD_EVENTPAGE_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\TrainingScreen\buttoneventpage-632_1030.png"
-		KOD_CONTINUETRAINING_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\TrainingScreen\buttoncontinuetraining-632_1030.png"
-		KOD_FIGHT_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\EncounterScreen\buttonfight-632_1030.png"
-		KOD_RESULTS_EVENTPAGE_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\ResultScreen\buttoneventpage-632_1030.png"
-		KOD_PROGRESSCOMPLETE_TEXT := "FANTASICA IMAGES\Event\KissOfDesire\TrainingScreen\textprogresscomplete-632_1030.png"
-		KOD_TRAININGPOINTS_TEXT := "FANTASICA IMAGES\Event\KissOfDesire\TrainingScreen\texttrainingpoints-632_1030.png"
-		KOD_BACK_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\GiftScreen\buttonback-632_1030.png"
-		KOD_MYPAGE_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\buttonmypage-632_1030.png"
-		KOD_BOSSFIGHT_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\BossFightScreen\buttonfight-632_1030.png"
-		KOD_HEAL_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\TrainingScreen\buttonheal-632_1030.png"
-		KOD_MAXTP_TEXT := "FANTASICA IMAGES\Event\KissOfDesire\textmaxtp-632_1030.png"
-		KOD_TRAININGWITHPOTION_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\buttontrainingwithpotion-632_1030.png"
-		KOD_USEPOTIONYES_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\buttonusepotionyes-632_1030.png"
-		KOD_SUMMONALLY_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\BossFightScreen\buttonsummonally-632_1030.png"
+		WLO_TOCASTLE_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\buttontothecastle-632_1030.png"
+		;WLO_BACK_BUTTON := ""
+		WLO_PVPFIGHT_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ArenaSelection\buttonpvpfight-632_1030.png"
+		WLO_FIGHTHERO1_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\OpponentSelection\buttonfighthero1-632_1030.png"
+		WLO_BATTLE_BACK_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\OpponentPage\buttonback-632_1030.png"
+		WLO_BATTLE_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\OpponentPage\buttonbattle-632_1030.png"
+		WLO_SKIP_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\BattleScreen\buttonskip-632_1030.png"
+		WLO_RESULTBACK_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ResultScreen\buttonback-632_1030.png"
+		WLO_ARENA1FIGHT_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ArenaSelection\buttonarena1fight-632_1030.png"
+		WLO_ARENA2FIGHT_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ArenaSelection\buttonarena2fight-632_1030.png"
+		WLO_ARENA3FIGHT_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ArenaSelection\buttonarena3fight-632_1030.png"
+		WLO_ARENA4FIGHT_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ArenaSelection\buttonarena4fight-632_1030.png"
+		WLO_ARENA5FIGHT_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ArenaSelection\buttonarena5fight-632_1030.png"
+		WLO_ARENA6FIGHT_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ArenaSelection\buttonarena6fight-632_1030.png"
+		WLO_ARENABOSSYES_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\BattleScreen\buttonyes-632_1030.png"
 	}
 	else
 	{
@@ -357,28 +346,23 @@ Init_globals()
 	STARTQUEST6_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest6-677_1102.png" ;quest #6
 	STARTQUEST7_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest7-677_1102.png" ;quest #7 
 	
-	if (KISSOFDESIRE == 1)
+	if (WARRIORLASTOATH == 1)
 	{
-		CALLALLY_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\BattleScreen\buttoncallally-677_1102.png" ;the call ally button in questing
-		CANCELPLACEMENT_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\BattleScreen\buttoncancelplacement-677_1102.png" ; the cancel placement button
-		CONFIRMUNITPLACEMENT_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\BattleScreen\buttonconfirmunitplacement-677_1102.png" ;confirm the location to place unit
-		DEPLOYUNIT_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\BattleScreen\buttondeployunit-677_1102.png"	;The 'Deploy' button during questing
-		KOD_TRAINING_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\buttontraining-677_1102.png"
-	    KOD_ADVANCE_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\TrainingScreen\buttonadvance-677_1102.png"
-		KOD_EVENTPAGE_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\TrainingScreen\buttoneventpage-677_1102.png"
-		KOD_CONTINUETRAINING_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\TrainingScreen\buttoncontinuetraining-677_1102.png"
-		KOD_FIGHT_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\EncounterScreen\buttonfight-677_1102.png"
-		KOD_RESULTS_EVENTPAGE_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\ResultScreen\buttoneventpage-677_1102.png"
-		KOD_PROGRESSCOMPLETE_TEXT := "FANTASICA IMAGES\Event\KissOfDesire\TrainingScreen\textprogresscomplete-677_1102.png"
-		KOD_TRAININGPOINTS_TEXT := "FANTASICA IMAGES\Event\KissOfDesire\TrainingScreen\texttrainingpoints-677_1102.png"
-		KOD_BACK_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\GiftScreen\buttonback-677_1102.png"
-		KOD_MYPAGE_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\buttonmypage-677_1102.png"
-		KOD_BOSSFIGHT_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\BossFightScreen\buttonfight-677_1102.png"
-		KOD_HEAL_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\TrainingScreen\buttonheal-677_1102.png"
-		KOD_MAXTP_TEXT := "FANTASICA IMAGES\Event\KissOfDesire\textmaxtp-677_1102.png"
-		KOD_TRAININGWITHPOTION_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\buttontrainingwithpotion-677_1102.png"
-		KOD_USEPOTIONYES_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\buttonusepotionyes-677_1102.png"
-		KOD_SUMMONALLY_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\BossFightScreen\buttonsummonally-677_1102.png"
+		WLO_TOCASTLE_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\buttontothecastle-677_1102.png"
+		;WLO_BACK_BUTTON := ""
+		WLO_PVPFIGHT_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ArenaSelection\buttonpvpfight-677_1102.png"
+		WLO_FIGHTHERO1_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\OpponentSelection\buttonfighthero1-677_1102.png"
+		WLO_BATTLE_BACK_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\OpponentPage\buttonback-677_1102.png"
+		WLO_BATTLE_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\OpponentPage\buttonbattle-677_1102.png"
+		WLO_SKIP_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\BattleScreen\buttonskip-677_1102.png"
+		WLO_RESULTBACK_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ResultScreen\buttonback-677_1102.png"
+		WLO_ARENA1FIGHT_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ArenaSelection\buttonarena1fight-677_1102.png"
+		WLO_ARENA2FIGHT_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ArenaSelection\buttonarena2fight-677_1102.png"
+		WLO_ARENA3FIGHT_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ArenaSelection\buttonarena3fight-677_1102.png"
+		WLO_ARENA4FIGHT_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ArenaSelection\buttonarena4fight-677_1102.png"
+		WLO_ARENA5FIGHT_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ArenaSelection\buttonarena5fight-677_1102.png"
+		WLO_ARENA6FIGHT_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ArenaSelection\buttonarena6fight-677_1102.png"
+		WLO_ARENABOSSYES_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\BattleScreen\buttonyes-677_1102.png"
 	}
 	else
 	{
@@ -546,33 +530,23 @@ Init_globals()
 	STARTQUEST6_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest6-1282_749.png" ;quest #6
 	STARTQUEST7_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest7-1282_749.png" ;quest #7 
 	
-	if (KISSOFDESIRE == 1)
+	if (WARRIORLASTOATH == 1)
 	{
-		CALLALLY_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\BattleScreen\buttoncallally-1282_749.png" ;the call ally button in questing
-		CANCELPLACEMENT_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\BattleScreen\buttoncancelplacement-1282_749.png" ; the cancel placement button
-		CONFIRMUNITPLACEMENT_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\BattleScreen\buttonconfirmunitplacement-1282_749.png" ;confirm the location to place unit
-		DEPLOYUNIT_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\BattleScreen\buttondeployunit-1282_749.png"	;The 'Deploy' button during questing
-		KOD_TRAINING_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\buttontraining-1282_749.png"
-	    KOD_ADVANCE_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\TrainingScreen\buttonadvance-1282_749.png"
-		KOD_EVENTPAGE_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\TrainingScreen\buttoneventpage-1282_749.png"
-		KOD_CONTINUETRAINING_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\TrainingScreen\buttoncontinuetraining-1282_749.png"
-		KOD_FIGHT_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\EncounterScreen\buttonfight-1282_749.png"
-		KOD_RESULTS_EVENTPAGE_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\ResultScreen\buttoneventpage-1282_749.png"
-		KOD_PROGRESSCOMPLETE_TEXT := "FANTASICA IMAGES\Event\KissOfDesire\TrainingScreen\textprogresscomplete-1282_749.png"
-		KOD_TRAININGPOINTS_TEXT := "FANTASICA IMAGES\Event\KissOfDesire\TrainingScreen\texttrainingpoints-1282_749.png"
-		KOD_BACK_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\GiftScreen\buttonback-1282_749.png"
-		KOD_MYPAGE_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\buttonmypage-1282_749.png"
-		KOD_BOSSFIGHT_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\BossFightScreen\buttonfight-1282_749.png"
-		KOD_HEAL_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\TrainingScreen\buttonheal-1282_749.png"
-		KOD_MAXTP_TEXT := "FANTASICA IMAGES\Event\KissOfDesire\textmaxtp-1282_749.png"
-		KOD_TRAININGWITHPOTION_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\buttontrainingwithpotion-1282_749.png"
-		KOD_USEPOTIONYES_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\buttonusepotionyes-1282_749.png"
-		KOD_SUMMONALLY_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\BossFightScreen\buttonsummonally-1282_749.png"
-		KOD_LEAVE_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\EncounterScreen\buttonleave-1282_749.png"
-		KOD_ERISE_TEXT := "FANTASICA IMAGES\Event\KissOfDesire\EncounterScreen\texterise-1282_749.png"
-		KOD_SIAM_TEXT := "FANTASICA IMAGES\Event\KissOfDesire\EncounterScreen\textsiam-1282_749.png"
-		KOD_ARCANA_TEXT := "FANTASICA IMAGES\Event\KissOfDesire\EncounterScreen\textarcana-1282_749.png"
-		KOD_LABBETH_TEXT := "FANTASICA IMAGES\Event\KissOfDesire\EncounterScreen\textlabbeth-1282_749.png"
+		WLO_TOCASTLE_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\buttontothecastle-1282_749.png"
+		;WLO_BACK_BUTTON := ""
+		WLO_PVPFIGHT_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ArenaSelection\buttonpvpfight-1282_749.png"
+		WLO_FIGHTHERO1_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\OpponentSelection\buttonfighthero1-1282_749.png"
+		WLO_BATTLE_BACK_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\OpponentPage\buttonback-1282_749.png"
+		WLO_BATTLE_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\OpponentPage\buttonbattle-1282_749.png"
+		WLO_SKIP_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\BattleScreen\buttonskip-1282_749.png"
+		WLO_RESULTBACK_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ResultScreen\buttonback-1282_749.png"
+		WLO_ARENA1FIGHT_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ArenaSelection\buttonarena1fight-1282_749.png"
+		WLO_ARENA2FIGHT_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ArenaSelection\buttonarena2fight-1282_749.png"
+		WLO_ARENA3FIGHT_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ArenaSelection\buttonarena3fight-1282_749.png"
+		WLO_ARENA4FIGHT_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ArenaSelection\buttonarena4fight-1282_749.png"
+		WLO_ARENA5FIGHT_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ArenaSelection\buttonarena5fight-1282_749.png"
+		WLO_ARENA6FIGHT_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ArenaSelection\buttonarena6fight-1282_749.png"
+		WLO_ARENABOSSYES_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\BattleScreen\buttonyes-1282_749.png"
 	}
 	else
 	{
@@ -740,28 +714,23 @@ Init_globals()
 	STARTQUEST6_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest6-1920_1080.png" ;quest #6
 	STARTQUEST7_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest7-1920_1080.png" ;quest #7 
 	
-	if (KISSOFDESIRE == 1)
+	if (WARRIORLASTOATH == 1)
 	{
-		CALLALLY_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\BattleScreen\buttoncallally-1920_1080.png" ;the call ally button in questing
-		CANCELPLACEMENT_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\BattleScreen\buttoncancelplacement-1920_1080.png" ; the cancel placement button
-		CONFIRMUNITPLACEMENT_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\BattleScreen\buttonconfirmunitplacement-1920_1080.png" ;confirm the location to place unit
-		DEPLOYUNIT_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\BattleScreen\buttondeployunit-1920_1080.png"	;The 'Deploy' button during questing
-		KOD_TRAINING_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\buttontraining-1920_1080.png"
-	    KOD_ADVANCE_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\TrainingScreen\buttonadvance-1920_1080.png"
-		KOD_EVENTPAGE_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\TrainingScreen\buttoneventpage-1920_1080.png"
-		KOD_CONTINUETRAINING_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\TrainingScreen\buttoncontinuetraining-1920_1080.png"
-		KOD_FIGHT_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\EncounterScreen\buttonfight-1920_1080.png"
-		KOD_RESULTS_EVENTPAGE_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\ResultScreen\buttoneventpage-1920_1080.png"
-		KOD_PROGRESSCOMPLETE_TEXT := "FANTASICA IMAGES\Event\KissOfDesire\TrainingScreen\textprogresscomplete-1920_1080.png"
-		KOD_TRAININGPOINTS_TEXT := "FANTASICA IMAGES\Event\KissOfDesire\TrainingScreen\texttrainingpoints-1920_1080.png"
-		KOD_BACK_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\GiftScreen\buttonback-1920_1080.png"
-		KOD_MYPAGE_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\buttonmypage-1920_1080.png"
-		KOD_BOSSFIGHT_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\BossFightScreen\buttonfight-1920_1080.png"
-		KOD_HEAL_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\TrainingScreen\buttonheal-1920_1080.png"
-		KOD_MAXTP_TEXT := "FANTASICA IMAGES\Event\KissOfDesire\textmaxtp-1920_1080.png"
-		KOD_TRAININGWITHPOTION_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\buttontrainingwithpotion-1920_1080.png"
-		KOD_USEPOTIONYES_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\buttonusepotionyes-1920_1080.png"
-		KOD_SUMMONALLY_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\BossFightScreen\buttonsummonally-1920_1080.png"
+		WLO_TOCASTLE_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\buttontothecastle-1920_1080.png"
+		;WLO_BACK_BUTTON := ""
+		WLO_PVPFIGHT_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ArenaSelection\buttonpvpfight-1920_1080.png"
+		WLO_FIGHTHERO1_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\OpponentSelection\buttonfighthero1-1920_1080.png"
+		WLO_BATTLE_BACK_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\OpponentPage\buttonback-1920_1080.png"
+		WLO_BATTLE_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\OpponentPage\buttonbattle-1920_1080.png"
+		WLO_SKIP_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\BattleScreen\buttonskip-1920_1080.png"
+		WLO_RESULTBACK_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ResultScreen\buttonback-1920_1080.png"
+		WLO_ARENA1FIGHT_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ArenaSelection\buttonarena1fight-1920_1080.png"
+		WLO_ARENA2FIGHT_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ArenaSelection\buttonarena2fight-1920_1080.png"
+		WLO_ARENA3FIGHT_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ArenaSelection\buttonarena3fight-1920_1080.png"
+		WLO_ARENA4FIGHT_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ArenaSelection\buttonarena4fight-1920_1080.png"
+		WLO_ARENA5FIGHT_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ArenaSelection\buttonarena5fight-1920_1080.png"
+		WLO_ARENA6FIGHT_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ArenaSelection\buttonarena6fight-1920_1080.png"
+		WLO_ARENABOSSYES_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\BattleScreen\buttonyes-1920_1080.png"
 	}
 	else
 	{

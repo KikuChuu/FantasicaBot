@@ -409,6 +409,8 @@ DeployUnit(AllyPower = 0, AllyType = 0)
 	
 	while DetectObject(CANCELPLACEMENT_BUTTON) ;busy wait until unit placement is done (in case of lag)
 	{
+		msg := "Waiting for cancel placement"
+		SB_SetText(msg)
 		Sleep SLEEPTIME
 	}
 }
