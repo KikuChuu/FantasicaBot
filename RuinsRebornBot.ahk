@@ -10,68 +10,62 @@ Init_globals() ; Found in GlobalConstants.ahk
 ;--------------------------------------------
 
 ;========================================================
-;=================== QUEST START =====================
+;==================== QUEST START =======================
 ;========================================================
 
 SetTimer, RandomPopupOrCrash, 300000 ;handles crashes, popup advertisements every 5 minutes
 
-waitobject(selectepisode_button)
-
-if quest >= 4
+while (1)
 {
-  global QUEST_X1, QUEST_Y1, QUEST_X2, QUEST_Y2
-  scroll(QUEST_X1, QUEST_Y1, QUEST_X2, QUEST_Y2)
-}
+	waitobject(RR_MYPAGE_BUTTON)
 
-questindex := assignquest(quest)
-waitobject(questindex)
-sleep 500
+	waitobject(RR_BATTLESTART_BUTTON)
+	clickobject(RR_BATTLESTART_BUTTON)
 
-clickobject(questindex)
-waitobject(DEPLOYUNIT_BUTTON)
+	waitobject(DEPLOYUNIT_BUTTON)
 
-hasDeployedAllAllies := 0
-while A_index <= DEPLOY_NUMBER AND DetectObject(DEPLOYUNIT_BUTTON)
-{
-	DeployUnit()
-  
-	if (!hasDeployedAllAllies)
-	{		
-		while DetectObject(CALLALLY_BUTTON)
-		{   
-			if DetectObject(BACKQUEST_BUTTON)
-			{
-				while DetectObject(BACKQUEST_BUTTON)
+	hasDeployedAllAllies := 0
+	while A_index <= DEPLOY_NUMBER AND DetectObject(DEPLOYUNIT_BUTTON)
+	{
+		DeployUnit()
+	  
+		if (!hasDeployedAllAllies)
+		{		
+			while DetectObject(CALLALLY_BUTTON)
+			{   
+				if DetectObject(BACKQUEST_BUTTON)
 				{
-					WaitObject(BACKQUEST_BUTTON)
-					ClickObject(BACKQUEST_BUTTON)
+					while DetectObject(BACKQUEST_BUTTON)
+					{
+						WaitObject(BACKQUEST_BUTTON)
+						ClickObject(BACKQUEST_BUTTON)
+					}
 				}
-			}
-			if (CallAlly(SORTINDEX, TYPEINDEX) == 0)
-			{
-				hasDeployedAllAllies := 1
-				break
+				if (CallAlly(SORTINDEX, TYPEINDEX) == 0)
+				{
+					hasDeployedAllAllies := 1
+					break
+				}
 			}
 		}
 	}
-}
 
 
-;quick fix
-Sleep 500
-if DetectObject(BACKQUEST_BUTTON)
-{
-	while DetectObject(BACKQUEST_BUTTON)
+	;quick fix
+	Sleep 500
+	if DetectObject(BACKQUEST_BUTTON)
 	{
-		WaitObject(BACKQUEST_BUTTON)
-		ClickObject(BACKQUEST_BUTTON)
+		while DetectObject(BACKQUEST_BUTTON)
+		{
+			WaitObject(BACKQUEST_BUTTON)
+			ClickObject(BACKQUEST_BUTTON)
+		}
 	}
+
+	WaitObject(RR_BACK_BUTTON) ;Basically waits until questing ends and we get our results
+	ClickObject(RR_BACK_BUTTON) ;return to quest selection
 }
 
-WaitObject(CHOOSEQUESTCOMPLETED_BUTTON) ;Basically waits until questing ends and we get our results
-ClickObject(CHOOSEQUESTCOMPLETED_BUTTON) ;return to quest selection
-
-Reload
 
 
 RandomPopupOrCrash:

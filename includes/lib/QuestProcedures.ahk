@@ -151,7 +151,7 @@ CallAlly(AllyPower=0, AllyType=0)
 	if (!hasFilteredAllyListByType)
 	{
 	    hasFilteredAllyListByType := 1
-		if AllyType == 0
+		if (AllyType == 0)
 		{
 			while not DetectObject(UNITAll_BUTTON)
 			{
@@ -341,14 +341,187 @@ ChooseAlly()
 DeployUnit(AllyPower = 0, AllyType = 0)
 {
 	global
-	;global BACKQUEST_BUTTON, CANCELPLACEMENT_BUTTON, CONFIRMUNITPLACEMENT_BUTTON, DEPLOYUNIT_BUTTON, SLEEPTIME
-	;global DEPLOYUNIT1_BUTTON, DEPLOYUNIT2_BUTTON, DEPLOYUNIT3_BUTTON, DEPLOYUNIT4_BUTTON
-	;global UNIT1_INVISIBLEBUTTON, UNIT2_INVISIBLEBUTTON, UNIT3_INVISIBLEBUTTON, UNIT4_INVISIBLEBUTTON
-	;global UNITALL_BUTTON, UNITMISSILE_BUTTON, UNITMAGIC_BUTTON, UNITMELEE_BUTTON, UNITFAVORITEON_BUTTON
 	
 	WaitObject(DEPLOYUNIT_BUTTON) ;Waits for the 'Deploy_Unit' button
 	ClickObject(DEPLOYUNIT_BUTTON) ;Click the 'Deploy Unit' button
 	WaitObject(BACKQUEST_BUTTON)
+
+	if AllyPower = 0
+	{
+		;SORT BY DEFAULT
+		while not DetectObject(SORTBYDEFAULT_BUTTON)
+		{
+			if DetectObject(SORTBYSEAATK_BUTTON)
+			{
+				WaitObject(SORTBYSEAATK_BUTTON)
+				ClickObject(SORTBYSEAATK_BUTTON)
+			}
+			if DetectObject(SORTBYGROUNDATK_BUTTON)
+			{
+				WaitObject(SORTBYGROUNDATK_BUTTON)
+				ClickObject(SORTBYGROUNDATK_BUTTON)
+			}
+			if DetectObject(SORTBYAIRATK_BUTTON)
+			{
+				WaitObject(SORTBYAIRATK_BUTTON)
+				ClickObject(SORTBYAIRATK_BUTTON)
+			}
+		}
+	}
+	else if AllyPower = 1
+	{
+		;SORT BY GROUND ATK
+		while not DetectObject(SORTBYGROUNDATK_BUTTON)
+		{
+			if DetectObject(SORTBYDEFAULT_BUTTON)
+			{
+				WaitObject(SORTBYDEFAULT_BUTTON)
+				ClickObject(SORTBYDEFAULT_BUTTON)
+			}
+			if DetectObject(SORTBYAIRATK_BUTTON)
+			{
+				WaitObject(SORTBYAIRATK_BUTTON)
+				ClickObject(SORTBYAIRATK_BUTTON)
+			}
+			if DetectObject(SORTBYSEAATK_BUTTON)
+			{
+				WaitObject(SORTBYSEAATK_BUTTON)
+				ClickObject(SORTBYSEAATK_BUTTON)
+			}
+		}
+	}
+	
+	else if AllyPower = 2
+	{
+		;SORT BY AIR ATK
+		while not DetectObject(SORTBYAIRATK_BUTTON)
+		{
+			if DetectObject(SORTBYGROUNDATK_BUTTON)
+			{
+				WaitObject(SORTBYGROUNDATK_BUTTON)
+				ClickObject(SORTBYGROUNDATK_BUTTON)
+			}
+			if DetectObject(SORTBYSEAATK_BUTTON)
+			{
+				WaitObject(SORTBYSEAATK_BUTTON)
+				ClickObject(SORTBYSEAATK_BUTTON)
+			}
+			if DetectObject(SORTBYDEFAULT_BUTTON)
+			{
+				WaitObject(SORTBYDEFAULT_BUTTON)
+				ClickObject(SORTBYDEFAULT_BUTTON)
+			}
+		}
+	}
+	else if AllyPower = 3
+	{
+		;SORT BY SEA ATK
+		while not DetectObject(SORTBYSEAATK_BUTTON)
+		{
+			if DetectObject(SORTBYAIRATK_BUTTON)
+			{
+				WaitObject(SORTBYAIRATK_BUTTON)
+				ClickObject(SORTBYAIRATK_BUTTON)
+			}
+			if DetectObject(SORTBYDEFAULT_BUTTON)
+			{
+				WaitObject(SORTBYDEFAULT_BUTTON)
+				ClickObject(SORTBYDEFAULT_BUTTON)
+			}
+			if DetectObject(SORTBYGROUNDATK_BUTTON)
+			{
+				WaitObject(SORTBYGROUNDATK_BUTTON)
+				ClickObject(SORTBYGROUNDATK_BUTTON)
+			}
+		}
+	}
+	
+	if (AllyType == 0)
+	{
+		while not DetectObject(UNITAll_BUTTON)
+		{
+			if DetectObject(UNITMAGIC_BUTTON)
+			{
+				WaitObject(UNITMAGIC_BUTTON)
+				ClickObject(UNITMAGIC_BUTTON)
+			}
+			if (DetectObject(UNITMELEE_BUTTON))
+			{
+				WaitObject(UNITMELEE_BUTTON)
+				ClickObject(UNITMELEE_BUTTON)
+			}
+			if DetectObject(UNITMISSILE_BUTTON)
+			{
+				WaitObject(UNITMISSILE_BUTTON)
+				ClickObject(UNITMISSILE_BUTTON)
+			}
+		}
+	}
+	else if (AllyType == 1)
+	{
+		while not DetectObject(UNITMELEE_BUTTON)
+		{
+			if DetectObject(UNITALL_BUTTON)
+			{
+				WaitObject(UNITALL_BUTTON)
+				ClickObject(UNITALL_BUTTON)
+			}
+			if (DetectObject(UNITMISSILE_BUTTON))
+			{
+				WaitObject(UNITMISSILE_BUTTON)
+				ClickObject(UNITMISSILE_BUTTON)
+			}
+			if DetectObject(UNITMAGIC_BUTTON)
+			{
+				WaitObject(UNITMAGIC_BUTTON)
+				ClickObject(UNITMAGIC_BUTTON)
+			}
+		}
+	}
+	else if (AllyType == 2)
+	{
+		while not DetectObject(UNITMISSILE_BUTTON)
+		{
+			if DetectObject(UNITMELEE_BUTTON)
+			{
+				WaitObject(UNITMELEE_BUTTON)
+				ClickObject(UNITMELEE_BUTTON)
+			}
+			if (DetectObject(UNITMAGIC_BUTTON))
+			{
+				WaitObject(UNITMAGIC_BUTTON)
+				ClickObject(UNITMAGIC_BUTTON)
+			}
+			if DetectObject(UNITALL_BUTTON)
+			{
+				WaitObject(UNITALL_BUTTON)
+				ClickObject(UNITALL_BUTTON)
+			}
+		}
+	}
+	else if (AllyType == 3)
+	{
+		while not DetectObject(UNITMAGIC_BUTTON)
+		{
+			if DetectObject(UNITMISSILE_BUTTON)
+			{
+				WaitObject(UNITMISSILE_BUTTON)
+				ClickObject(UNITMISSILE_BUTTON)
+			}
+			if (DetectObject(UNITALL_BUTTON))
+			{
+				WaitObject(UNITALL_BUTTON)
+				ClickObject(UNITALL_BUTTON)
+			}
+			if DetectObject(UNITMELEE_BUTTON)
+			{
+				WaitObject(UNITMELEE_BUTTON)
+				ClickObject(UNITMELEE_BUTTON)
+			}
+		}
+	}
+	
+	
 	loop  ;Recover unit point until we have enough points to deploy a unit in slot 1
 	{
 		;Choose a unit to deploy

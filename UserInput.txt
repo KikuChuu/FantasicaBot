@@ -1,6 +1,6 @@
 ;General Specification
 ;---------------------
-	SLEEPTIME = 300 ;DELAY OF BUTTON CLICKS
+	SLEEPTIME = 100 ;DELAY OF BUTTON CLICKS
 	QUICKSCAN = 2 	; 2 = reduce delay of unit placement scan to 1ms (not accurate)
 			; 1 = reduce delay of unit placement scan by half	of SLEEPTIME
 		      	; 0 = regular SLEEPTIME delay
@@ -28,9 +28,7 @@
 ;---   WARROR's LAST LOATH EVENT SETTINGS ---
 ;********************************************
 ;============================================
-	WARRIORLASTOATH = 1
-	doPVP = 1
-
+	RUINS_REBORN = 1
 	
 	TIME_ELIXIR = 0
 	SEARCHLIMIT := 2

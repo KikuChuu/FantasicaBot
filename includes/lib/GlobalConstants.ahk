@@ -7,92 +7,80 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 Init_globals()
 {
-  global WARRIORLASTOATH
-  global BLUESTACK_WINDOW_TITLE
-  global FANTASICAAPP_BUTTON
-  global WAIT_X, WAIT_Y
-  global QUEST_X1, QUEST_Y1, QUEST_X2, QUEST_Y2 
-  global X1, Y1, X2, Y2
-  global BINGO_START_X, BINGO_START_Y, BINGO_TILE_SIZE
-  global SCAN_START_X, SCAN_START_Y, SCAN_TILE_SIZE ;
-  global QUEST1_ICON, QUEST2_ICON ; Main page menu items
-  global EPISODESELECT1_BUTTON, EPISODESELECT2_BUTTON, EPISODESELECT3_BUTTON
-  global                        EPISODESELECT4_BUTTON, EPISODESELECT5_BUTTON
-  global                        EPISODESELECT6_BUTTON, EPISODESELECT7_BUTTON
-  global                        EPISODESELECT8_BUTTON, EPISODESELECT9_BUTTON
-  global 						EPISODESELECT10_BUTTON
-  global                        EPISODELISTNEXT_BUTTON, EPISODELISTNONEXT_BUTTON
-  global SELECTEPISODE_BUTTON,STARTQUEST1_BUTTON,STARTQUEST2_BUTTON 
-  global                      STARTQUEST3_BUTTON,STARTQUEST4_BUTTON
-  global                      STARTQUEST5_BUTTON,STARTQUEST6_BUTTON
-  global                      STARTQUEST7_BUTTON
+	global RUINS_REBORN
+	global BLUESTACK_WINDOW_TITLE
+	global FANTASICAAPP_BUTTON
+	global WAIT_X, WAIT_Y
+	global QUEST_X1, QUEST_Y1, QUEST_X2, QUEST_Y2 
+	global X1, Y1, X2, Y2
+	global BINGO_START_X, BINGO_START_Y, BINGO_TILE_SIZE
+	global SCAN_START_X, SCAN_START_Y, SCAN_TILE_SIZE ;
+	global QUEST1_ICON, QUEST2_ICON ; Main page menu items
+	global EPISODESELECT1_BUTTON, EPISODESELECT2_BUTTON, EPISODESELECT3_BUTTON
+	global                        EPISODESELECT4_BUTTON, EPISODESELECT5_BUTTON
+	global                        EPISODESELECT6_BUTTON, EPISODESELECT7_BUTTON
+	global                        EPISODESELECT8_BUTTON, EPISODESELECT9_BUTTON
+	global 						EPISODESELECT10_BUTTON
+	global                        EPISODELISTNEXT_BUTTON, EPISODELISTNONEXT_BUTTON
+	global SELECTEPISODE_BUTTON,STARTQUEST1_BUTTON,STARTQUEST2_BUTTON 
+	global                      STARTQUEST3_BUTTON,STARTQUEST4_BUTTON
+	global                      STARTQUEST5_BUTTON,STARTQUEST6_BUTTON
+	global                      STARTQUEST7_BUTTON
+
+	global DEPLOYUNIT_BUTTON, CALLALLY_BUTTON
+	global                    CANCELPLACEMENT_BUTTON, CONFIRMUNITPLACEMENT_BUTTON
+	global DEPLOYUNIT1_BUTTON, DEPLOYUNIT2_BUTTON, DEPLOYUNIT3_BUTTON, DEPLOYUNIT4_BUTTON
+	global UNIT1_INVISIBLEBUTTON, UNIT2_INVISIBLEBUTTON, UNIT3_INVISIBLEBUTTON, UNIT4_INVISIBLEBUTTON
+	global UNITFAVORITEON_BUTTON
+	global DEPLOYALLY1_BUTTON, DEPLOYALLY2_BUTTON, DEPLOYALLY3_BUTTON
+	global                     NEXTPAGE_BUTTON, NONEXTPAGE_BUTTON, CALLALLYPAGE_TEXT
+	global                     BACKQUEST_BUTTON, SORTBYDEFAULT_BUTTON
+	global                     SORTBYGROUNDATK_BUTTON, SORTBYAIRATK_BUTTON
+	global                     SORTBYSEAATK_BUTTON, UNITALL_BUTTON
+	global                     UNITMELEE_BUTTON, UNITMISSILE_BUTTON, UNITMAGIC_BUTTON
+	global BACKTOEVENT_BUTTON, CHOOSEQUESTCOMPLETED_BUTTON, MYPAGE_BUTTON
+	global                     TOWERCOMPLETEREWARDCARDBACK_BUTTON
+	global QUESTCLEAR_TEXT
+	global CONNECTIONERROR_BUTTON, FORCECLOSEAPP_BUTTON, CONNECTIONERROR_TEXT
+	global 						 FANTASICALOADPAGE_TEXT
+	global MAINTENANCEYES_BUTTON, MAINTENANCEOPTION_BUTTON, MAINTENANCE_TEXT
+	global CONFIRMEXITAPP_BUTTON
+	global DECLINEADVERTISEMENT_BUTTON, STARTGAME_BUTTON, RESUMEQUESTNO_BUTTON
+	global DECLINEADVERTISEMENTMYPAGE_BUTTON, MAYBELATERADVERTISEMENT_BUTTON, CANCELADVERTISEMENT_BUTTON
+	global                                    CLOSEADVERTISEMENT_BUTTON
+	global ANNOUNCEMENT_BUTTON
+	global ALLY_TEXT, ALLYPENDINGREQUEST_TEXT
+	global MYPAGEID_TEXT, MYPAGEID2_TEXT
+	global EVENT_ICON
+	global TRAINING1_ICON, TRAINING2_ICON, TRAINING3_ICON
+	global LOGINBINGOPANEL_ICON, LOGINBINGOMYPAGE_BUTTON, LOGINBINGORECEIVE_BUTTON
+	global                       LOGINBINGO_TEXT
+	global ROULETTESTART_BUTTON, ROULETTESTOP_BUTTON, ROULETTENINEBLUE3_TEXT
+	global                       ROULETTENINEBLUE4_TEXT, ROULETTENINE_TEXT
+	global                       ROULETTETHREE_TEXT
+	global BACK_BUTTON
+	global LOGINBONUSMYPAGE_BUTTON
+
+	global CPBAR0_TEXT
+	global CPBAR1_TEXT
+	global FIGHT_BUTTON
+	global CRITICAL_BUTTON
+	global DRAIN_BUTTON
+	global SPEED_BUTTON
+	global SKIP_BUTTON
+	global OPPONENT1_BUTTON
+	global OPPONENT20_BUTTON
+	global FRONTLINEBACK_BUTTON
+	global REMATCH_BUTTON
+	global CPCOUNT_TEXT
+	global ASSIST_BUTTON
+	global ASSIST_BACK_BUTTON
+	global REQUESTASSISTANCE_BUTTON
+	global ASSIST_ALL_BUTTON
   
-  global DEPLOYUNIT_BUTTON, CALLALLY_BUTTON
-  global                    CANCELPLACEMENT_BUTTON, CONFIRMUNITPLACEMENT_BUTTON
-  global DEPLOYUNIT1_BUTTON, DEPLOYUNIT2_BUTTON, DEPLOYUNIT3_BUTTON, DEPLOYUNIT4_BUTTON
-  global UNIT1_INVISIBLEBUTTON, UNIT2_INVISIBLEBUTTON, UNIT3_INVISIBLEBUTTON, UNIT4_INVISIBLEBUTTON
-  global UNITFAVORITEON_BUTTON
-  global DEPLOYALLY1_BUTTON, DEPLOYALLY2_BUTTON, DEPLOYALLY3_BUTTON
-  global                     NEXTPAGE_BUTTON, NONEXTPAGE_BUTTON, CALLALLYPAGE_TEXT
-  global                     BACKQUEST_BUTTON, SORTBYDEFAULT_BUTTON
-  global                     SORTBYGROUNDATK_BUTTON, SORTBYAIRATK_BUTTON
-  global                     SORTBYSEAATK_BUTTON, UNITALL_BUTTON
-  global                     UNITMELEE_BUTTON, UNITMISSILE_BUTTON, UNITMAGIC_BUTTON
-  global BACKTOEVENT_BUTTON, CHOOSEQUESTCOMPLETED_BUTTON, MYPAGE_BUTTON
-  global                     TOWERCOMPLETEREWARDCARDBACK_BUTTON
-  global QUESTCLEAR_TEXT
-  global CONNECTIONERROR_BUTTON, FORCECLOSEAPP_BUTTON, CONNECTIONERROR_TEXT
-  global 						 FANTASICALOADPAGE_TEXT
-  global MAINTENANCEYES_BUTTON, MAINTENANCEOPTION_BUTTON, MAINTENANCE_TEXT
-  global CONFIRMEXITAPP_BUTTON
-  global DECLINEADVERTISEMENT_BUTTON, STARTGAME_BUTTON, RESUMEQUESTNO_BUTTON
-  global DECLINEADVERTISEMENTMYPAGE_BUTTON, MAYBELATERADVERTISEMENT_BUTTON, CANCELADVERTISEMENT_BUTTON
-  global                                    CLOSEADVERTISEMENT_BUTTON
-  global ANNOUNCEMENT_BUTTON
-  global ALLY_TEXT, ALLYPENDINGREQUEST_TEXT
-  global MYPAGEID_TEXT, MYPAGEID2_TEXT
-  global EVENT_ICON
-  global TRAINING1_ICON, TRAINING2_ICON, TRAINING3_ICON
-  global LOGINBINGOPANEL_ICON, LOGINBINGOMYPAGE_BUTTON, LOGINBINGORECEIVE_BUTTON
-  global                       LOGINBINGO_TEXT
-  global ROULETTESTART_BUTTON, ROULETTESTOP_BUTTON, ROULETTENINEBLUE3_TEXT
-  global                       ROULETTENINEBLUE4_TEXT, ROULETTENINE_TEXT
-  global                       ROULETTETHREE_TEXT
-  global BACK_BUTTON
-  global LOGINBONUSMYPAGE_BUTTON
-  
-  global CPBAR0_TEXT
-  global CPBAR1_TEXT
-  global FIGHT_BUTTON
-  global CRITICAL_BUTTON
-  global DRAIN_BUTTON
-  global SPEED_BUTTON
-  global SKIP_BUTTON
-  global OPPONENT1_BUTTON
-  global OPPONENT20_BUTTON
-  global FRONTLINEBACK_BUTTON
-  global REMATCH_BUTTON
-  global CPCOUNT_TEXT
-  global ASSIST_BUTTON
-  global ASSIST_BACK_BUTTON
-  global REQUESTASSISTANCE_BUTTON
-  global ASSIST_ALL_BUTTON
-  
-  global WLO_TOCASTLE_BUTTON
-  global WLO_BACK_BUTTON
-  global WLO_PVPFIGHT_BUTTON
-  global WLO_FIGHTHERO1_BUTTON
-  global WLO_BATTLE_BACK_BUTTON
-  global WLO_BATTLE_BUTTON
-  global WLO_SKIP_BUTTON
-  global WLO_RESULTBACK_BUTTON
-  global WLO_ARENA1FIGHT_BUTTON
-  global WLO_ARENA2FIGHT_BUTTON
-  global WLO_ARENA3FIGHT_BUTTON
-  global WLO_ARENA4FIGHT_BUTTON
-  global WLO_ARENA5FIGHT_BUTTON
-  global WLO_ARENA6FIGHT_BUTTON
-  global WLO_ARENABOSSYES_BUTTON
+	global RR_MYPAGE_BUTTON
+	global RR_BATTLESTART_BUTTON
+	global RR_BACK_BUTTON
   
   if WinExist("BlueStacks App Player")
   {
@@ -161,23 +149,15 @@ Init_globals()
 	STARTQUEST6_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest6-632_1030.png" ;quest #6
 	STARTQUEST7_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest7-632_1030.png" ;quest #7 
 	
-	if (WARRIORLASTOATH == 1)
+	if (RUINS_REBORN == 1)
 	{
-		WLO_TOCASTLE_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\buttontothecastle-632_1030.png"
-		;WLO_BACK_BUTTON := ""
-		WLO_PVPFIGHT_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ArenaSelection\buttonpvpfight-632_1030.png"
-		WLO_FIGHTHERO1_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\OpponentSelection\buttonfighthero1-632_1030.png"
-		WLO_BATTLE_BACK_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\OpponentPage\buttonback-632_1030.png"
-		WLO_BATTLE_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\OpponentPage\buttonbattle-632_1030.png"
-		WLO_SKIP_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\BattleScreen\buttonskip-632_1030.png"
-		WLO_RESULTBACK_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ResultScreen\buttonback-632_1030.png"
-		WLO_ARENA1FIGHT_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ArenaSelection\buttonarena1fight-632_1030.png"
-		WLO_ARENA2FIGHT_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ArenaSelection\buttonarena2fight-632_1030.png"
-		WLO_ARENA3FIGHT_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ArenaSelection\buttonarena3fight-632_1030.png"
-		WLO_ARENA4FIGHT_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ArenaSelection\buttonarena4fight-632_1030.png"
-		WLO_ARENA5FIGHT_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ArenaSelection\buttonarena5fight-632_1030.png"
-		WLO_ARENA6FIGHT_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ArenaSelection\buttonarena6fight-632_1030.png"
-		WLO_ARENABOSSYES_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\BattleScreen\buttonyes-632_1030.png"
+		RR_MYPAGE_BUTTON := "FANTASICA IMAGES\Event\FromTheRuinsReborn\buttonmypage-1282_749.png"
+		RR_BATTLESTART_BUTTON := "FANTASICA IMAGES\Event\FromTheRuinsReborn\buttonbattlestart-1282_749.png"
+		RR_BACK_BUTTON := "FANTASICA IMAGES\Event\FromTheRuinsReborn\resultscreen\buttonback-1282_749.png"
+		CALLALLY_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttoncallally-1282_749.png ;the call ally button in questing
+		CANCELPLACEMENT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttoncancelplacement-1282_749.png ; the cancel placement button
+		CONFIRMUNITPLACEMENT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttonconfirmunitplacement-1282_749.png ;confirm the location to place unit
+		DEPLOYUNIT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttondeployunit-1282_749.png	;The 'Deploy' button during questing
 	}
 	else
 	{
@@ -346,23 +326,15 @@ Init_globals()
 	STARTQUEST6_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest6-677_1102.png" ;quest #6
 	STARTQUEST7_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest7-677_1102.png" ;quest #7 
 	
-	if (WARRIORLASTOATH == 1)
+	if (RUINS_REBORN == 1)
 	{
-		WLO_TOCASTLE_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\buttontothecastle-677_1102.png"
-		;WLO_BACK_BUTTON := ""
-		WLO_PVPFIGHT_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ArenaSelection\buttonpvpfight-677_1102.png"
-		WLO_FIGHTHERO1_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\OpponentSelection\buttonfighthero1-677_1102.png"
-		WLO_BATTLE_BACK_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\OpponentPage\buttonback-677_1102.png"
-		WLO_BATTLE_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\OpponentPage\buttonbattle-677_1102.png"
-		WLO_SKIP_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\BattleScreen\buttonskip-677_1102.png"
-		WLO_RESULTBACK_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ResultScreen\buttonback-677_1102.png"
-		WLO_ARENA1FIGHT_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ArenaSelection\buttonarena1fight-677_1102.png"
-		WLO_ARENA2FIGHT_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ArenaSelection\buttonarena2fight-677_1102.png"
-		WLO_ARENA3FIGHT_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ArenaSelection\buttonarena3fight-677_1102.png"
-		WLO_ARENA4FIGHT_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ArenaSelection\buttonarena4fight-677_1102.png"
-		WLO_ARENA5FIGHT_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ArenaSelection\buttonarena5fight-677_1102.png"
-		WLO_ARENA6FIGHT_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ArenaSelection\buttonarena6fight-677_1102.png"
-		WLO_ARENABOSSYES_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\BattleScreen\buttonyes-677_1102.png"
+		RR_MYPAGE_BUTTON := "FANTASICA IMAGES\Event\FromTheRuinsReborn\buttonmypage-1282_749.png"
+		RR_BATTLESTART_BUTTON := "FANTASICA IMAGES\Event\FromTheRuinsReborn\buttonbattlestart-1282_749.png"
+		RR_BACK_BUTTON := "FANTASICA IMAGES\Event\FromTheRuinsReborn\resultscreen\buttonback-1282_749.png"
+		CALLALLY_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttoncallally-1282_749.png ;the call ally button in questing
+		CANCELPLACEMENT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttoncancelplacement-1282_749.png ; the cancel placement button
+		CONFIRMUNITPLACEMENT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttonconfirmunitplacement-1282_749.png ;confirm the location to place unit
+		DEPLOYUNIT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttondeployunit-1282_749.png	;The 'Deploy' button during questing
 	}
 	else
 	{
@@ -530,23 +502,15 @@ Init_globals()
 	STARTQUEST6_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest6-1282_749.png" ;quest #6
 	STARTQUEST7_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest7-1282_749.png" ;quest #7 
 	
-	if (WARRIORLASTOATH == 1)
+	if (RUINS_REBORN == 1)
 	{
-		WLO_TOCASTLE_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\buttontothecastle-1282_749.png"
-		;WLO_BACK_BUTTON := ""
-		WLO_PVPFIGHT_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ArenaSelection\buttonpvpfight-1282_749.png"
-		WLO_FIGHTHERO1_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\OpponentSelection\buttonfighthero1-1282_749.png"
-		WLO_BATTLE_BACK_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\OpponentPage\buttonback-1282_749.png"
-		WLO_BATTLE_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\OpponentPage\buttonbattle-1282_749.png"
-		WLO_SKIP_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\BattleScreen\buttonskip-1282_749.png"
-		WLO_RESULTBACK_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ResultScreen\buttonback-1282_749.png"
-		WLO_ARENA1FIGHT_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ArenaSelection\buttonarena1fight-1282_749.png"
-		WLO_ARENA2FIGHT_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ArenaSelection\buttonarena2fight-1282_749.png"
-		WLO_ARENA3FIGHT_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ArenaSelection\buttonarena3fight-1282_749.png"
-		WLO_ARENA4FIGHT_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ArenaSelection\buttonarena4fight-1282_749.png"
-		WLO_ARENA5FIGHT_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ArenaSelection\buttonarena5fight-1282_749.png"
-		WLO_ARENA6FIGHT_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ArenaSelection\buttonarena6fight-1282_749.png"
-		WLO_ARENABOSSYES_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\BattleScreen\buttonyes-1282_749.png"
+		RR_MYPAGE_BUTTON := "FANTASICA IMAGES\Event\FromTheRuinsReborn\buttonmypage-1282_749.png"
+		RR_BATTLESTART_BUTTON := "FANTASICA IMAGES\Event\FromTheRuinsReborn\buttonbattlestart-1282_749.png"
+		RR_BACK_BUTTON := "FANTASICA IMAGES\Event\FromTheRuinsReborn\resultscreen\buttonback-1282_749.png"
+		CALLALLY_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttoncallally-1282_749.png ;the call ally button in questing
+		CANCELPLACEMENT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttoncancelplacement-1282_749.png ; the cancel placement button
+		CONFIRMUNITPLACEMENT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttonconfirmunitplacement-1282_749.png ;confirm the location to place unit
+		DEPLOYUNIT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttondeployunit-1282_749.png	;The 'Deploy' button during questing
 	}
 	else
 	{
@@ -714,23 +678,15 @@ Init_globals()
 	STARTQUEST6_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest6-1920_1080.png" ;quest #6
 	STARTQUEST7_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest7-1920_1080.png" ;quest #7 
 	
-	if (WARRIORLASTOATH == 1)
+	if (RUINS_REBORN == 1)
 	{
-		WLO_TOCASTLE_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\buttontothecastle-1920_1080.png"
-		;WLO_BACK_BUTTON := ""
-		WLO_PVPFIGHT_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ArenaSelection\buttonpvpfight-1920_1080.png"
-		WLO_FIGHTHERO1_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\OpponentSelection\buttonfighthero1-1920_1080.png"
-		WLO_BATTLE_BACK_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\OpponentPage\buttonback-1920_1080.png"
-		WLO_BATTLE_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\OpponentPage\buttonbattle-1920_1080.png"
-		WLO_SKIP_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\BattleScreen\buttonskip-1920_1080.png"
-		WLO_RESULTBACK_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ResultScreen\buttonback-1920_1080.png"
-		WLO_ARENA1FIGHT_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ArenaSelection\buttonarena1fight-1920_1080.png"
-		WLO_ARENA2FIGHT_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ArenaSelection\buttonarena2fight-1920_1080.png"
-		WLO_ARENA3FIGHT_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ArenaSelection\buttonarena3fight-1920_1080.png"
-		WLO_ARENA4FIGHT_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ArenaSelection\buttonarena4fight-1920_1080.png"
-		WLO_ARENA5FIGHT_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ArenaSelection\buttonarena5fight-1920_1080.png"
-		WLO_ARENA6FIGHT_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\ArenaSelection\buttonarena6fight-1920_1080.png"
-		WLO_ARENABOSSYES_BUTTON := "FANTASICA IMAGES\Event\WarriorLastOath\BattleScreen\buttonyes-1920_1080.png"
+		RR_MYPAGE_BUTTON := "FANTASICA IMAGES\Event\FromTheRuinsReborn\buttonmypage-1282_749.png"
+		RR_BATTLESTART_BUTTON := "FANTASICA IMAGES\Event\FromTheRuinsReborn\buttonbattlestart-1282_749.png"
+		RR_BACK_BUTTON := "FANTASICA IMAGES\Event\FromTheRuinsReborn\resultscreen\buttonback-1282_749.png"
+		CALLALLY_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttoncallally-1282_749.png ;the call ally button in questing
+		CANCELPLACEMENT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttoncancelplacement-1282_749.png ; the cancel placement button
+		CONFIRMUNITPLACEMENT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttonconfirmunitplacement-1282_749.png ;confirm the location to place unit
+		DEPLOYUNIT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttondeployunit-1282_749.png	;The 'Deploy' button during questing
 	}
 	else
 	{
@@ -740,7 +696,7 @@ Init_globals()
 		DEPLOYUNIT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttondeployunit-1920_1080.png	;The 'Deploy' button during questing
 	}
 	
-	DEPLOYUNIT1_BUTTON := "fANTASICA IMAGES\Quest\QuestBattle\Unit\buttondeployunit1-1920_1080.png" ;first unit in the 'Deploy List'
+	DEPLOYUNIT1_BUTTON := "FANTASICA IMAGES\Quest\QuestBattle\Unit\buttondeployunit1-1920_1080.png" ;first unit in the 'Deploy List'
 	DEPLOYUNIT2_BUTTON := "FANTASICA IMAGES\Quest\QuestBattle\Unit\buttondeployunit2-1920_1080.png" ;second unit in the 'Deploy List'
 	DEPLOYUNIT3_BUTTON := "FANTASICA IMAGES\Quest\QuestBattle\Unit\buttondeployunit3-1920_1080.png" ;third unit in the 'Deploy List'
 	DEPLOYUNIT4_BUTTON := "FANTASICA IMAGES\Quest\QuestBattle\Unit\buttondeployunit4-1920_1080.png" ;fourth unit in the 'Deploy List'
