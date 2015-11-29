@@ -151,13 +151,13 @@ Init_globals()
 	
 	if (RUINS_REBORN == 1)
 	{
-		RR_MYPAGE_BUTTON := "FANTASICA IMAGES\Event\FromTheRuinsReborn\buttonmypage-1282_749.png"
-		RR_BATTLESTART_BUTTON := "FANTASICA IMAGES\Event\FromTheRuinsReborn\buttonbattlestart-1282_749.png"
-		RR_BACK_BUTTON := "FANTASICA IMAGES\Event\FromTheRuinsReborn\resultscreen\buttonback-1282_749.png"
-		CALLALLY_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttoncallally-1282_749.png ;the call ally button in questing
-		CANCELPLACEMENT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttoncancelplacement-1282_749.png ; the cancel placement button
-		CONFIRMUNITPLACEMENT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttonconfirmunitplacement-1282_749.png ;confirm the location to place unit
-		DEPLOYUNIT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttondeployunit-1282_749.png	;The 'Deploy' button during questing
+		RR_MYPAGE_BUTTON := "FANTASICA IMAGES\Event\FromTheRuinsReborn\buttonmypage-632_1030.png"
+		RR_BATTLESTART_BUTTON := "FANTASICA IMAGES\Event\FromTheRuinsReborn\buttonbattlestart-632_1030.png"
+		RR_BACK_BUTTON := "FANTASICA IMAGES\Event\FromTheRuinsReborn\resultscreen\buttonback-632_1030.png"
+		CALLALLY_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttoncallally-632_1030.png ;the call ally button in questing
+		CANCELPLACEMENT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttoncancelplacement-632_1030.png ; the cancel placement button
+		CONFIRMUNITPLACEMENT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttonconfirmunitplacement-632_1030.png ;confirm the location to place unit
+		DEPLOYUNIT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttondeployunit-632_1030.png	;The 'Deploy' button during questing
 	}
 	else
 	{
@@ -328,13 +328,13 @@ Init_globals()
 	
 	if (RUINS_REBORN == 1)
 	{
-		RR_MYPAGE_BUTTON := "FANTASICA IMAGES\Event\FromTheRuinsReborn\buttonmypage-1282_749.png"
-		RR_BATTLESTART_BUTTON := "FANTASICA IMAGES\Event\FromTheRuinsReborn\buttonbattlestart-1282_749.png"
-		RR_BACK_BUTTON := "FANTASICA IMAGES\Event\FromTheRuinsReborn\resultscreen\buttonback-1282_749.png"
-		CALLALLY_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttoncallally-1282_749.png ;the call ally button in questing
-		CANCELPLACEMENT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttoncancelplacement-1282_749.png ; the cancel placement button
-		CONFIRMUNITPLACEMENT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttonconfirmunitplacement-1282_749.png ;confirm the location to place unit
-		DEPLOYUNIT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttondeployunit-1282_749.png	;The 'Deploy' button during questing
+		RR_MYPAGE_BUTTON := "FANTASICA IMAGES\Event\FromTheRuinsReborn\buttonmypage-677_1102.png"
+		RR_BATTLESTART_BUTTON := "FANTASICA IMAGES\Event\FromTheRuinsReborn\buttonbattlestart-677_1102.png"
+		RR_BACK_BUTTON := "FANTASICA IMAGES\Event\FromTheRuinsReborn\resultscreen\buttonback-677_1102.png"
+		CALLALLY_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttoncallally-677_1102.png ;the call ally button in questing
+		CANCELPLACEMENT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttoncancelplacement-677_1102.png ; the cancel placement button
+		CONFIRMUNITPLACEMENT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttonconfirmunitplacement-677_1102.png ;confirm the location to place unit
+		DEPLOYUNIT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttondeployunit-677_1102.png	;The 'Deploy' button during questing
 	}
 	else
 	{
@@ -680,13 +680,13 @@ Init_globals()
 	
 	if (RUINS_REBORN == 1)
 	{
-		RR_MYPAGE_BUTTON := "FANTASICA IMAGES\Event\FromTheRuinsReborn\buttonmypage-1282_749.png"
-		RR_BATTLESTART_BUTTON := "FANTASICA IMAGES\Event\FromTheRuinsReborn\buttonbattlestart-1282_749.png"
-		RR_BACK_BUTTON := "FANTASICA IMAGES\Event\FromTheRuinsReborn\resultscreen\buttonback-1282_749.png"
-		CALLALLY_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttoncallally-1282_749.png ;the call ally button in questing
-		CANCELPLACEMENT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttoncancelplacement-1282_749.png ; the cancel placement button
-		CONFIRMUNITPLACEMENT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttonconfirmunitplacement-1282_749.png ;confirm the location to place unit
-		DEPLOYUNIT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttondeployunit-1282_749.png	;The 'Deploy' button during questing
+		RR_MYPAGE_BUTTON := "FANTASICA IMAGES\Event\FromTheRuinsReborn\buttonmypage-1920_1080.png"
+		RR_BATTLESTART_BUTTON := "FANTASICA IMAGES\Event\FromTheRuinsReborn\buttonbattlestart-1920_1080.png"
+		RR_BACK_BUTTON := "FANTASICA IMAGES\Event\FromTheRuinsReborn\resultscreen\buttonback-1920_1080.png"
+		CALLALLY_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttoncallally-1920_1080.png ;the call ally button in questing
+		CANCELPLACEMENT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttoncancelplacement-1920_1080.png ; the cancel placement button
+		CONFIRMUNITPLACEMENT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttonconfirmunitplacement-1920_1080.png ;confirm the location to place unit
+		DEPLOYUNIT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttondeployunit-1920_1080.png	;The 'Deploy' button during questing
 	}
 	else
 	{
