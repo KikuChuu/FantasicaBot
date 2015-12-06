@@ -7,8 +7,10 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 Init_globals()
 {
+	; Declare that call variables in this function are global variables
 	global
 	
+	; Discover the window title
 	if WinExist("BlueStacks App Player")
 	{
 		BLUESTACK_WINDOW_TITLE := "BlueStacks App Player"
@@ -29,25 +31,44 @@ Init_globals()
 		Pause
 	}
 
+	; Obtain the window size in terms of width and height.
+	; We use the width and height to set the bot's parameters such as
+	; initial scan coordinates, the location to idly click, and image paths.
 	WinGetPos,,,width, height, %BLUESTACK_WINDOW_TITLE%
+	if (width == 0 || height == 0)
+	{
+		MsgBox % "Invalid window size"
+	}
 	X2 := width
 	Y2 := height
 
 
 	if (width == 632 && height == 1030)
 	{
+		; The two coordinates tells the bot where it should idly click
 		WAIT_X := 325
 		WAIT_Y := 380
 
+		; The first two parameters are coordinates taht tell the bot where 
+		; the first bingo tile is located. 
+		; The third parameter tells the bot the dimension (in pixels) of 
+		; the square bingo tile.
 		BINGO_START_X := 491
 		BINGO_START_Y := 233
 		BINGO_TILE_SIZE := 70
 
+		; These four parameters are start and end coordinates used in the
+		; quest procedure to control the amount of scrolling the bot should
+		; perform (specified in pixels).
 		QUEST_X1 := 293
 		QUEST_Y1 := 840
 		QUEST_X2 := 293
 		QUEST_Y2 := 130
 
+		; The first two parameters are coordinates used in the quest procedure's
+		; findCoordinate functions and tells the bot where it should begin its
+		; scan for a valid unit placement.
+		; The third parameter tells the bot how large a unit tile roughly is.
 		SCAN_START_X := 167
 		SCAN_START_Y := 68
 		SCAN_TILE_SIZE := 78
@@ -306,11 +327,6 @@ Init_globals()
 	POTD_FIGHTAGAINTE_BUTTON := "FANTASICA IMAGES\Event\PearlsOfTheDeep\CheckBattles\buttonfightagainte-" . width . "_" . height . ".png"
 	POTD_FIGHTAGAINYES_BUTTON := "FANTASICA IMAGES\Event\PearlsOfTheDeep\CheckBattles\buttonfightagainyes-" . width . "_" . height . ".png"
 }
-
-
-		
-;GeneralPurpose
-;--------------
 
 ;Bluestack
 ;---------

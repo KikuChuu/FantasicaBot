@@ -90,9 +90,6 @@ TestFunction()
 {
 	Send { ESC down}
 	Sleep 1000
-	
-	
-	
 }
 TestFunction2()
 {
