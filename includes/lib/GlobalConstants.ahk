@@ -7,7 +7,7 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 Init_globals()
 {
-	global RUINS_REBORN
+	global PEARLS_OF_THE_DEEP
 	global BLUESTACK_WINDOW_TITLE
 	global FANTASICAAPP_BUTTON
 	global WAIT_X, WAIT_Y
@@ -78,10 +78,37 @@ Init_globals()
 	global REQUESTASSISTANCE_BUTTON
 	global ASSIST_ALL_BUTTON
   
-	global RR_MYPAGE_BUTTON
-	global RR_BATTLESTART_BUTTON
-	global RR_BACK_BUTTON
   
+	;=========================================================================
+	;*************************************************************************
+	;----------------------   TRAINING VARIABLES -----------------------------
+	;*************************************************************************
+	;=========================================================================
+	global STARTTRAINING1_BUTTON, STARTTRAINING2_BUTTON, STARTTRAINING3_BUTTON
+	global STARTTRAINING4_BUTTON, STARTTRAINING5_BUTTON, TRAININGCHALLENGE_BUTTON
+	global SENDBRAVE_BUTTON
+	global TRAININGMYPAGE_BUTTON
+	global TRAINING_TEXT
+	global ADVANCE_BUTTON, HEAL_BUTTON, CONTINUETRAINING_BUTTON
+	global OUTOFTP_TEXT, TRAININGPROGRESSCOMPLETE_TEXT
+	global TRAININGFIGHT_BUTTON, TRAININGSUMMONALLY_BUTTON
+	
+	;=========================================================================
+	;*************************************************************************
+	;---------------------- PEARL OF THE DEEP VARIABLES ----------------------
+	;*************************************************************************
+	;=========================================================================
+  	global POTD_TRAINING_BUTTON
+	global POTD_FIGHTBOSS_BUTTON
+	global POTD_SKIP_BUTTON
+	global POTD_TOPPAGE_BUTTON
+	global POTD_GROUPSBATTLE_BUTTON
+	global POTD_REQUESTHELP_BUTTON
+	global POTD_FIGHTAGAIN_BUTTON, POTD_FIGHTAGAINTE_BUTTON, POTD_FIGHTAGAINYES_BUTTON
+	global POTD_RESULTS_TEXT
+	global POTD_MAINICON_TEXT
+	global POTD_NINESTAR1_TEXT
+	
   if WinExist("BlueStacks App Player")
   {
 	BLUESTACK_WINDOW_TITLE := "BlueStacks App Player"
@@ -103,6 +130,9 @@ Init_globals()
   }
   
   WinGetPos,,,width, height, %BLUESTACK_WINDOW_TITLE%
+  
+  
+  
   if (width == 632 && height == 1030)
   {
 	FANTASICAAPP_BUTTON := "FANTASICA IMAGES\Bluestack\appfantasica-632_1030.png"
@@ -149,24 +179,11 @@ Init_globals()
 	STARTQUEST6_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest6-632_1030.png" ;quest #6
 	STARTQUEST7_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest7-632_1030.png" ;quest #7 
 	
-	if (RUINS_REBORN == 1)
-	{
-		RR_MYPAGE_BUTTON := "FANTASICA IMAGES\Event\FromTheRuinsReborn\buttonmypage-632_1030.png"
-		RR_BATTLESTART_BUTTON := "FANTASICA IMAGES\Event\FromTheRuinsReborn\buttonbattlestart-632_1030.png"
-		RR_BACK_BUTTON := "FANTASICA IMAGES\Event\FromTheRuinsReborn\resultscreen\buttonback-632_1030.png"
-		CALLALLY_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttoncallally-632_1030.png ;the call ally button in questing
-		CANCELPLACEMENT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttoncancelplacement-632_1030.png ; the cancel placement button
-		CONFIRMUNITPLACEMENT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttonconfirmunitplacement-632_1030.png ;confirm the location to place unit
-		DEPLOYUNIT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttondeployunit-632_1030.png	;The 'Deploy' button during questing
-	}
-	else
-	{
-		CALLALLY_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttoncallally-632_1030.png ;the call ally button in questing
-		CANCELPLACEMENT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttoncancelplacement-632_1030.png ; the cancel placement button
-		CONFIRMUNITPLACEMENT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttonconfirmunitplacement-632_1030.png ;confirm the location to place unit
-		DEPLOYUNIT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttondeployunit-632_1030.png	;The 'Deploy' button during questing
-	}
-	
+	CALLALLY_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttoncallally-632_1030.png ;the call ally button in questing
+	CANCELPLACEMENT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttoncancelplacement-632_1030.png ; the cancel placement button
+	CONFIRMUNITPLACEMENT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttonconfirmunitplacement-632_1030.png ;confirm the location to place unit
+	DEPLOYUNIT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttondeployunit-632_1030.png	;The 'Deploy' button during questing
+
 	DEPLOYUNIT1_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\Unit\buttondeployunit1-632_1030.png ;first unit in the 'Deploy List'
 	DEPLOYUNIT2_BUTTON := "FANTASICA IMAGES\Quest\QuestBattle\Unit\buttondeployunit2-632_1030.png" ;second unit in the 'Deploy List'
 	DEPLOYUNIT3_BUTTON := "FANTASICA IMAGES\Quest\QuestBattle\Unit\buttondeployunit3-632_1030.png" ;third unit in the 'Deploy List'
@@ -279,6 +296,8 @@ Init_globals()
     REQUESTASSISTANCE_BUTTON := "FANTASICA IMAGES\Event\Frontlines\assistscreen\buttonrequestassistance-632_1030.png"
 	ASSIST_ALL_BUTTON := "FANTASICA IMAGES\Event\Frontlines\assistscreen\buttonassistall-632_1030.png"
 	KOD_SUMMONALLY_BUTTON := "FANTASICA IMAGES\Event\KissOfDesire\BossFightScreen\buttonsummonally-632_1030.png"
+	
+	
   }
   else if (width == 677 && height == 1102)
   {
@@ -459,7 +478,7 @@ Init_globals()
   else if (width == 1282 && height == 749)
   {
 	FANTASICAAPP_BUTTON := "FANTASICA IMAGES\Bluestack\appfantasica-1282_749.png"
-  
+
   	WAIT_X := 490
 	WAIT_Y := 300
   
@@ -502,15 +521,38 @@ Init_globals()
 	STARTQUEST6_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest6-1282_749.png" ;quest #6
 	STARTQUEST7_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest7-1282_749.png" ;quest #7 
 	
-	if (RUINS_REBORN == 1)
+	STARTTRAINING1_BUTTON := "FANTASICA IMAGES\Training\TrainingSelection\buttonstarttraining1-1282_749.png"
+	STARTTRAINING2_BUTTON := "FANTASICA IMAGES\Training\TrainingSelection\buttonstarttraining2-1282_749.png" 
+	STARTTRAINING3_BUTTON := "FANTASICA IMAGES\Training\TrainingSelection\buttonstarttraining3-1282_749.png"
+	STARTTRAINING4_BUTTON := "FANTASICA IMAGES\Training\TrainingSelection\buttonstarttraining4-1282_749.png" 
+	STARTTRAINING5_BUTTON := "FANTASICA IMAGES\Training\TrainingSelection\buttonstarttraining5-1282_749.png"
+	TRAININGCHALLENGE_BUTTON := "FANTASICA IMAGES\Training\TrainingSelection\buttonstarttrainingboss-1282_749.png"
+	TRAINING_TEXT := "FANTASICA IMAGES\Training\TrainingSelection\texttraining-1282_749.png"
+	ADVANCE_BUTTON := "FANTASICA IMAGES\Training\ActualTraining\buttonadvance-1282_749.png" 
+	SENDBRAVE_BUTTON := "FANTASICA IMAGES\Training\ActualTraining\buttonsendbrave-1282_749.png"
+	HEAL_BUTTON := "FANTASICA IMAGES\Training\ActualTraining\buttonheal-1282_749.png" 
+	OUTOFTP_TEXT := "FANTASICA IMAGES\Training\ActualTraining\texttrainingpoints-1282_749.png"
+	CONTINUETRAINING_BUTTON := "FANTASICA IMAGES\Training\ActualTraining\buttoncontinuetraining-1282_749.png"
+	TRAININGMYPAGE_BUTTON := "FANTASICA IMAGES\Training\ActualTraining\buttonmypage-1282_749.png"
+	TRAININGFIGHT_BUTTON := "FANTASICA IMAGES\Training\ActualTraining\buttonfight-1282_749.png"
+	TRAININGSUMMONALLY_BUTTON := "FANTASICA IMAGES\Training\ActualTraining\buttonsummonally-1282_749.png"
+	
+	TRAININGPROGRESSCOMPLETE_TEXT := "FANTASICA IMAGES\Training\ActualTraining\textprogresscomplete-1282_749.png"
+	
+	if (PEARLS_OF_THE_DEEP == 1)
 	{
-		RR_MYPAGE_BUTTON := "FANTASICA IMAGES\Event\FromTheRuinsReborn\buttonmypage-1282_749.png"
-		RR_BATTLESTART_BUTTON := "FANTASICA IMAGES\Event\FromTheRuinsReborn\buttonbattlestart-1282_749.png"
-		RR_BACK_BUTTON := "FANTASICA IMAGES\Event\FromTheRuinsReborn\resultscreen\buttonback-1282_749.png"
-		CALLALLY_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttoncallally-1282_749.png ;the call ally button in questing
-		CANCELPLACEMENT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttoncancelplacement-1282_749.png ; the cancel placement button
-		CONFIRMUNITPLACEMENT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttonconfirmunitplacement-1282_749.png ;confirm the location to place unit
-		DEPLOYUNIT_BUTTON = FANTASICA IMAGES\Quest\QuestBattle\buttondeployunit-1282_749.png	;The 'Deploy' button during questing
+		POTD_TRAINING_BUTTON := "FANTASICA IMAGES\Event\PearlsOfTheDeep\buttontraining-1282_749.png"
+		POTD_FIGHTBOSS_BUTTON := "FANTASICA IMAGES\Event\PearlsOfTheDeep\Training\buttonfight-1282_749.png"
+		POTD_SKIP_BUTTON := "FANTASICA IMAGES\Event\PearlsOfTheDeep\Battle\buttonskip-1282_749.png"
+		POTD_TOPPAGE_BUTTON := "FANTASICA IMAGES\Event\PearlsOfTheDeep\Results\buttonbacktoeventpage-1282_749.png"
+		POTD_GROUPSBATTLE_BUTTON := "FANTASICA IMAGES\Event\PearlsOfTheDeep\Results\buttongroupbattles-1282_749.png"
+		POTD_REQUESTHELP_BUTTON := "FANTASICA IMAGES\Event\PearlsOfTheDeep\CheckBattles\buttonrequesthelp-1282_749.png"
+		POTD_FIGHTAGAIN_BUTTON := "FANTASICA IMAGES\Event\PearlsOfTheDeep\CheckBattles\buttonfightagain-1282_749.png"
+		POTD_RESULTS_TEXT := "FANTASICA IMAGES\Event\PearlsOfTheDeep\Results\textresults-1282_749.png"
+		POTD_MAINICON_TEXT := "FANTASICA IMAGES\Event\PearlsOfTheDeep\icon1-1282_749.png"
+		POTD_NINESTAR1_TEXT := "FANTASICA IMAGES\Event\PearlsOfTheDeep\CheckBattles\textninestar.png"
+		POTD_FIGHTAGAINTE_BUTTON := "FANTASICA IMAGES\Event\PearlsOfTheDeep\CheckBattles\buttonfightagainte-1282_749.png"
+		POTD_FIGHTAGAINYES_BUTTON := "FANTASICA IMAGES\Event\PearlsOfTheDeep\CheckBattles\buttonfightagainyes-1282_749.png"
 	}
 	else
 	{
@@ -819,28 +861,7 @@ Init_globals()
   Y2 := height
 }
 
-;Training
-;--------
-	;ActualTraining
-	;--------------
-	ADVANCE_BUTTON = FANTASICA IMAGES\Training\ActualTraining\buttonadvance.png ;advance button in training
-	CONTINUETRAINING_BUTTON = FANTASICA IMAGES\Training\ActualTraining\buttoncontinuetraining.png ;the continue training button when a card is obtained in training
-	EVENTFIGHTBOSS_BUTTON = FANTASICA IMAGES\Training\ActualTraining\buttoneventfightboss.png ;The button to accept a boss fight at point of encounter during Training
-	FIGHT_BUTTON = FANTASICA IMAGES\Training\ActualTraining\buttonacceptbossfight.png
-	MYPAGETRAINING_BUTTON = FANTASICA IMAGES\Training\ActualTraining\buttonmypagetraining.png ;the my page button during training 
-	SENDBRAVE_BUTTON = FANTASICA IMAGES\Training\ActualTraining\buttonsendbrave.png ;the send brave button in training
-	SUMMONALLY_BUTTON = FANTASICA IMAGES\Training\ActualTraining\buttonsummonally.png ;summon ally in training
-	FIGHTBOSS_BUTTON = FANTASICA IMAGES\Training\ActualTraining\buttontrainingfightboss.png ;'fight' boss button during challenge training
-		
-	;TrainingSelection
-	;-----------------
-	TRAINING_TEXT = FANTASICA IMAGES\Training\TrainingSelection\texttraining.png ;the text title of the training selection page
-	STARTTRAINING1_BUTTON = FANTASICA IMAGES\Training\TrainingSelection\buttonstarttraining1.png ;training #1
-	STARTTRAINING2_BUTTON = FANTASICA IMAGES\Training\TrainingSelection\buttonstarttraining2.png ;training #2
-	STARTTRAINING3_BUTTON = FANTASICA IMAGES\Training\TrainingSelection\buttonstarttraining3.png ;training #3
-	STARTTRAINING4_BUTTON = FANTASICA IMAGES\Training\TrainingSelection\buttonstarttraining4.png ;training #4
-	STARTTRAINING5_BUTTON = FANTASICA IMAGES\Training\TrainingSelection\buttonstarttraining5.png ;training #5
-	STARTTRAININGBOSS_BUTTON = FANTASICA IMAGES\Training\TrainingSelection\buttonstarttrainingboss.png ;training boss
+
 		
 ;GeneralPurpose
 ;--------------

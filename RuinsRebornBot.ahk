@@ -17,6 +17,11 @@ SetTimer, RandomPopupOrCrash, 300000 ;handles crashes, popup advertisements ever
 
 while (1)
 {
+	waitobject(RR_MYPAGE_BUTTON)
+
+	waitobject(RR_BATTLESTART_BUTTON)
+	clickobject(RR_BATTLESTART_BUTTON)
+
 	waitobject(DEPLOYUNIT_BUTTON)
 
 	hasDeployedAllAllies := 0
