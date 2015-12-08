@@ -148,6 +148,14 @@ Init_globals()
   
 	FANTASICAAPP_BUTTON := "FANTASICA IMAGES\Bluestack\appfantasica-" . width . "_" . height . ".png"
   
+	if (GARDEN == 1)
+	{
+		QUEST2_ICON := "FANTASICA IMAGES\Event\GardenOfTranquility\iconevent-" . width . "_" . height . ".png" ;Quest icon on home page
+	}
+	else
+	{
+		QUEST2_ICON := "FANTASICA IMAGES\MainPage\iconquest2-" . width . "_" . height . ".png" ;Quest icon on home page
+	}
   	QUEST1_ICON := "FANTASICA IMAGES\MainPage\iconquest1-" . width . "_" . height . ".png" ;Quest icon on home page
 	QUEST2_ICON := "FANTASICA IMAGES\MainPage\iconquest2-" . width . "_" . height . ".png" ;Quest icon on home page
 	
@@ -314,8 +322,8 @@ Init_globals()
 	;---------------------------- EVENT VARIABLES ------------------------------
 	;***************************************************************************
 	;===========================================================================
-	POTD_TRAINING_BUTTON := "FANTASICA IMAGES\Event\PearlsOfTheDeep\buttontraining-" . width . "_" . height . ".png"
-	POTD_FIGHTBOSS_BUTTON := "FANTASICA IMAGES\Event\PearlsOfTheDeep\Training\buttonfight-" . width . "_" . height . ".png"
+	GOT_BATTLESTART_BUTTON := "FANTASICA IMAGES\Event\GardenOfTranquility\buttonbattlestart-" . width . "_" . height . ".png"
+	GOT_MYPAGE_BUTTON := "FANTASICA IMAGES\Event\GardenOfTranquility\buttonmypage-" . width . "_" . height . ".png"
 	POTD_SKIP_BUTTON := "FANTASICA IMAGES\Event\PearlsOfTheDeep\Battle\buttonskip-" . width . "_" . height . ".png"
 	POTD_TOPPAGE_BUTTON := "FANTASICA IMAGES\Event\PearlsOfTheDeep\Results\buttonbacktoeventpage-" . width . "_" . height . ".png"
 	POTD_GROUPSBATTLE_BUTTON := "FANTASICA IMAGES\Event\PearlsOfTheDeep\Results\buttongroupbattles-" . width . "_" . height . ".png"
