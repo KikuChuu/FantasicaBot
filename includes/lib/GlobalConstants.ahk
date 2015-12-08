@@ -150,13 +150,12 @@ Init_globals()
   
 	if (GARDEN == 1)
 	{
-		QUEST2_ICON := "FANTASICA IMAGES\Event\GardenOfTranquility\iconevent-" . width . "_" . height . ".png" ;Quest icon on home page
+		QUEST1_ICON := "FANTASICA IMAGES\Event\GardenOfTranquility\iconevent-" . width . "_" . height . ".png" ;Quest icon on home page
 	}
 	else
 	{
-		QUEST2_ICON := "FANTASICA IMAGES\MainPage\iconquest2-" . width . "_" . height . ".png" ;Quest icon on home page
-	}
-  	QUEST1_ICON := "FANTASICA IMAGES\MainPage\iconquest1-" . width . "_" . height . ".png" ;Quest icon on home page
+		QUEST1_ICON := "FANTASICA IMAGES\MainPage\iconquest1-" . width . "_" . height . ".png" ;Quest icon on home page
+	}	
 	QUEST2_ICON := "FANTASICA IMAGES\MainPage\iconquest2-" . width . "_" . height . ".png" ;Quest icon on home page
 	
 	EPISODESELECT1_BUTTON := "FANTASICA IMAGES\Quest\EpisodeSelection\buttonselectepisode1-" . width . "_" . height . ".png"
