@@ -191,6 +191,7 @@ Init_globals()
 	ADVANCE_BUTTON := "FANTASICA IMAGES\Training\ActualTraining\buttonadvance-" . width . "_" . height . ".png" 
 	SENDBRAVE_BUTTON := "FANTASICA IMAGES\Training\ActualTraining\buttonsendbrave-" . width . "_" . height . ".png"
 	HEAL_BUTTON := "FANTASICA IMAGES\Training\ActualTraining\buttonheal-" . width . "_" . height . ".png" 
+	USEPOTIONYES_BUTTON := "FANTASICA IMAGES\Training\ActualTraining\buttonpotionyes-" . width . "_" . height . ".png" 
 	OUTOFTP_TEXT := "FANTASICA IMAGES\Training\ActualTraining\texttrainingpoints-" . width . "_" . height . ".png"
 	CONTINUETRAINING_BUTTON := "FANTASICA IMAGES\Training\ActualTraining\buttoncontinuetraining-" . width . "_" . height . ".png"
 	TRAININGMYPAGE_BUTTON := "FANTASICA IMAGES\Training\ActualTraining\buttonmypage-" . width . "_" . height . ".png"
@@ -204,6 +205,7 @@ Init_globals()
 	CONFIRMUNITPLACEMENT_BUTTON := "FANTASICA IMAGES\Quest\QuestBattle\buttonconfirmunitplacement-" . width . "_" . height . ".png" ;confirm the location to place unit
 	DEPLOYUNIT_BUTTON := "FANTASICA IMAGES\Quest\QuestBattle\buttondeployunit-" . width . "_" . height . ".png"	;The 'Deploy' button during questing
 	
+	DEPLOY_TEXT := "FANTASICA IMAGES\Quest\QuestBattle\Unit\textdeploy-" . width . "_" . height . ".png"
 	DEPLOYUNIT1_BUTTON := "FANTASICA IMAGES\Quest\QuestBattle\Unit\buttondeployunit1-" . width . "_" . height . ".png" ;first unit in the 'Deploy List'
 	DEPLOYUNIT2_BUTTON := "FANTASICA IMAGES\Quest\QuestBattle\Unit\buttondeployunit2-" . width . "_" . height . ".png" ;second unit in the 'Deploy List'
 	DEPLOYUNIT3_BUTTON := "FANTASICA IMAGES\Quest\QuestBattle\Unit\buttondeployunit3-" . width . "_" . height . ".png" ;third unit in the 'Deploy List'
@@ -266,7 +268,6 @@ Init_globals()
 	MYPAGEID_TEXT := "FANTASICA IMAGES\MainPage\textmypageid-" . width . "_" . height . ".png" ;The text called "id" at the very top of the fantasica homepage
 	MYPAGEID2_TEXT := "FANTASICA IMAGES\MainPage\textmypageidarena-" . width . "_" . height . ".png" ;The text called "id" at the very topof the fantasica homepage, but offset due to arena info
 	
-	EVENT_ICON := "FANTASICA IMAGES\iconmandragoramarch!-" . width . "_" . height . ".png" ;Event icon on home page. Change this path for every event
 	TRAINING1_ICON := "FANTASICA IMAGES\MainPage\icontraining1-" . width . "_" . height . ".png" ;Training icon on homepage at index 1 (starting with index 0)
 	TRAINING2_ICON := "FANTASICA IMAGES\MainPage\icontraining2-" . width . "_" . height . ".png" ;Training icon on homepage at index 2 (starting with index 0)
 	TRAINING3_ICON := "FANTASICA IMAGES\MainPage\icontraining3-" . width . "_" . height . ".png" ;Training icon on homepage at index 3 (starting with index 0)	
@@ -321,20 +322,26 @@ Init_globals()
 	;---------------------------- EVENT VARIABLES ------------------------------
 	;***************************************************************************
 	;===========================================================================
-	GOT_BATTLESTART_BUTTON := "FANTASICA IMAGES\Event\GardenOfTranquility\buttonbattlestart-" . width . "_" . height . ".png"
-	GOT_MYPAGE_BUTTON := "FANTASICA IMAGES\Event\GardenOfTranquility\buttonmypage-" . width . "_" . height . ".png"
-	POTD_SKIP_BUTTON := "FANTASICA IMAGES\Event\PearlsOfTheDeep\Battle\buttonskip-" . width . "_" . height . ".png"
-	POTD_TOPPAGE_BUTTON := "FANTASICA IMAGES\Event\PearlsOfTheDeep\Results\buttonbacktoeventpage-" . width . "_" . height . ".png"
-	POTD_GROUPSBATTLE_BUTTON := "FANTASICA IMAGES\Event\PearlsOfTheDeep\Results\buttongroupbattles-" . width . "_" . height . ".png"
-	POTD_REQUESTHELP_BUTTON := "FANTASICA IMAGES\Event\PearlsOfTheDeep\CheckBattles\buttonrequesthelp-" . width . "_" . height . ".png"
-	POTD_FIGHTAGAIN_BUTTON := "FANTASICA IMAGES\Event\PearlsOfTheDeep\CheckBattles\buttonfightagain-" . width . "_" . height . ".png"
-	POTD_RESULTS_TEXT := "FANTASICA IMAGES\Event\PearlsOfTheDeep\Results\textresults-" . width . "_" . height . ".png"
-	POTD_MAINICON_TEXT := "FANTASICA IMAGES\Event\PearlsOfTheDeep\icon1-" . width . "_" . height . ".png"
-	POTD_NINESTAR1_TEXT := "FANTASICA IMAGES\Event\PearlsOfTheDeep\CheckBattles\textninestar.png"
-	POTD_FIGHTAGAINTE_BUTTON := "FANTASICA IMAGES\Event\PearlsOfTheDeep\CheckBattles\buttonfightagainte-" . width . "_" . height . ".png"
-	POTD_FIGHTAGAINYES_BUTTON := "FANTASICA IMAGES\Event\PearlsOfTheDeep\CheckBattles\buttonfightagainyes-" . width . "_" . height . ".png"
+	EVENT_ICON := "FANTASICA IMAGES\Event\GoWithTheFloe\mainpageicon-" . width . "_" . height . ".png" ;Event icon on home page. Change this path for every event
+	GWTF_TRAIN_BUTTON := "FANTASICA IMAGES\Event\GoWithTheFloe\buttontrain-" . width . "_" . height . ".png"
+	GWTF_BOSSLIST_BUTTON := "FANTASICA IMAGES\Event\GoWithTheFloe\buttonbosslist-" . width . "_" . height . ".png"
+	GWTF_ASISTLIST_BUTTON := "FANTASICA IMAGES\Event\GoWithTheFloe\buttonassist-" . width . "_" . height . ".png"
+	GWTF_TRAININGFIGHT_BUTTON := "FANTASICA IMAGES\Event\GoWithTheFloe\Training\buttonfight-" . width . "_" . height . ".png"
+	GWTF_TRAININGFLEE_BUTTON := "FANTASICA IMAGES\Event\GoWithTheFloe\Training\buttonflee-" . width . "_" . height . ".png"
+	GWTF_TRAININGUSEGLOBE_BUTTON := "FANTASICA IMAGES\Event\GoWithTheFloe\Training\buttonuseglacialglobe-" . width . "_" . height . ".png"
+	GWTF_NIEVE_IMAGE := "FANTASICA IMAGES\Event\GoWithTheFloe\Training\imagenieves-" . width . "_" . height . ".png"
+	GWTF_EVENTTITLE_IMAGE := "FANTASICA IMAGES\Event\GoWithTheFloe\imageeventtitle-" . width . "_" . height . ".png"
+	GWTF_ASSISTALLY_BUTTON := "FANTASICA IMAGES\Event\GoWithTheFloe\Assist\buttonassistally-" . width . "_" . height . ".png"
+	GWTF_ASSISTLIST2_BUTTON := "FANTASICA IMAGES\Event\GoWithTheFloe\Assist\buttonassistlist-" . width . "_" . height . ".png"
+	GWTF_ASSISTALLIES_TEXT := "FANTASICA IMAGES\Event\GoWithTheFloe\Assist\textassistallies-" . width . "_" . height . ".png"
+	GWTF_BOSSLISTFROMASSISTALLIES_BUTTON := "FANTASICA IMAGES\Event\GoWithTheFloe\Assist\buttonbosslist-" . width . "_" . height . ".png"
+	GWTF_BOSSLIST_TEXT := "FANTASICA IMAGES\Event\GoWithTheFloe\Bosses\textselectboss-" . width . "_" . height . ".png"
+	GWTF_REQUESTASSIST_BUTTON := "FANTASICA IMAGES\Event\GoWithTheFloe\Bosses\buttonrequestassist-" . width . "_" . height . ".png"
+	GWTF_FIGHT_BUTTON := "FANTASICA IMAGES\Event\GoWithTheFloe\Bosses\buttonfight-" . width . "_" . height . ".png"
+	GWTF_EVENT_BUTTON := "FANTASICA IMAGES\Event\GoWithTheFloe\Bosses\buttonevent-" . width . "_" . height . ".png"
+	GWTF_POTIONFIGHT_BUTTON := "FANTASICA IMAGES\Event\GoWithTheFloe\Bosses\buttonusepotion-" . width . "_" . height . ".png"
+	GWTF_SENDFLAMEBERGE_BUTTON := "FANTASICA IMAGES\Event\GoWithTheFloe\Assist\buttonsendflameberge-" . width . "_" . height . ".png"
 }
-
 ;Bluestack
 ;---------
 EXITAPP_BUTTON = FANTASICA IMAGES\Bluestack\buttonexitapp.png ;the exit app button in the lower left corner of bluestack

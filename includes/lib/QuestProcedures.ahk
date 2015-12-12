@@ -40,8 +40,8 @@ CallAlly(AllyPower=0, AllyType=0)
 	global RR_BACK_BUTTON
 	static hasFilteredAllyListByType := 0
 	
-	WaitObject(CALLALLY_BUTTON) ;wait on ally button
-	ClickObject(CALLALLY_BUTTON) ;go to ally list
+	;WaitObject(CALLALLY_BUTTON) ;wait on ally button
+	;ClickObject(CALLALLY_BUTTON) ;go to ally list
 	
 	while not DetectObject(CALLALLY_BUTTON)
 	{
@@ -343,9 +343,9 @@ DeployUnit(AllyPower = 0, AllyType = 0)
 {
 	global
 	
-	WaitObject(DEPLOYUNIT_BUTTON) ;Waits for the 'Deploy_Unit' button
-	ClickObject(DEPLOYUNIT_BUTTON) ;Click the 'Deploy Unit' button
-	WaitObject(BACKQUEST_BUTTON)
+	;WaitObject(DEPLOYUNIT_BUTTON) ;Waits for the 'Deploy_Unit' button
+	;ClickObject(DEPLOYUNIT_BUTTON) ;Click the 'Deploy Unit' button
+	;WaitObject(BACKQUEST_BUTTON)
 
 	if AllyPower = 0
 	{

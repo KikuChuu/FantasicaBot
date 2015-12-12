@@ -3,6 +3,7 @@
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
+
 ;Loops until the object at the specified coordinate is clicked
 ClickAt(CoordX, CoordY)
 {
@@ -43,12 +44,12 @@ ClickObject(ByRef Path)
 		SB_SetText(msg)
 		Log(msg)
 	}
-	else if ErrorLevel = 1
+	if ErrorLevel = 1
 	{
 		msg := "Click Failed, " . Path . " could not be found."
 		SB_SetText(msg)
 		Log(msg)
-	}	
+	}
 	else
 	{
 		SB_SetText("Clicking " . Path)
@@ -63,6 +64,7 @@ DetectObject(ByRef Path)
 {
 	global X1,X2,Y1,Y2, BACK_BUTTON, SLEEEPTIME
 	global BLUESTACK_WINDOW_TITLE
+	global BufferX, BufferY
 	
 	IfWinNotActive, %BLUESTACK_WINDOW_TITLE%
 	{
@@ -93,7 +95,12 @@ DetectObject(ByRef Path)
 		return 0
 	}
 	else
+	{
+		BufferX := FoundX
+		BufferY := FoundY
 		return 1
+	}
+	
 }
 
 ;Objects are buttons and icons
