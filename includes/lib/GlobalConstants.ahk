@@ -69,9 +69,9 @@ Init_globals()
 		; findCoordinate functions and tells the bot where it should begin its
 		; scan for a valid unit placement.
 		; The third parameter tells the bot how large a unit tile roughly is.
-		SCAN_START_X := 167
-		SCAN_START_Y := 68
-		SCAN_TILE_SIZE := 78
+		SCAN_START_X := 95
+		SCAN_START_Y := 72
+		SCAN_TILE_SIZE := 73
 	}
 	else if (width == 677 && height == 1102)
 	{
@@ -155,6 +155,8 @@ Init_globals()
   
 	QUEST1_ICON := "FANTASICA IMAGES\MainPage\iconquest1-" . width . "_" . height . ".png" ;Quest icon on home page	
 	QUEST2_ICON := "FANTASICA IMAGES\MainPage\iconquest2-" . width . "_" . height . ".png" ;Quest icon on home page
+	
+	QUESTTIMER_TEXT := "FANTASICA IMAGES\MainPage\textquesttimer-" . width . "_" . height . ".png"
 	
 	EPISODESELECT1_BUTTON := "FANTASICA IMAGES\Quest\EpisodeSelection\buttonselectepisode1-" . width . "_" . height . ".png"
 	EPISODESELECT2_BUTTON := "FANTASICA IMAGES\Quest\EpisodeSelection\buttonselectepisode2-" . width . "_" . height . ".png"
@@ -324,7 +326,7 @@ Init_globals()
 	;---------------------------- EVENT VARIABLES ------------------------------
 	;***************************************************************************
 	;===========================================================================
-	EVENT_ICON := "FANTASICA IMAGES\Event\GoWithTheFloe\mainpageicon-" . width . "_" . height . ".png" ;Event icon on home page. Change this path for every event
+	EVENT_ICON := "FANTASICA IMAGES\Event\TreeOfParadise\iconevent-" . width . "_" . height . ".png" ;Event icon on home page. Change this path for every event
 	GWTF_TRAIN_BUTTON := "FANTASICA IMAGES\Event\GoWithTheFloe\buttontrain-" . width . "_" . height . ".png"
 	GWTF_BOSSLIST_BUTTON := "FANTASICA IMAGES\Event\GoWithTheFloe\buttonbosslist-" . width . "_" . height . ".png"
 	GWTF_ASISTLIST_BUTTON := "FANTASICA IMAGES\Event\GoWithTheFloe\buttonassist-" . width . "_" . height . ".png"
@@ -345,9 +347,14 @@ Init_globals()
 	GWTF_SENDFLAMEBERGE_BUTTON := "FANTASICA IMAGES\Event\GoWithTheFloe\Assist\buttonsendflameberge-" . width . "_" . height . ".png"
 	TOP_CLIMBTREE_BUTTON := "FANTASICA IMAGES\Event\TreeOfParadise\buttonclimbtree-" . width . "_" . height . ".png"
 	TOP_TITLE_IMAGE := "FANTASICA IMAGES\Event\TreeOfParadise\imagetitle-" . width . "_" . height . ".png"
-	TOP_ADVANCE_BUTTON := "FANTASICA IMAGES\Event\TreeOfParadise\Training\buttonadvance-" . width . "_" . height . ".png"
+	TOP_ADVANCE1_BUTTON := "FANTASICA IMAGES\Event\TreeOfParadise\Training\buttonadvance1-" . width . "_" . height . ".png"
+	TOP_ADVANCE2_BUTTON := "FANTASICA IMAGES\Event\TreeOfParadise\Training\buttonadvance2-" . width . "_" . height . ".png"
 	TOP_FIGHT_BUTTON := "FANTASICA IMAGES\Event\TreeOfParadise\Training\buttonfight-" . width . "_" . height . ".png"
-	
+	TOP_HEAL_BUTTON := "FANTASICA IMAGES\Event\TreeOfParadise\Training\buttonheal-" . width . "_" . height . ".png"
+	TOP_TRAININGBACK_BUTTON := "FANTASICA IMAGES\Event\TreeOfParadise\Training\buttonback-" . width . "_" . height . ".png"
+	TOP_TRAININGPOINTS_TEXT := "FANTASICA IMAGES\Event\TreeOfParadise\texttrainingpoints-" . width . "_" . height . ".png"
+	TOP_BACKTOMAINPAGE_BUTTON := "FANTASICA IMAGES\Event\TreeOfParadise\buttonback-" . width . "_" . height . ".png"
+	TOP_FIGHTBOSS_BUTTON := "FANTASICA IMAGES\Event\TreeOfParadise\buttonfightboss-" . width . "_" . height . ".png"
 }
 ;Bluestack
 ;---------

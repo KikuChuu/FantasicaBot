@@ -109,15 +109,53 @@ latestEpisode := 1
 loop,
 {
 	SendEvent {ClickAt %WAIT_X%, %WAIT_Y%}
-	if (DetectObject(QUEST1_ICON))
+	if (DetectObject(TOP_TITLE_IMAGE))
 	{
-		WaitObject(QUEST1_ICON)
-		ClickObject(QUEST1_ICON)
+		if (DetectObject(TOP_CLIMBTREE_BUTTON) && !DetectObject(TOP_TRAININGPOINTS_TEXT))
+		{
+			ClickObject(TOP_CLIMBTREE_BUTTON)
+		}
+		else if (DetectObject(TOP_FIGHTBOSS_BUTTON))
+		{
+			ClickObject(TOP_FIGHTBOSS_BUTTON)
+		}
 	}
-	else if (DetectObject(QUEST2_ICON))
+	if (DetectObject(TOP_ADVANCE1_BUTTON))
 	{
-		WaitObject(QUEST2_ICON)
-		ClickObject(QUEST2_ICON)
+		ClickObject(TOP_ADVANCE1_BUTTON)
+	}
+	if (DetectObject(TOP_ADVANCE2_BUTTON))
+	{
+		ClickObject(TOP_ADVANCE2_BUTTON)
+	}
+	if (DetectObject(TOP_FIGHT_BUTTON))
+	{
+		ClickObject(TOP_FIGHT_BUTTON)
+	}
+	if (DetectObject(TOP_HEAL_BUTTON))
+	{
+		ClickObject(TOP_TRAININGBACK_BUTTON)
+	}
+	if (DetectObject(TOP_TRAININGPOINTS_TEXT))
+	{
+		ClickObject(TOP_BACKTOMAINPAGE_BUTTON)
+	}
+	if (DetectObject(QUESTTIMER_TEXT))
+	{
+		if (DetectObject(QUEST1_ICON))
+		{
+			WaitObject(QUEST1_ICON)
+			ClickObject(QUEST1_ICON)
+		}
+		else if (DetectObject(QUEST2_ICON))
+		{
+			WaitObject(QUEST2_ICON)
+			ClickObject(QUEST2_ICON)
+		}
+	}
+	else if (DetectObject(EVENT_ICON) && !DetectObject(TRAININGPOINTS_TEXT))
+	{
+		ClickObject(EVENT_ICON)
 	}
 	else if (DetectObject(QUEST_TEXT))
 	{
@@ -301,7 +339,11 @@ loop,
 				latestEpisode = 0
 			}
 		}
-		if (DetectObject(BACKTOEVENT_BUTTON))
+		if (DetectObject(MYPAGE_BUTTON) && BotEvent == 1)
+		{
+			ClickObject(MYPAGE_BUTTON)
+		}
+		else if (DetectObject(BACKTOEVENT_BUTTON))
 		{
 			WaitObject(BACKTOEVENT_BUTTON)
 			ClickObject(BACKTOEVENT_BUTTON)
@@ -313,11 +355,6 @@ loop,
 		}
 		deployUnitNum = 0
 		pendingAllies = 1
-	}
-	else if (DetectObject(EVENT_ICON))
-	{
-		WaitObject(EVENT_ICON)
-		ClickObject(EVENT_ICON)
 	}
 	; else if (DetectObject(GWTF_ASISTLIST_BUTTON))
 	; {
