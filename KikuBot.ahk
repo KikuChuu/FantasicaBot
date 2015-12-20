@@ -57,7 +57,7 @@ SelectAndStartLatestTraining()
 	}
 }
 
-SetTimer, RandomPopupOrCrash, 300000 ;handles crashes, popup advertisements every 5 minutes
+;SetTimer, RandomPopupOrCrash, 300000 ;handles crashes, popup advertisements every 5 minutes
 
 
 
@@ -193,7 +193,7 @@ loop,
 		}
 		
 	}
-	if (DetectObject(SKIPQUEST_BUTTON))
+	if (DetectObject(SKIPQUEST_BUTTON) && SKIPQUEST == 1)
 	{
 		ClickObject(SKIPQUEST_BUTTON)
 	}
@@ -226,14 +226,14 @@ loop,
 		}
 	}
 	
-	if (DetectObject(GWTF_EVENTTITLE_IMAGE))
-	{
-		if (training == 0)
-		{
-			training--
-			GoToTrainingPage()
-		}
-	}
+	; if (DetectObject(GWTF_EVENTTITLE_IMAGE))
+	; {
+		; if (training == 0)
+		; {
+			; training--
+			; GoToTrainingPage()
+		; }
+	; }
 	if (DetectObject(TRAINING_TEXT))
 	{
 		SelectAndStartLatestTraining()
@@ -265,11 +265,11 @@ loop,
 		ClickObject(USEPOTIONYES_BUTTON)
 		Sleep 2000
 	}
-	if DetectObject(GWTF_TRAININGFIGHT_BUTTON)
-	{
-		WaitObject(GWTF_TRAININGFIGHT_BUTTON)
-		ClickObject(GWTF_TRAININGFIGHT_BUTTON)
-	}
+	; if DetectObject(GWTF_TRAININGFIGHT_BUTTON)
+	; {
+		; WaitObject(GWTF_TRAININGFIGHT_BUTTON)
+		; ClickObject(GWTF_TRAININGFIGHT_BUTTON)
+	; }
 	else if (DetectObject(TRAININGFIGHT_BUTTON))
 	{
 		if (DetectObject(TRAININGSUMMONALLY_BUTTON))
@@ -319,64 +319,64 @@ loop,
 		WaitObject(EVENT_ICON)
 		ClickObject(EVENT_ICON)
 	}
-	else if (DetectObject(GWTF_ASISTLIST_BUTTON))
-	{
-		if (training < 0)
-		{
-			training++
-			WaitObject(GWTF_ASISTLIST_BUTTON)
-			ClickObject(GWTF_ASISTLIST_BUTTON)
-		}
-	}
+	; else if (DetectObject(GWTF_ASISTLIST_BUTTON))
+	; {
+		; if (training < 0)
+		; {
+			; training++
+			; WaitObject(GWTF_ASISTLIST_BUTTON)
+			; ClickObject(GWTF_ASISTLIST_BUTTON)
+		; }
+	; }
 	
-	if (DetectObject(GWTF_ASSISTALLIES_TEXT))
-	{
-		if (DetectObject(GWTF_SENDFLAMEBERGE_BUTTON))
-		{
-			WaitObject(GWTF_SENDFLAMEBERGE_BUTTON)
-			ClickObject(GWTF_SENDFLAMEBERGE_BUTTON)
-		}
-		else if (DetectObject(GWTF_ASSISTALLY_BUTTON))
-		{
-			WaitObject(GWTF_ASSISTALLY_BUTTON)
-			ClickObject(GWTF_ASSISTALLY_BUTTON)
-		}
-		else if (DetectObject(GWTF_BOSSLISTFROMASSISTALLIES_BUTTON))
-		{
-			WaitObject(GWTF_BOSSLISTFROMASSISTALLIES_BUTTON)
-			ClickObject(GWTF_BOSSLISTFROMASSISTALLIES_BUTTON)
-		}
-	}
-	if (DetectObject(GWTF_BOSSLIST_TEXT))
-	{
-		if (DetectObject(GWTF_REQUESTASSIST_BUTTON))
-		{
-			WaitObject(GWTF_REQUESTASSIST_BUTTON)
-			ClickObject(GWTF_REQUESTASSIST_BUTTON)
-		}
-		else if (DetectObject(GWTF_FIGHT_BUTTON))
-		{
-			training--
-			WaitObject(GWTF_FIGHT_BUTTON)
-			ClickObject(GWTF_FIGHT_BUTTON)
-		}
-		else if (DetectObject(GWTF_POTIONFIGHT_BUTTON))
-		{
-			training--
-			WaitObject(GWTF_POTIONFIGHT_BUTTON)
-			ClickObject(GWTF_POTIONFIGHT_BUTTON)
-		}
-		else if (DetectObject(GWTF_EVENT_BUTTON))
-		{
-			WaitObject(GWTF_EVENT_BUTTON)
-			ClickObject(GWTF_EVENT_BUTTON)
-		}
-	}
-	else if (DetectObject(GWTF_ASSISTLIST2_BUTTON))
-	{
-		WaitObject(GWTF_ASSISTLIST2_BUTTON)
-		ClickObject(GWTF_ASSISTLIST2_BUTTON)
-	}
+	; if (DetectObject(GWTF_ASSISTALLIES_TEXT))
+	; {
+		; if (DetectObject(GWTF_SENDFLAMEBERGE_BUTTON))
+		; {
+			; WaitObject(GWTF_SENDFLAMEBERGE_BUTTON)
+			; ClickObject(GWTF_SENDFLAMEBERGE_BUTTON)
+		; }
+		; else if (DetectObject(GWTF_ASSISTALLY_BUTTON))
+		; {
+			; WaitObject(GWTF_ASSISTALLY_BUTTON)
+			; ClickObject(GWTF_ASSISTALLY_BUTTON)
+		; }
+		; else if (DetectObject(GWTF_BOSSLISTFROMASSISTALLIES_BUTTON))
+		; {
+			; WaitObject(GWTF_BOSSLISTFROMASSISTALLIES_BUTTON)
+			; ClickObject(GWTF_BOSSLISTFROMASSISTALLIES_BUTTON)
+		; }
+	; }
+	; if (DetectObject(GWTF_BOSSLIST_TEXT))
+	; {
+		; if (DetectObject(GWTF_REQUESTASSIST_BUTTON))
+		; {
+			; WaitObject(GWTF_REQUESTASSIST_BUTTON)
+			; ClickObject(GWTF_REQUESTASSIST_BUTTON)
+		; }
+		; else if (DetectObject(GWTF_FIGHT_BUTTON))
+		; {
+			; training--
+			; WaitObject(GWTF_FIGHT_BUTTON)
+			; ClickObject(GWTF_FIGHT_BUTTON)
+		; }
+		; else if (DetectObject(GWTF_POTIONFIGHT_BUTTON))
+		; {
+			; training--
+			; WaitObject(GWTF_POTIONFIGHT_BUTTON)
+			; ClickObject(GWTF_POTIONFIGHT_BUTTON)
+		; }
+		; else if (DetectObject(GWTF_EVENT_BUTTON))
+		; {
+			; WaitObject(GWTF_EVENT_BUTTON)
+			; ClickObject(GWTF_EVENT_BUTTON)
+		; }
+	; }
+	; else if (DetectObject(GWTF_ASSISTLIST2_BUTTON))
+	; {
+		; WaitObject(GWTF_ASSISTLIST2_BUTTON)
+		; ClickObject(GWTF_ASSISTLIST2_BUTTON)
+	; }
 }
 
 Reload
