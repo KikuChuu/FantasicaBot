@@ -4,7 +4,6 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 #include %A_ScriptDir%\includes\IncludeScript.ahk
-
 ;------- INITIALIZE -------------------------
 Init_globals() ; Found in GlobalConstants.ahk
 ;--------------------------------------------
@@ -104,29 +103,127 @@ DoQuest()
 
 switch := 1
 training := 0
-deployNum := 0
+deployUnitNum := 0
+pendingAllies := 1
+latestEpisode := 1
 loop,
 {
 	SendEvent {ClickAt %WAIT_X%, %WAIT_Y%}
-
-	if (DetectObject(DEPLOYUNIT_BUTTON) && deployNum < DEPLOY_NUMBER)
+	if (DetectObject(QUEST1_ICON))
 	{
-		WaitObject(DEPLOYUNIT_BUTTON)
-		ClickObject(DEPLOYUNIT_BUTTON)
+		WaitObject(QUEST1_ICON)
+		ClickObject(QUEST1_ICON)
 	}
-	else if (DetectObject(DEPLOY_TEXT))
+	else if (DetectObject(QUEST2_ICON))
 	{
-		DeployUnit(SORTINDEX, TYPEINDEX)
+		WaitObject(QUEST2_ICON)
+		ClickObject(QUEST2_ICON)
+	}
+	else if (DetectObject(QUEST_TEXT))
+	{
+		if (BOTALLQUEST == 1 && !latestEpisode)
+		{
+			if (DetectObject(SELECTEPISODE_BUTTON))
+			{
+				ClickObject(SELECTEPISODE_BUTTON)
+			}
+			else if (DetectObject(EPISODELISTNEXT_BUTTON))
+			{
+				ClickObject(EPISODELISTNEXT_BUTTON)
+			}
+			else
+			{
+				Scroll(QUEST_X1, QUEST_Y1, QUEST_X2, QUEST_Y2)
+
+				if DetectObject(EPISODESELECT10_BUTTON)
+				{
+					ClickObject(EPISODESELECT10_BUTTON)
+				}
+				else if DetectObject(EPISODESELECT9_BUTTON)
+				{
+					ClickObject(EPISODESELECT9_BUTTON)
+				}
+				else if DetectObject(EPISODESELECT8_BUTTON)
+				{
+					ClickObject(EPISODESELECT8_BUTTON)
+				}
+				else if DetectObject(EPISODESELECT7_BUTTON)
+				{
+					ClickObject(EPISODESELECT7_BUTTON)
+				}
+				else if DetectObject(EPISODESELECT6_BUTTON)
+				{
+					ClickObject(EPISODESELECT6_BUTTON)
+				}
+				else if DetectObject(EPISODESELECT5_BUTTON)
+				{
+					ClickObject(EPISODESELECT5_BUTTON)
+				}
+				else if DetectObject(EPISODESELECT4_BUTTON)
+				{
+					ClickObject(EPISODESELECT4_BUTTON)
+				}
+				else if DetectObject(EPISODESELECT3_BUTTON)
+				{
+					ClickObject(EPISODESELECT3_BUTTON)
+				}
+				else if DetectObject(EPISODESELECT2_BUTTON)
+				{
+					ClickObject(EPISODESELECT2_BUTTON)
+				}
+				else if DetectObject(EPISODESELECT1_BUTTON)
+				{
+					ClickObject(EPISODESELECT1_BUTTON)
+				}
+				
+				QUEST = 1
+				latestEpisode = 1
+			}
+		}
+		else
+		{		
+			if (QUEST >= 4)
+			{
+			  Scroll(QUEST_X1, QUEST_Y1, QUEST_X2, QUEST_Y2)
+			}
+
+			questindex := assignquest(quest)
+			WaitObject(questindex)
+			ClickObject(questindex)
+		}
+		
+	}
+	if (DetectObject(SKIPQUEST_BUTTON))
+	{
+		ClickObject(SKIPQUEST_BUTTON)
 	}
 	
-	if (DetectObject(CALLALLY_BUTTON))
+	if (DetectObject(DEPLOYUNIT_BUTTON) && deployUnitNum < DEPLOY_NUMBER)
 	{
-		WaitObject(CALLALLY_BUTTON)
+		ClickObject(DEPLOYUNIT_BUTTON)
+	}
+	if (DetectObject(DEPLOY_TEXT))
+	{
+		if (DeployUnit(SORTINDEX, TYPEINDEX))
+		{
+			deployUnitNum++
+		}
+	}
+	
+	if (DetectObject(CALLALLY_BUTTON) && pendingAllies)
+	{
 		ClickObject(CALLALLY_BUTTON)
 	}
-	else if (DetectObject(CALLALLYPAGE_TEXT))
+	if (DetectObject(CALLALLYPAGE_TEXT))
 	{
-		CallAlly(SORTINDEX, TYPEINDEX)
+		if (CallAlly(SORTINDEX, TYPEINDEX))
+		{
+			pendingAllies = 1
+		}
+		else
+		{
+			pendingAllies = 0
+		}
 	}
 	
 	if (DetectObject(GWTF_EVENTTITLE_IMAGE))
@@ -137,46 +234,36 @@ loop,
 			GoToTrainingPage()
 		}
 	}
-	else if (DetectObject(TRAINING_TEXT))
+	if (DetectObject(TRAINING_TEXT))
 	{
 		SelectAndStartLatestTraining()
 	}
-	else if (DetectObject(ADVANCE_BUTTON))
+	if (DetectObject(ADVANCE_BUTTON))
 	{
 		WaitObject(ADVANCE_BUTTON)
 		ClickObject(ADVANCE_BUTTON)
 	}
-	else if (DetectObject(SENDBRAVE_BUTTON))
+	if (DetectObject(SENDBRAVE_BUTTON))
 	{
 		WaitObject(SENDBRAVE_BUTTON)
 		ClickObject(SENDBRAVE_BUTTON)
 	}
-	else if (DetectObject(CONTINUETRAINING_BUTTON))
+	if (DetectObject(CONTINUETRAINING_BUTTON))
 	{
 		WaitObject(CONTINUETRAINING_BUTTON)
 		ClickObject(CONTINUETRAINING_BUTTON)
 	}
-	else if (DetectObject(HEAL_BUTTON))
+	if (DetectObject(HEAL_BUTTON))
 	{
-		if (mod(switch,2) == 0)
-		{
-			msg :=  "Click At " . BufferX . ", " . BufferY
-			SB_SetText(msg)
-			SendEvent {ClickAt %BufferX%, %BufferY% down}
-			sleep 2000
-			SendEvent {ClickAt %BufferX%, %BufferY% up}
-		}
-		else
-		{
-			WaitObject(TRAININGMYPAGE_BUTTON)
-			ClickObject(TRAININGMYPAGE_BUTTON)
-		}
+		WaitObject(TRAININGMYPAGE_BUTTON)
+		ClickObject(TRAININGMYPAGE_BUTTON)
 		switch++
 	}
 	else if (DetectObject(USEPOTIONYES_BUTTON))
 	{
 		WaitObject(USEPOTIONYES_BUTTON)
 		ClickObject(USEPOTIONYES_BUTTON)
+		Sleep 2000
 	}
 	if DetectObject(GWTF_TRAININGFIGHT_BUTTON)
 	{
@@ -201,13 +288,31 @@ loop,
 		
 		SelectAndStartLatestTraining()
 	}
-	else if (DetectObject(QUESTCLEAR_TEXT))
+	else if (DetectObject(QUESTCLEAR_TEXT) || DetectObject(QUESTRESULT_TEXT))
 	{
+		if (DetectObject(QUESTCLEAR_TEXT) && BOTALLQUEST)
+		{
+			if (QUEST < 7)
+			{
+				QUEST++
+			}
+			else
+			{
+				latestEpisode = 0
+			}
+		}
 		if (DetectObject(BACKTOEVENT_BUTTON))
 		{
 			WaitObject(BACKTOEVENT_BUTTON)
 			ClickObject(BACKTOEVENT_BUTTON)
 		}
+		else if (DetectObject(CHOOSEQUESTCOMPLETED_BUTTON))
+		{
+			WaitObject(CHOOSEQUESTCOMPLETED_BUTTON)
+			ClickObject(CHOOSEQUESTCOMPLETED_BUTTON)
+		}
+		deployUnitNum = 0
+		pendingAllies = 1
 	}
 	else if (DetectObject(EVENT_ICON))
 	{
@@ -287,11 +392,6 @@ return
 InitGlobals:
   Init_globals() ; Found in GlobalConstants.ahk
 return
-
-;QUEST ENDS HERE
-;========================================================
-
-
 
 
 ;=====================

@@ -105,6 +105,11 @@ Init_globals()
 		QUEST_X2 := 500
 		QUEST_Y2 := 163
 
+		MENU_X1 := 760
+		MENU_Y1 := 710
+		MENU_X2 := 445
+		MENU_Y2 := 710
+		
 		SCAN_START_X := 465
 		SCAN_START_Y := 99
 		SCAN_TILE_SIZE := 51
@@ -148,14 +153,7 @@ Init_globals()
   
 	FANTASICAAPP_BUTTON := "FANTASICA IMAGES\Bluestack\appfantasica-" . width . "_" . height . ".png"
   
-	if (GARDEN == 1)
-	{
-		QUEST1_ICON := "FANTASICA IMAGES\Event\GardenOfTranquility\iconevent-" . width . "_" . height . ".png" ;Quest icon on home page
-	}
-	else
-	{
-		QUEST1_ICON := "FANTASICA IMAGES\MainPage\iconquest1-" . width . "_" . height . ".png" ;Quest icon on home page
-	}	
+	QUEST1_ICON := "FANTASICA IMAGES\MainPage\iconquest1-" . width . "_" . height . ".png" ;Quest icon on home page	
 	QUEST2_ICON := "FANTASICA IMAGES\MainPage\iconquest2-" . width . "_" . height . ".png" ;Quest icon on home page
 	
 	EPISODESELECT1_BUTTON := "FANTASICA IMAGES\Quest\EpisodeSelection\buttonselectepisode1-" . width . "_" . height . ".png"
@@ -172,6 +170,7 @@ Init_globals()
 	EPISODELISTNEXT_BUTTON := "FANTASICA IMAGES\Quest\EpisodeSelection\buttonnextpage-" . width . "_" . height . ".png"
 	EPISODELISTNONEXT_BUTTON := "FANTASICA IMAGES\Quest\EpisodeSelection\buttonnonextpage-" . width . "_" . height . ".png"
 	
+	QUEST_TEXT := "FANTASICA IMAGES\Quest\QuestSelection\textquest-" . width . "_" . height . ".png"
 	SELECTEPISODE_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonselectepisode-" . width . "_" . height . ".png" ;The 'Select Episode' button for quest
 	STARTQUEST1_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest1-" . width . "_" . height . ".png" ;quest #1
 	STARTQUEST2_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest2-" . width . "_" . height . ".png" ;quest #2
@@ -204,6 +203,7 @@ Init_globals()
 	CANCELPLACEMENT_BUTTON := "FANTASICA IMAGES\Quest\QuestBattle\buttoncancelplacement-" . width . "_" . height . ".png" ; the cancel placement button
 	CONFIRMUNITPLACEMENT_BUTTON := "FANTASICA IMAGES\Quest\QuestBattle\buttonconfirmunitplacement-" . width . "_" . height . ".png" ;confirm the location to place unit
 	DEPLOYUNIT_BUTTON := "FANTASICA IMAGES\Quest\QuestBattle\buttondeployunit-" . width . "_" . height . ".png"	;The 'Deploy' button during questing
+	SKIPQUEST_BUTTON := "FANTASICA IMAGES\Quest\QuestBattle\buttonskip-" . width . "_" . height . ".png"
 	
 	DEPLOY_TEXT := "FANTASICA IMAGES\Quest\QuestBattle\Unit\textdeploy-" . width . "_" . height . ".png"
 	DEPLOYUNIT1_BUTTON := "FANTASICA IMAGES\Quest\QuestBattle\Unit\buttondeployunit1-" . width . "_" . height . ".png" ;first unit in the 'Deploy List'
@@ -239,6 +239,7 @@ Init_globals()
 	MYPAGE_BUTTON := "FANTASICA IMAGES\Quest\QuestResult\buttonmypage-" . width . "_" . height . ".png" ;The 'My Page' button on the results page after questing
 	TOWERCOMPLETEREWARDCARDBACK_BUTTON := "FANTASICA IMAGES\Quest\QuestResult\buttonbacktowercompleterewardcard-" . width . "_" . height . ".png" ;The back button on reward card received upon completion of the tower
 	QUESTCLEAR_TEXT := "FANTASICA IMAGES\Quest\QuestResult\textquestclear-" . width . "_" . height . ".png"
+	QUESTRESULT_TEXT := "FANTASICA IMAGES\Quest\QuestResult\textquestresult-" . width . "_" . height . ".png"
 	
 	CONNECTIONERROR_BUTTON := "FANTASICA IMAGES\ErrorRelated\buttonconnectionerror-" . width . "_" . height . ".png" ;The 'Yes' button when a connection error has occured.	
 	FORCECLOSEAPP_BUTTON := "FANTASICA IMAGES\ErrorRelated\buttonforcecloseapp-" . width . "_" . height . ".png" ;force closes the app
@@ -268,10 +269,11 @@ Init_globals()
 	MYPAGEID_TEXT := "FANTASICA IMAGES\MainPage\textmypageid-" . width . "_" . height . ".png" ;The text called "id" at the very top of the fantasica homepage
 	MYPAGEID2_TEXT := "FANTASICA IMAGES\MainPage\textmypageidarena-" . width . "_" . height . ".png" ;The text called "id" at the very topof the fantasica homepage, but offset due to arena info
 	
+	TRAININGPOINTS_TEXT := "FANTASICA IMAGES\MainPage\texttrainingpoints-" . width . "_" . height . ".png"
 	TRAINING1_ICON := "FANTASICA IMAGES\MainPage\icontraining1-" . width . "_" . height . ".png" ;Training icon on homepage at index 1 (starting with index 0)
 	TRAINING2_ICON := "FANTASICA IMAGES\MainPage\icontraining2-" . width . "_" . height . ".png" ;Training icon on homepage at index 2 (starting with index 0)
 	TRAINING3_ICON := "FANTASICA IMAGES\MainPage\icontraining3-" . width . "_" . height . ".png" ;Training icon on homepage at index 3 (starting with index 0)	
-	
+	TRAINING4_ICON := "FANTASICA IMAGES\MainPage\icontraining4-" . width . "_" . height . ".png" ;Training icon on homepage at index 4 (starting with index 0)	
 	LOGINBINGOPANEL_ICON := "FANTASICA IMAGES\MainPage\Bingo\iconbingopanel-" . width . "_" . height . ".png" ;login bingo panel
 	LOGINBINGOMYPAGE_BUTTON := "FANTASICA IMAGES\MainPage\Bingo\buttonbingomypage-" . width . "_" . height . ".png" ;button to return to mypage from login bingo
 	LOGINBINGORECEIVE_BUTTON := "FANTASICA IMAGES\MainPage\Bingo\buttonbingoreceive-" . width . "_" . height . ".png" ; receive button when you click a panel in the daily login bingo
@@ -341,6 +343,11 @@ Init_globals()
 	GWTF_EVENT_BUTTON := "FANTASICA IMAGES\Event\GoWithTheFloe\Bosses\buttonevent-" . width . "_" . height . ".png"
 	GWTF_POTIONFIGHT_BUTTON := "FANTASICA IMAGES\Event\GoWithTheFloe\Bosses\buttonusepotion-" . width . "_" . height . ".png"
 	GWTF_SENDFLAMEBERGE_BUTTON := "FANTASICA IMAGES\Event\GoWithTheFloe\Assist\buttonsendflameberge-" . width . "_" . height . ".png"
+	TOP_CLIMBTREE_BUTTON := "FANTASICA IMAGES\Event\TreeOfParadise\buttonclimbtree-" . width . "_" . height . ".png"
+	TOP_TITLE_IMAGE := "FANTASICA IMAGES\Event\TreeOfParadise\imagetitle-" . width . "_" . height . ".png"
+	TOP_ADVANCE_BUTTON := "FANTASICA IMAGES\Event\TreeOfParadise\Training\buttonadvance-" . width . "_" . height . ".png"
+	TOP_FIGHT_BUTTON := "FANTASICA IMAGES\Event\TreeOfParadise\Training\buttonfight-" . width . "_" . height . ".png"
+	
 }
 ;Bluestack
 ;---------

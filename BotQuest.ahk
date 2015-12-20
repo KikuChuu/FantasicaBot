@@ -31,7 +31,7 @@ clickobject(questindex)
 waitobject(DEPLOYUNIT_BUTTON)
 
 hasDeployedAllAllies := 0
-while A_index <= DEPLOY_NUMBER AND DetectObject(DEPLOYUNIT_BUTTON)
+while (A_index <= DEPLOY_NUMBER AND DetectObject(DEPLOYUNIT_BUTTON))
 {
 	DeployUnit()
   
