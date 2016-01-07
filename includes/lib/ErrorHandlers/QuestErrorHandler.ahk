@@ -195,26 +195,26 @@ LaunchGame()
 			; }
 		; }
 		
-		while not DetectObject(SELECTEPISODE_BUTTON)
-		{
-			ConnectionError()
+		; while not DetectObject(SELECTEPISODE_BUTTON)
+		; {
+			; ConnectionError()
 			
-			if DetectObject(ANNOUNCEMENT_BUTTON)
-			{
-				WaitObject(ANNOUNCEMENT_BUTTON)
-				ClickObject(ANNOUNCEMENT_BUTTON)
-			}
-			else if DetectObject(QUEST1_ICON)
-			{
-				WaitObject(QUEST1_ICON)
-				ClickObject(QUEST1_ICON)
-			}
-			else if DetectObject(QUEST2_ICON)
-			{
-				WaitObject(QUEST2_ICON)
-				ClickObject(QUEST2_ICON)
-			}	
-		}
+			; if DetectObject(ANNOUNCEMENT_BUTTON)
+			; {
+				; WaitObject(ANNOUNCEMENT_BUTTON)
+				; ClickObject(ANNOUNCEMENT_BUTTON)
+			; }
+			; else if DetectObject(QUEST1_ICON)
+			; {
+				; WaitObject(QUEST1_ICON)
+				; ClickObject(QUEST1_ICON)
+			; }
+			; else if DetectObject(QUEST2_ICON)
+			; {
+				; WaitObject(QUEST2_ICON)
+				; ClickObject(QUEST2_ICON)
+			; }	
+		; }
 		Return 1
 	}
 	Return 0

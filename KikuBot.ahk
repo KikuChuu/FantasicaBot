@@ -8,19 +8,7 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 Init_globals() ; Found in GlobalConstants.ahk
 ;--------------------------------------------
 
-;========================================================
-;==================== QUEST START =======================
-;========================================================
 
-
-GoToTrainingPage()
-{
-	global
-	WaitObject(GWTF_TRAIN_BUTTON)
-	ClickObject(GWTF_TRAIN_BUTTON)
-	WaitObject(BACK_BUTTON)
-	Sleep 2000
-}
 
 SelectAndStartLatestTraining()
 {
@@ -57,6 +45,10 @@ SelectAndStartLatestTraining()
 	}
 }
 
+
+;========================================================
+;==================== QUEST START =======================
+;========================================================
 ;SetTimer, RandomPopupOrCrash, 300000 ;handles crashes, popup advertisements every 5 minutes
 
 
@@ -107,8 +99,117 @@ deployUnitNum := 0
 pendingAllies := 1
 latestEpisode := 1
 loop,
-{
-	SendEvent {ClickAt %WAIT_X%, %WAIT_Y%}
+{	
+	if (SHOULD_CLICK == 1)
+	{
+		SendEvent {ClickAt %WAIT_X%, %WAIT_Y%}
+	}
+	if (DetectObject(LOGINBONUSMYPAGE_BUTTON))
+	{
+		ClickObject(LOGINBONUSMYPAGE_BUTTON)
+	}
+	; if (DetectObject(LB_TITLE_IMAGE))
+	; {
+		; if (DetectObject(LB_SEAROAD_BUTTON))
+		; {
+			; ClickObject(LB_SEAROAD_BUTTON)
+		; }
+		; else if (DetectObject(LB_OCEANCALL_BUTTON))
+		; {
+			; ClickObject(LB_OCEANCALL_BUTTON)
+		; }
+	; }
+	if (DetectObject(POPUPCLOSE_BUTTON))
+	{
+		ClickObject(POPUPCLOSE_BUTTON)
+	}
+	; if (DetectObject(LB_YES_BUTTON))
+	; {
+		; ClickObject(LB_YES_BUTTON)
+	; }
+	; if (DetectObject(LB_WALK1_BUTTON))
+	; {
+		; ClickObject(LB_WALK1_BUTTON)
+	; }
+	; else if (DetectObject(LB_WALK2_BUTTON))
+	; {
+		; ClickObject(LB_WALK2_BUTTON)
+	; }
+	; if (DetectObject(LB_FIGHTYES_BUTTON))
+	; {
+		; ClickObject(LB_FIGHTYES_BUTTON)
+	; }
+	; else if (DetectObject(LB_FIGHT_BUTTON))
+	; {
+		; ClickObject(LB_FIGHT_BUTTON)
+	; }
+	; if (DetectObject(LB_AUTOBATTLE_BUTTON))
+	; {
+		; ClickObject(LB_AUTOBATTLE_BUTTON)
+	; }
+	; if (DetectObject(LB_RESULT1_TEXT))
+	; {
+		; ClickObject(LB_RESULTBACK_BUTTON)
+	; }
+	; if (DetectObject(LB_ENEMYLIST_TEXT))
+	; {
+		; if (DetectObject(LB_FIGHTAGAIN_BUTTON))
+		; {
+			; ClickObject(LB_FIGHTAGAIN_BUTTON)
+		; }
+	; }
+	; if (DetectObject(LB_RESULT3_TEXT) || DetectObject(LB_RESULT2_TEXT))
+	; {
+		; ClickObject(LB_COMPLETECLEARBACK_BUTTON)
+	; }
+	; if (DetectObject(LB_POTION_BUTTON))
+	; {
+		; ClickObject(LB_BATTLEFIELDBACK_BUTTON)
+		; Sleep 2000
+		; WaitObject(LB_BATTLEFIELDBACK_BUTTON)
+		; ClickObject(LB_BATTLEFIELDBACK_BUTTON)
+	; }
+	if (DetectObject(FANTASICAAPP_BUTTON))
+	{
+		LaunchGame()
+	}
+	if (DetectObject(STARTGAME_BUTTON))
+	{
+		ClickObject(STARTGAME_BUTTON)
+	}
+	if (DetectObject(ALLYPENDINGREQUEST_TEXT))
+	{
+		ClickObject(BACK_BUTTON)
+	}
+	else if (DetectObject(ALLY_TEXT))
+	{
+		ClickObject(BACK_BUTTON)
+	}
+	if (DetectObject(CONNECTIONERROR_BUTTON))
+	{
+		ClickObject(CONNECTIONERROR_BUTTON)
+	}
+	if (DetectObject(CONNECTIONERROR_TEXT))
+	{
+		Send {ESC down}
+		Sleep 1000
+		Send {ESC up}
+	}
+	if (DetectObject(CONFIRMEXITAPP_BUTTON))
+	{
+		ClickObject(CONFIRMEXITAPP_BUTTON)
+	}
+	if (DetectObject(LOGINBINGO_TEXT))
+	{
+		if (DetectObject(LOGINBINGORECEIVE_BUTTON))
+		{
+			ClickObject(LOGINBINGORECEIVE_BUTTON)
+		}
+		else
+		{
+			LoginBingoHelperClicker()
+		}
+	}
 	if (DetectObject(TOP_TITLE_IMAGE))
 	{
 		if (DetectObject(TOP_CLIMBTREE_BUTTON) && !DetectObject(TOP_TRAININGPOINTS_TEXT))
@@ -140,24 +241,179 @@ loop,
 	{
 		ClickObject(TOP_BACKTOMAINPAGE_BUTTON)
 	}
-	if (DetectObject(QUESTTIMER_TEXT))
+	
+	; ==============================================
+	; **********************************************
+	; ---------------- MAIN PAGE -------------------
+	; **********************************************
+	; ==============================================
+	if (DetectObject(MYPAGEID_TEXT))
 	{
-		if (DetectObject(QUEST1_ICON))
+		; TRAINING-ENCOUNTER
+		if (TrainEncounterEvent == 1)
 		{
-			WaitObject(QUEST1_ICON)
-			ClickObject(QUEST1_ICON)
+			if (!DetectObject(DEPLETEDTRAININGPOINTS_TEXT))
+			{
+				if (DetectObject(EVENT_ICON))
+				{
+					ClickObject(EVENT_ICON)
+				}
+				else
+				{
+					msg := "Searching for Event Icon"
+					SB_SetText(msg)
+					Scroll(MENU_X2, MENU_Y2, MENU_X1, MENU_Y1)
+				}
+			}
+			else if (DetectObject(QUESTTIMER_TEXT))
+			{
+				if (DetectObject(QUEST3_ICON))
+				{
+					ClickObject(QUEST3_ICON)
+				}
+				if (DetectObject(QUEST4_ICON))
+				{
+					ClickObject(QUEST4_ICON)
+				}
+				else if (DetectObject(QUEST5_ICON))
+				{
+					ClickObject(QUEST5_ICON)
+				}
+				else
+				{
+					scrollCount := QUEST_INDEX // 4
+					loop, %scrollCount%
+					{
+						Scroll(MENU_X1, MENU_Y1, MENU_X2, MENU_Y2)
+					}
+					sleep 1000
+					if (!DetectObject(QUEST5_ICON) && !DetectObject(QUEST4_ICON))
+					{
+						scrollCount++
+						loop, %scrollCount% 
+						{
+							Scroll(MENU_X2, MENU_Y2, MENU_X1, MENU_Y1)
+						}
+					}
+				}
+			}
 		}
-		else if (DetectObject(QUEST2_ICON))
+		else if (DetectObject(QUESTTIMER_TEXT))
 		{
-			WaitObject(QUEST2_ICON)
-			ClickObject(QUEST2_ICON)
+			if (DetectObject(QUEST3_ICON))
+			{
+				ClickObject(QUEST3_ICON)
+			}
+			if (DetectObject(QUEST4_ICON))
+			{
+				ClickObject(QUEST4_ICON)
+			}
+			else if (DetectObject(QUEST5_ICON))
+			{
+				ClickObject(QUEST5_ICON)
+			}
+			else
+			{
+				scrollCount := QUEST_INDEX // 4
+				loop, %scrollCount%
+				{
+					Scroll(MENU_X1, MENU_Y1, MENU_X2, MENU_Y2)
+				}
+				sleep 1000
+				if (!DetectObject(QUEST5_ICON) && !DetectObject(QUEST4_ICON))
+				{
+					scrollCount++
+					loop, %scrollCount% 
+					{
+						Scroll(MENU_X2, MENU_Y2, MENU_X1, MENU_Y1)
+					}
+				}
+			}
 		}
 	}
-	else if (DetectObject(EVENT_ICON) && !DetectObject(TRAININGPOINTS_TEXT))
+	
+	
+	; ==========================================================================
+	; **************************************************************************
+	; --------------------- TRAIN-ENCOUNTER EVENT PAGE -------------------------
+	; **************************************************************************
+	; ==========================================================================
+	if (DetectObject(TRNECT_EVENTTITLE_IMAGE))
 	{
-		ClickObject(EVENT_ICON)
+		deployUnitNum := 0
+		pendingAllies := 1
+		if (training == 0)
+		{
+			training--
+			WaitObject(TRNECT_TRAIN_BUTTON)
+			ClickObject(TRNECT_TRAIN_BUTTON)
+			WaitObject(BACK_BUTTON)
+			Sleep 2000
+		}
+		else if (training < 0)
+		{
+			training++
+			WaitObject(TRNECT_ASSISTLIST_BUTTON)
+			ClickObject(TRNECT_ASSISTLIST_BUTTON)
+		}
 	}
-	else if (DetectObject(QUEST_TEXT))
+	else if (DetectObject(TRNECT_ASSISTALLIES_TEXT))
+	{
+		if (DetectObject(TRNECT_SENDEVENTITEM_BUTTON))
+		{
+			WaitObject(TRNECT_SENDEVENTITEM_BUTTON)
+			ClickObject(TRNECT_SENDEVENTITEM_BUTTON)
+		}
+		else if (DetectObject(TRNECT_ASSISTALLY_BUTTON))
+		{
+			WaitObject(TRNECT_ASSISTALLY_BUTTON)
+			ClickObject(TRNECT_ASSISTALLY_BUTTON)
+		}
+		else if (DetectObject(TRNECT_BOSSLISTFROMASSISTALLIES_BUTTON))
+		{
+			WaitObject(TRNECT_BOSSLISTFROMASSISTALLIES_BUTTON)
+			ClickObject(TRNECT_BOSSLISTFROMASSISTALLIES_BUTTON)
+		}
+	}
+	else if (DetectObject(TRNECT_BOSSLIST_TEXT))
+	{
+		if (DetectObject(TRNECT_REQUESTASSIST_BUTTON))
+		{
+			WaitObject(TRNECT_REQUESTASSIST_BUTTON)
+			ClickObject(TRNECT_REQUESTASSIST_BUTTON)
+		}
+		else if (DetectObject(TRNECT_FIGHT_BUTTON))
+		{
+			training--
+			WaitObject(TRNECT_FIGHT_BUTTON)
+			ClickObject(TRNECT_FIGHT_BUTTON)
+		}
+		else if (DetectObject(TRNECT_POTIONFIGHT_BUTTON))
+		{
+			training--
+			WaitObject(TRNECT_POTIONFIGHT_BUTTON)
+			ClickObject(TRNECT_POTIONFIGHT_BUTTON)
+		}
+		else if (DetectObject(TRNECT_EVENT_BUTTON))
+		{
+			WaitObject(TRNECT_EVENT_BUTTON)
+			ClickObject(TRNECT_EVENT_BUTTON)
+		}
+	}
+	else if (DetectObject(TRNECT_ASSISTLIST2_BUTTON))
+	{
+		WaitObject(TRNECT_ASSISTLIST2_BUTTON)
+		ClickObject(TRNECT_ASSISTLIST2_BUTTON)
+	}
+	
+	
+	
+	; ==========================================================================
+	; **************************************************************************
+	; ---------------------- QUEST SELECTION PAGE ------------------------------
+	; **************************************************************************
+	; ==========================================================================		
+	if (DetectObject(QUEST_TEXT))
 	{
 		if (BOTALLQUEST == 1 && !latestEpisode)
 		{
@@ -224,18 +480,33 @@ loop,
 			{
 			  Scroll(QUEST_X1, QUEST_Y1, QUEST_X2, QUEST_Y2)
 			}
-
-			questindex := assignquest(quest)
-			WaitObject(questindex)
-			ClickObject(questindex)
+			
+			questindex := assignquest(QUEST) ; Quest index represents the actual image path of the quest button
+			
+			scrollCount := 2 ; Introduced to scroll up to the very top of the quest selection
+			if (DetectObject(questindex))
+			{
+				ClickObject(questindex)
+			}
+			else
+			{
+				loop, 2
+				{
+					Scroll(QUEST_X2, QUEST_Y2, QUEST_X1, QUEST_Y1)
+				}
+			}
 		}
-		
 	}
+	
+	; ==========================================================================
+	; **************************************************************************
+	; ---------------------------- QUEST BATTLE --------------------------------
+	; **************************************************************************
+	; ==========================================================================
 	if (DetectObject(SKIPQUEST_BUTTON) && SKIPQUEST == 1)
 	{
 		ClickObject(SKIPQUEST_BUTTON)
 	}
-	
 	if (DetectObject(DEPLOYUNIT_BUTTON) && deployUnitNum < DEPLOY_NUMBER)
 	{
 		ClickObject(DEPLOYUNIT_BUTTON)
@@ -247,11 +518,11 @@ loop,
 			deployUnitNum++
 		}
 	}
-	
 	if (DetectObject(CALLALLY_BUTTON) && pendingAllies)
 	{
 		ClickObject(CALLALLY_BUTTON)
 	}
+
 	if (DetectObject(CALLALLYPAGE_TEXT))
 	{
 		if (CallAlly(SORTINDEX, TYPEINDEX))
@@ -263,19 +534,21 @@ loop,
 			pendingAllies = 0
 		}
 	}
-	
-	; if (DetectObject(GWTF_EVENTTITLE_IMAGE))
-	; {
-		; if (training == 0)
-		; {
-			; training--
-			; GoToTrainingPage()
-		; }
-	; }
+	; ==========================================================================
+	; **************************************************************************
+	; ------------------------ SELECT TRAINNG PAGE ----------------------------
+	; **************************************************************************
+	; ==========================================================================
 	if (DetectObject(TRAINING_TEXT))
 	{
 		SelectAndStartLatestTraining()
 	}
+	
+	; ==========================================================================
+	; **************************************************************************
+	; ---------------------------- TRAINING PAGE -------------------------------
+	; **************************************************************************
+	; ==========================================================================
 	if (DetectObject(ADVANCE_BUTTON))
 	{
 		WaitObject(ADVANCE_BUTTON)
@@ -297,36 +570,34 @@ loop,
 		ClickObject(TRAININGMYPAGE_BUTTON)
 		switch++
 	}
-	else if (DetectObject(USEPOTIONYES_BUTTON))
+	if (DetectObject(USEPOTIONYES_BUTTON))
 	{
 		WaitObject(USEPOTIONYES_BUTTON)
 		ClickObject(USEPOTIONYES_BUTTON)
 		Sleep 2000
 	}
-	; if DetectObject(GWTF_TRAININGFIGHT_BUTTON)
-	; {
-		; WaitObject(GWTF_TRAININGFIGHT_BUTTON)
-		; ClickObject(GWTF_TRAININGFIGHT_BUTTON)
-	; }
-	else if (DetectObject(TRAININGFIGHT_BUTTON))
+	if DetectObject(TRNECT_TRAININGFIGHT_BUTTON)
 	{
-		if (DetectObject(TRAININGSUMMONALLY_BUTTON))
-		{
-			WaitObject(TRAININGSUMMONALLY_BUTTON)
-			ClickObject(TRAININGSUMMONALLY_BUTTON)
-			sleep 5000
-		}
-		
-		if (DetectObject(TRAININGFIGHT_BUTTON))
-		{
-			WaitObject(TRAININGFIGHT_BUTTON)
-			ClickObject(TRAININGFIGHT_BUTTON)
-			sleep 5000
-		}
-		
-		SelectAndStartLatestTraining()
+		WaitObject(TRNECT_TRAININGFIGHT_BUTTON)
+		ClickObject(TRNECT_TRAININGFIGHT_BUTTON)
 	}
-	else if (DetectObject(QUESTCLEAR_TEXT) || DetectObject(QUESTRESULT_TEXT))
+	if (DetectObject(TRAININGSUMMONALLY_BUTTON))
+	{
+		WaitObject(TRAININGSUMMONALLY_BUTTON)
+		ClickObject(TRAININGSUMMONALLY_BUTTON)
+	}
+	if (DetectObject(TRAININGFIGHT_BUTTON))
+	{
+		WaitObject(TRAININGFIGHT_BUTTON)
+		ClickObject(TRAININGFIGHT_BUTTON)
+	}
+	
+	; ==========================================================================
+	; **************************************************************************
+	; ------------------------ QUEST RESULTS PAGE ------------------------------
+	; **************************************************************************
+	; ==========================================================================	
+	if (DetectObject(QUESTCLEAR_TEXT) || DetectObject(QUESTRESULT_TEXT))
 	{
 		if (DetectObject(QUESTCLEAR_TEXT) && BOTALLQUEST)
 		{
@@ -356,64 +627,6 @@ loop,
 		deployUnitNum = 0
 		pendingAllies = 1
 	}
-	; else if (DetectObject(GWTF_ASISTLIST_BUTTON))
-	; {
-		; if (training < 0)
-		; {
-			; training++
-			; WaitObject(GWTF_ASISTLIST_BUTTON)
-			; ClickObject(GWTF_ASISTLIST_BUTTON)
-		; }
-	; }
-	
-	; if (DetectObject(GWTF_ASSISTALLIES_TEXT))
-	; {
-		; if (DetectObject(GWTF_SENDFLAMEBERGE_BUTTON))
-		; {
-			; WaitObject(GWTF_SENDFLAMEBERGE_BUTTON)
-			; ClickObject(GWTF_SENDFLAMEBERGE_BUTTON)
-		; }
-		; else if (DetectObject(GWTF_ASSISTALLY_BUTTON))
-		; {
-			; WaitObject(GWTF_ASSISTALLY_BUTTON)
-			; ClickObject(GWTF_ASSISTALLY_BUTTON)
-		; }
-		; else if (DetectObject(GWTF_BOSSLISTFROMASSISTALLIES_BUTTON))
-		; {
-			; WaitObject(GWTF_BOSSLISTFROMASSISTALLIES_BUTTON)
-			; ClickObject(GWTF_BOSSLISTFROMASSISTALLIES_BUTTON)
-		; }
-	; }
-	; if (DetectObject(GWTF_BOSSLIST_TEXT))
-	; {
-		; if (DetectObject(GWTF_REQUESTASSIST_BUTTON))
-		; {
-			; WaitObject(GWTF_REQUESTASSIST_BUTTON)
-			; ClickObject(GWTF_REQUESTASSIST_BUTTON)
-		; }
-		; else if (DetectObject(GWTF_FIGHT_BUTTON))
-		; {
-			; training--
-			; WaitObject(GWTF_FIGHT_BUTTON)
-			; ClickObject(GWTF_FIGHT_BUTTON)
-		; }
-		; else if (DetectObject(GWTF_POTIONFIGHT_BUTTON))
-		; {
-			; training--
-			; WaitObject(GWTF_POTIONFIGHT_BUTTON)
-			; ClickObject(GWTF_POTIONFIGHT_BUTTON)
-		; }
-		; else if (DetectObject(GWTF_EVENT_BUTTON))
-		; {
-			; WaitObject(GWTF_EVENT_BUTTON)
-			; ClickObject(GWTF_EVENT_BUTTON)
-		; }
-	; }
-	; else if (DetectObject(GWTF_ASSISTLIST2_BUTTON))
-	; {
-		; WaitObject(GWTF_ASSISTLIST2_BUTTON)
-		; ClickObject(GWTF_ASSISTLIST2_BUTTON)
-	; }
 }
 
 Reload
