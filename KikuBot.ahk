@@ -385,6 +385,7 @@ loop,
 		{
 			WaitObject(TRNECT_REQUESTASSIST_BUTTON)
 			ClickObject(TRNECT_REQUESTASSIST_BUTTON)
+			Sleep 1000
 		}
 		else if (DetectObject(TRNECT_FIGHT_BUTTON))
 		{
