@@ -364,6 +364,10 @@ loop,
 			WaitObject(TRNECT_SENDEVENTITEM_BUTTON)
 			ClickObject(TRNECT_SENDEVENTITEM_BUTTON)
 		}
+		else if (DetectObject(USEPOTIONYES_BUTTON))
+		{
+			ClickObject(USEPOTIONYES_BUTTON)
+		}
 		else if (DetectObject(TRNECT_ASSISTALLY_BUTTON))
 		{
 			WaitObject(TRNECT_ASSISTALLY_BUTTON)
@@ -591,17 +595,21 @@ loop,
 		; ClickObject(TRNECT_TRAININGFLEE_BUTTON)
 	; }
 	; else 
-	if (DetectObject(TRNECT_LIMITEDBOSS_IMAGE))
+	; if (DetectObject(TRNECT_LIMITEDBOSS_IMAGE))
+	; {
+		; ClickObject(TRNECT_TRAININGFIGHT_BUTTON)
+	; }
+	; else if (DetectObject(TRNECT_SPECIALBOSS_IMAGE) || DetectObject(TRNECT_SPECIALBOSS2_IMAGE))
+	; {
+		; ClickObject(TRNECT_TRAININGFIGHT_BUTTON)
+	; }
+	; else if (DetectObject(TRNECT_TRAININGFLEE_BUTTON))
+	; {
+		; ClickObject(TRNECT_TRAININGFLEE_BUTTON)
+	; }
+	if (DetectObject(TRNECT_TRAININGFIGHT_BUTTON))
 	{
 		ClickObject(TRNECT_TRAININGFIGHT_BUTTON)
-	}
-	else if (DetectObject(TRNECT_SPECIALBOSS_IMAGE) || DetectObject(TRNECT_SPECIALBOSS2_IMAGE))
-	{
-		ClickObject(TRNECT_TRAININGFIGHT_BUTTON)
-	}
-	else if (DetectObject(TRNECT_TRAININGFLEE_BUTTON))
-	{
-		ClickObject(TRNECT_TRAININGFLEE_BUTTON)
 	}
 	if (DetectObject(TRAININGSUMMONALLY_BUTTON))
 	{
