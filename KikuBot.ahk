@@ -385,7 +385,11 @@ loop,
 		{
 			WaitObject(TRNECT_REQUESTASSIST_BUTTON)
 			ClickObject(TRNECT_REQUESTASSIST_BUTTON)
-			Sleep 1000
+		}
+		if (TrainEncounterEvent_USEITEM && DetectObject(TRNECT_USEEVENTITEM_BUTTON))
+		{
+			WaitObject(TRNECT_USEEVENTITEM_BUTTON)
+			ClickObject(TRNECT_USEEVENTITEM_BUTTON)
 		}
 		else if (DetectObject(TRNECT_FIGHT_BUTTON))
 		{
