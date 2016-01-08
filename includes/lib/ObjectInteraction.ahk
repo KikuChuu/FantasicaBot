@@ -143,4 +143,6 @@ WaitObject(ByRef Path)
 		ImageSearch, FoundX, FoundY, X1, Y1, X2, Y2, %Path%
 	}
 	Sleep SLEEPTIME
+	array := [Foundx, FoundY]
+	return array
 }

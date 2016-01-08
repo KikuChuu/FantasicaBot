@@ -108,67 +108,67 @@ loop,
 	{
 		ClickObject(LOGINBONUSMYPAGE_BUTTON)
 	}
-	; if (DetectObject(LB_TITLE_IMAGE))
-	; {
-		; if (DetectObject(LB_SEAROAD_BUTTON))
-		; {
-			; ClickObject(LB_SEAROAD_BUTTON)
-		; }
-		; else if (DetectObject(LB_OCEANCALL_BUTTON))
-		; {
-			; ClickObject(LB_OCEANCALL_BUTTON)
-		; }
-	; }
+	if (DetectObject(LB_TITLE_IMAGE))
+	{
+		if (DetectObject(LB_SEAROAD_BUTTON))
+		{
+			ClickObject(LB_SEAROAD_BUTTON)
+		}
+		else if (DetectObject(LB_OCEANCALL_BUTTON))
+		{
+			ClickObject(LB_OCEANCALL_BUTTON)
+		}
+	}
 	if (DetectObject(POPUPCLOSE_BUTTON))
 	{
 		ClickObject(POPUPCLOSE_BUTTON)
 	}
-	; if (DetectObject(LB_YES_BUTTON))
-	; {
-		; ClickObject(LB_YES_BUTTON)
-	; }
-	; if (DetectObject(LB_WALK1_BUTTON))
-	; {
-		; ClickObject(LB_WALK1_BUTTON)
-	; }
-	; else if (DetectObject(LB_WALK2_BUTTON))
-	; {
-		; ClickObject(LB_WALK2_BUTTON)
-	; }
-	; if (DetectObject(LB_FIGHTYES_BUTTON))
-	; {
-		; ClickObject(LB_FIGHTYES_BUTTON)
-	; }
-	; else if (DetectObject(LB_FIGHT_BUTTON))
-	; {
-		; ClickObject(LB_FIGHT_BUTTON)
-	; }
-	; if (DetectObject(LB_AUTOBATTLE_BUTTON))
-	; {
-		; ClickObject(LB_AUTOBATTLE_BUTTON)
-	; }
-	; if (DetectObject(LB_RESULT1_TEXT))
-	; {
-		; ClickObject(LB_RESULTBACK_BUTTON)
-	; }
-	; if (DetectObject(LB_ENEMYLIST_TEXT))
-	; {
-		; if (DetectObject(LB_FIGHTAGAIN_BUTTON))
-		; {
-			; ClickObject(LB_FIGHTAGAIN_BUTTON)
-		; }
-	; }
-	; if (DetectObject(LB_RESULT3_TEXT) || DetectObject(LB_RESULT2_TEXT))
-	; {
-		; ClickObject(LB_COMPLETECLEARBACK_BUTTON)
-	; }
-	; if (DetectObject(LB_POTION_BUTTON))
-	; {
-		; ClickObject(LB_BATTLEFIELDBACK_BUTTON)
-		; Sleep 2000
-		; WaitObject(LB_BATTLEFIELDBACK_BUTTON)
-		; ClickObject(LB_BATTLEFIELDBACK_BUTTON)
-	; }
+	if (DetectObject(LB_YES_BUTTON))
+	{
+		ClickObject(LB_YES_BUTTON)
+	}
+	if (DetectObject(LB_WALK1_BUTTON))
+	{
+		ClickObject(LB_WALK1_BUTTON)
+	}
+	else if (DetectObject(LB_WALK2_BUTTON))
+	{
+		ClickObject(LB_WALK2_BUTTON)
+	}
+	if (DetectObject(LB_FIGHTYES_BUTTON))
+	{
+		ClickObject(LB_FIGHTYES_BUTTON)
+	}
+	else if (DetectObject(LB_FIGHT_BUTTON))
+	{
+		ClickObject(LB_FIGHT_BUTTON)
+	}
+	if (DetectObject(LB_AUTOBATTLE_BUTTON))
+	{
+		ClickObject(LB_AUTOBATTLE_BUTTON)
+	}
+	if (DetectObject(LB_RESULT1_TEXT))
+	{
+		ClickObject(LB_RESULTBACK_BUTTON)
+	}
+	if (DetectObject(LB_ENEMYLIST_TEXT))
+	{
+		if (DetectObject(LB_FIGHTAGAIN_BUTTON))
+		{
+			ClickObject(LB_FIGHTAGAIN_BUTTON)
+		}
+	}
+	if (DetectObject(LB_RESULT3_TEXT) || DetectObject(LB_RESULT2_TEXT))
+	{
+		ClickObject(LB_COMPLETECLEARBACK_BUTTON)
+	}
+	if (DetectObject(LB_POTION_BUTTON))
+	{
+		ClickObject(LB_BATTLEFIELDBACK_BUTTON)
+		Sleep 2000
+		WaitObject(LB_BATTLEFIELDBACK_BUTTON)
+		ClickObject(LB_BATTLEFIELDBACK_BUTTON)
+	}
 	if (DetectObject(FANTASICAAPP_BUTTON))
 	{
 		LaunchGame()
@@ -388,7 +388,7 @@ loop,
 			WaitObject(TRNECT_FIGHT_BUTTON)
 			ClickObject(TRNECT_FIGHT_BUTTON)
 		}
-		else if (DetectObject(TRNECT_POTIONFIGHT_BUTTON) && USE_POTION)
+		else if (DetectObject(TRNECT_POTIONFIGHT_BUTTON))
 		{
 			training--
 			WaitObject(TRNECT_POTIONFIGHT_BUTTON)
@@ -564,11 +564,20 @@ loop,
 		WaitObject(CONTINUETRAINING_BUTTON)
 		ClickObject(CONTINUETRAINING_BUTTON)
 	}
-	if (DetectObject(HEAL_BUTTON))
+	if (DetectObject(HEAL_BUTTON) || DetectObject(HEALMID_BUTTON) || DetectObject(HEALDARK_BUTTON))
 	{
-		WaitObject(TRAININGMYPAGE_BUTTON)
-		ClickObject(TRAININGMYPAGE_BUTTON)
-		switch++
+		if (USE_POTION)
+		{
+			coord := WaitObject(HEAL_BUTTON)
+			ClickAt(coord[1], coord[2])
+		}
+		else
+		{
+			WaitObject(TRAININGMYPAGE_BUTTON)
+			ClickObject(TRAININGMYPAGE_BUTTON)
+		}
+		; switch variable is obsolete
+		; switch++ 
 	}
 	if (DetectObject(USEPOTIONYES_BUTTON))
 	{
@@ -576,10 +585,23 @@ loop,
 		ClickObject(USEPOTIONYES_BUTTON)
 		Sleep 2000
 	}
-	if DetectObject(TRNECT_TRAININGFIGHT_BUTTON)
+	; if (DetectObject(TRNECT_REGULARBOSS1_IMAGE) || DetectObject(TRNECT_REGULARBOSS2_IMAGE) || DetectObject(TRNECT_REGULARBOSS3_IMAGE))
+	; {
+		; msgbox % "Hello"
+		; ClickObject(TRNECT_TRAININGFLEE_BUTTON)
+	; }
+	; else 
+	if (DetectObject(TRNECT_LIMITEDBOSS_IMAGE))
 	{
-		WaitObject(TRNECT_TRAININGFIGHT_BUTTON)
 		ClickObject(TRNECT_TRAININGFIGHT_BUTTON)
+	}
+	else if (DetectObject(TRNECT_SPECIALBOSS_IMAGE) || DetectObject(TRNECT_SPECIALBOSS2_IMAGE))
+	{
+		ClickObject(TRNECT_TRAININGFIGHT_BUTTON)
+	}
+	else if (DetectObject(TRNECT_TRAININGFLEE_BUTTON))
+	{
+		ClickObject(TRNECT_TRAININGFLEE_BUTTON)
 	}
 	if (DetectObject(TRAININGSUMMONALLY_BUTTON))
 	{
