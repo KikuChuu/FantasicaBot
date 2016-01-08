@@ -388,7 +388,7 @@ loop,
 			WaitObject(TRNECT_FIGHT_BUTTON)
 			ClickObject(TRNECT_FIGHT_BUTTON)
 		}
-		else if (DetectObject(TRNECT_POTIONFIGHT_BUTTON))
+		else if (DetectObject(TRNECT_POTIONFIGHT_BUTTON) && USE_POTION)
 		{
 			training--
 			WaitObject(TRNECT_POTIONFIGHT_BUTTON)
