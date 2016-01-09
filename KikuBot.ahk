@@ -177,6 +177,10 @@ loop,
 	{
 		ClickObject(STARTGAME_BUTTON)
 	}
+    if (DetectObject(RESUMEQUESTNO_BUTTON))
+    {
+        ClickObject(RESUMEQUESTNO_BUTTON)
+    }
 	if (DetectObject(ALLYPENDINGREQUEST_TEXT))
 	{
 		ClickObject(BACK_BUTTON)
@@ -247,64 +251,37 @@ loop,
 	; ---------------- MAIN PAGE -------------------
 	; **********************************************
 	; ==============================================
-	if (DetectObject(MYPAGEID_TEXT))
-	{
-		; TRAINING-ENCOUNTER
-		if (TrainEncounterEvent == 1)
-		{
-			if (!DetectObject(DEPLETEDTRAININGPOINTS_TEXT))
-			{
-				if (DetectObject(EVENT_ICON))
-				{
-					ClickObject(EVENT_ICON)
-				}
-				else
-				{
-					msg := "Searching for Event Icon"
-					SB_SetText(msg)
-					Scroll(MENU_X2, MENU_Y2, MENU_X1, MENU_Y1)
-				}
-			}
-			else if (DetectObject(QUESTTIMER_TEXT))
-			{
-				if (DetectObject(QUEST3_ICON))
-				{
-					ClickObject(QUEST3_ICON)
-				}
-				if (DetectObject(QUEST4_ICON))
-				{
-					ClickObject(QUEST4_ICON)
-				}
-				else if (DetectObject(QUEST5_ICON))
-				{
-					ClickObject(QUEST5_ICON)
-				}
-				else
-				{
-					scrollCount := QUEST_INDEX // 4
-					loop, %scrollCount%
-					{
-						Scroll(MENU_X1, MENU_Y1, MENU_X2, MENU_Y2)
-					}
-					sleep 1000
-					if (!DetectObject(QUEST5_ICON) && !DetectObject(QUEST4_ICON))
-					{
-						scrollCount++
-						loop, %scrollCount% 
-						{
-							Scroll(MENU_X2, MENU_Y2, MENU_X1, MENU_Y1)
-						}
-					}
-				}
-			}
-		}
+    if (DetectObject(MYPAGEID_TEXT))
+	{ 
+        if (ColiseumEvent)
+        {
+            ClickObject(COL_EVENT_ICON)
+            ColiseumEvent = 0
+            SetTimer, Coliseum, 600000
+        } ; COLISEUM
+        else if (!DetectObject(DEPLETEDTRAININGPOINTS_TEXT))
+        {
+            msg := "Searching for Training-Encounter Event Icon"
+            SB_SetText(msg)
+            
+            
+            if (DetectObject(TRNECT_EVENT_ICON))
+            {
+                ClickObject(TRNECT_EVENT_ICON)
+            }
+        } ; TRAINING-ENCOUNTER
 		else if (DetectObject(QUESTTIMER_TEXT))
 		{
+            loop, %scrollCount%
+            {
+                Scroll(MENU_X1, MENU_Y1, MENU_X2, MENU_Y2)
+            }
+            
 			if (DetectObject(QUEST3_ICON))
 			{
 				ClickObject(QUEST3_ICON)
 			}
-			if (DetectObject(QUEST4_ICON))
+			else if (DetectObject(QUEST4_ICON))
 			{
 				ClickObject(QUEST4_ICON)
 			}
@@ -312,26 +289,66 @@ loop,
 			{
 				ClickObject(QUEST5_ICON)
 			}
-			else
-			{
-				scrollCount := QUEST_INDEX // 4
-				loop, %scrollCount%
-				{
-					Scroll(MENU_X1, MENU_Y1, MENU_X2, MENU_Y2)
-				}
-				sleep 1000
-				if (!DetectObject(QUEST5_ICON) && !DetectObject(QUEST4_ICON))
-				{
-					scrollCount++
-					loop, %scrollCount% 
-					{
-						Scroll(MENU_X2, MENU_Y2, MENU_X1, MENU_Y1)
-					}
-				}
-			}
-		}
+            else
+            {
+            
+            }
+		} ; QUESTING
 	}
 	
+	; ==========================================================================
+	; **************************************************************************
+	; ------------------------ COLISEUM EVENT PAGE -----------------------------
+	; **************************************************************************
+	; ==========================================================================
+	if (DetectObject(COL_EVENTTITLE_IMAGE))
+    {
+        ClickObject(COL_TOEVENT_BUTTON)
+    }
+    if (DetectObject(COL_SELECTIONPAGETITLE_TEXT))
+    {
+        if (DetectObject(COL_COOLDOWN_TEXT))
+        {
+            Scroll(QUEST_X1, QUEST_Y1, QUEST_X2, QUEST_Y2)
+            if (DetectObject(COL_AREA1_BUTTON))
+            {
+                ClickObject(COL_AREA1_BUTTON)
+            }
+        }
+        else
+        {
+            ClickObject(COL_BATTLEMODE_BUTTON)
+        }
+    }
+    if (DetectObject(COL_HEROSELECTIONPAGETITLE_TEXT))
+    {
+        ClickObject(COL_CHOOSEHERO1_BUTTON)
+    }
+    if (DetectObject(COL_BATTLETITLE_TEXT))
+    {
+        if (DetectObject(COL_BATTLECOOLDOWN_TEXT))
+        {
+            ClickObject(COL_BATTLE_BUTTON)
+        }
+        else
+        {
+            ClickObject(BACK_BUTTON)
+            WaitObject(COL_HEROSELECTIONPAGETITLE_TEXT)
+            ClickObject(BACK_BUTTON)
+            WaitObject(COL_SELECTIONPAGETITLE_TEXT)
+            ClickObject(BACK_BUTTON)
+            WaitObject(COL_EVENTTITLE_IMAGE)
+            ClickObject(BACK_BUTTON)
+        }
+    }
+    if (DetectObject(COL_SKIP_BUTTON))
+    {
+        ClickObject(COL_SKIP_BUTTON)
+    }
+    if (DetectObject(COL_RESULTSPAGETITLE_TEXT))
+    {
+        ClickObject(BACK_BUTTON)
+    }
 	
 	; ==========================================================================
 	; **************************************************************************
@@ -573,7 +590,8 @@ loop,
 		WaitObject(CONTINUETRAINING_BUTTON)
 		ClickObject(CONTINUETRAINING_BUTTON)
 	}
-	if (DetectObject(HEAL_BUTTON) || DetectObject(HEALMID_BUTTON) || DetectObject(HEALDARK_BUTTON))
+	if (DetectObject(HEAL_BUTTON) || DetectObject(HEALMID_BUTTON) || DetectObject(HEALDARK_BUTTON) 
+        || DetectObject(HEALMOBACOIN_BUTTON) || DetectObject(HEALMOBACOINMID_BUTTON) || DetectObject(HEALMOBACOINDARK_BUTTON))
 	{
 		if (USE_POTION)
 		{
@@ -666,16 +684,13 @@ loop,
 
 Reload
 
-
-RandomPopupOrCrash:
-if (LaunchGame() || ConnectionError() || Maintenance())
-	Reload
-else
-	Advertisement()
-return
-
-InitGlobals:
-  Init_globals() ; Found in GlobalConstants.ahk
+; ==============================================================================
+; ******************************************************************************
+; --------------------------------- LABELS -------------------------------------
+; ******************************************************************************
+; ==============================================================================
+Coliseum:
+ColiseumEvent = 1
 return
 
 

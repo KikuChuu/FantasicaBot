@@ -208,6 +208,9 @@ Init_globals()
 	HEAL_BUTTON := "FANTASICA IMAGES\Training\ActualTraining\buttonheal-" . width . "_" . height . ".png"
 	HEALMID_BUTTON := "FANTASICA IMAGES\Training\ActualTraining\buttonhealmid-" . width . "_" . height . ".png"
 	HEALDARK_BUTTON := "FANTASICA IMAGES\Training\ActualTraining\buttonhealdark-" . width . "_" . height . ".png" 
+    HEALMOBACOIN_BUTTON := "FANTASICA IMAGES\Training\ActualTraining\buttonhealmobacoin-" . width . "_" . height . ".png"
+    HEALMOBACOINMID_BUTTON := "FANTASICA IMAGES\Training\ActualTraining\buttonhealmobacoinmid-" . width . "_" . height . ".png"
+    HEALMOBACOINDARK_BUTTON := "FANTASICA IMAGES\Training\ActualTraining\buttonhealmobacoindark-" . width . "_" . height . ".png"
 	USEPOTIONYES_BUTTON := "FANTASICA IMAGES\Training\ActualTraining\buttonpotionyes-" . width . "_" . height . ".png" 
 	OUTOFTP_TEXT := "FANTASICA IMAGES\Training\ActualTraining\texttrainingpoints-" . width . "_" . height . ".png"
 	CONTINUETRAINING_BUTTON := "FANTASICA IMAGES\Training\ActualTraining\buttoncontinuetraining-" . width . "_" . height . ".png"
@@ -216,7 +219,7 @@ Init_globals()
 	TRAININGSUMMONALLY_BUTTON := "FANTASICA IMAGES\Training\ActualTraining\buttonsummonally-" . width . "_" . height . ".png"
 	
 	TRAININGPROGRESSCOMPLETE_TEXT := "FANTASICA IMAGES\Training\ActualTraining\textprogresscomplete-" . width . "_" . height . ".png"
-
+    
 	CALLALLY_BUTTON := "FANTASICA IMAGES\Quest\QuestBattle\buttoncallally-" . width . "_" . height . ".png" ;the call ally button in questing
 	CANCELPLACEMENT_BUTTON := "FANTASICA IMAGES\Quest\QuestBattle\buttoncancelplacement-" . width . "_" . height . ".png" ; the cancel placement button
 	CONFIRMUNITPLACEMENT_BUTTON := "FANTASICA IMAGES\Quest\QuestBattle\buttonconfirmunitplacement-" . width . "_" . height . ".png" ;confirm the location to place unit
@@ -287,7 +290,7 @@ Init_globals()
 	MYPAGEID_TEXT := "FANTASICA IMAGES\MainPage\textmypageid-" . width . "_" . height . ".png" ;The text called "id" at the very top of the fantasica homepage
 	MYPAGEID2_TEXT := "FANTASICA IMAGES\MainPage\textmypageidarena-" . width . "_" . height . ".png" ;The text called "id" at the very topof the fantasica homepage, but offset due to arena info
 	
-	TRAININGPOINTS_TEXT := "FANTASICA IMAGES\MainPage\texttrainingpoints-" . width . "_" . height . ".png"
+	FULLTRAININGPOINTS_TEXT := "FANTASICA IMAGES\MainPage\textmaxtrainingpoints-" . width . "_" . height . ".png"
 	DEPLETEDTRAININGPOINTS_TEXT := "FANTASICA IMAGES\MainPage\texttrainingpoints-" . width . "_" . height . ".png"
 	TRAINING1_ICON := "FANTASICA IMAGES\MainPage\icontraining1-" . width . "_" . height . ".png" ;Training icon on homepage at index 1 (starting with index 0)
 	TRAINING2_ICON := "FANTASICA IMAGES\MainPage\icontraining2-" . width . "_" . height . ".png" ;Training icon on homepage at index 2 (starting with index 0)
@@ -343,7 +346,10 @@ Init_globals()
 	;---------------------------- EVENT VARIABLES ------------------------------
 	;***************************************************************************
 	;===========================================================================
-	EVENT_ICON := "FANTASICA IMAGES\Event\UnderTheStarrySkies\iconevent-" . width . "_" . height . ".png" ;Event icon on home page. Change this path for every event
+    ; --------------------------------------------------------------------------
+    ; TRAIN-ENCOUNTER EVENT
+    ; --------------------------------------------------------------------------
+	TRNECT_EVENT_ICON := "FANTASICA IMAGES\Event\UnderTheStarrySkies\iconevent-" . width . "_" . height . ".png" ;Event icon on home page. Change this path for every event
 	TRNECT_TRAIN_BUTTON := "FANTASICA IMAGES\Event\UnderTheStarrySkies\buttontrain-" . width . "_" . height . ".png"
 	TRNECT_BOSSLIST_BUTTON := "FANTASICA IMAGES\Event\UnderTheStarrySkies\buttonbosslist-" . width . "_" . height . ".png"
 	TRNECT_ASSISTLIST_BUTTON := "FANTASICA IMAGES\Event\UnderTheStarrySkies\buttonassist-" . width . "_" . height . ".png"
@@ -368,7 +374,28 @@ Init_globals()
 	TRNECT_EVENT_BUTTON := "FANTASICA IMAGES\Event\UnderTheStarrySkies\Bosses\buttonevent-" . width . "_" . height . ".png"
 	TRNECT_POTIONFIGHT_BUTTON := "FANTASICA IMAGES\Event\UnderTheStarrySkies\Bosses\buttonusepotion-" . width . "_" . height . ".png"
 	TRNECT_SENDEVENTITEM_BUTTON := "FANTASICA IMAGES\Event\UnderTheStarrySkies\Assist\buttonsendeventitem-" . width . "_" . height . ".png"
-	TOP_CLIMBTREE_BUTTON := "FANTASICA IMAGES\Event\TreeOfParadise\buttonclimbtree-" . width . "_" . height . ".png"
+	; ==========================================================================
+    
+    ; --------------------------------------------------------------------------
+    ; COLISEUM EVENT
+    ; --------------------------------------------------------------------------
+    COL_EVENT_ICON := "FANTASICA IMAGES\Event\FiresOfPerdition\iconevent-" . width . "_" . height . ".png"
+    COL_EVENTTITLE_IMAGE := "FANTASICA IMAGES\Event\FiresOfPerdition\imageeventtitle-" . width . "_" . height . ".png"
+    COL_TOEVENT_BUTTON := "FANTASICA IMAGES\Event\FiresOfPerdition\buttontoeventselection-" . width . "_" . height . ".png"
+    COL_SELECTIONPAGETITLE_TEXT := "FANTASICA IMAGES\Event\FiresOfPerdition\SelectionPage\textselectionpagetitle-" . width . "_" . height . ".png"
+    COL_COOLDOWN_TEXT := "FANTASICA IMAGES\Event\FiresOfPerdition\SelectionPage\textcooldown-" . width . "_" . height . ".png"
+    COL_BATTLEMODE_BUTTON := "FANTASICA IMAGES\Event\FiresOfPerdition\SelectionPage\buttonbattlemode-" . width . "_" . height . ".png"
+    COL_AREA1_BUTTON := "FANTASICA IMAGES\Event\FiresOfPerdition\SelectionPage\buttonarea1-" . width . "_" . height . ".png"
+    COL_SKIP_BUTTON := "FANTASICA IMAGES\Event\FiresOfPerdition\AreaPage\buttonskip-" . width . "_" . height . ".png"
+    COL_RESULTSPAGETITLE_TEXT := "FANTASICA IMAGES\Event\FiresOfPerdition\ResultsPage\textresultspagetitle-" . width . "_" . height . ".png"
+    COL_HEROSELECTIONPAGETITLE_TEXT := "FANTASICA IMAGES\Event\FiresOfPerdition\HeroSelectionPage\texttitle-" . width . "_" . height . ".png"
+    COL_CHOOSEHERO1_BUTTON := "FANTASICA IMAGES\Event\FiresOfPerdition\HeroSelectionPage\buttonchoosehero1-" . width . "_" . height . ".png"
+    COL_BATTLETITLE_TEXT := "FANTASICA IMAGES\Event\FiresOfPerdition\BattlePage\texttitle-" . width . "_" . height . ".png"
+    COL_BATTLECOOLDOWN_TEXT := "FANTASICA IMAGES\Event\FiresOfPerdition\BattlePage\textcooldown-" . width . "_" . height . ".png"
+    COL_BATTLE_BUTTON := "FANTASICA IMAGES\Event\FiresOfPerdition\BattlePage\buttonbattle-" . width . "_" . height . ".png"
+    ; ==========================================================================
+    
+    TOP_CLIMBTREE_BUTTON := "FANTASICA IMAGES\Event\TreeOfParadise\buttonclimbtree-" . width . "_" . height . ".png"
 	TOP_TITLE_IMAGE := "FANTASICA IMAGES\Event\TreeOfParadise\imagetitle-" . width . "_" . height . ".png"
 	TOP_ADVANCE1_BUTTON := "FANTASICA IMAGES\Event\TreeOfParadise\Training\buttonadvance1-" . width . "_" . height . ".png"
 	TOP_ADVANCE2_BUTTON := "FANTASICA IMAGES\Event\TreeOfParadise\Training\buttonadvance2-" . width . "_" . height . ".png"
