@@ -829,7 +829,7 @@ PlaceUnitAt(CoordX, CoordY)
 	
 	PixelGetColor, PixColor, %CoordX%, %CoordY%
 	PixState := PixColor
-	while PixState = PixColor
+	while (PixState == PixColor)
 	{
 		SendEvent { Click down %CoordX%, %CoordY%}
 		Sleep SLEEPTIME

@@ -1,7 +1,7 @@
 ;General Specification
 ;---------------------
 	SLEEPTIME = 200 ;DELAY OF BUTTON CLICKS
-	QUICKSCAN = 1 	; 2 = reduce delay of unit placement scan to 1ms (not accurate)
+	QUICKSCAN = 2 	; 2 = reduce delay of unit placement scan to 1ms (not accurate)
 			; 1 = reduce delay of unit placement scan by half	of SLEEPTIME
 		      	; 0 = regular SLEEPTIME delay
 	SHOULD_CLICK := 1
@@ -13,7 +13,7 @@
 	
 ;Quest Selection Specification
 ;-----------------------------
-	QUEST = 4 ; Enter 1,2,3,4,5,6, or 7
+	QUEST = 1 ; Enter 1,2,3,4,5,6, or 7
 	EPISODE = 59
 ;Quest Battle specification
 ;--------------------------												 
