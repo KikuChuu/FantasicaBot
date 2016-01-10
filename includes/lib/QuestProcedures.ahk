@@ -267,11 +267,22 @@ CallAlly(AllyPower=0, AllyType=0)
 		}
 	}
 	
+    numOfPasses := 0
+    
 	;Find valid coordinates and place unit
 	while not DetectObject(CONFIRMUNITPLACEMENT_BUTTON)
 	{
-		FindCoordinate(MapX, MapY) ;modifies MapX and MapY to valid coordinates
-		PlaceUnitAt(MapX, MapY)	;Place unit at (MapX, MapY)
+		if (FindCoordinate(MapX, MapY, numOfPasses) == 0) ;modifies MapX and MapY to valid coordinates
+        {
+            ClickObject(CANCELPLACEMENT_BUTTON)
+            WaitObject(BACKQUEST_BUTTON)
+            ClickObject(BACKQUEST_BUTTON)
+            return 0
+        }
+		else
+        {
+            PlaceUnitAt(MapX, MapY)	;Place unit at (MapX, MapY)
+        }
 	}
 	WaitObject(CONFIRMUNITPLACEMENT_BUTTON)
 	ClickObject(CONFIRMUNITPLACEMENT_BUTTON)
@@ -561,14 +572,24 @@ DeployUnit(AllyPower = 0, AllyType = 0)
 		ClickObject(BACKQUEST_BUTTON)
 		return 0
 	}
+    
+    numOfPasses := 0
+	FindCoordinate(MapX, MapY, numOfPasses)
+    PlaceUnitAt(MapX, MapY)	;Place unit at (MapX, MapY)
 	
-	FindCoordinate(MapX, MapY) ;FindCoordinate() modifies MapX and MapY to valid coordinates
-	PlaceUnitAt(MapX, MapY)	;Place unit at (MapX, MapY)
-	
-	while not DetectObject(CONFIRMUNITPLACEMENT_BUTTON)
+    while not DetectObject(CONFIRMUNITPLACEMENT_BUTTON)
 	{
-		FindCoordinate(MapX, MapY) ;Find coordinate modifies MapX and MapY to valid coordinates
-		PlaceUnitAt(MapX, MapY)	;Place unit at MapX, MapY
+		if (FindCoordinate(MapX, MapY, numOfPasses) == 0) ;modifies MapX and MapY to valid coordinates
+        {
+            ClickObject(CANCELPLACEMENT_BUTTON)
+            WaitObject(BACKQUEST_BUTTON)
+            ClickObject(BACKQUEST_BUTTON)
+            return 0
+        }
+		else
+        {
+            PlaceUnitAt(MapX, MapY)	;Place unit at (MapX, MapY)
+        }
 	}
 	WaitObject(CONFIRMUNITPLACEMENT_BUTTON)
 	ClickObject(CONFIRMUNITPLACEMENT_BUTTON)
@@ -656,15 +677,18 @@ EventBoss(allycount=0)
 	return
 }
 
-FindCoordinate(Byref X, Byref Y)
+FindCoordinate(Byref X, Byref Y, Byref numOfPasses := 0)
 {
 	global SLEEPTIME, RESTRICTPLACEMENTON_COL1, RESTRICTPLACEMENTON_COL2, QUICKSCAN, REVELATIONTOWER, LEVELBOT
 	global BLUESTACK_WINDOW_TITLE
 
+    ; Limit the number of passes
+    maxPasses := 1
+    
 	;declare our static vars here
 	static row:= 3
 	static col:= 0
-		
+    
     if (LEVELBOT == 1)
 	{
 	    global SCAN_START_X, SCAN_START_Y, SCAN_TILE_SIZE
@@ -687,7 +711,7 @@ FindCoordinate(Byref X, Byref Y)
 			SLEEPTEMP := SLEEPTIME
 		}
 		
-		loop
+		while (numOfPasses < maxPasses)
 		{
 			IfWinNotActive, %BLUESTACK_WINDOW_TITLE%
 			{
@@ -715,7 +739,7 @@ FindCoordinate(Byref X, Byref Y)
 						Y := CurrentRowCoord
 						col++
 						;SB_SetText("Scanning for available coordinates (" . CurrentColCoord . "x" . CurrentRowCoord . ")" )
-						return
+						return 1
 					}
 					col++
 				}
@@ -723,6 +747,7 @@ FindCoordinate(Byref X, Byref Y)
 				col := 0
 			}
 			row := 0 ;scanned the entire map, starting from beginning
+            numOfPasses++
 		}
 	}
 	else
@@ -748,8 +773,8 @@ FindCoordinate(Byref X, Byref Y)
 			SLEEPTEMP := SLEEPTIME
 		}
 		
-		loop
-		{   
+		while (numOfPasses < maxPasses)
+		{
 			IfWinNotActive, %BLUESTACK_WINDOW_TITLE%
 			{
 				WinActivate, %BLUESTACK_WINDOW_TITLE%
@@ -776,17 +801,19 @@ FindCoordinate(Byref X, Byref Y)
 						Y := CurrentRowCoord
 						col++
 						;SB_SetText("Scanning for available coordinates (" . CurrentColCoord . "x" . CurrentRowCoord . ")" )
-						return
+						return 1
 					}
 					col++
 				}
 				row++
 				col := 0
-                                switch++
+                switch++
 			}
 			row := 0 ;scanned the entire map, starting from beginning
+            numOfPasses++
 		}
 	}
+    return 0
 }
 
 PlaceUnitAt(CoordX, CoordY)

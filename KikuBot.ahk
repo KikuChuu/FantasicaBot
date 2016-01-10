@@ -173,14 +173,14 @@ loop,
 	{
 		LaunchGame()
 	}
-	if (DetectObject(STARTGAME_BUTTON))
-	{
-		ClickObject(STARTGAME_BUTTON)
-	}
     if (DetectObject(RESUMEQUESTNO_BUTTON))
     {
         ClickObject(RESUMEQUESTNO_BUTTON)
     }
+	else if (DetectObject(STARTGAME_BUTTON))
+	{
+		ClickObject(STARTGAME_BUTTON)
+	}
 	if (DetectObject(ALLYPENDINGREQUEST_TEXT))
 	{
 		ClickObject(BACK_BUTTON)
@@ -251,26 +251,17 @@ loop,
 	; ---------------- MAIN PAGE -------------------
 	; **********************************************
 	; ==============================================
+    SB_SetText(ColiseumEvent)
     if (DetectObject(MYPAGEID_TEXT))
 	{ 
-        if (ColiseumEvent)
+        scrollCount := QUEST_INDEX // 4
+        if (ColiseumEvent && DetectObject(COL_EVENT_ICON))
         {
             ClickObject(COL_EVENT_ICON)
             ColiseumEvent = 0
             SetTimer, Coliseum, 600000
         } ; COLISEUM
-        else if (!DetectObject(DEPLETEDTRAININGPOINTS_TEXT))
-        {
-            msg := "Searching for Training-Encounter Event Icon"
-            SB_SetText(msg)
-            
-            
-            if (DetectObject(TRNECT_EVENT_ICON))
-            {
-                ClickObject(TRNECT_EVENT_ICON)
-            }
-        } ; TRAINING-ENCOUNTER
-		else if (DetectObject(QUESTTIMER_TEXT))
+        else if (DetectObject(QUESTTIMER_TEXT))
 		{
             loop, %scrollCount%
             {
@@ -289,11 +280,32 @@ loop,
 			{
 				ClickObject(QUEST5_ICON)
 			}
+		} ; QUESTING
+        else if (!DetectObject(DEPLETEDTRAININGPOINTS_TEXT))
+        {
+            msg := "Searching for Training-Encounter Event Icon"
+            SB_SetText(msg)
+            
+            if (DetectObject(TRNECT_EVENT_ICON))
+            {
+                ClickObject(TRNECT_EVENT_ICON)
+            }
             else
             {
-            
+                if (scrollCount > 0)
+                {   
+                    scrollCount++
+                    loop, %scrollCount%
+                    {
+                        Scroll(MENU_X2, MENU_Y2, MENU_X1, MENU_Y1)
+                    }
+                }
             }
-		} ; QUESTING
+            if (DetectObject(TRNECT_EVENT_ICON))
+            {
+                ClickObject(TRNECT_EVENT_ICON)
+            }
+        } ; TRAINING-ENCOUNTER
 	}
 	
 	; ==========================================================================
@@ -310,7 +322,11 @@ loop,
         if (DetectObject(COL_COOLDOWN_TEXT))
         {
             Scroll(QUEST_X1, QUEST_Y1, QUEST_X2, QUEST_Y2)
-            if (DetectObject(COL_AREA1_BUTTON))
+            if (DetectObject(COL_AREA2_BUTTON))
+            {
+                ClickObject(COL_AREA2_BUTTON)
+            }
+            else if (DetectObject(COL_AREA1_BUTTON))
             {
                 ClickObject(COL_AREA1_BUTTON)
             }

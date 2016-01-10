@@ -386,6 +386,7 @@ Init_globals()
     COL_COOLDOWN_TEXT := "FANTASICA IMAGES\Event\FiresOfPerdition\SelectionPage\textcooldown-" . width . "_" . height . ".png"
     COL_BATTLEMODE_BUTTON := "FANTASICA IMAGES\Event\FiresOfPerdition\SelectionPage\buttonbattlemode-" . width . "_" . height . ".png"
     COL_AREA1_BUTTON := "FANTASICA IMAGES\Event\FiresOfPerdition\SelectionPage\buttonarea1-" . width . "_" . height . ".png"
+    COL_AREA2_BUTTON := "FANTASICA IMAGES\Event\FiresOfPerdition\SelectionPage\buttonarea2-" . width . "_" . height . ".png"
     COL_SKIP_BUTTON := "FANTASICA IMAGES\Event\FiresOfPerdition\AreaPage\buttonskip-" . width . "_" . height . ".png"
     COL_RESULTSPAGETITLE_TEXT := "FANTASICA IMAGES\Event\FiresOfPerdition\ResultsPage\textresultspagetitle-" . width . "_" . height . ".png"
     COL_HEROSELECTIONPAGETITLE_TEXT := "FANTASICA IMAGES\Event\FiresOfPerdition\HeroSelectionPage\texttitle-" . width . "_" . height . ".png"
