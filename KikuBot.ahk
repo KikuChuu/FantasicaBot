@@ -251,16 +251,15 @@ loop,
 	; ---------------- MAIN PAGE -------------------
 	; **********************************************
 	; ==============================================
-    SB_SetText(ColiseumEvent)
     if (DetectObject(MYPAGEID_TEXT))
-	{ 
+	{
         scrollCount := QUEST_INDEX // 4
         if (ColiseumEvent && DetectObject(COL_EVENT_ICON))
         {
             ClickObject(COL_EVENT_ICON)
             ColiseumEvent = 0
             SetTimer, Coliseum, 600000
-        } ; COLISEUM
+        } ; COLISEUM EVENT
         else if (DetectObject(QUESTTIMER_TEXT))
 		{
             loop, %scrollCount%
