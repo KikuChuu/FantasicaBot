@@ -18,11 +18,11 @@ SelectAndStartLatestTraining()
 		WaitObject(TRAININGCHALLENGE_BUTTON)
 		ClickObject(TRAININGCHALLENGE_BUTTON)
 	}
-	; else if (DetectObject(STARTTRAINING5_BUTTON))
-	; {
-		; WaitObject(STARTTRAINING5_BUTTON)
-		; ClickObject(STARTTRAINING5_BUTTON)
-	; }
+	else if (DetectObject(STARTTRAINING5_BUTTON))
+	{
+		WaitObject(STARTTRAINING5_BUTTON)
+		ClickObject(STARTTRAINING5_BUTTON)
+	}
 	; else if (DetectObject(STARTTRAINING4_BUTTON))
 	; {
 		; WaitObject(STARTTRAINING4_BUTTON)
@@ -279,6 +279,17 @@ loop,
 			{
 				ClickObject(QUEST5_ICON)
 			}
+            else
+            {
+                if (scrollCount > 0)
+                {   
+                    scrollCount++
+                    loop, %scrollCount%
+                    {
+                        Scroll(MENU_X2, MENU_Y2, MENU_X1, MENU_Y1)
+                    }
+                }
+            }
 		} ; QUESTING
         else if (!DetectObject(DEPLETEDTRAININGPOINTS_TEXT))
         {
@@ -605,8 +616,9 @@ loop,
 		WaitObject(CONTINUETRAINING_BUTTON)
 		ClickObject(CONTINUETRAINING_BUTTON)
 	}
-	if (DetectObject(HEAL_BUTTON) || DetectObject(HEALMID_BUTTON) || DetectObject(HEALDARK_BUTTON) 
-        || DetectObject(HEALMOBACOIN_BUTTON) || DetectObject(HEALMOBACOINMID_BUTTON) || DetectObject(HEALMOBACOINDARK_BUTTON))
+    
+	if (DetectObject(HEAL_BUTTON) || DetectObject(HEALMID_BUTTON) || DetectObject(HEALDARK_BUTTON)
+        || DetectObject(HEALMOBACOIN_BUTTON) || DetectObject(HEALMOBACOINDARK_BUTTON) || DetectObject(HEALMOBACOINMID_BUTTON))
 	{
 		if (USE_POTION)
 		{
@@ -645,7 +657,7 @@ loop,
 	; {
 		; ClickObject(TRNECT_TRAININGFLEE_BUTTON)
 	; }
-	if (DetectObject(TRNECT_TRAININGFIGHT_BUTTON))
+    if (DetectObject(TRNECT_TRAININGFIGHT_BUTTON))
 	{
 		ClickObject(TRNECT_TRAININGFIGHT_BUTTON)
 	}
