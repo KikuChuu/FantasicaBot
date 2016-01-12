@@ -13,7 +13,7 @@ Init_globals() ; Found in GlobalConstants.ahk
 ;===================== QUEST START ======================
 ;========================================================
 
-SetTimer, RandomPopupOrCrash, 5000 ;handles crashes, popup advertisements every 5 minutes
+SetTimer, RandomPopupOrCrash, 300000 ;handles crashes, popup advertisements every 5 minutes
 
 WaitObject(ASSIST_BUTTON)
 ClickObject(ASSIST_BUTTON)
@@ -49,25 +49,31 @@ ClickObject(FIGHT_BUTTON)
 WaitObject(OPPONENT1_BUTTON)
 clickObject(OPPONENT1_BUTTON)
 
+waitObject(SPEED_BUTTON)
+clickObject(SPEED_BUTTON)
+clickObject(CRITICAL_BUTTON)
+clickObject(DRAIN_BUTTON)
+
 waitObject(SKIP_BUTTON)
 clickObject(SKIP_BUTTON)
 
-Sleep 1500
-
-if DetectObject(SPEED_BUTTON) 
+while (!DetectObject(FRONTLINEBACK_BUTTON))
 {
-	waitObject(SPEED_BUTTON)
-	clickObject(SPEED_BUTTON)
-}
-if DetectObject(CRITICAL_BUTTON)
-{
-	waitObject(CRITICAL_BUTTON)
-	clickObject(CRITICAL_BUTTON)
-}
-if DetectObject(DRAIN_BUTTON)
-{
-	waitObject(DRAIN_BUTTON)
-	clickObject(DRAIN_BUTTON)
+    if (DetectObject(SPEED_BUTTON))
+    {
+        waitObject(SPEED_BUTTON)
+        clickObject(SPEED_BUTTON)
+    }
+    if (DetectObject(CRITICAL_BUTTON))
+    {
+        WaitObject(CRITICAL_BUTTON)
+        clickObject(CRITICAL_BUTTON)
+    }
+    if (DetectObject(DRAIN_BUTTON))
+    {
+        WaitObject(DRAIN_BUTTON)
+        ClickObject(DRAIN_BUTTON)
+    }
 }
 
 waitObject(FRONTLINEBACK_BUTTON)
