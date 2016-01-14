@@ -376,6 +376,7 @@ Init_globals()
 	FL_CPBAR1_TEXT := "FANTASICA IMAGES\Event\Frontlines\maineventscreen\textcpbar1-" . width . "_" . height . ".png"
     FL_ASSISTNOTIFICATION_ICON := "FANTASICA IMAGES\Event\Frontlines\maineventscreen\buttonassistnotification-" . width . "_" . height . ".png"
     FL_ASSIST_BUTTON  := "FANTASICA IMAGES\Event\Frontlines\maineventscreen\buttonassist-" . width . "_" . height . ".png"
+    FL_MYPAGE_BUTTON := "FANTASICA IMAGES\Event\Frontlines\maineventscreen\buttonmypage-" . width . "_" . height . ".png"
     
 	FL_FIGHT_BUTTON := "FANTASICA IMAGES\Event\Frontlines\maineventscreen\buttonfight-" . width . "_" . height . ".png"
     FL_SKILL1_BUTTON := "FANTASICA IMAGES\Event\Frontlines\battlescreen\buttonskill1-" . width . "_" . height . ".png"

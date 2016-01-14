@@ -263,6 +263,8 @@ loop,
         else if (FrontlinesEvent && DetectObject(FL_EVENT_ICON))
         {
             ClickObject(FL_EVENT_ICON)
+            FrontlinesEvent = 0
+            SetTimer, Frontlines, 3600000
         }
         else if (DetectObject(QUESTTIMER_TEXT))
 		{
@@ -295,7 +297,7 @@ loop,
                 }
             }
 		} ; QUESTING
-        else if (!DetectObject(DEPLETEDTRAININGPOINTS_TEXT))
+        else if (TrainingencounterEvent &&!DetectObject(DEPLETEDTRAININGPOINTS_TEXT))
         {
             msg := "Searching for Training-Encounter Event Icon"
             SB_SetText(msg)
@@ -394,6 +396,10 @@ loop,
         if (DetectObject(FL_CPBAR1_TEXT))
         {
             ClickObject(FL_FIGHT_BUTTON)
+        }
+        if (DetectObject(FL_CPBAR0_TEXT))
+        {
+            ClickObject(FL_MYPAGE_BUTTON)
         }
     }
     if (DetectObject(FL_ASSIST_TITLE))
@@ -777,8 +783,6 @@ loop,
 	}
 }
 
-Reload
-
 ; ==============================================================================
 ; ******************************************************************************
 ; --------------------------------- LABELS -------------------------------------
@@ -788,22 +792,11 @@ Coliseum:
 ColiseumEvent = 1
 return
 
+Frontlines:
+FrontlinesEvent = 1
+return
+; ==============================================================================
 
-;=====================
-TestFunction()
-{
-	Send { ESC down}
-	Sleep 1000
-}
-TestFunction2()
-{
-	Roulette()
-}
-Move(coord1,coord2)
-{
-	SendEvent {Click 780, 500}
-}
 F1::ExitApp
 F2::Pause
 F3::Reload
-F4::DetectObject("E:/Programmingasdfsdf")
