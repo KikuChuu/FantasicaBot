@@ -253,7 +253,7 @@ loop,
 	; ==============================================
     if (DetectObject(MYPAGEID_TEXT))
 	{
-        scrollCount := QUEST_INDEX // 4
+        scrollCount := 0
         if (ColiseumEvent)
         {
             if (DetectObject(COL_EVENT_ICON))
@@ -296,11 +296,7 @@ loop,
         }
         else if (DetectObject(QUESTTIMER_TEXT))
 		{
-            loop, %scrollCount%
-            {
-                Scroll(MENU_X1, MENU_Y1, MENU_X2, MENU_Y2)
-            }
-            
+            scrollCount := QUEST_INDEX // 4
 			if (DetectObject(QUEST3_ICON))
 			{
 				ClickObject(QUEST3_ICON)
@@ -315,7 +311,24 @@ loop,
 			}
             else
             {
-                if (scrollCount > 0)
+                loop, %scrollCount%
+                {
+                    Scroll(MENU_X1, MENU_Y1, MENU_X2, MENU_Y2)
+                }
+                
+                if (DetectObject(QUEST3_ICON))
+                {
+                    ClickObject(QUEST3_ICON)
+                }
+                else if (DetectObject(QUEST4_ICON))
+                {
+                    ClickObject(QUEST4_ICON)
+                }
+                else if (DetectObject(QUEST5_ICON))
+                {
+                    ClickObject(QUEST5_ICON)
+                }
+                else 
                 {   
                     scrollCount++
                     loop, %scrollCount%
@@ -325,7 +338,7 @@ loop,
                 }
             }
 		} ; QUESTING
-        else if (TrainingencounterEvent &&!DetectObject(DEPLETEDTRAININGPOINTS_TEXT))
+        else if (TrainingencounterEvent && !DetectObject(DEPLETEDTRAININGPOINTS_TEXT))
         {
             msg := "Searching for Training-Encounter Event Icon"
             SB_SetText(msg)
@@ -354,20 +367,28 @@ loop,
         {
             scrollCount := TRAINING_INDEX // 4
             
-            loop, %scrollCount%
-            {
-                Scroll(MENU_X1, MENU_Y1, MENU_X2, MENU_Y2)
-            }
             if (DetectObject(TRAINING5_ICON))
             {
                 ClickObject(TRAINING5_ICON)
             }
             else
             {
-                scrollCount++
                 loop, %scrollCount%
                 {
-                    Scroll(MENU_X2, MENU_Y2, MENU_X1, MENU_Y1)
+                    Scroll(MENU_X1, MENU_Y1, MENU_X2, MENU_Y2)
+                }
+                
+                if (DetectObject(TRAINING5_ICON))
+                {
+                    ClickObject(TRAINING5_ICON)
+                }
+                else
+                {
+                    scrollCount++
+                    loop, %scrollCount%
+                    {
+                        Scroll(MENU_X2, MENU_Y2, MENU_X1, MENU_Y1)
+                    }
                 }
             }
         }
