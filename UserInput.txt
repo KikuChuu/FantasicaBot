@@ -43,6 +43,7 @@
 	TrainEncounterEvent := 1
 	TrainEncounterEvent_USEITEM := 1
     ColiseumEvent := 1
+    FrontlinesEvent := 1
     
 	TIME_ELIXIR = 0
 	SEARCHLIMIT := 2

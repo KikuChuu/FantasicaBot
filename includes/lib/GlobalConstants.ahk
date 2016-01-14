@@ -374,12 +374,17 @@ Init_globals()
     FL_TITLE_IMAGE := "FANTASICA IMAGES\Event\Frontlines\imagetitle-" . width . "_" . height . ".png"
     FL_CPBAR0_TEXT := "FANTASICA IMAGES\Event\Frontlines\maineventscreen\textcpbar0-" . width . "_" . height . ".png"
 	FL_CPBAR1_TEXT := "FANTASICA IMAGES\Event\Frontlines\maineventscreen\textcpbar1-" . width . "_" . height . ".png"
+    FL_ASSISTNOTIFICATION_ICON := "FANTASICA IMAGES\Event\Frontlines\maineventscreen\buttonassistnotification-" . width . "_" . height . ".png"
+    FL_ASSIST_BUTTON  := "FANTASICA IMAGES\Event\Frontlines\maineventscreen\buttonassist-" . width . "_" . height . ".png"
+    
 	FL_FIGHT_BUTTON := "FANTASICA IMAGES\Event\Frontlines\maineventscreen\buttonfight-" . width . "_" . height . ".png"
     FL_SKILL1_BUTTON := "FANTASICA IMAGES\Event\Frontlines\battlescreen\buttonskill1-" . width . "_" . height . ".png"
     FL_SKILL2_BUTTON := "FANTASICA IMAGES\Event\Frontlines\battlescreen\buttonskill2-" . width . "_" . height . ".png"
 	FL_SKILL3_BUTTON := "FANTASICA IMAGES\Event\Frontlines\battlescreen\buttonskill3-" . width . "_" . height . ".png"
 	FL_SKIP_BUTTON := "FANTASICA IMAGES\Event\Frontlines\battlescreen\buttonskip-" . width . "_" . height . ".png"
-	FL_OPPONENT1_BUTTON := "FANTASICA IMAGES\Event\Frontlines\opponentselectionscreen\buttonopponent1-" . width . "_" . height . ".png"
+    
+	FL_OPPONENTSELECTION_TITLE := "FANTASICA IMAGES\Event\Frontlines\opponentselectionscreen\texttitle-" . width . "_" . height . ".png"
+    FL_OPPONENT1_BUTTON := "FANTASICA IMAGES\Event\Frontlines\opponentselectionscreen\buttonopponent1-" . width . "_" . height . ".png"
 	FL_OPPONENT2_BUTTON := "FANTASICA IMAGES\Event\Frontlines\opponentselectionscreen\buttonopponent2-" . width . "_" . height . ".png"
 	FL_OPPONENT3_BUTTON := "FANTASICA IMAGES\Event\Frontlines\opponentselectionscreen\buttonopponent3-" . width . "_" . height . ".png"
 	FL_OPPONENT4_BUTTON := "FANTASICA IMAGES\Event\Frontlines\opponentselectionscreen\buttonopponent4-" . width . "_" . height . ".png"
@@ -389,13 +394,14 @@ Init_globals()
 	FL_OPPONENT18_BUTTON := "FANTASICA IMAGES\Event\Frontlines\opponentselectionscreen\buttonopponent18-" . width . "_" . height . ".png"
 	FL_OPPONENT19_BUTTON := "FANTASICA IMAGES\Event\Frontlines\opponentselectionscreen\buttonopponent19-" . width . "_" . height . ".png"
 	FL_OPPONENT20_BUTTON := "FANTASICA IMAGES\Event\Frontlines\opponentselectionscreen\buttonopponent20-" . width . "_" . height . ".png"
-	FL_FRONTLINEBACK_BUTTON := "FANTASICA IMAGES\Event\Frontlines\resultscreen\buttonback-" . width . "_" . height . ".png"
+	FL_BACK_BUTTON := "FANTASICA IMAGES\Event\Frontlines\resultscreen\buttonback-" . width . "_" . height . ".png"
 	FL_REMATCH_BUTTON := "FANTASICA IMAGES\Event\Frontlines\resultscreen\buttonrematch-" . width . "_" . height . ".png"
-	
-	ASSIST_BUTTON  := "FANTASICA IMAGES\Event\Frontlines\maineventscreen\buttonassist-" . width . "_" . height . ".png"
-    ASSIST_BACK_BUTTON := "FANTASICA IMAGES\Event\Frontlines\assistscreen\buttonassistback-" . width . "_" . height . ".png"
-    REQUESTASSISTANCE_BUTTON := "FANTASICA IMAGES\Event\Frontlines\assistscreen\buttonrequestassistance-" . width . "_" . height . ".png"
-	ASSIST_ALL_BUTTON := "FANTASICA IMAGES\Event\Frontlines\assistscreen\buttonassistall-" . width . "_" . height . ".png"
+	FL_RESULTVICTORY_TEXT := "FANTASICA IMAGES\Event\Frontlines\resultscreen\textvictory-" . width . "_" . height . ".png"
+    
+    FL_ASSIST_TITLE := "FANTASICA IMAGES\Event\Frontlines\assistscreen\texttitle-" . width . "_" . height . ".png"
+    FL_ASSISTBACK_BUTTON := "FANTASICA IMAGES\Event\Frontlines\assistscreen\buttonassistback-" . width . "_" . height . ".png"
+    FL_REQUESTASSISTANCE_BUTTON := "FANTASICA IMAGES\Event\Frontlines\assistscreen\buttonrequestassistance-" . width . "_" . height . ".png"
+	FL_ASSISTALL_BUTTON := "FANTASICA IMAGES\Event\Frontlines\assistscreen\buttonassistall-" . width . "_" . height . ".png"
     ; ==========================================================================
     
     TOP_CLIMBTREE_BUTTON := "FANTASICA IMAGES\Event\TreeOfParadise\buttonclimbtree-" . width . "_" . height . ".png"

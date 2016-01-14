@@ -260,6 +260,10 @@ loop,
             ColiseumEvent = 0
             SetTimer, Coliseum, 600000
         } ; COLISEUM EVENT
+        else if (FrontlinesEvent && DetectObject(FL_EVENT_ICON))
+        {
+            ClickObject(FL_EVENT_ICON)
+        }
         else if (DetectObject(QUESTTIMER_TEXT))
 		{
             loop, %scrollCount%
@@ -376,6 +380,69 @@ loop,
         ClickObject(BACK_BUTTON)
     }
 	
+    ; ==========================================================================
+	; **************************************************************************
+	; ------------------------ FRONTLINES EVENT PAGE ---------------------------
+	; **************************************************************************
+	; ==========================================================================
+    if (DetectObject(FL_TITLE_IMAGE))
+    {
+        if (DetectObject(FL_ASSISTNOTIFICATION_ICON))
+        {
+            ClickObject(FL_ASSIST_BUTTON)
+        }
+        if (DetectObject(FL_CPBAR1_TEXT))
+        {
+            ClickObject(FL_FIGHT_BUTTON)
+        }
+    }
+    if (DetectObject(FL_ASSIST_TITLE))
+    {
+        if (DetectObject(FL_REQUESTASSISTANCE_BUTTON))
+        {
+            ClickObject(FL_REQUESTASSISTANCE_BUTTON)
+        }
+        else if (DetectObject(FL_ASSISTALL_BUTTON))
+        {
+            ClickObject(FL_ASSISTALL_BUTTON)
+        }
+        else if (DetectObject(FL_ASSISTBACK_BUTTON))
+        {
+            ClickObject(FL_ASSISTBACK_BUTTON)
+        }
+    }
+    if (DetectObject(FL_OPPONENTSELECTION_TITLE))
+    {
+        if (DetectObject(FL_OPPONENT1_BUTTON))
+        {
+            ClickObject(FL_OPPONENT1_BUTTON)
+        }
+    }
+    if (DetectObject(FL_SKIP_BUTTON))
+    {
+        ClickObject(FL_SKIP_BUTTON)
+    }
+    if (DetectObject(FL_SKILL1_BUTTON))
+    {
+        ClickObject(FL_SKILL1_BUTTON)
+    }
+    if (DetectObject(FL_SKILL2_BUTTON))
+    {
+        ClickObject(FL_SKILL2_BUTTON)
+    }
+    if (DetectObject(FL_SKILL3_BUTTON))
+    {
+        ClickObject(FL_SKILL3_BUTTON)
+    }
+    if (DetectObject(FL_RESULTVICTORY_TEXT))
+    {
+        if (DetectObject(FL_BACK_BUTTON))
+        {
+            ClickObject(FL_BACK_BUTTON)
+        }
+    }
+    
+    
 	; ==========================================================================
 	; **************************************************************************
 	; --------------------- TRAIN-ENCOUNTER EVENT PAGE -------------------------
