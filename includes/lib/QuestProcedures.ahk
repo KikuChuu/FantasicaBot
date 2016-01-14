@@ -541,7 +541,6 @@ DeployUnit(AllyPower = 0, AllyType = 0)
 		}
 	}
 	
-	
 	;Choose a unit to deploy
 	if DetectObject(DEPLOYUNIT1_BUTTON)
 	{
@@ -818,7 +817,6 @@ FindCoordinate(Byref X, Byref Y, Byref numOfPasses := 0)
 
 PlaceUnitAt(CoordX, CoordY)
 {
-	SetTimer, TimeOut, 5000
 	global SLEEPTIME
 	global BLUESTACK_WINDOW_TITLE
 	
@@ -827,19 +825,9 @@ PlaceUnitAt(CoordX, CoordY)
 		WinActivate, %BLUESTACK_WINDOW_TITLE%
 	}
 	
-	PixelGetColor, PixColor, %CoordX%, %CoordY%
-	PixState := PixColor
-	while (PixState == PixColor)
-	{
-		SendEvent { Click down %CoordX%, %CoordY%}
-		Sleep SLEEPTIME
-		PixelGetColor, PixState, %CoordX%, %CoordY%
-		SendEvent { Click up }
-	}
-	Sleep SLEEPTIME
-	
-	TimeOut:
-		return
+    SendEvent { Click down %CoordX%, %CoordY%}
+    Sleep SLEEPTIME
+    SendEvent { Click up }
 }
 
 ;Scrolls down a list

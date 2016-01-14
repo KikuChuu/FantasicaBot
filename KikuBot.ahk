@@ -8,8 +8,6 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 Init_globals() ; Found in GlobalConstants.ahk
 ;--------------------------------------------
 
-
-
 SelectAndStartLatestTraining()
 {
 	global
@@ -45,23 +43,9 @@ SelectAndStartLatestTraining()
 	}
 }
 
-
 ;========================================================
 ;==================== QUEST START =======================
 ;========================================================
-;SetTimer, RandomPopupOrCrash, 300000 ;handles crashes, popup advertisements every 5 minutes
-
-
-
-	; GWTF_TRAIN_BUTTON := "FANTASICA IMAGES\Event\GoWithTheFloe\Training\buttontrain.png"
-	; GWTF_BOSSLIST_BUTTON := "FANTASICA IMAGES\Event\Training\GoWithTheFloe\buttonbosslist.png"
-	; GWTF_ASIST_BUTTON := "FANTASICA IMAGES\Event\Training\GoWithTheFloe\buttonassist.png"
-	; GWTF_TRAININGFIGHT_BUTTON := "FANTASICA IMAGES\Event\GoWithTheFloe\Training\buttonfight.png"
-	; GWTF_TRAININGFLEE_BUTTON := "FANTASICA IMAGES\Event\GoWithTheFloe\Training\buttonflee.png"
-	; GWTF_TRAININGUSEGLOBE_BUTTON := "FANTASICA IMAGES\Event\GoWithTheFloe\Training\buttonuseglacialglobe.png"
-	; GWTF_NIEVE_IMAGE :=
-
-
 DoQuest()
 {
 	global
@@ -283,14 +267,11 @@ loop,
                 SetTimer, Frontlines, 3600000
             }
             else
-            {
-                if (scrollCount > 0)
-                {   
-                    scrollCount++
-                    loop, %scrollCount%
-                    {
-                        Scroll(MENU_X2, MENU_Y2, MENU_X1, MENU_Y1)
-                    }
+            {  
+                scrollCount++
+                loop, %scrollCount%
+                {
+                    Scroll(MENU_X2, MENU_Y2, MENU_X1, MENU_Y1)
                 }
             }
         }
