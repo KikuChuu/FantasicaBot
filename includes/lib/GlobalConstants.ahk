@@ -296,6 +296,7 @@ Init_globals()
 	TRAINING2_ICON := "FANTASICA IMAGES\MainPage\icontraining2-" . width . "_" . height . ".png" ;Training icon on homepage at index 2 (starting with index 0)
 	TRAINING3_ICON := "FANTASICA IMAGES\MainPage\icontraining3-" . width . "_" . height . ".png" ;Training icon on homepage at index 3 (starting with index 0)	
 	TRAINING4_ICON := "FANTASICA IMAGES\MainPage\icontraining4-" . width . "_" . height . ".png" ;Training icon on homepage at index 4 (starting with index 0)	
+    TRAINING5_ICON := "FANTASICA IMAGES\MainPage\icontraining5-" . width . "_" . height . ".png" ;Training icon on homepage at index 5 (starting with index 0)	
 	LOGINBINGOPANEL_ICON := "FANTASICA IMAGES\MainPage\Bingo\iconbingopanel-" . width . "_" . height . ".png" ;login bingo panel
 	LOGINBINGOMYPAGE_BUTTON := "FANTASICA IMAGES\MainPage\Bingo\buttonbingomypage-" . width . "_" . height . ".png" ;button to return to mypage from login bingo
 	LOGINBINGORECEIVE_BUTTON := "FANTASICA IMAGES\MainPage\Bingo\buttonbingoreceive-" . width . "_" . height . ".png" ; receive button when you click a panel in the daily login bingo

@@ -350,6 +350,27 @@ loop,
                 ClickObject(TRNECT_EVENT_ICON)
             }
         } ; TRAINING-ENCOUNTER
+        else if (DetectObject(FULLTRAININGPOINTS_TEXT))
+        {
+            scrollCount := TRAINING_INDEX // 4
+            
+            loop, %scrollCount%
+            {
+                Scroll(MENU_X1, MENU_Y1, MENU_X2, MENU_Y2)
+            }
+            if (DetectObject(TRAINING5_ICON))
+            {
+                ClickObject(TRAINING5_ICON)
+            }
+            else
+            {
+                scrollCount++
+                loop, %scrollCount%
+                {
+                    Scroll(MENU_X2, MENU_Y2, MENU_X1, MENU_Y1)
+                }
+            }
+        }
 	}
 	
 	; ==========================================================================
