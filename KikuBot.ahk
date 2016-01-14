@@ -418,10 +418,6 @@ loop,
             ClickObject(FL_OPPONENT1_BUTTON)
         }
     }
-    if (DetectObject(FL_SKIP_BUTTON))
-    {
-        ClickObject(FL_SKIP_BUTTON)
-    }
     if (DetectObject(FL_SKILL1_BUTTON))
     {
         ClickObject(FL_SKILL1_BUTTON)
@@ -434,13 +430,18 @@ loop,
     {
         ClickObject(FL_SKILL3_BUTTON)
     }
-    if (DetectObject(FL_RESULTVICTORY_TEXT))
+    if (DetectObject(FL_SKIP_BUTTON))
+    {
+        ClickObject(FL_SKIP_BUTTON)
+    }
+    if (DetectObject(FL_RESULTVICTORY_TEXT) || DetectObject(FL_RESULTDEFEAT_TEXT))
     {
         if (DetectObject(FL_BACK_BUTTON))
         {
             ClickObject(FL_BACK_BUTTON)
         }
     }
+    
     
     
 	; ==========================================================================

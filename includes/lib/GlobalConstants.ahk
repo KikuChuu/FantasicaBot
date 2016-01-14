@@ -397,6 +397,7 @@ Init_globals()
 	FL_BACK_BUTTON := "FANTASICA IMAGES\Event\Frontlines\resultscreen\buttonback-" . width . "_" . height . ".png"
 	FL_REMATCH_BUTTON := "FANTASICA IMAGES\Event\Frontlines\resultscreen\buttonrematch-" . width . "_" . height . ".png"
 	FL_RESULTVICTORY_TEXT := "FANTASICA IMAGES\Event\Frontlines\resultscreen\textvictory-" . width . "_" . height . ".png"
+    FL_RESULTDEFEAT_TEXT := "FANTASICA IMAGES\Event\Frontlines\resultscreen\textdefeat-" . width . "_" . height . ".png"
     
     FL_ASSIST_TITLE := "FANTASICA IMAGES\Event\Frontlines\assistscreen\texttitle-" . width . "_" . height . ".png"
     FL_ASSISTBACK_BUTTON := "FANTASICA IMAGES\Event\Frontlines\assistscreen\buttonassistback-" . width . "_" . height . ".png"
