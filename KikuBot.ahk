@@ -254,17 +254,45 @@ loop,
     if (DetectObject(MYPAGEID_TEXT))
 	{
         scrollCount := QUEST_INDEX // 4
-        if (ColiseumEvent && DetectObject(COL_EVENT_ICON))
+        if (ColiseumEvent)
         {
-            ClickObject(COL_EVENT_ICON)
-            ColiseumEvent = 0
-            SetTimer, Coliseum, 600000
+            if (DetectObject(COL_EVENT_ICON))
+            {
+                ClickObject(COL_EVENT_ICON)
+                ColiseumEvent = 0
+                SetTimer, Coliseum, 600000
+            }
+            else
+            {
+                if (scrollCount > 0)
+                {   
+                    scrollCount++
+                    loop, %scrollCount%
+                    {
+                        Scroll(MENU_X2, MENU_Y2, MENU_X1, MENU_Y1)
+                    }
+                }
+            }
         } ; COLISEUM EVENT
-        else if (FrontlinesEvent && DetectObject(FL_EVENT_ICON))
+        else if (FrontlinesEvent)
         {
-            ClickObject(FL_EVENT_ICON)
-            FrontlinesEvent = 0
-            SetTimer, Frontlines, 3600000
+            if (DetectObject(FL_EVENT_ICON))
+            {
+                ClickObject(FL_EVENT_ICON)
+                FrontlinesEvent = 0
+                SetTimer, Frontlines, 3600000
+            }
+            else
+            {
+                if (scrollCount > 0)
+                {   
+                    scrollCount++
+                    loop, %scrollCount%
+                    {
+                        Scroll(MENU_X2, MENU_Y2, MENU_X1, MENU_Y1)
+                    }
+                }
+            }
         }
         else if (DetectObject(QUESTTIMER_TEXT))
 		{
@@ -424,19 +452,22 @@ loop,
             ClickObject(FL_OPPONENT1_BUTTON)
         }
     }
-    if (DetectObject(FL_SKILL1_BUTTON))
+    if (DetectObject(FL_SKILL1_BUTTON) || DetectObject(FL_SKILL2_BUTTON) || DetectObject(FL_SKILL3_BUTTON))
     {
-        ClickObject(FL_SKILL1_BUTTON)
+        if (DetectObject(FL_SKILL1_BUTTON))
+        {
+            ClickObject(FL_SKILL1_BUTTON)
+        }
+        if (DetectObject(FL_SKILL2_BUTTON))
+        {
+            ClickObject(FL_SKILL2_BUTTON)
+        }
+        if (DetectObject(FL_SKILL3_BUTTON))
+        {
+            ClickObject(FL_SKILL3_BUTTON)
+        }
     }
-    if (DetectObject(FL_SKILL2_BUTTON))
-    {
-        ClickObject(FL_SKILL2_BUTTON)
-    }
-    if (DetectObject(FL_SKILL3_BUTTON))
-    {
-        ClickObject(FL_SKILL3_BUTTON)
-    }
-    if (DetectObject(FL_SKIP_BUTTON))
+    else if (DetectObject(FL_SKIP_BUTTON))
     {
         ClickObject(FL_SKIP_BUTTON)
     }

@@ -40,9 +40,9 @@
 ;********************************************
 ;============================================
 	BotEvent := 1
-	TrainEncounterEvent := 1
+	TrainEncounterEvent := 0
 	TrainEncounterEvent_USEITEM := 1
-    ColiseumEvent := 1
+    ColiseumEvent := 0
     FrontlinesEvent := 1
     
 	TIME_ELIXIR = 0
