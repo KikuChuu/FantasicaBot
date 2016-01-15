@@ -287,6 +287,8 @@ CallAlly(AllyPower=0, AllyType=0)
 	WaitObject(CONFIRMUNITPLACEMENT_BUTTON)
 	ClickObject(CONFIRMUNITPLACEMENT_BUTTON)
 	
+    FindCoordinate(MapX, MapY, numOfPasses, 1)
+    
 	while DetectObject(CANCELPLACEMENT_BUTTON) 
 	{
 		Sleep SLEEPTIME
@@ -357,7 +359,6 @@ ChooseAlly()
 ; AllyType   - Controls how to filter the list by unit type
 ;               0 = Default, 1 = Melee, 2 = Missile, 3 = Magic
 ; Return     - Returns 1 if a unit was deployed, 0 otherwise.
-
 DeployUnit(AllyPower = 0, AllyType = 0)
 {
 	global
@@ -410,7 +411,6 @@ DeployUnit(AllyPower = 0, AllyType = 0)
 			}
 		}
 	}
-	
 	else if AllyPower = 2
 	{
 		;SORT BY AIR ATK
@@ -593,6 +593,8 @@ DeployUnit(AllyPower = 0, AllyType = 0)
 	WaitObject(CONFIRMUNITPLACEMENT_BUTTON)
 	ClickObject(CONFIRMUNITPLACEMENT_BUTTON)
 	
+    FindCoordinate(MapX, MapY, numOfPasses, 1)
+    
 	while DetectObject(CANCELPLACEMENT_BUTTON) ;busy wait until unit placement is done (in case of lag)
 	{
 		msg := "Waiting for cancel placement"
@@ -676,7 +678,7 @@ EventBoss(allycount=0)
 	return
 }
 
-FindCoordinate(Byref X, Byref Y, Byref numOfPasses := 0)
+FindCoordinate(Byref X, Byref Y, Byref numOfPasses := 0, incrementCol := 0)
 {
 	global SLEEPTIME, RESTRICTPLACEMENTON_COL1, RESTRICTPLACEMENTON_COL2, QUICKSCAN, REVELATIONTOWER, LEVELBOT
 	global BLUESTACK_WINDOW_TITLE
@@ -685,134 +687,141 @@ FindCoordinate(Byref X, Byref Y, Byref numOfPasses := 0)
     maxPasses := 1
     
 	;declare our static vars here
-	static row:= 3
+	static row:= 0
 	static col:= 0
     
-    if (LEVELBOT == 1)
-	{
-	    global SCAN_START_X, SCAN_START_Y, SCAN_TILE_SIZE
-		StartX := SCAN_START_X
-		StartY := SCAN_START_Y
-		TileSize := SCAN_TILE_SIZE
-		MapMaxRow := 7 ;starting with row 0
-		MapMaxCol := 7 ;starting with col 0	
-		
-		if (QUICKSCAN == 1)
-		{
-			SLEEPTEMP := SLEEPTIME // 2
-		}
-		else if (QUICKSCAN == 2)
-		{
-			SLEEPTEMP := 1
-		}
-		else
-		{
-			SLEEPTEMP := SLEEPTIME
-		}
-		
-		while (numOfPasses < maxPasses)
-		{
-			IfWinNotActive, %BLUESTACK_WINDOW_TITLE%
-			{
-				WinActivate, %BLUESTACK_WINDOW_TITLE%
-			}
-			while row <= MapMaxRow
-			{
-				;msgbox row is . %row%
-				CurrentRowCoord := StartY + (row * TileSize)
-				while col <= MapMaxCol
-				{
-					CurrentColCoord := StartX + (col * TileSize)
-					PixelGetColor, tileColor, %CurrentColCoord%, %CurrentRowCoord%
-					comparisonColor := tileColor
-					;if (QUICKSCAN == 1)
-					;{
-					Sleep SLEEPTEMP
-					;}
-					PixelGetColor, tileColor, %CurrentColCoord%, %CurrentRowCoord%
-					;MsgBox %tileColor% to %comparisonColor% %row% %col%
-					SB_SetText("Scanning for available coordinates (" . CurrentColCoord . "x" . CurrentRowCoord . ")" )
-					if (tileColor <> comparisonColor)
-					{
-						X := CurrentColCoord
-						Y := CurrentRowCoord
-						col++
-						;SB_SetText("Scanning for available coordinates (" . CurrentColCoord . "x" . CurrentRowCoord . ")" )
-						return 1
-					}
-					col++
-				}
-				row++
-				col := 0
-			}
-			row := 0 ;scanned the entire map, starting from beginning
-            numOfPasses++
-		}
-	}
-	else
-	{
-		global SCAN_START_X, SCAN_START_Y, SCAN_TILE_SIZE
-		StartX := SCAN_START_X
-		StartY := SCAN_START_Y
-		TileSize := SCAN_TILE_SIZE / 2
-		MapMaxRow := 14 ;starting with row 0
-		MapMaxCol := 14 ;starting with col 0
-		
-		
-		if (QUICKSCAN == 1)
-		{
-			SLEEPTEMP := SLEEPTIME // 2
-		}
-		else if (QUICKSCAN == 2)
-		{
-			SLEEPTEMP := 1
-		}
-		else
-		{
-			SLEEPTEMP := SLEEPTIME
-		}
-		
-		while (numOfPasses < maxPasses)
-		{
-			IfWinNotActive, %BLUESTACK_WINDOW_TITLE%
-			{
-				WinActivate, %BLUESTACK_WINDOW_TITLE%
-			}
-			while row <= MapMaxRow
-			{
-				;msgbox row is . %row%
-				CurrentRowCoord := StartY + (row * TileSize)
-				while col <= (MapMaxCol)
-				{
-					CurrentColCoord := StartX + (col * TileSize)
-					PixelGetColor, tileColor, %CurrentColCoord%, %CurrentRowCoord%
-					comparisonColor := tileColor
-					;if (QUICKSCAN == 1)
-					;{
-					Sleep SLEEPTEMP
-					;}
-					PixelGetColor, tileColor, %CurrentColCoord%, %CurrentRowCoord%
-					;MsgBox %tileColor% to %comparisonColor% %row% %col%
-					SB_SetText("Scanning for available coordinates (" . CurrentColCoord . "x" . CurrentRowCoord . ")")
-					if (tileColor <> comparisonColor)
-					{
-						X := CurrentColCoord
-						Y := CurrentRowCoord
-						col++
-						;SB_SetText("Scanning for available coordinates (" . CurrentColCoord . "x" . CurrentRowCoord . ")" )
-						return 1
-					}
-					col++
-				}
-				row++
-				col := 0
-                switch++
-			}
-			row := 0 ;scanned the entire map, starting from beginning
-            numOfPasses++
-		}
-	}
-    return 0
+    if (incrementCol && LEVELBOT == 0)
+    {
+        col++
+    }
+    else
+    {
+        if (LEVELBOT == 1)
+        {
+            global SCAN_START_X, SCAN_START_Y, SCAN_TILE_SIZE
+            StartX := SCAN_START_X
+            StartY := SCAN_START_Y
+            TileSize := SCAN_TILE_SIZE
+            MapMaxRow := 7 ;starting with row 0
+            MapMaxCol := 7 ;starting with col 0	
+            
+            if (QUICKSCAN == 1)
+            {
+                SLEEPTEMP := SLEEPTIME // 2
+            }
+            else if (QUICKSCAN == 2)
+            {
+                SLEEPTEMP := 1
+            }
+            else
+            {
+                SLEEPTEMP := SLEEPTIME
+            }
+            
+            while (numOfPasses < maxPasses)
+            {
+                IfWinNotActive, %BLUESTACK_WINDOW_TITLE%
+                {
+                    WinActivate, %BLUESTACK_WINDOW_TITLE%
+                }
+                while row <= MapMaxRow
+                {
+                    ;msgbox row is . %row%
+                    CurrentRowCoord := StartY + (row * TileSize)
+                    while col <= MapMaxCol
+                    {
+                        CurrentColCoord := StartX + (col * TileSize)
+                        PixelGetColor, tileColor, %CurrentColCoord%, %CurrentRowCoord%
+                        comparisonColor := tileColor
+                        ;if (QUICKSCAN == 1)
+                        ;{
+                        Sleep SLEEPTEMP
+                        ;}
+                        PixelGetColor, tileColor, %CurrentColCoord%, %CurrentRowCoord%
+                        ;MsgBox %tileColor% to %comparisonColor% %row% %col%
+                        SB_SetText("Scanning for available coordinates (" . CurrentColCoord . "x" . CurrentRowCoord . ")" )
+                        if (tileColor <> comparisonColor)
+                        {
+                            X := CurrentColCoord
+                            Y := CurrentRowCoord
+                            col++
+                            ;SB_SetText("Scanning for available coordinates (" . CurrentColCoord . "x" . CurrentRowCoord . ")" )
+                            return 1
+                        }
+                        col++
+                    }
+                    row++
+                    col := 0
+                }
+                row := 0 ;scanned the entire map, starting from beginning
+                numOfPasses++
+            }
+        }
+        else
+        {
+            global SCAN_START_X, SCAN_START_Y, SCAN_TILE_SIZE
+            StartX := SCAN_START_X
+            StartY := SCAN_START_Y
+            TileSize := SCAN_TILE_SIZE / 2
+            MapMaxRow := 14 ;starting with row 0
+            MapMaxCol := 14 ;starting with col 0
+            
+            
+            if (QUICKSCAN == 1)
+            {
+                SLEEPTEMP := SLEEPTIME // 2
+            }
+            else if (QUICKSCAN == 2)
+            {
+                SLEEPTEMP := 1
+            }
+            else
+            {
+                SLEEPTEMP := SLEEPTIME
+            }
+            
+            while (numOfPasses < maxPasses)
+            {
+                IfWinNotActive, %BLUESTACK_WINDOW_TITLE%
+                {
+                    WinActivate, %BLUESTACK_WINDOW_TITLE%
+                }
+                while row <= MapMaxRow
+                {
+                    ;msgbox row is . %row%
+                    CurrentRowCoord := StartY + (row * TileSize)
+                    while col <= (MapMaxCol)
+                    {
+                        CurrentColCoord := StartX + (col * TileSize)
+                        PixelGetColor, tileColor, %CurrentColCoord%, %CurrentRowCoord%
+                        comparisonColor := tileColor
+                        ;if (QUICKSCAN == 1)
+                        ;{
+                        Sleep SLEEPTEMP
+                        ;}
+                        PixelGetColor, tileColor, %CurrentColCoord%, %CurrentRowCoord%
+                        ;MsgBox %tileColor% to %comparisonColor% %row% %col%
+                        SB_SetText("Scanning for available coordinates (" . CurrentColCoord . "x" . CurrentRowCoord . ")")
+                        if (tileColor <> comparisonColor)
+                        {
+                            X := CurrentColCoord
+                            Y := CurrentRowCoord
+                            col++
+                            ;SB_SetText("Scanning for available coordinates (" . CurrentColCoord . "x" . CurrentRowCoord . ")" )
+                            return 1
+                        }
+                        col++
+                    }
+                    row++
+                    col := 0
+                    switch++
+                }
+                row := 0 ;scanned the entire map, starting from beginning
+                numOfPasses++
+            }
+        }
+        return 0
+    }
 }
 
 PlaceUnitAt(CoordX, CoordY)
