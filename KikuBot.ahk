@@ -281,7 +281,10 @@ loop,
                 else
                 {
                     scrollCount++
-                    Scroll(MENU_X2, MENU_Y2, MENU_X1, MENU_Y1)
+                    loop, %scrollCount%
+                    {
+                        Scroll(MENU_X1, MENU_Y1, MENU_X2, MENU_Y2)
+                    }
                 }
             }
         }
@@ -325,7 +328,7 @@ loop,
         }
         else if (DetectObject(QUESTTIMER_TEXT))
 		{
-            scrollCount := QUEST_INDEX // 4
+            scrollCount := QUEST_INDEX // 3
 			if (DetectObject(QUEST3_ICON))
 			{
 				ClickObject(QUEST3_ICON)
@@ -394,7 +397,7 @@ loop,
         } ; TRAINING-ENCOUNTER
         else if (DetectObject(FULLTRAININGPOINTS_TEXT))
         {
-            scrollCount := TRAINING_INDEX // 4
+            scrollCount := TRAINING_INDEX // 3
             
             if (DetectObject(TRAINING5_ICON))
             {
@@ -516,17 +519,17 @@ loop,
             if (FrontlinesHolyWaterCount > 0)
             {
                 ClickObject(FL_FIGHT_BUTTON)
-                if (DetectObject(FL_HOLYWATER_BUTTON))
+                if (DetectObject(FL_HOLYWATERSTOCK0_TEXT))
+                {
+                    ClickObject(FL_CLOSE_BUTTON)
+                    FrontlinesHolyWaterCount = 0
+                }
+                else if (DetectObject(FL_HOLYWATER_BUTTON))
                 {
                     ClickObject(FL_HOLYWATER_BUTTON)
                     WaitObject(FL_HOLYWATERYES_BUTTON)
                     ClickOBject(FL_HOLYWATERYES_BUTTON)
                     FrontlinesHolyWaterCount--
-                }
-                else
-                {
-                    ClickObject(FL_CLOSE_BUTTON)
-                    FrontlinesHolyWaterCount = 0
                 }
             }
             else

@@ -388,6 +388,7 @@ Init_globals()
     FL_MYPAGE_BUTTON := "FANTASICA IMAGES\Event\Frontlines\maineventscreen\buttonmypage-" . width . "_" . height . ".png"
     
 	FL_FIGHT_BUTTON := "FANTASICA IMAGES\Event\Frontlines\maineventscreen\buttonfight-" . width . "_" . height . ".png"
+    FL_HOLYWATERSTOCK0_TEXT := "FANTASICA IMAGES\Event\Frontlines\maineventscreen\textholywaterstock0-" . width . "_" . height . ".png"
     FL_HOLYWATER_BUTTON := "FANTASICA IMAGES\Event\Frontlines\maineventscreen\buttonholywater-" . width . "_" . height . ".png"
     FL_HOLYWATERYES_BUTTON := "FANTASICA IMAGES\Event\Frontlines\maineventscreen\buttonholywateryes-" . width . "_" . height . ".png"
     FL_CLOSE_BUTTON := "FANTASICA IMAGES\Event\Frontlines\maineventscreen\buttonclose-" . width . "_" . height . ".png"
