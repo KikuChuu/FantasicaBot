@@ -526,6 +526,10 @@ loop,
     {
         ClickObject(DICE_MOVE_BUTTON)
     }
+    if (DetectObject(DICE_OPENCHEST_BUTTON))
+    {
+        ClickObject(DICE_OPENCHEST_BUTTON)
+    }
     if (DetectObject(DICE_STOP_BUTTON))
     {
         loop,
@@ -560,6 +564,11 @@ loop,
             ClickObject(DICE_NEXT_BUTTON)
         }
     }
+   if (DetectObject(DICE_LEFT_BUTTON))
+   {
+        coord := WaitObject(DICE_LEFT_BUTTON)
+        ClickAt(coord[1], coord[2])
+   }
     ; ==========================================================================
 	; **************************************************************************
 	; ------------------------ FRONTLINES EVENT PAGE ---------------------------
