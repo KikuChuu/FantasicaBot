@@ -58,6 +58,9 @@
     
     ; -- Roll the Dice --
     RollTheDiceEvent := 1
+    RollTheDiceUseDrops := 1
+    RollTheDiceDropsCount := 4
+    
     
 	TIME_ELIXIR = 0
 	SEARCHLIMIT := 2

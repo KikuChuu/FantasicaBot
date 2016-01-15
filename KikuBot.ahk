@@ -512,7 +512,14 @@ loop,
     }
     if (DetectObject(DICE_HEAL_BUTTON))
     {
-        ClickObject(DICE_HEAL_BUTTON)
+        if (RollTheDiceUseDrops)
+        {
+            ClickObject(DICE_HEAL_BUTTON)
+        }
+        else
+        {
+            
+        }
     }
     if (DetectObject(DICE_CLOSEPOPUP_BUTTON))
     {
@@ -567,6 +574,11 @@ loop,
    if (DetectObject(DICE_LEFT_BUTTON))
    {
         coord := WaitObject(DICE_LEFT_BUTTON)
+        ClickAt(coord[1], coord[2])
+   }
+   if (DetectObject(DICE_DOWN_BUTTON))
+   {
+        coord := WaitObject(DICE_DOWN_BUTTON)
         ClickAt(coord[1], coord[2])
    }
     ; ==========================================================================
