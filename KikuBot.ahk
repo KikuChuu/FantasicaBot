@@ -235,36 +235,23 @@ loop,
 	; ---------------- MAIN PAGE -------------------
 	; **********************************************
 	; ==============================================
-    if (DetectObject(INBOX_TITLE))
-    {
-        if (DetectObject(INBOX_ALL_BUTTON))
-        {
-            ClickObject(INBOX_ALL_BUTTON)
-        }
-        else if (DetectObject(INBOX_ITEMS_BUTTON))
-        {
-            ClickObject(INBOX_ITEMS_BUTTON)
-        }
-        else if (DetectObject(INBOX_RECEIVE_BUTTON))
-        {
-            ClickObject(INBOX_RECEIVE_BUTTON)
-        }
-        else
-        {
-            ClickObject(BACK_BUTTON)
-        }
-    }
     if (DetectObject(MYPAGEID_TEXT))
 	{
         scrollCount := 0
         if (CheckInbox)
         {
             scrollCount := INBOX_INDEX // 3
-            if (DetectObject(INBOX_ICON))
+            if (DetectObject(INBOX1_ICON))
             {
                 CheckInbox = 0
                 SetTimer, Inbox, 3600000
-                ClickObject(INBOX_ICON)
+                ClickObject(INBOX1_ICON)
+            }
+            else if (DetectObject(INBOX2_ICON))
+            {
+                CheckInbox = 0
+                SetTimer, Inbox, 3600000
+                ClickObject(INBOX2_ICON)
             }
             else
             {
@@ -278,6 +265,12 @@ loop,
                     SetTimer, Inbox, 3600000
                     ClickObject(INBOX_ICON)
                 }
+                else if (DetectObject(INBOX2_ICON))
+                {
+                    CheckInbox = 0
+                    SetTimer, Inbox, 3600000
+                    ClickObject(INBOX2_ICON)
+                }
                 else
                 {
                     scrollCount++
@@ -287,8 +280,11 @@ loop,
                     }
                 }
             }
+        } ; CHECK INBOX
+        else if (RollTheDiceEvent)
+        {
+            
         }
-        
         else if (ColiseumEvent)
         {
             if (DetectObject(COL_EVENT_ICON))
@@ -764,6 +760,32 @@ loop,
 		}
 	}
 	
+    
+    ; ==========================================================================
+	; **************************************************************************
+	; ------------------------------- INBOX ------------------------------------
+	; **************************************************************************
+	; ==========================================================================
+    if (DetectObject(INBOX_TITLE))
+    {
+        if (DetectObject(INBOX_ALL_BUTTON))
+        {
+            ClickObject(INBOX_ALL_BUTTON)
+        }
+        else if (DetectObject(INBOX_ITEMS_BUTTON))
+        {
+            ClickObject(INBOX_ITEMS_BUTTON)
+        }
+        else if (DetectObject(INBOX_RECEIVE_BUTTON))
+        {
+            ClickObject(INBOX_RECEIVE_BUTTON)
+        }
+        else
+        {
+            ClickObject(BACK_BUTTON)
+        }
+    }
+    
 	; ==========================================================================
 	; **************************************************************************
 	; ---------------------------- QUEST BATTLE --------------------------------

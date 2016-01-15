@@ -302,7 +302,8 @@ Init_globals()
 	LOGINBINGORECEIVE_BUTTON := "FANTASICA IMAGES\MainPage\Bingo\buttonbingoreceive-" . width . "_" . height . ".png" ; receive button when you click a panel in the daily login bingo
 	LOGINBINGO_TEXT := "FANTASICA IMAGES\MainPage\Bingo\textbingo-" . width . "_" . height . ".png" ;"Login Bingo"
 	
-    INBOX_ICON := "FANTASICA IMAGES\MainPage\iconinbox-" . width . "_" . height . ".png"
+    INBOX1_ICON := "FANTASICA IMAGES\MainPage\iconinbox15-" . width . "_" . height . ".png"
+    INBOX2_ICON := "FANTASICA IMAGES\MainPage\iconinbox16-" . width . "_" . height . ".png"
     INBOX_TITLE := "FANTASICA IMAGES\Inbox\texttitle-" . width . "_" . height . ".png"
     INBOX_ALL_BUTTON := "FANTASICA IMAGES\Inbox\buttonall-" . width . "_" . height . ".png"
     INBOX_ITEMS_BUTTON := "FANTASICA IMAGES\Inbox\buttonitems-" . width . "_" . height . ".png"

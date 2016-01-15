@@ -24,29 +24,40 @@
 	BOTALLQUEST = 1     ;0 = repeat the same quest, 1 = quest progression
 	SKIPQUEST = 1		;1 = speeds up quest battle, 0 = ignore the skip quest button in quest
 
-
+; Inbox Specification
+;--------------------
+    CheckInbox := 1
 
 ;============================================
 ;********************************************
 ;-------   MAIN MENU ICON MAPPINGS ----------
 ;********************************************
 ;============================================
-	QUEST_INDEX := 3
-    TRAINING_INDEX := 4
-    INBOX_INDEX := 17
+	QUEST_INDEX := 2
+    TRAINING_INDEX := 3
+    INBOX_INDEX := 14
 
 ;============================================
 ;********************************************
 ;--------------- EVENT SETTINGS -------------
 ;********************************************
 ;============================================
+    ; -- Used in conjunction with questing --
 	BotEvent := 1
+    
+    ; -- Training-Encounter event --
 	TrainEncounterEvent := 0
-	TrainEncounterEvent_USEITEM := 1
+	TrainEncounterEvent_USEITEM := 0
+    
+    ; -- Coliseum Event --
     ColiseumEvent := 0
-    FrontlinesEvent := 1
-    FrontlinesHolyWaterCount := 4
-    CheckInbox := 1
+    
+    ; -- Frontlines Event --
+    FrontlinesEvent := 0
+    FrontlinesHolyWaterCount := 0
+    
+    ; -- Roll the Dice --
+    RollTheDiceEvent := 1
     
 	TIME_ELIXIR = 0
 	SEARCHLIMIT := 2
