@@ -328,6 +328,26 @@ Init_globals()
     ; --------------------------------------------------------------------------
     ; TRAIN-ENCOUNTER EVENT
     ; --------------------------------------------------------------------------
+    DICE_EVENT_ICON := "FANTASICA IMAGES\Event\DiceEvent\iconevent-" . width . "_" . height . ".png"
+    DICE_TITLE_IMAGE:= "FANTASICA IMAGES\Event\DiceEvent\imagetitle-" . width . "_" . height . ".png"
+    DICE_BEGINEVENT_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\buttonbeginevent-" . width . "_" . height . ".png"
+    DICE_ROLL_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttonrolldice-" . width . "_" . height . ".png"
+    DICE_MOVE_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttonmove-" . width . "_" . height . ".png"
+    DICE_SINGLEDICEFACE1_TEXT := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\textdiceface1-" . width . "_" . height . ".png"
+    DICE_FIVESETDICE1FACE1_TEXT := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\textfivesetdice1face1-" . width . "_" . height . ".png"
+    DICE_FIVESETDICE2FACE1_TEXT := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\textfivesetdice2face1-" . width . "_" . height . ".png"
+    DICE_FIVESETDICE3FACE1_TEXT := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\textfivesetdice3face1-" . width . "_" . height . ".png"
+    DICE_FIVESETDICE4FACE1_TEXT := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\textfivesetdice4face1-" . width . "_" . height . ".png"
+    DICE_FIVESETDICE5FACE1_TEXT := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\textfivesetdice5face1-" . width . "_" . height . ".png"
+    DICE_STOP_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttonstop-" . width . "_" . height . ".png"
+    DICE_CLOSEPOPUP_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttonclose-" . width . "_" . height . ".png"
+    DICE_FIGHT_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttonfight-" . width . "_" . height . ".png"
+    DICE_RESULTS_TITLE := "FANTASICA IMAGES\Event\DiceEvent\resultsscreen\texttitle-" . width . "_" . height . ".png"
+    DICE_TOBOARD_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\resultsscreen\buttontoboard-" . width . "_" . height . ".png"
+    DICE_NEXT_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\resultsscreen\buttonnext-" . width . "_" . height . ".png"
+    ; --------------------------------------------------------------------------
+    ; TRAIN-ENCOUNTER EVENT
+    ; --------------------------------------------------------------------------
 	TRNECT_EVENT_ICON := "FANTASICA IMAGES\Event\UnderTheStarrySkies\iconevent-" . width . "_" . height . ".png" ;Event icon on home page. Change this path for every event
 	TRNECT_TRAIN_BUTTON := "FANTASICA IMAGES\Event\UnderTheStarrySkies\buttontrain-" . width . "_" . height . ".png"
 	TRNECT_BOSSLIST_BUTTON := "FANTASICA IMAGES\Event\UnderTheStarrySkies\buttonbosslist-" . width . "_" . height . ".png"

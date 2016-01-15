@@ -237,7 +237,7 @@ loop,
 	; ==============================================
     if (DetectObject(MYPAGEID_TEXT))
 	{
-        scrollCount := 0
+        scrollCount := INBOX_INDEX // 3
         if (CheckInbox)
         {
             scrollCount := INBOX_INDEX // 3
@@ -283,7 +283,25 @@ loop,
         } ; CHECK INBOX
         else if (RollTheDiceEvent)
         {
-            
+            if (DetectObject(DICE_EVENT_ICON))
+            {
+                ClickObject(DICE_EVENT_ICON)
+            }
+            else
+            {
+                if (scrollCount > 0)
+                {
+                    scrollCount++
+                    loop, %scrollCount%
+                    {
+                        Scroll(MENU_X2, MENU_Y2, MENU_X1, MENU_Y1)
+                    }
+                    if (DetectObject(DICE_EVENT_ICON))
+                    {
+                        ClickObject(DICE_EVENT_ICON)
+                    }
+                }
+            }
         }
         else if (ColiseumEvent)
         {
@@ -480,6 +498,64 @@ loop,
         ClickObject(BACK_BUTTON)
     }
 	
+    ; ==========================================================================
+	; **************************************************************************
+	; -------------------------- DICE EVENT PAGE -------------------------------
+	; **************************************************************************
+	; ==========================================================================
+    if (DetectObject(DICE_TITLE_IMAGE))
+    {
+        if (DetectObject(DICE_BEGINEVENT_BUTTON))
+        {
+            ClickObject(DICE_BEGINEVENT_BUTTON)
+        }
+    }
+    if (DetectObject(DICE_CLOSEPOPUP_BUTTON))
+    {
+        ClickObject(DICE_CLOSEPOPUP_BUTTON)
+    }
+    else if (DetectObject(DICE_ROLL_BUTTON))
+    {
+        ClickObject(DICE_ROLL_BUTTON)
+    }
+    if (DetectObject(DICE_MOVE_BUTTON))
+    {
+        ClickObject(DICE_MOVE_BUTTON)
+    }
+    if (DetectObject(DICE_STOP_BUTTON))
+    {
+        loop,
+        {
+            if (DetectObject(DICE_SINGLEDICEFACE1_TEXT))
+            {
+                 ClickObject(DICE_STOP_BUTTON)
+            }
+            else if (DetectObject(DICE_FIVESETDICE1FACE1_TEXT) && DetectObject(DICE_FIVESETDICE2FACE1_TEXT) && DetectObject(DICE_FIVESETDICE3FACE1_TEXT)
+                && DetectObject(DICE_FIVESETDICE4FACE1_TEXT) && DetectObject(DICE_FIVESETDICE5FACE1_TEXT))
+            {
+                ClickObject(DICE_STOP_BUTTON)
+            }
+            else if (DetectObject(DICE_ROLL_BUTTON))
+            {
+                break
+            }
+        }
+    }
+    if (DetectObject(DICE_FIGHT_BUTTON))
+    {
+        ClickObject(DICE_FIGHT_BUTTON)
+    }
+    if (DetectObject(DICE_RESULTS_TITLE))
+    {
+        if (DetectObject(DICE_TOBOARD_BUTTON))
+        {
+            ClickObject(DICE_TOBOARD_BUTTON)
+        }
+        if (DetectObject(DICE_NEXT_BUTTON))
+        {
+            ClickObject(DICE_NEXT_BUTTON)
+        }
+    }
     ; ==========================================================================
 	; **************************************************************************
 	; ------------------------ FRONTLINES EVENT PAGE ---------------------------
