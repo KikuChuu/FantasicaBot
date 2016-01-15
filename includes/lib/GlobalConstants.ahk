@@ -381,6 +381,8 @@ Init_globals()
     FL_TITLE_IMAGE := "FANTASICA IMAGES\Event\Frontlines\imagetitle-" . width . "_" . height . ".png"
     FL_CPBAR0_TEXT := "FANTASICA IMAGES\Event\Frontlines\maineventscreen\textcpbar0-" . width . "_" . height . ".png"
 	FL_CPBAR1_TEXT := "FANTASICA IMAGES\Event\Frontlines\maineventscreen\textcpbar1-" . width . "_" . height . ".png"
+    FL_REWARDS_BUTTON := "FANTASICA IMAGES\Event\Frontlines\maineventscreen\buttonrewards-" . width . "_" . height . ".png"
+    FL_REWARDSNOTIFICATION_BUTTON := "FANTASICA IMAGES\Event\Frontlines\maineventscreen\buttonrewardsnotification-" . width . "_" . height . ".png"
     FL_ASSISTNOTIFICATION_ICON := "FANTASICA IMAGES\Event\Frontlines\maineventscreen\buttonassistnotification-" . width . "_" . height . ".png"
     FL_ASSIST_BUTTON  := "FANTASICA IMAGES\Event\Frontlines\maineventscreen\buttonassist-" . width . "_" . height . ".png"
     FL_MYPAGE_BUTTON := "FANTASICA IMAGES\Event\Frontlines\maineventscreen\buttonmypage-" . width . "_" . height . ".png"
@@ -409,6 +411,9 @@ Init_globals()
 	FL_REMATCH_BUTTON := "FANTASICA IMAGES\Event\Frontlines\resultscreen\buttonrematch-" . width . "_" . height . ".png"
 	FL_RESULTVICTORY_TEXT := "FANTASICA IMAGES\Event\Frontlines\resultscreen\textvictory-" . width . "_" . height . ".png"
     FL_RESULTDEFEAT_TEXT := "FANTASICA IMAGES\Event\Frontlines\resultscreen\textdefeat-" . width . "_" . height . ".png"
+    
+    FL_REWARDS_TITLE := "FANTASICA IMAGES\Event\Frontlines\rewardsscreen\texttitle-" . width . "_" . height . ".png"
+    FL_RECEIVE_BUTTON := "FANTASICA IMAGES\Event\Frontlines\rewardsscreen\buttonreceive-" . width . "_" . height . ".png"
     
     FL_ASSIST_TITLE := "FANTASICA IMAGES\Event\Frontlines\assistscreen\texttitle-" . width . "_" . height . ".png"
     FL_ASSISTBACK_BUTTON := "FANTASICA IMAGES\Event\Frontlines\assistscreen\buttonassistback-" . width . "_" . height . ".png"

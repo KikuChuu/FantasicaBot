@@ -486,8 +486,23 @@ loop,
 	; ------------------------ FRONTLINES EVENT PAGE ---------------------------
 	; **************************************************************************
 	; ==========================================================================
+    if (DetectObject(FL_REWARDS_TITLE))
+    {
+        if (DetectObject(FL_RECEIVE_BUTTON))
+        {
+            ClickObject(FL_RECEIVE_BUTTON)
+        }
+        else
+        {
+            ClickObject(BACK_BUTTON)
+        }
+    }
     if (DetectObject(FL_TITLE_IMAGE))
     {
+        if (DetectObject(FL_REWARDSNOTIFICATION_BUTTON))
+        {
+            ClickObject(FL_REWARDS_BUTTON)
+        }
         if (DetectObject(FL_ASSISTNOTIFICATION_ICON))
         {
             ClickObject(FL_ASSIST_BUTTON)
