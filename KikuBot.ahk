@@ -259,11 +259,11 @@ loop,
                 {
                     Scroll(MENU_X1, MENU_Y1, MENU_X2, MENU_Y2)
                 }
-                if (DetectObject(INBOX_ICON))
+                if (DetectObject(INBOX1_ICON))
                 {
                     CheckInbox = 0
                     SetTimer, Inbox, 3600000
-                    ClickObject(INBOX_ICON)
+                    ClickObject(INBOX1_ICON)
                 }
                 else if (DetectObject(INBOX2_ICON))
                 {
@@ -514,11 +514,26 @@ loop,
     {
         if (RollTheDiceUseDrops)
         {
-            ClickObject(DICE_HEAL_BUTTON)
+            if (DetectObject(DICE_DROPSSTOCK0_TEXT))
+            {
+                ClickObject(DICE_BOARDBACK_BUTTON)
+                RollTheDiceEvent = 0
+                SetTimer, Dice, 2500000
+                WaitObject(DICE_MPBACK_BUTTON)
+                ClickObject(DICE_MPBACK_BUTTON)
+            }
+            else
+            {
+                ClickObject(DICE_HEAL_BUTTON)
+            }
         }
         else
         {
-            
+            ClickObject(DICE_BOARDBACK_BUTTON)
+            RollTheDiceEvent = 0
+            SetTimer, Dice, 2500000
+            WaitObject(DICE_MPBACK_BUTTON)
+            ClickObject(DICE_MPBACK_BUTTON)
         }
     }
     if (DetectObject(DICE_CLOSEPOPUP_BUTTON))
@@ -550,7 +565,7 @@ loop,
             {
                 ClickObject(DICE_STOP_BUTTON)
             }
-            else if (DetectObject(DICE_ROLL_BUTTON) || DetectObject(DICE_HEAL_BUTTON))
+            else if (DetectObject(DICE_ROLL_BUTTON) || DetectObject(DICE_HEAL_BUTTON) || DetectObject(DICE_ROLLDISABLED_BUTTON))
             {
                 break
             }
@@ -576,7 +591,7 @@ loop,
         coord := WaitObject(DICE_LEFT_BUTTON)
         ClickAt(coord[1], coord[2])
    }
-   if (DetectObject(DICE_DOWN_BUTTON))
+   else if (DetectObject(DICE_DOWN_BUTTON))
    {
         coord := WaitObject(DICE_DOWN_BUTTON)
         ClickAt(coord[1], coord[2])
@@ -1053,6 +1068,10 @@ loop,
 ; ==============================================================================
 Coliseum:
 ColiseumEvent = 1
+return
+
+Dice:
+DiceEvent = 1
 return
 
 Frontlines:

@@ -332,6 +332,8 @@ Init_globals()
     DICE_TITLE_IMAGE:= "FANTASICA IMAGES\Event\DiceEvent\imagetitle-" . width . "_" . height . ".png"
     DICE_BEGINEVENT_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\buttonbeginevent-" . width . "_" . height . ".png"
     DICE_ROLL_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttonrolldice-" . width . "_" . height . ".png"
+    DICE_ROLLDISABLED_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttonrolldicedisabled-" . width . "_" . height . ".png"
+    DICE_DROPSSTOCK0_TEXT := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\textdropsstock0-" . width . "_" . height . ".png"
     DICE_MOVE_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttonmove-" . width . "_" . height . ".png"
     DICE_HEAL_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttonheal-" . width . "_" . height . ".png"
     DICE_OPENCHEST_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttonopenchest-"  . width . "_" . height . ".png"
@@ -349,6 +351,8 @@ Init_globals()
     DICE_NEXT_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\resultsscreen\buttonnext-" . width . "_" . height . ".png"
     DICE_LEFT_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttonleftarrow-" . width . "_" . height . ".png"
     DICE_DOWN_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttondownarrow-" . width . "_" . height . ".png"
+    DICE_BOARDBACK_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttonback-" . width . "_" . height . ".png"
+    DICE_MPBACK_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\buttonback-" . width . "_" . height . ".png"
     
     ; --------------------------------------------------------------------------
     ; TRAIN-ENCOUNTER EVENT
