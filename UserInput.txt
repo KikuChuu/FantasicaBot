@@ -13,7 +13,7 @@
 	
 ;Quest Selection Specification
 ;-----------------------------
-	QUEST = 7 ; Enter 1,2,3,4,5,6, or 7
+	QUEST = 6 ; Enter 1,2,3,4,5,6, or 7
 	EPISODE = 59
 ;Quest Battle specification
 ;--------------------------												 
@@ -31,8 +31,9 @@
 ;-------   MAIN MENU ICON MAPPINGS ----------
 ;********************************************
 ;============================================
-	QUEST_INDEX := 4
-    TRAINING_INDEX := 5
+	QUEST_INDEX := 3
+    TRAINING_INDEX := 4
+    INBOX_INDEX := 17
 
 ;============================================
 ;********************************************
@@ -44,6 +45,7 @@
 	TrainEncounterEvent_USEITEM := 1
     ColiseumEvent := 0
     FrontlinesEvent := 1
+    CheckInbox := 1
     
 	TIME_ELIXIR = 0
 	SEARCHLIMIT := 2

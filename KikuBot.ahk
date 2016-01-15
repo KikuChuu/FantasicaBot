@@ -235,10 +235,58 @@ loop,
 	; ---------------- MAIN PAGE -------------------
 	; **********************************************
 	; ==============================================
+    if (DetectObject(INBOX_TITLE))
+    {
+        if (DetectObject(INBOX_ALL_BUTTON))
+        {
+            ClickObject(INBOX_ALL_BUTTON)
+        }
+        else if (DetectObject(INBOX_ITEMS_BUTTON))
+        {
+            ClickObject(INBOX_ITEMS_BUTTON)
+        }
+        else if (DetectObject(INBOX_RECEIVE_BUTTON))
+        {
+            ClickObject(INBOX_RECEIVE_BUTTON)
+        }
+        else
+        {
+            ClickObject(BACK_BUTTON)
+        }
+    }
     if (DetectObject(MYPAGEID_TEXT))
 	{
         scrollCount := 0
-        if (ColiseumEvent)
+        if (CheckInbox)
+        {
+            scrollCount := INBOX_INDEX // 3
+            if (DetectObject(INBOX_ICON))
+            {
+                CheckInbox = 0
+                SetTimer, Inbox, 3600000
+                ClickObject(INBOX_ICON)
+            }
+            else
+            {
+                loop, %scrollCount%
+                {
+                    Scroll(MENU_X1, MENU_Y1, MENU_X2, MENU_Y2)
+                }
+                if (DetectObject(INBOX_ICON))
+                {
+                    CheckInbox = 0
+                    SetTimer, Inbox, 3600000
+                    ClickObject(INBOX_ICON)
+                }
+                else
+                {
+                    scrollCount++
+                    Scroll(MENU_X2, MENU_Y2, MENU_X1, MENU_Y1)
+                }
+            }
+        }
+        
+        else if (ColiseumEvent)
         {
             if (DetectObject(COL_EVENT_ICON))
             {
@@ -848,6 +896,10 @@ return
 
 Frontlines:
 FrontlinesEvent = 1
+return
+
+Inbox:
+CheckInbox = 1
 return
 ; ==============================================================================
 
