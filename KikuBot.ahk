@@ -283,7 +283,7 @@ loop,
                     scrollCount++
                     loop, %scrollCount%
                     {
-                        Scroll(MENU_X1, MENU_Y1, MENU_X2, MENU_Y2)
+                        Scroll(MENU_X2, MENU_Y2, MENU_X1, MENU_Y1)
                     }
                 }
             }
@@ -519,6 +519,7 @@ loop,
             if (FrontlinesHolyWaterCount > 0)
             {
                 ClickObject(FL_FIGHT_BUTTON)
+                WaitObject(FL_HOLYWATER_BUTTON)
                 if (DetectObject(FL_HOLYWATERSTOCK0_TEXT))
                 {
                     ClickObject(FL_CLOSE_BUTTON)
