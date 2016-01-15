@@ -45,6 +45,7 @@
 	TrainEncounterEvent_USEITEM := 1
     ColiseumEvent := 0
     FrontlinesEvent := 1
+    FrontlinesHolyWaterCount := 4
     CheckInbox := 1
     
 	TIME_ELIXIR = 0

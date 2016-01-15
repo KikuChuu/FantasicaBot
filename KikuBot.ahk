@@ -498,7 +498,26 @@ loop,
         }
         if (DetectObject(FL_CPBAR0_TEXT))
         {
-            ClickObject(FL_MYPAGE_BUTTON)
+            if (FrontlinesHolyWaterCount > 0)
+            {
+                ClickObject(FL_FIGHT_BUTTON)
+                if (DetectObject(FL_HOLYWATER_BUTTON))
+                {
+                    ClickObject(FL_HOLYWATER_BUTTON)
+                    WaitObject(FL_HOLYWATERYES_BUTTON)
+                    ClickOBject(FL_HOLYWATERYES_BUTTON)
+                    FrontlinesHolyWaterCount--
+                }
+                else
+                {
+                    ClickObject(FL_CLOSE_BUTTON)
+                    FrontlinesHolyWaterCount = 0
+                }
+            }
+            else
+            {
+                ClickObject(FL_MYPAGE_BUTTON)
+            }
         }
     }
     if (DetectObject(FL_ASSIST_TITLE))
