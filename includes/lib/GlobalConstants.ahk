@@ -333,6 +333,7 @@ Init_globals()
     DICE_BEGINEVENT_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\buttonbeginevent-" . width . "_" . height . ".png"
     DICE_ROLL_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttonrolldice-" . width . "_" . height . ".png"
     DICE_MOVE_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttonmove-" . width . "_" . height . ".png"
+    DICE_HEAL_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttonheal-" . width . "_" . height . ".png"
     DICE_SINGLEDICEFACE1_TEXT := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\textdiceface1-" . width . "_" . height . ".png"
     DICE_FIVESETDICE1FACE1_TEXT := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\textfivesetdice1face1-" . width . "_" . height . ".png"
     DICE_FIVESETDICE2FACE1_TEXT := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\textfivesetdice2face1-" . width . "_" . height . ".png"

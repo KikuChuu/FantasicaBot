@@ -510,6 +510,10 @@ loop,
             ClickObject(DICE_BEGINEVENT_BUTTON)
         }
     }
+    if (DetectObject(DICE_HEAL_BUTTON))
+    {
+        ClickObject(DICE_HEAL_BUTTON)
+    }
     if (DetectObject(DICE_CLOSEPOPUP_BUTTON))
     {
         ClickObject(DICE_CLOSEPOPUP_BUTTON)
@@ -535,7 +539,7 @@ loop,
             {
                 ClickObject(DICE_STOP_BUTTON)
             }
-            else if (DetectObject(DICE_ROLL_BUTTON))
+            else if (DetectObject(DICE_ROLL_BUTTON) || DetectObject(DICE_HEAL_BUTTON))
             {
                 break
             }
