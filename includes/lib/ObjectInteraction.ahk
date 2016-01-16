@@ -14,16 +14,10 @@ ClickAt(CoordX, CoordY)
 	{
 		WinActivate, %BLUESTACK_WINDOW_TITLE%
 	}
-	
-	PixelGetColor, PixColor, %CoordX%, %CoordY%
-	PixState := PixColor
-	while PixState = PixColor
-	{
-		SendEvent { Click down %CoordX%, %CoordY%}
-		sleep SLEEPTIME
-		PixelGetColor, PixState, %CoordX%, %CoordY%
-		SendEvent { Click up }
-	}
+    
+    SendEvent { Click down %CoordX%, %CoordY%}
+    sleep SLEEPTIME
+    SendEvent { Click up }
 }
 
 ;Objects are buttons and icons
@@ -100,7 +94,6 @@ DetectObject(ByRef Path)
 		BufferY := FoundY
 		return 1
 	}
-	
 }
 
 ;Objects are buttons and icons

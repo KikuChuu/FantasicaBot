@@ -357,6 +357,11 @@ Init_globals()
     DICE_MPBACK_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\buttonback-" . width . "_" . height . ".png"
     DICE_DISCARD_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttondiscard-" . width . "_" . height . ".png"
     DICE_DISCARDYES_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttondiscardyes-" . width . "_" . height . ".png"
+    DICE_WARPBONUSBOARDYES_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\resultsscreen\buttonwarpbonusboardyes-" . width . "_" . height . ".png"
+    DICE_POTIONPROMPT_TEXT := "FANTASICA IMAGES\Event\DiceEvent\battlescreen\textpotionprompt-" . width . "_" . height . ".png"
+    DICE_USEPOTIONYES_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\battlescreen\buttonusepotionyes-" . width . "_" . height . ".png"
+    DICE_USEPOTIONNO_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\battlescreen\buttonusepotionno-" . width . "_" . height . ".png"
+    DICE_GIVEUPYES_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\battlescreen\buttongiveupyes-" . width . "_" . height . ".png"
     ; --------------------------------------------------------------------------
     ; TRAIN-ENCOUNTER EVENT
     ; --------------------------------------------------------------------------

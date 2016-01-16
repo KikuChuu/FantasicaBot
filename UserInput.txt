@@ -60,6 +60,7 @@
     RollTheDiceEvent := 1
     RollTheDiceUseDrops := 1
     RollTheDiceDropsCount := 4
+    RollTheDiceUsePotion := 1
     
     
 	TIME_ELIXIR = 0

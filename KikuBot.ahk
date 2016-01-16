@@ -554,6 +554,23 @@ loop,
     {
         ClickObject(DICE_CLOSEPOPUP_BUTTON)
     }
+    if (DetectObject(DICE_POTIONPROMPT_TEXT))
+    {
+        if (RollTheDiceUsePotion)
+        {
+            ClickObject(DICE_USEPOTIONYES_BUTTON)
+        }
+        else
+        {
+            ClickObject(DICE_USEPOTIONNO_BUTTON)
+            WaitObject(DICE_GIVEUPYES_BUTTON)
+            ClickObject(DICE_GIVEUPYES_BUTTON)
+        }
+    }
+    if (DetectObject(DICE_USEPOTIONYES_BUTTON))
+    {
+        
+    }
     else if (DetectObject(DICE_ROLL_BUTTON))
     {
         ClickObject(DICE_ROLL_BUTTON)
@@ -574,8 +591,7 @@ loop,
             {
                  ClickObject(DICE_STOP_BUTTON)
             }
-            else if (DetectObject(DICE_FIVESETDICE1FACE1_TEXT) && DetectObject(DICE_FIVESETDICE2FACE1_TEXT) && DetectObject(DICE_FIVESETDICE3FACE1_TEXT)
-                && DetectObject(DICE_FIVESETDICE4FACE1_TEXT) && DetectObject(DICE_FIVESETDICE5FACE1_TEXT))
+            else if (DetectObject(DICE_FIVESETDICE1FACE1_TEXT) && DetectObject(DICE_FIVESETDICE2FACE1_TEXT))
             {
                 ClickObject(DICE_STOP_BUTTON)
             }
@@ -591,11 +607,15 @@ loop,
     }
     if (DetectObject(DICE_RESULTS_TITLE))
     {
-        if (DetectObject(DICE_TOBOARD_BUTTON))
+        if (DetectObject(DICE_WARPBONUSBOARDYES_BUTTON))
+        {
+            ClickObject(DICE_WARPBONUSBOARDYES_BUTTON)
+        }
+        else if (DetectObject(DICE_TOBOARD_BUTTON))
         {
             ClickObject(DICE_TOBOARD_BUTTON)
         }
-        if (DetectObject(DICE_NEXT_BUTTON))
+        else if (DetectObject(DICE_NEXT_BUTTON))
         {
             ClickObject(DICE_NEXT_BUTTON)
         }
