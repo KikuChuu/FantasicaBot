@@ -544,6 +544,12 @@ loop,
             ClickObject(DICE_MPBACK_BUTTON)
         }
     }
+    if (DetectObject(DICE_DISCARD_BUTTON))
+    {
+        ClickObject(DICE_DISCARD_BUTTON)
+        WaitObject(DICE_DISCARDYES_BUTTON)
+        ClickObject(DICE_DISCARDYES_BUTTON)
+    }
     if (DetectObject(DICE_CLOSEPOPUP_BUTTON))
     {
         ClickObject(DICE_CLOSEPOPUP_BUTTON)

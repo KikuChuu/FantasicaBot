@@ -354,7 +354,8 @@ Init_globals()
     DICE_DOWN_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttondownarrow-" . width . "_" . height . ".png"
     DICE_BOARDBACK_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttonback-" . width . "_" . height . ".png"
     DICE_MPBACK_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\buttonback-" . width . "_" . height . ".png"
-    
+    DICE_DISCARD_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttondiscard-" . width . "_" . height . ".png"
+    DICE_DISCARDYES_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttondiscardyes-" . width . "_" . height . ".png"
     ; --------------------------------------------------------------------------
     ; TRAIN-ENCOUNTER EVENT
     ; --------------------------------------------------------------------------
