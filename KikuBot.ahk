@@ -585,21 +585,7 @@ loop,
     }
     else if (DetectObject(DICE_STOP_BUTTON))
     {
-        loop,
-        {
-            if (DetectObject(DICE_SINGLEDICEFACE1_TEXT))
-            {
-                 ClickObject(DICE_STOP_BUTTON)
-            }
-            else if (DetectObject(DICE_FIVESETDICE1FACE1_TEXT) && DetectObject(DICE_FIVESETDICE2FACE1_TEXT))
-            {
-                ClickObject(DICE_STOP_BUTTON)
-            }
-            else if (DetectObject(DICE_ROLL_BUTTON) || DetectObject(DICE_HEAL_BUTTON) || DetectObject(DICE_ROLLDISABLED_BUTTON))
-            {
-                break
-            }
-        }
+        ClickObject(DICE_STOP_BUTTON)
     }
     if (DetectObject(DICE_FIGHT_BUTTON))
     {
