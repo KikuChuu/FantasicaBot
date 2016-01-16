@@ -417,6 +417,10 @@ loop,
             {
                 ClickObject(TRAINING5_ICON)
             }
+            else if (DetectObject(TRAINING4_ICON))
+            {
+                ClickObject(TRAINING4_ICON)
+            }
             else
             {
                 loop, %scrollCount%
@@ -427,6 +431,10 @@ loop,
                 if (DetectObject(TRAINING5_ICON))
                 {
                     ClickObject(TRAINING5_ICON)
+                }
+                else if (DetectObject(TRAINING4_ICON))
+                {
+                    ClickObject(TRAINING4_ICON)
                 }
                 else
                 {
@@ -589,6 +597,11 @@ loop,
    if (DetectObject(DICE_LEFT_BUTTON))
    {
         coord := WaitObject(DICE_LEFT_BUTTON)
+        ClickAt(coord[1], coord[2])
+   }
+   else if (DetectObject(DICE_UP_BUTTON))
+   {
+        coord := WaitObject(DICE_UP_BUTTON)
         ClickAt(coord[1], coord[2])
    }
    else if (DetectObject(DICE_DOWN_BUTTON))
