@@ -107,63 +107,67 @@ loop,
 	{
 		ClickObject(POPUPCLOSE_BUTTON)
 	}
-	if (DetectObject(LB_YES_BUTTON))
-	{
-		ClickObject(LB_YES_BUTTON)
-	}
-	if (DetectObject(LB_WALK1_BUTTON))
-	{
-		ClickObject(LB_WALK1_BUTTON)
-	}
-	else if (DetectObject(LB_WALK2_BUTTON))
-	{
-		ClickObject(LB_WALK2_BUTTON)
-	}
-	if (DetectObject(LB_FIGHTYES_BUTTON))
-	{
-		ClickObject(LB_FIGHTYES_BUTTON)
-	}
-	else if (DetectObject(LB_FIGHT_BUTTON))
-	{
-		ClickObject(LB_FIGHT_BUTTON)
-	}
-	if (DetectObject(LB_AUTOBATTLE_BUTTON))
-	{
-		ClickObject(LB_AUTOBATTLE_BUTTON)
-	}
-	if (DetectObject(LB_RESULT1_TEXT))
-	{
-		ClickObject(LB_RESULTBACK_BUTTON)
-	}
-	if (DetectObject(LB_ENEMYLIST_TEXT))
-	{
-		if (DetectObject(LB_FIGHTAGAIN_BUTTON))
-		{
-			ClickObject(LB_FIGHTAGAIN_BUTTON)
-		}
-	}
-	if (DetectObject(LB_RESULT3_TEXT) || DetectObject(LB_RESULT2_TEXT))
-	{
-		ClickObject(LB_COMPLETECLEARBACK_BUTTON)
-	}
-	if (DetectObject(LB_POTION_BUTTON))
-	{
-		ClickObject(LB_BATTLEFIELDBACK_BUTTON)
-		Sleep 2000
-		WaitObject(LB_BATTLEFIELDBACK_BUTTON)
-		ClickObject(LB_BATTLEFIELDBACK_BUTTON)
-	}
+	; if (DetectObject(LB_YES_BUTTON))
+	; {
+		; ClickObject(LB_YES_BUTTON)
+	; }
+	; if (DetectObject(LB_WALK1_BUTTON))
+	; {
+		; ClickObject(LB_WALK1_BUTTON)
+	; }
+	; else if (DetectObject(LB_WALK2_BUTTON))
+	; {
+		; ClickObject(LB_WALK2_BUTTON)
+	; }
+	; if (DetectObject(LB_FIGHTYES_BUTTON))
+	; {
+		; ClickObject(LB_FIGHTYES_BUTTON)
+	; }
+	; else if (DetectObject(LB_FIGHT_BUTTON))
+	; {
+		; ClickObject(LB_FIGHT_BUTTON)
+	; }
+	; if (DetectObject(LB_AUTOBATTLE_BUTTON))
+	; {
+		; ClickObject(LB_AUTOBATTLE_BUTTON)
+	; }
+	; if (DetectObject(LB_RESULT1_TEXT))
+	; {
+		; ClickObject(LB_RESULTBACK_BUTTON)
+	; }
+	; if (DetectObject(LB_ENEMYLIST_TEXT))
+	; {
+		; if (DetectObject(LB_FIGHTAGAIN_BUTTON))
+		; {
+			; ClickObject(LB_FIGHTAGAIN_BUTTON)
+		; }
+	; }
+	; if (DetectObject(LB_RESULT3_TEXT) || DetectObject(LB_RESULT2_TEXT))
+	; {
+		; ClickObject(LB_COMPLETECLEARBACK_BUTTON)
+	; }
+	; if (DetectObject(LB_POTION_BUTTON))
+	; {
+		; ClickObject(LB_BATTLEFIELDBACK_BUTTON)
+		; Sleep 2000
+		; WaitObject(LB_BATTLEFIELDBACK_BUTTON)
+		; ClickObject(LB_BATTLEFIELDBACK_BUTTON)
+	; }
 	if (DetectObject(FANTASICAAPP_BUTTON))
 	{
 		LaunchGame()
 	}
-    if (DetectObject(RESUMEQUESTNO_BUTTON))
-    {
-        ClickObject(RESUMEQUESTNO_BUTTON)
-    }
-	else if (DetectObject(STARTGAME_BUTTON))
+
+	if (DetectObject(STARTGAME_BUTTON))
 	{
-		ClickObject(STARTGAME_BUTTON)
+        if (DetectObject(RESUMEQUESTNO_BUTTON))
+        {
+            ClickObject(RESUMEQUESTNO_BUTTON)
+        }
+        else
+        {
+            ClickObject(STARTGAME_BUTTON)
+        }
 	}
 	if (DetectObject(ALLYPENDINGREQUEST_TEXT))
 	{
@@ -198,37 +202,37 @@ loop,
 			LoginBingoHelperClicker()
 		}
 	}
-	if (DetectObject(TOP_TITLE_IMAGE))
-	{
-		if (DetectObject(TOP_CLIMBTREE_BUTTON) && !DetectObject(TOP_TRAININGPOINTS_TEXT))
-		{
-			ClickObject(TOP_CLIMBTREE_BUTTON)
-		}
-		else if (DetectObject(TOP_FIGHTBOSS_BUTTON))
-		{
-			ClickObject(TOP_FIGHTBOSS_BUTTON)
-		}
-	}
-	if (DetectObject(TOP_ADVANCE1_BUTTON))
-	{
-		ClickObject(TOP_ADVANCE1_BUTTON)
-	}
-	if (DetectObject(TOP_ADVANCE2_BUTTON))
-	{
-		ClickObject(TOP_ADVANCE2_BUTTON)
-	}
-	if (DetectObject(TOP_FIGHT_BUTTON))
-	{
-		ClickObject(TOP_FIGHT_BUTTON)
-	}
-	if (DetectObject(TOP_HEAL_BUTTON))
-	{
-		ClickObject(TOP_TRAININGBACK_BUTTON)
-	}
-	if (DetectObject(TOP_TRAININGPOINTS_TEXT))
-	{
-		ClickObject(TOP_BACKTOMAINPAGE_BUTTON)
-	}
+	; if (DetectObject(TOP_TITLE_IMAGE))
+	; {
+		; if (DetectObject(TOP_CLIMBTREE_BUTTON) && !DetectObject(TOP_TRAININGPOINTS_TEXT))
+		; {
+			; ClickObject(TOP_CLIMBTREE_BUTTON)
+		; }
+		; else if (DetectObject(TOP_FIGHTBOSS_BUTTON))
+		; {
+			; ClickObject(TOP_FIGHTBOSS_BUTTON)
+		; }
+	; }
+	; if (DetectObject(TOP_ADVANCE1_BUTTON))
+	; {
+		; ClickObject(TOP_ADVANCE1_BUTTON)
+	; }
+	; if (DetectObject(TOP_ADVANCE2_BUTTON))
+	; {
+		; ClickObject(TOP_ADVANCE2_BUTTON)
+	; }
+	; if (DetectObject(TOP_FIGHT_BUTTON))
+	; {
+		; ClickObject(TOP_FIGHT_BUTTON)
+	; }
+	; if (DetectObject(TOP_HEAL_BUTTON))
+	; {
+		; ClickObject(TOP_TRAININGBACK_BUTTON)
+	; }
+	; if (DetectObject(TOP_TRAININGPOINTS_TEXT))
+	; {
+		; ClickObject(TOP_BACKTOMAINPAGE_BUTTON)
+	; }
 	
 	; ==============================================
 	; **********************************************
@@ -453,57 +457,60 @@ loop,
 	; ------------------------ COLISEUM EVENT PAGE -----------------------------
 	; **************************************************************************
 	; ==========================================================================
-	if (DetectObject(COL_EVENTTITLE_IMAGE))
+    if (ColiseumEvent)
     {
-        ClickObject(COL_TOEVENT_BUTTON)
-    }
-    if (DetectObject(COL_SELECTIONPAGETITLE_TEXT))
-    {
-        if (DetectObject(COL_COOLDOWN_TEXT))
+        if (DetectObject(COL_EVENTTITLE_IMAGE))
         {
-            Scroll(QUEST_X1, QUEST_Y1, QUEST_X2, QUEST_Y2)
-            if (DetectObject(COL_AREA2_BUTTON))
+            ClickObject(COL_TOEVENT_BUTTON)
+        }
+        if (DetectObject(COL_SELECTIONPAGETITLE_TEXT))
+        {
+            if (DetectObject(COL_COOLDOWN_TEXT))
             {
-                ClickObject(COL_AREA2_BUTTON)
+                Scroll(QUEST_X1, QUEST_Y1, QUEST_X2, QUEST_Y2)
+                if (DetectObject(COL_AREA2_BUTTON))
+                {
+                    ClickObject(COL_AREA2_BUTTON)
+                }
+                else if (DetectObject(COL_AREA1_BUTTON))
+                {
+                    ClickObject(COL_AREA1_BUTTON)
+                }
             }
-            else if (DetectObject(COL_AREA1_BUTTON))
+            else
             {
-                ClickObject(COL_AREA1_BUTTON)
+                ClickObject(COL_BATTLEMODE_BUTTON)
             }
         }
-        else
+        if (DetectObject(COL_HEROSELECTIONPAGETITLE_TEXT))
         {
-            ClickObject(COL_BATTLEMODE_BUTTON)
+            ClickObject(COL_CHOOSEHERO1_BUTTON)
         }
-    }
-    if (DetectObject(COL_HEROSELECTIONPAGETITLE_TEXT))
-    {
-        ClickObject(COL_CHOOSEHERO1_BUTTON)
-    }
-    if (DetectObject(COL_BATTLETITLE_TEXT))
-    {
-        if (DetectObject(COL_BATTLECOOLDOWN_TEXT))
+        if (DetectObject(COL_BATTLETITLE_TEXT))
         {
-            ClickObject(COL_BATTLE_BUTTON)
+            if (DetectObject(COL_BATTLECOOLDOWN_TEXT))
+            {
+                ClickObject(COL_BATTLE_BUTTON)
+            }
+            else
+            {
+                ClickObject(BACK_BUTTON)
+                WaitObject(COL_HEROSELECTIONPAGETITLE_TEXT)
+                ClickObject(BACK_BUTTON)
+                WaitObject(COL_SELECTIONPAGETITLE_TEXT)
+                ClickObject(BACK_BUTTON)
+                WaitObject(COL_EVENTTITLE_IMAGE)
+                ClickObject(BACK_BUTTON)
+            }
         }
-        else
+        if (DetectObject(COL_SKIP_BUTTON))
+        {
+            ClickObject(COL_SKIP_BUTTON)
+        }
+        if (DetectObject(COL_RESULTSPAGETITLE_TEXT))
         {
             ClickObject(BACK_BUTTON)
-            WaitObject(COL_HEROSELECTIONPAGETITLE_TEXT)
-            ClickObject(BACK_BUTTON)
-            WaitObject(COL_SELECTIONPAGETITLE_TEXT)
-            ClickObject(BACK_BUTTON)
-            WaitObject(COL_EVENTTITLE_IMAGE)
-            ClickObject(BACK_BUTTON)
         }
-    }
-    if (DetectObject(COL_SKIP_BUTTON))
-    {
-        ClickObject(COL_SKIP_BUTTON)
-    }
-    if (DetectObject(COL_RESULTSPAGETITLE_TEXT))
-    {
-        ClickObject(BACK_BUTTON)
     }
 	
     ; ==========================================================================
@@ -511,310 +518,315 @@ loop,
 	; -------------------------- DICE EVENT PAGE -------------------------------
 	; **************************************************************************
 	; ==========================================================================
-    if (DetectObject(DICE_TITLE_IMAGE))
+    if (RollTheDiceEvent)
     {
-        if (DetectObject(DICE_BEGINEVENT_BUTTON))
+        if (DetectObject(DICE_TITLE_IMAGE))
         {
-            ClickObject(DICE_BEGINEVENT_BUTTON)
-        }
-    }
-    if (DetectObject(DICE_HEAL_BUTTON))
-    {
-        if (RollTheDiceUseDrops)
-        {
-            if (DetectObject(DICE_DROPSSTOCK0_TEXT))
+            if (DetectObject(DICE_BEGINEVENT_BUTTON))
             {
-                ClickObject(DICE_BOARDBACK_BUTTON)
-                RollTheDiceEvent = 0
-                SetTimer, Dice, 2500000
-                WaitObject(DICE_MPBACK_BUTTON)
-                ClickObject(DICE_MPBACK_BUTTON)
+                ClickObject(DICE_BEGINEVENT_BUTTON)
+            }
+        }
+        if (DetectObject(DICE_DISCARD_BUTTON))
+        {
+            ClickObject(DICE_DISCARD_BUTTON)
+            WaitObject(DICE_DISCARDYES_BUTTON)
+            ClickObject(DICE_DISCARDYES_BUTTON)
+        }
+        if (DetectObject(DICE_CLOSEPOPUP_BUTTON))
+        {
+            ClickObject(DICE_CLOSEPOPUP_BUTTON)
+        }
+        if (DetectObject(DICE_HEAL_BUTTON))
+        {
+            if (RollTheDiceUseDrops)
+            {
+                if (DetectObject(DICE_DROPSSTOCK0_TEXT))
+                {
+                    ClickObject(DICE_BOARDBACK_BUTTON)
+                    RollTheDiceEvent = 0
+                    SetTimer, Dice, 3000000
+                    WaitObject(DICE_MPBACK_BUTTON)
+                    ClickObject(DICE_MPBACK_BUTTON)
+                }
+                else
+                {
+                    ClickObject(DICE_HEAL_BUTTON)
+                }
             }
             else
             {
-                ClickObject(DICE_HEAL_BUTTON)
+                ClickObject(DICE_BOARDBACK_BUTTON)
+                RollTheDiceEvent = 0
+                SetTimer, Dice, 3000000
+                WaitObject(DICE_MPBACK_BUTTON)
+                ClickObject(DICE_MPBACK_BUTTON)
             }
         }
-        else
+        if (DetectObject(DICE_POTIONPROMPT_TEXT))
         {
-            ClickObject(DICE_BOARDBACK_BUTTON)
-            RollTheDiceEvent = 0
-            SetTimer, Dice, 2500000
-            WaitObject(DICE_MPBACK_BUTTON)
-            ClickObject(DICE_MPBACK_BUTTON)
+            if (RollTheDiceUsePotion)
+            {
+                ClickObject(DICE_USEPOTIONYES_BUTTON)
+            }
+            else
+            {
+                ClickObject(DICE_USEPOTIONNO_BUTTON)
+                WaitObject(DICE_GIVEUPYES_BUTTON)
+                ClickObject(DICE_GIVEUPYES_BUTTON)
+            }
         }
-    }
-    if (DetectObject(DICE_DISCARD_BUTTON))
-    {
-        ClickObject(DICE_DISCARD_BUTTON)
-        WaitObject(DICE_DISCARDYES_BUTTON)
-        ClickObject(DICE_DISCARDYES_BUTTON)
-    }
-    if (DetectObject(DICE_CLOSEPOPUP_BUTTON))
-    {
-        ClickObject(DICE_CLOSEPOPUP_BUTTON)
-    }
-    if (DetectObject(DICE_POTIONPROMPT_TEXT))
-    {
-        if (RollTheDiceUsePotion)
+        if (DetectObject(DICE_USEPOTIONYES_BUTTON))
         {
-            ClickObject(DICE_USEPOTIONYES_BUTTON)
+            
         }
-        else
+        else if (DetectObject(DICE_ROLL_BUTTON))
         {
-            ClickObject(DICE_USEPOTIONNO_BUTTON)
-            WaitObject(DICE_GIVEUPYES_BUTTON)
-            ClickObject(DICE_GIVEUPYES_BUTTON)
+            ClickObject(DICE_ROLL_BUTTON)
         }
-    }
-    if (DetectObject(DICE_USEPOTIONYES_BUTTON))
-    {
-        
-    }
-    else if (DetectObject(DICE_ROLL_BUTTON))
-    {
-        ClickObject(DICE_ROLL_BUTTON)
-    }
-    else if (DetectObject(DICE_MOVE_BUTTON))
-    {
-        ClickObject(DICE_MOVE_BUTTON)
-    }
-    else if (DetectObject(DICE_OPENCHEST_BUTTON))
-    {
-        ClickObject(DICE_OPENCHEST_BUTTON)
-    }
-    else if (DetectObject(DICE_STOP_BUTTON))
-    {
-        ClickObject(DICE_STOP_BUTTON)
-    }
-    if (DetectObject(DICE_FIGHT_BUTTON))
-    {
-        ClickObject(DICE_FIGHT_BUTTON)
-    }
-    if (DetectObject(DICE_RESULTS_TITLE))
-    {
-        if (DetectObject(DICE_WARPBONUSBOARDYES_BUTTON))
+        else if (DetectObject(DICE_MOVE_BUTTON))
         {
-            ClickObject(DICE_WARPBONUSBOARDYES_BUTTON)
+            ClickObject(DICE_MOVE_BUTTON)
         }
-        else if (DetectObject(DICE_TOBOARD_BUTTON))
+        else if (DetectObject(DICE_OPENCHEST_BUTTON))
         {
-            ClickObject(DICE_TOBOARD_BUTTON)
+            ClickObject(DICE_OPENCHEST_BUTTON)
         }
-        else if (DetectObject(DICE_NEXT_BUTTON))
+        else if (DetectObject(DICE_STOP_BUTTON))
         {
-            ClickObject(DICE_NEXT_BUTTON)
+            ClickObject(DICE_STOP_BUTTON)
         }
-    }
-   if (DetectObject(DICE_LEFT_BUTTON))
-   {
-        coord := WaitObject(DICE_LEFT_BUTTON)
-        ClickAt(coord[1], coord[2])
-   }
-   else if (DetectObject(DICE_RIGHT_BUTTON))
-   {
-        coord := WaitObject(DICE_RIGHT_BUTTON)
-        Clickat(coord[1], coord[2])
-   }
-   else if (DetectObject(DICE_UP_BUTTON))
-   {
-        coord := WaitObject(DICE_UP_BUTTON)
-        ClickAt(coord[1], coord[2])
-   }
-   else if (DetectObject(DICE_DOWN_BUTTON))
-   {
-        coord := WaitObject(DICE_DOWN_BUTTON)
-        ClickAt(coord[1], coord[2])
+        if (DetectObject(DICE_FIGHT_BUTTON))
+        {
+            ClickObject(DICE_FIGHT_BUTTON)
+        }
+        if (DetectObject(DICE_RESULTS_TITLE))
+        {
+            if (DetectObject(DICE_WARPBONUSBOARDYES_BUTTON))
+            {
+                ClickObject(DICE_WARPBONUSBOARDYES_BUTTON)
+            }
+            else if (DetectObject(DICE_TOBOARD_BUTTON))
+            {
+                ClickObject(DICE_TOBOARD_BUTTON)
+            }
+            else if (DetectObject(DICE_NEXT_BUTTON))
+            {
+                ClickObject(DICE_NEXT_BUTTON)
+            }
+        }
+       if (DetectObject(DICE_LEFT_BUTTON))
+       {
+            coord := WaitObject(DICE_LEFT_BUTTON)
+            ClickAt(coord[1], coord[2])
+       }
+       else if (DetectObject(DICE_RIGHT_BUTTON))
+       {
+            coord := WaitObject(DICE_RIGHT_BUTTON)
+            Clickat(coord[1], coord[2])
+       }
+       else if (DetectObject(DICE_UP_BUTTON))
+       {
+            coord := WaitObject(DICE_UP_BUTTON)
+            ClickAt(coord[1], coord[2])
+       }
+       else if (DetectObject(DICE_DOWN_BUTTON))
+       {
+            coord := WaitObject(DICE_DOWN_BUTTON)
+            ClickAt(coord[1], coord[2])
+       }
    }
     ; ==========================================================================
 	; **************************************************************************
 	; ------------------------ FRONTLINES EVENT PAGE ---------------------------
 	; **************************************************************************
 	; ==========================================================================
-    if (DetectObject(FL_REWARDS_TITLE))
+    if (FrontlinesEvent)
     {
-        if (DetectObject(FL_RECEIVE_BUTTON))
+        if (DetectObject(FL_REWARDS_TITLE))
         {
-            ClickObject(FL_RECEIVE_BUTTON)
-        }
-        else
-        {
-            ClickObject(BACK_BUTTON)
-        }
-    }
-    if (DetectObject(FL_TITLE_IMAGE))
-    {
-        if (DetectObject(FL_REWARDSNOTIFICATION_BUTTON))
-        {
-            ClickObject(FL_REWARDS_BUTTON)
-        }
-        if (DetectObject(FL_ASSISTNOTIFICATION_ICON))
-        {
-            ClickObject(FL_ASSIST_BUTTON)
-        }
-        if (DetectObject(FL_CPBAR1_TEXT))
-        {
-            ClickObject(FL_FIGHT_BUTTON)
-        }
-        if (DetectObject(FL_CPBAR0_TEXT))
-        {
-            if (FrontlinesHolyWaterCount > 0)
+            if (DetectObject(FL_RECEIVE_BUTTON))
             {
-                ClickObject(FL_FIGHT_BUTTON)
-                WaitObject(FL_HOLYWATER_BUTTON)
-                if (DetectObject(FL_HOLYWATERSTOCK0_TEXT))
-                {
-                    ClickObject(FL_CLOSE_BUTTON)
-                    FrontlinesHolyWaterCount = 0
-                }
-                else if (DetectObject(FL_HOLYWATER_BUTTON))
-                {
-                    ClickObject(FL_HOLYWATER_BUTTON)
-                    WaitObject(FL_HOLYWATERYES_BUTTON)
-                    ClickOBject(FL_HOLYWATERYES_BUTTON)
-                    FrontlinesHolyWaterCount--
-                }
+                ClickObject(FL_RECEIVE_BUTTON)
             }
             else
             {
-                ClickObject(FL_MYPAGE_BUTTON)
+                ClickObject(BACK_BUTTON)
+            }
+        }
+        if (DetectObject(FL_TITLE_IMAGE))
+        {
+            if (DetectObject(FL_REWARDSNOTIFICATION_BUTTON))
+            {
+                ClickObject(FL_REWARDS_BUTTON)
+            }
+            if (DetectObject(FL_ASSISTNOTIFICATION_ICON))
+            {
+                ClickObject(FL_ASSIST_BUTTON)
+            }
+            if (DetectObject(FL_CPBAR1_TEXT))
+            {
+                ClickObject(FL_FIGHT_BUTTON)
+            }
+            if (DetectObject(FL_CPBAR0_TEXT))
+            {
+                if (FrontlinesHolyWaterCount > 0)
+                {
+                    ClickObject(FL_FIGHT_BUTTON)
+                    WaitObject(FL_HOLYWATER_BUTTON)
+                    if (DetectObject(FL_HOLYWATERSTOCK0_TEXT))
+                    {
+                        ClickObject(FL_CLOSE_BUTTON)
+                        FrontlinesHolyWaterCount = 0
+                    }
+                    else if (DetectObject(FL_HOLYWATER_BUTTON))
+                    {
+                        ClickObject(FL_HOLYWATER_BUTTON)
+                        WaitObject(FL_HOLYWATERYES_BUTTON)
+                        ClickOBject(FL_HOLYWATERYES_BUTTON)
+                        FrontlinesHolyWaterCount--
+                    }
+                }
+                else
+                {
+                    ClickObject(FL_MYPAGE_BUTTON)
+                }
+            }
+        }
+        if (DetectObject(FL_ASSIST_TITLE))
+        {
+            if (DetectObject(FL_REQUESTASSISTANCE_BUTTON))
+            {
+                ClickObject(FL_REQUESTASSISTANCE_BUTTON)
+            }
+            else if (DetectObject(FL_ASSISTALL_BUTTON))
+            {
+                ClickObject(FL_ASSISTALL_BUTTON)
+            }
+            else if (DetectObject(FL_ASSISTBACK_BUTTON))
+            {
+                ClickObject(FL_ASSISTBACK_BUTTON)
+            }
+        }
+        if (DetectObject(FL_OPPONENTSELECTION_TITLE))
+        {
+            if (DetectObject(FL_OPPONENT1_BUTTON))
+            {
+                ClickObject(FL_OPPONENT1_BUTTON)
+            }
+        }
+        if (DetectObject(FL_SKILL1_BUTTON) || DetectObject(FL_SKILL2_BUTTON) || DetectObject(FL_SKILL3_BUTTON))
+        {
+            if (DetectObject(FL_SKILL1_BUTTON))
+            {
+                ClickObject(FL_SKILL1_BUTTON)
+            }
+            if (DetectObject(FL_SKILL2_BUTTON))
+            {
+                ClickObject(FL_SKILL2_BUTTON)
+            }
+            if (DetectObject(FL_SKILL3_BUTTON))
+            {
+                ClickObject(FL_SKILL3_BUTTON)
+            }
+        }
+        else if (DetectObject(FL_SKIP_BUTTON))
+        {
+            ClickObject(FL_SKIP_BUTTON)
+        }
+        if (DetectObject(FL_RESULTVICTORY_TEXT) || DetectObject(FL_RESULTDEFEAT_TEXT))
+        {
+            if (DetectObject(FL_BACK_BUTTON))
+            {
+                ClickObject(FL_BACK_BUTTON)
             }
         }
     }
-    if (DetectObject(FL_ASSIST_TITLE))
-    {
-        if (DetectObject(FL_REQUESTASSISTANCE_BUTTON))
-        {
-            ClickObject(FL_REQUESTASSISTANCE_BUTTON)
-        }
-        else if (DetectObject(FL_ASSISTALL_BUTTON))
-        {
-            ClickObject(FL_ASSISTALL_BUTTON)
-        }
-        else if (DetectObject(FL_ASSISTBACK_BUTTON))
-        {
-            ClickObject(FL_ASSISTBACK_BUTTON)
-        }
-    }
-    if (DetectObject(FL_OPPONENTSELECTION_TITLE))
-    {
-        if (DetectObject(FL_OPPONENT1_BUTTON))
-        {
-            ClickObject(FL_OPPONENT1_BUTTON)
-        }
-    }
-    if (DetectObject(FL_SKILL1_BUTTON) || DetectObject(FL_SKILL2_BUTTON) || DetectObject(FL_SKILL3_BUTTON))
-    {
-        if (DetectObject(FL_SKILL1_BUTTON))
-        {
-            ClickObject(FL_SKILL1_BUTTON)
-        }
-        if (DetectObject(FL_SKILL2_BUTTON))
-        {
-            ClickObject(FL_SKILL2_BUTTON)
-        }
-        if (DetectObject(FL_SKILL3_BUTTON))
-        {
-            ClickObject(FL_SKILL3_BUTTON)
-        }
-    }
-    else if (DetectObject(FL_SKIP_BUTTON))
-    {
-        ClickObject(FL_SKIP_BUTTON)
-    }
-    if (DetectObject(FL_RESULTVICTORY_TEXT) || DetectObject(FL_RESULTDEFEAT_TEXT))
-    {
-        if (DetectObject(FL_BACK_BUTTON))
-        {
-            ClickObject(FL_BACK_BUTTON)
-        }
-    }
-    
-    
     
 	; ==========================================================================
 	; **************************************************************************
 	; --------------------- TRAIN-ENCOUNTER EVENT PAGE -------------------------
 	; **************************************************************************
 	; ==========================================================================
-	if (DetectObject(TRNECT_EVENTTITLE_IMAGE))
-	{
-		deployUnitNum := 0
-		pendingAllies := 1
-		if (training == 0)
-		{
-			training--
-			WaitObject(TRNECT_TRAIN_BUTTON)
-			ClickObject(TRNECT_TRAIN_BUTTON)
-			WaitObject(BACK_BUTTON)
-			Sleep 2000
-		}
-		else if (training < 0)
-		{
-			training++
-			WaitObject(TRNECT_ASSISTLIST_BUTTON)
-			ClickObject(TRNECT_ASSISTLIST_BUTTON)
-		}
-	}
-	else if (DetectObject(TRNECT_ASSISTALLIES_TEXT))
-	{
-		if (DetectObject(TRNECT_SENDEVENTITEM_BUTTON))
-		{
-			WaitObject(TRNECT_SENDEVENTITEM_BUTTON)
-			ClickObject(TRNECT_SENDEVENTITEM_BUTTON)
-		}
-		else if (DetectObject(USEPOTIONYES_BUTTON))
-		{
-			ClickObject(USEPOTIONYES_BUTTON)
-		}
-		else if (DetectObject(TRNECT_ASSISTALLY_BUTTON))
-		{
-			WaitObject(TRNECT_ASSISTALLY_BUTTON)
-			ClickObject(TRNECT_ASSISTALLY_BUTTON)
-		}
-		else if (DetectObject(TRNECT_BOSSLISTFROMASSISTALLIES_BUTTON))
-		{
-			WaitObject(TRNECT_BOSSLISTFROMASSISTALLIES_BUTTON)
-			ClickObject(TRNECT_BOSSLISTFROMASSISTALLIES_BUTTON)
-		}
-	}
-	else if (DetectObject(TRNECT_BOSSLIST_TEXT))
-	{
-		if (DetectObject(TRNECT_REQUESTASSIST_BUTTON))
-		{
-			WaitObject(TRNECT_REQUESTASSIST_BUTTON)
-			ClickObject(TRNECT_REQUESTASSIST_BUTTON)
-		}
-		if (TrainEncounterEvent_USEITEM && DetectObject(TRNECT_USEEVENTITEM_BUTTON))
-		{
-			WaitObject(TRNECT_USEEVENTITEM_BUTTON)
-			ClickObject(TRNECT_USEEVENTITEM_BUTTON)
-		}
-		else if (DetectObject(TRNECT_FIGHT_BUTTON))
-		{
-			training--
-			WaitObject(TRNECT_FIGHT_BUTTON)
-			ClickObject(TRNECT_FIGHT_BUTTON)
-		}
-		else if (DetectObject(TRNECT_POTIONFIGHT_BUTTON))
-		{
-			training--
-			WaitObject(TRNECT_POTIONFIGHT_BUTTON)
-			ClickObject(TRNECT_POTIONFIGHT_BUTTON)
-		}
-		else if (DetectObject(TRNECT_EVENT_BUTTON))
-		{
-			WaitObject(TRNECT_EVENT_BUTTON)
-			ClickObject(TRNECT_EVENT_BUTTON)
-		}
-	}
-	else if (DetectObject(TRNECT_ASSISTLIST2_BUTTON))
-	{
-		WaitObject(TRNECT_ASSISTLIST2_BUTTON)
-		ClickObject(TRNECT_ASSISTLIST2_BUTTON)
-	}
-	
-	
+    if (TrainEncounterEvent)
+    {
+        if (DetectObject(TRNECT_EVENTTITLE_IMAGE))
+        {
+            deployUnitNum := 0
+            pendingAllies := 1
+            if (training == 0)
+            {
+                training--
+                WaitObject(TRNECT_TRAIN_BUTTON)
+                ClickObject(TRNECT_TRAIN_BUTTON)
+                WaitObject(BACK_BUTTON)
+                Sleep 2000
+            }
+            else if (training < 0)
+            {
+                training++
+                WaitObject(TRNECT_ASSISTLIST_BUTTON)
+                ClickObject(TRNECT_ASSISTLIST_BUTTON)
+            }
+        }
+        else if (DetectObject(TRNECT_ASSISTALLIES_TEXT))
+        {
+            if (DetectObject(TRNECT_SENDEVENTITEM_BUTTON))
+            {
+                WaitObject(TRNECT_SENDEVENTITEM_BUTTON)
+                ClickObject(TRNECT_SENDEVENTITEM_BUTTON)
+            }
+            else if (DetectObject(USEPOTIONYES_BUTTON))
+            {
+                ClickObject(USEPOTIONYES_BUTTON)
+            }
+            else if (DetectObject(TRNECT_ASSISTALLY_BUTTON))
+            {
+                WaitObject(TRNECT_ASSISTALLY_BUTTON)
+                ClickObject(TRNECT_ASSISTALLY_BUTTON)
+            }
+            else if (DetectObject(TRNECT_BOSSLISTFROMASSISTALLIES_BUTTON))
+            {
+                WaitObject(TRNECT_BOSSLISTFROMASSISTALLIES_BUTTON)
+                ClickObject(TRNECT_BOSSLISTFROMASSISTALLIES_BUTTON)
+            }
+        }
+        else if (DetectObject(TRNECT_BOSSLIST_TEXT))
+        {
+            if (DetectObject(TRNECT_REQUESTASSIST_BUTTON))
+            {
+                WaitObject(TRNECT_REQUESTASSIST_BUTTON)
+                ClickObject(TRNECT_REQUESTASSIST_BUTTON)
+            }
+            if (TrainEncounterEvent_USEITEM && DetectObject(TRNECT_USEEVENTITEM_BUTTON))
+            {
+                WaitObject(TRNECT_USEEVENTITEM_BUTTON)
+                ClickObject(TRNECT_USEEVENTITEM_BUTTON)
+            }
+            else if (DetectObject(TRNECT_FIGHT_BUTTON))
+            {
+                training--
+                WaitObject(TRNECT_FIGHT_BUTTON)
+                ClickObject(TRNECT_FIGHT_BUTTON)
+            }
+            else if (DetectObject(TRNECT_POTIONFIGHT_BUTTON))
+            {
+                training--
+                WaitObject(TRNECT_POTIONFIGHT_BUTTON)
+                ClickObject(TRNECT_POTIONFIGHT_BUTTON)
+            }
+            else if (DetectObject(TRNECT_EVENT_BUTTON))
+            {
+                WaitObject(TRNECT_EVENT_BUTTON)
+                ClickObject(TRNECT_EVENT_BUTTON)
+            }
+        }
+        else if (DetectObject(TRNECT_ASSISTLIST2_BUTTON))
+        {
+            WaitObject(TRNECT_ASSISTLIST2_BUTTON)
+            ClickObject(TRNECT_ASSISTLIST2_BUTTON)
+        }
+    }
 	
 	; ==========================================================================
 	; **************************************************************************
@@ -1101,7 +1113,7 @@ ColiseumEvent = 1
 return
 
 Dice:
-DiceEvent = 1
+RollTheDiceEvent = 1
 return
 
 Frontlines:
