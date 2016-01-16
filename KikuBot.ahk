@@ -542,16 +542,17 @@ loop,
         else if (DetectObject(DICE_MASTER_BUTTON))
         {
             ClickObject(DICE_MASTER_BUTTON)
-            ClickObject(DICE_CLOSEDICESMENU_BUTTON)
         }
         else if (DetectObject(DICE_PORTRAIT_BUTTON))
         {
             ClickObject(DICE_PORTRAIT_BUTTON)
-            ClickObject(DICE_CLOSEDICESMENU_BUTTON)
         }
         else if (DetectObject(DICE_SKETCH_BUTTON))
         {
             ClickObject(DICE_SKETCH_BUTTON)
+        }
+        else if (DetectObject(DICE_CLOSEDICESMENU_BUTTON))
+        {
             ClickObject(DICE_CLOSEDICESMENU_BUTTON)
         }
         if (DetectObject(DICE_DISCARD_BUTTON))
