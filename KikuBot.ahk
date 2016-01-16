@@ -225,7 +225,7 @@ loop,
 	; {
 		; ClickObject(TOP_FIGHT_BUTTON)
 	; }
-	; if (DetectObject(TOP_HEAL_BUTTON))
+	; if (DetectObject(TOP_UTTON))
 	; {
 		; ClickObject(TOP_TRAININGBACK_BUTTON)
 	; }
@@ -524,8 +524,35 @@ loop,
         {
             if (DetectObject(DICE_BEGINEVENT_BUTTON))
             {
-                ClickObject(DICE_BEGINEVENT_BUTTON)
+                if (RollTheDiceDoEvent)
+                {
+                    ClickObject(DICE_BEGINEVENT_BUTTON)
+                }
+                else
+                {
+                    ClickObject(DICE_MPBACK_BUTTON)
+                    RollTheDiceEvent = 0
+                }
             }
+        }
+        if (DetectObject(DICE_DICESMENU_BUTTON))
+        {
+            ClickObject(DICE_DICESMENU_BUTTON)
+        }
+        else if (DetectObject(DICE_MASTER_BUTTON))
+        {
+            ClickObject(DICE_MASTER_BUTTON)
+            ClickObject(DICE_CLOSEDICESMENU_BUTTON)
+        }
+        else if (DetectObject(DICE_PORTRAIT_BUTTON))
+        {
+            ClickObject(DICE_PORTRAIT_BUTTON)
+            ClickObject(DICE_CLOSEDICESMENU_BUTTON)
+        }
+        else if (DetectObject(DICE_SKETCH_BUTTON))
+        {
+            ClickObject(DICE_SKETCH_BUTTON)
+            ClickObject(DICE_CLOSEDICESMENU_BUTTON)
         }
         if (DetectObject(DICE_DISCARD_BUTTON))
         {
@@ -539,15 +566,17 @@ loop,
         }
         if (DetectObject(DICE_HEAL_BUTTON))
         {
+            if (SHOULD_CLICK == 1)
+            {
+                SendEvent {ClickAt %WAIT_X%, %WAIT_Y%}
+            }
             if (RollTheDiceUseDrops)
             {
                 if (DetectObject(DICE_DROPSSTOCK0_TEXT))
                 {
                     ClickObject(DICE_BOARDBACK_BUTTON)
-                    RollTheDiceEvent = 0
+                    RollTheDiceDoEvent = 0
                     SetTimer, Dice, 3000000
-                    WaitObject(DICE_MPBACK_BUTTON)
-                    ClickObject(DICE_MPBACK_BUTTON)
                 }
                 else
                 {
@@ -557,10 +586,8 @@ loop,
             else
             {
                 ClickObject(DICE_BOARDBACK_BUTTON)
-                RollTheDiceEvent = 0
+                RollTheDiceDoEvent = 0
                 SetTimer, Dice, 3000000
-                WaitObject(DICE_MPBACK_BUTTON)
-                ClickObject(DICE_MPBACK_BUTTON)
             }
         }
         if (DetectObject(DICE_POTIONPROMPT_TEXT))
@@ -575,10 +602,6 @@ loop,
                 WaitObject(DICE_GIVEUPYES_BUTTON)
                 ClickObject(DICE_GIVEUPYES_BUTTON)
             }
-        }
-        if (DetectObject(DICE_USEPOTIONYES_BUTTON))
-        {
-            
         }
         else if (DetectObject(DICE_ROLL_BUTTON))
         {
@@ -1114,6 +1137,7 @@ return
 
 Dice:
 RollTheDiceEvent = 1
+RollTheDiceDoEvent = 1
 return
 
 Frontlines:
