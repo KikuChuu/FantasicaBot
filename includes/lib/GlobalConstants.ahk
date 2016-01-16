@@ -367,6 +367,11 @@ Init_globals()
     DICE_PORTRAIT_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttonportraitdice-" . width . "_" . height . ".png"
     DICE_SKETCH_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttonsketchdice-" . width . "_" . height . ".png"
     DICE_CLOSEDICESMENU_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttonclosedicesmenu-" . width . "_" . height . ".png"
+    DICE_CARDMENU_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttoncardmenu-" . width . "_" . height . ".png"
+    DICE_FIRSTCARD_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttonfirstcard-" . width . "_" . height . ".png"
+    DICE_CLOSECARDMENU_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttonclosecardmenu-" . width . "_" . height . ".png"
+    DICE_USECARD_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttonusecard-" . width . "_" . height . ".png"
+    DICE_USECARDYES_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttonusecardyes-" . width . "_" . height . ".png"
     ; --------------------------------------------------------------------------
     ; TRAIN-ENCOUNTER EVENT
     ; --------------------------------------------------------------------------

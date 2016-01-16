@@ -558,6 +558,26 @@ loop,
         {
             ClickObject(DICE_CLOSEPOPUP_BUTTON)
         }
+        if (DetectObject(DICE_CARDMENU_BUTTON))
+        {
+            ClickObject(DICE_CARDMENU_BUTTON)
+        }
+        if (DetectObject(DICE_USECARDYES_BUTTON))
+        {
+            ClickObject(DICE_USECARDYES_BUTTON)
+        }
+        else if (DetectObject(DICE_USECARD_BUTTON))
+        {
+            ClickObject(DICE_USECARD_BUTTON)
+        }
+        else if (DetectObject(DICE_FIRSTCARD_BUTTON))
+        {
+            ClickObject(DICE_FIRSTCARD_BUTTON)
+        }
+        else if (DetectObject(DICE_CLOSECARDMENU_BUTTON))
+        {
+            ClickObject(DICE_CLOSECARDMENU_BUTTON)
+        }
         if (DetectObject(DICE_DICESMENU_BUTTON))
         {
             ClickObject(DICE_DICESMENU_BUTTON)
