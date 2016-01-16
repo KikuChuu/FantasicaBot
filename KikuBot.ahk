@@ -558,15 +558,15 @@ loop,
     {
         ClickObject(DICE_ROLL_BUTTON)
     }
-    if (DetectObject(DICE_MOVE_BUTTON))
+    else if (DetectObject(DICE_MOVE_BUTTON))
     {
         ClickObject(DICE_MOVE_BUTTON)
     }
-    if (DetectObject(DICE_OPENCHEST_BUTTON))
+    else if (DetectObject(DICE_OPENCHEST_BUTTON))
     {
         ClickObject(DICE_OPENCHEST_BUTTON)
     }
-    if (DetectObject(DICE_STOP_BUTTON))
+    else if (DetectObject(DICE_STOP_BUTTON))
     {
         loop,
         {
@@ -604,6 +604,11 @@ loop,
    {
         coord := WaitObject(DICE_LEFT_BUTTON)
         ClickAt(coord[1], coord[2])
+   }
+   else if (DetectObject(DICE_RIGHT_BUTTON))
+   {
+        coord := WaitObject(DICE_RIGHT_BUTTON)
+        Clickat(coord[1], coord[2])
    }
    else if (DetectObject(DICE_UP_BUTTON))
    {
