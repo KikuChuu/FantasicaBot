@@ -535,6 +535,29 @@ loop,
                 }
             }
         }
+        if (DetectObject(DICE_POTIONPROMPT_TEXT))
+        {
+            if (RollTheDiceUsePotion)
+            {
+                ClickObject(DICE_USEPOTIONYES_BUTTON)
+            }
+            else
+            {
+                ClickObject(DICE_USEPOTIONNO_BUTTON)
+                WaitObject(DICE_GIVEUPYES_BUTTON)
+                ClickObject(DICE_GIVEUPYES_BUTTON)
+            }
+        }
+        if (DetectObject(DICE_DISCARD_BUTTON))
+        {
+            ClickObject(DICE_DISCARD_BUTTON)
+            WaitObject(DICE_DISCARDYES_BUTTON)
+            ClickObject(DICE_DISCARDYES_BUTTON)
+        }
+        if (DetectObject(DICE_CLOSEPOPUP_BUTTON))
+        {
+            ClickObject(DICE_CLOSEPOPUP_BUTTON)
+        }
         if (DetectObject(DICE_DICESMENU_BUTTON))
         {
             ClickObject(DICE_DICESMENU_BUTTON)
@@ -555,17 +578,7 @@ loop,
         {
             ClickObject(DICE_CLOSEDICESMENU_BUTTON)
         }
-        if (DetectObject(DICE_DISCARD_BUTTON))
-        {
-            ClickObject(DICE_DISCARD_BUTTON)
-            WaitObject(DICE_DISCARDYES_BUTTON)
-            ClickObject(DICE_DISCARDYES_BUTTON)
-        }
-        if (DetectObject(DICE_CLOSEPOPUP_BUTTON))
-        {
-            ClickObject(DICE_CLOSEPOPUP_BUTTON)
-        }
-        if (DetectObject(DICE_HEAL_BUTTON))
+        else if (DetectObject(DICE_HEAL_BUTTON))
         {
             if (SHOULD_CLICK == 1)
             {
@@ -589,19 +602,6 @@ loop,
                 ClickObject(DICE_BOARDBACK_BUTTON)
                 RollTheDiceDoEvent = 0
                 SetTimer, Dice, 3000000
-            }
-        }
-        if (DetectObject(DICE_POTIONPROMPT_TEXT))
-        {
-            if (RollTheDiceUsePotion)
-            {
-                ClickObject(DICE_USEPOTIONYES_BUTTON)
-            }
-            else
-            {
-                ClickObject(DICE_USEPOTIONNO_BUTTON)
-                WaitObject(DICE_GIVEUPYES_BUTTON)
-                ClickObject(DICE_GIVEUPYES_BUTTON)
             }
         }
         else if (DetectObject(DICE_ROLL_BUTTON))
