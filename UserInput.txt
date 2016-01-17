@@ -33,6 +33,7 @@
 ;-------   MAIN MENU ICON MAPPINGS ----------
 ;********************************************
 ;============================================
+; -- First icon starts at index 0 --
 	QUEST_INDEX := 2
     TRAINING_INDEX := 3
     INBOX_INDEX := 14

@@ -551,6 +551,10 @@ loop,
             {
                 ClickObject(DICE_MOVE6CARD_BUTTON)
             }
+            else if (DetectObject(DICE_MOVE10CARD_BUTTON))
+            {
+                ClickObject(DICE_MOVE10CARD_BUTTON)
+            }
             else if (DetectObject(DICE_PROB1CARD_BUTTON))
             {
                 ClickObject(DICE_PROB1CARD_BUTTON)
@@ -566,6 +570,18 @@ loop,
             else if (DetectObject(DICE_LOWPROBCARD_BUTTON))
             {
                 ClickObject(DICE_LOWPROBCARD_BUTTON)
+            }
+            else if (DetectObject(DICE_ALLY2CARD_BUTTON))
+            {
+                ClickObject(DICE_ALLY2CARD_BUTTON)
+            }
+            else if (DetectObject(DICE_BRONZESTOPCARD_BUTTON))
+            {
+                ClickObject(DICE_BRONZESTOPCARD_BUTTON)
+            }
+            else if (DetectObject(DICE_SILVERSTOPCARD_BUTTON))
+            {
+                ClickObject(DICE_SILVERSTOPCARD_BUTTON)
             }
             else
             {
