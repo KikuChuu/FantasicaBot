@@ -65,7 +65,7 @@ DetectObject(ByRef Path)
 		WinActivate, %BLUESTACK_WINDOW_TITLE%
 	}
 	
-	ImageSearch, FoundX, FoundY, X1, Y1, X2, Y2, *TransBlack %Path%
+	ImageSearch, FoundX, FoundY, X1, Y1, X2, Y2, *TransBlack *10 %Path%
 	if ErrorLevel = 2
 	{
 		msg := "File Missing(DetectObject), We can't seem to find this file: " . Path
