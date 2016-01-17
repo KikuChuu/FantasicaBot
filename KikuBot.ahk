@@ -520,6 +520,58 @@ loop,
 	; ==========================================================================
     if (RollTheDiceEvent)
     {
+        if (DetectObject(DICE_MENU_BUTTON) || DetectObject(DICE_RETREAT_BUTTON))
+        {
+            ClickAt(CARDMENU_X, CARDMENU_Y)
+            Sleep 1000
+        }
+        if (DetectObject(DICE_CLOSECARDMENU_BUTTON))
+        {
+            if (DetectObject(DICE_MOVE1CARD_BUTTON))
+            {
+                ClickObject(DICE_MOVE1CARD_BUTTON)
+            }
+            else if (DetectObject(DICE_MOVE2CARD_BUTTON))
+            {
+                ClickObject(DICE_MOVE2CARD_BUTTON)
+            }
+            else if (DetectObject(DICE_MOVE3CARD_BUTTON))
+            {
+                ClickObject(DICE_MOVE3CARD_BUTTON)
+            }
+            else if (DetectObject(DICE_MOVE4CARD_BUTTON))
+            {
+                ClickObject(DICE_MOVE4CARD_BUTTON)
+            }
+            else if (DetectObject(DICE_MOVE5CARD_BUTTON))
+            {
+                ClickObject(DICE_MOVE5CARD_BUTTON)
+            }
+            else if (DetectObject(DICE_MOVE6CARD_BUTTON))
+            {
+                ClickObject(DICE_MOVE6CARD_BUTTON)
+            }
+            else if (DetectObject(DICE_PROB1CARD_BUTTON))
+            {
+                ClickObject(DICE_PROB1CARD_BUTTON)
+            }
+            else if (DetectObject(DICE_PROB2CARD_BUTTON))
+            {
+                ClickObject(DICE_PROB2CARD_BUTTON)
+            }
+            else if (DetectObject(DICE_HIGHPROBCARD_BUTTON))
+            {
+                ClickObject(DICE_HIGHPROBCARD_BUTTON)
+            }
+            else if (DetectObject(DICE_LOWPROBCARD_BUTTON))
+            {
+                ClickObject(DICE_LOWPROBCARD_BUTTON)
+            }
+            else
+            {
+                ClickObject(DICE_CLOSECARDMENU_BUTTON)
+            }
+        }
         if (DetectObject(DICE_TITLE_IMAGE))
         {
             if (DetectObject(DICE_BEGINEVENT_BUTTON))
@@ -558,10 +610,6 @@ loop,
         {
             ClickObject(DICE_CLOSEPOPUP_BUTTON)
         }
-        if (DetectObject(DICE_CARDMENU_BUTTON))
-        {
-            ClickObject(DICE_CARDMENU_BUTTON)
-        }
         if (DetectObject(DICE_USECARDYES_BUTTON))
         {
             ClickObject(DICE_USECARDYES_BUTTON)
@@ -573,10 +621,6 @@ loop,
         else if (DetectObject(DICE_FIRSTCARD_BUTTON))
         {
             ClickObject(DICE_FIRSTCARD_BUTTON)
-        }
-        else if (DetectObject(DICE_CLOSECARDMENU_BUTTON))
-        {
-            ClickObject(DICE_CLOSECARDMENU_BUTTON)
         }
         if (DetectObject(DICE_DICESMENU_BUTTON))
         {

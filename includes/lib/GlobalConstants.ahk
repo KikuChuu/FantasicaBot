@@ -100,6 +100,8 @@ Init_globals()
 		SCAN_START_X := 167
 		SCAN_START_Y := 68
 		SCAN_TILE_SIZE := 78
+        
+        
 	}
 	else if (width == 1282 && height == 749)
 	{
@@ -123,6 +125,9 @@ Init_globals()
 		SCAN_START_X := 465
 		SCAN_START_Y := 99
 		SCAN_TILE_SIZE := 51
+        
+        CARDMENU_X := 500
+        CARDMENU_Y := 600
 	}
 	else if (width == 1920 && height == 1080)
 	{
@@ -326,7 +331,7 @@ Init_globals()
 	;***************************************************************************
 	;===========================================================================
     ; --------------------------------------------------------------------------
-    ; TRAIN-ENCOUNTER EVENT
+    ; ROLL THE DICE EVENT
     ; --------------------------------------------------------------------------
     DICE_EVENT_ICON := "FANTASICA IMAGES\Event\DiceEvent\iconevent-" . width . "_" . height . ".png"
     DICE_TITLE_IMAGE:= "FANTASICA IMAGES\Event\DiceEvent\imagetitle-" . width . "_" . height . ".png"
@@ -372,6 +377,18 @@ Init_globals()
     DICE_CLOSECARDMENU_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttonclosecardmenu-" . width . "_" . height . ".png"
     DICE_USECARD_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttonusecard-" . width . "_" . height . ".png"
     DICE_USECARDYES_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttonusecardyes-" . width . "_" . height . ".png"
+    DICE_MOVE1CARD_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttoncardmove1-" . width . "_" . height . ".png"
+    DICE_MOVE2CARD_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttoncardmove2-" . width . "_" . height . ".png"
+    DICE_MOVE3CARD_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttoncardmove3-" . width . "_" . height . ".png"
+    DICE_MOVE4CARD_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttoncardmove4-" . width . "_" . height . ".png"
+    DICE_MOVE5CARD_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttoncardmove5-" . width . "_" . height . ".png"
+    DICE_MOVE6CARD_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttoncardmove6-" . width . "_" . height . ".png"
+    DICE_PROB1CARD_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttoncardprob1-" . width . "_" . height . ".png"
+    DICE_PROB2CARD_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttoncardprob2-" . width . "_" . height . ".png"
+    DICE_HIGHPROBCARD_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttoncardhighprob-" . width . "_" . height . ".png"
+    DICE_LOWPROBCARD_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttoncardlowprob-" . width . "_" . height . ".png"
+    DICE_MENU_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttonmenu-" . width . "_" . height . ".png"
+    DICE_RETREAT_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttonretreat-" . width . "_" . height . ".png"
     ; --------------------------------------------------------------------------
     ; TRAIN-ENCOUNTER EVENT
     ; --------------------------------------------------------------------------
