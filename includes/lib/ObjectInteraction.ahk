@@ -24,12 +24,12 @@ ClickAt(CoordX, CoordY)
 ;MsgBox if img file is missing
 ;MsgBox if img wasn't found in search
 ;Note: Use with WaitObject(Path) function to ensure 'Searched Failed' MsgBox does not popup
-ClickObject(ByRef Path)
+ClickObject(ByRef Path, variation := 0)
 {
 	global SLEEPTIME, X1,X2,Y1,Y2
 	global BLUESTACK_WINDOW_TITLE
 	
-	ImageSearch, FoundX, FoundY, X1, Y1, X2, Y2, %Path%
+	ImageSearch, FoundX, FoundY, X1, Y1, X2, Y2, *%variation% %Path%
 	if ErrorLevel = 2
 	{
 		;MsgBox, 0, File Missing(ClickObject), We can't seem to find this file: `n%Path%. >_< `n`n Pausing Script.
@@ -54,7 +54,7 @@ ClickObject(ByRef Path)
 
 ;Return 1 if Object or button is detected
 ;Return 0 if not detected
-DetectObject(ByRef Path)
+DetectObject(ByRef Path, variation := 0)
 {
 	global X1,X2,Y1,Y2, BACK_BUTTON, SLEEEPTIME
 	global BLUESTACK_WINDOW_TITLE
@@ -65,7 +65,7 @@ DetectObject(ByRef Path)
 		WinActivate, %BLUESTACK_WINDOW_TITLE%
 	}
 	
-	ImageSearch, FoundX, FoundY, X1, Y1, X2, Y2, *TransBlack *10 %Path%
+	ImageSearch, FoundX, FoundY, X1, Y1, X2, Y2, *TransBlack *%variation% %Path%
 	if ErrorLevel = 2
 	{
 		msg := "File Missing(DetectObject), We can't seem to find this file: " . Path

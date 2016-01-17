@@ -82,6 +82,12 @@ training := 0
 deployUnitNum := 0
 pendingAllies := 1
 latestEpisode := 1
+
+sketchDiceStock1 := 0
+portraitDiceStock1 := 0
+masterDiceStock1 := 0
+silverstopStock1 := 0
+
 loop,
 {	
 	if (SHOULD_CLICK == 1)
@@ -520,15 +526,12 @@ loop,
 	; ==========================================================================
     if (RollTheDiceEvent)
     {
-        sketchDiceStock1 := 0
-        portraitDiceStock1 := 0
-        masterDiceStock1 := 0
-        
-        ; if (DetectObject(DICE_MENU_BUTTON) || DetectObject(DICE_RETREAT_BUTTON))
-        ; {
-            ; ClickAt(CARDMENU_X, CARDMENU_Y)
-            ; Sleep 1000
-        ; }
+        if (DetectObject(DICE_MENU_BUTTON) || DetectObject(DICE_RETREAT_BUTTON))
+        {
+            ClickAt(CARDMENU_X, CARDMENU_Y)
+            Sleep 1000
+            ClickObject(DICE_CLOSECARDMENU_BUTTON)
+        }
         if (DetectObject(DICE_MENU_BUTTON) || DetectObject(DICE_RETREAT_BUTTON))
         {
             ClickAt(DICEMENU_X, DICEMENU_Y)
@@ -545,9 +548,11 @@ loop,
             {
                 masterDiceStock1 = 1
             }
+            ClickObject(DICE_CLOSEDICESMENU_BUTTON)
         }
         if (DetectObject(DICE_CLOSECARDMENU_BUTTON))
         {
+            shadeVar := 27 ; shade of 
             if (DetectObject(DICE_MOVE1CARD_BUTTON))
             {
                 ClickObject(DICE_MOVE1CARD_BUTTON)
@@ -588,9 +593,9 @@ loop,
             {
                 ClickObject(DICE_HIGHPROBCARD_BUTTON)
             }
-            else if (DetectObject(DICE_LOWPROBCARD_BUTTON))
+            else if (DetectObject(DICE_LOWPROBCARD_BUTTON, shadeVar))
             {
-                ClickObject(DICE_LOWPROBCARD_BUTTON)
+                ClickObject(DICE_LOWPROBCARD_BUTTON, shadeVar)
             }
             else if (DetectObject(DICE_ALLY2CARD_BUTTON))
             {
