@@ -129,6 +129,9 @@ Init_globals()
         
         CARDMENU_X := 500
         CARDMENU_Y := 600
+        
+        DICEMENU_X := 800
+        DICEMENU_Y := 600
 	}
 	else if (width == 1920 && height == 1080)
 	{

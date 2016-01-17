@@ -520,10 +520,31 @@ loop,
 	; ==========================================================================
     if (RollTheDiceEvent)
     {
+        sketchDiceStock1 := 0
+        portraitDiceStock1 := 0
+        masterDiceStock1 := 0
+        
+        ; if (DetectObject(DICE_MENU_BUTTON) || DetectObject(DICE_RETREAT_BUTTON))
+        ; {
+            ; ClickAt(CARDMENU_X, CARDMENU_Y)
+            ; Sleep 1000
+        ; }
         if (DetectObject(DICE_MENU_BUTTON) || DetectObject(DICE_RETREAT_BUTTON))
         {
-            ClickAt(CARDMENU_X, CARDMENU_Y)
+            ClickAt(DICEMENU_X, DICEMENU_Y)
             Sleep 1000
+            if (DetectObject(DICE_SKETCH_BUTTON))
+            {
+                sketchDiceStock1 = 1
+            }
+            if (DetectObject(DICE_PORTRAIT_BUTTON))
+            {
+                portraitDiceStock1 = 1
+            }
+            if (DetectObject(DICE_MASTER_BUTTON))
+            {
+                masterDiceStock1 = 1
+            }
         }
         if (DetectObject(DICE_CLOSECARDMENU_BUTTON))
         {
@@ -586,6 +607,7 @@ loop,
             else
             {
                 ClickObject(DICE_CLOSECARDMENU_BUTTON)
+                Sleep 1000
             }
         }
         if (DetectObject(DICE_TITLE_IMAGE))
@@ -634,32 +656,7 @@ loop,
         {
             ClickObject(DICE_USECARD_BUTTON)
         }
-        else if (DetectObject(DICE_FIRSTCARD_BUTTON))
-        {
-            ClickObject(DICE_FIRSTCARD_BUTTON)
-        }
-        if (DetectObject(DICE_DICESMENU_BUTTON))
-        {
-            ClickObject(DICE_DICESMENU_BUTTON)
-        }
-        if (DetectObject(DICE_MASTER_BUTTON))
-        {
-            ClickObject(DICE_MASTER_BUTTON)
-			sleep 2000
-			ClickObject(DICE_CLOSEDICESMENU_BUTTON)
-        }
-        else if (DetectObject(DICE_PORTRAIT_BUTTON))
-        {
-            ClickObject(DICE_PORTRAIT_BUTTON)
-			sleep 2000
-			ClickObject(DICE_CLOSEDICESMENU_BUTTON)
-        }
-        else if (DetectObject(DICE_SKETCH_BUTTON))
-        {
-            ClickObject(DICE_SKETCH_BUTTON)
-			sleep 2000
-			ClickObject(DICE_CLOSEDICESMENU_BUTTON)
-        }
+        
         else if (DetectObject(DICE_HEAL_BUTTON))
         {
             if (SHOULD_CLICK == 1)
