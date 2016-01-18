@@ -58,7 +58,7 @@
     FrontlinesHolyWaterCount := 0
     
     ; -- Roll the Dice --
-    RollTheDiceEvent := 1
+    RollTheDiceEvent := 0
     RollTheDiceUseDrops := 1
     RollTheDiceDropsCount := 4
     RollTheDiceUsePotion := 1
@@ -66,6 +66,9 @@
     RollTheDiceMasterDice := 0
     RollTheDicePortraitDice := 0
     RollTheDiceSketchDice := 1
+    
+    ; -- Clash of Legends --
+    ClashOfLegendsEvent := 1
     
 	TIME_ELIXIR = 0
 	SEARCHLIMIT := 2

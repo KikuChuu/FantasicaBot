@@ -458,6 +458,96 @@ loop,
         }
 	}
 	
+    ; ==========================================================================
+	; **************************************************************************
+	; ------------------------ CLASH OF LEGENDS EVENT PAGE ---------------------
+	; **************************************************************************
+	; ==========================================================================
+    if (ClashOfLegendsEvent)
+    {
+        if (DetectObject(CSH_TITLE))
+        {
+            if (DetectObject(CSH_CPBAR1))
+            {
+                if (DetectObject(CSH_BATTLE))
+                {
+                    ClickObject(CSH_BATTLE)
+                }
+            }
+        }
+        if (DetectObject(CSH_BATTLESELECTTITLE))
+        {
+            ; if (DetectObject(CSH_CPBAR4))
+            ; {
+                if (DetectObject(CSH_RESTORECPPROMPT))
+                {
+                    ClickObject(CSH_RESTOREYES)
+                }
+                if (DetectObject(CSH_FIGHTL))
+                {
+                    ClickObject(CSH_FIGHTL)
+                }
+                if (DetectObject(CSH_CPBAR4, 100))
+                {
+                    Scroll(QUEST_X1,QUEST_Y1, QUEST_X2, QUEST_Y2)
+                    ClickObject(CSH_FIGHTM)
+                }
+                else if (DetectObject(CSH_CPBAR3, 50))
+                {
+                    ;ClickObject(CSH_FIGHT)
+                }
+            ; }
+            ; else
+            ; {
+            ; }
+        }
+        if (DetectObject(CSH_START))
+        {
+            if (DetectObject(CSH_START))
+            {
+                ClickObject(CSH_START)
+            }
+        }
+        if (DetectObject(CSH_BEGINPROMPT))
+        {
+            if (DetectObject(CSH_YES))
+            {
+                ClickObject(CSH_YES)
+            }
+        }
+        if (DetectObject(CSH_RESULTSTITLE))
+        {
+            if (DetectObject(CSH_NEXT))
+            {
+                ClickObject(CSH_NEXT)
+            }
+            if (DetectObject(CSH_TOP))
+            {
+                ClickObject(CSH_TOP)
+            }
+        }
+        if (DetectObject(CSH_SPEEDORDER))
+        {
+           ClickObject(CSH_SPEEDORDER)
+        }
+        else if (DetectObject(CSH_PENTAATTACK))
+        {
+            ClickObject(CSH_PENTAATTACK)
+        }
+        else if (DetectObject(CSH_QUADATTACK))
+        {
+            ClickObject(CSH_QUADATTACK)
+        }
+        else if (DetectObject(CSH_TRIPLEATTACK))
+        {
+            ClickObject(CSH_TRIPLEATTACK)
+        }
+        else if (DetectObject(CSH_SKIP))
+        {
+            ClickObject(CSH_SKIP)
+        }
+        
+    }
 	; ==========================================================================
 	; **************************************************************************
 	; ------------------------ COLISEUM EVENT PAGE -----------------------------
@@ -1237,3 +1327,4 @@ return
 F1::ExitApp
 F2::Pause
 F3::Reload
+F4::ClickAt(800,500)
