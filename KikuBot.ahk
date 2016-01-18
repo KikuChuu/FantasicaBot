@@ -82,6 +82,25 @@ training := 0
 deployUnitNum := 0
 pendingAllies := 1
 latestEpisode := 1
+
+sketchDiceStock1 := 0
+portraitDiceStock1 := 0
+masterDiceStock1 := 0
+move1Stock1 := 0
+move2Stock1 := 0
+move3Stock1 := 0
+move4Stock1 := 0
+move5Stock1 := 0
+move6Stock1 := 0
+move10Stock1 := 0
+bronzestopStock1 := 0
+silverstopStock1 := 0
+lowprobStock1 := 0
+highprobStock1 := 0
+lowdiceStock1 := 0
+highdiceStock1 := 0
+ally2Stock1 := 0
+
 loop,
 {	
 	if (SHOULD_CLICK == 1)
@@ -524,53 +543,117 @@ loop,
         {
             ClickAt(CARDMENU_X, CARDMENU_Y)
             Sleep 1000
+            shadeVar := 27 ; shade of 
+            if (DetectObject(DICE_MOVE1CARD_BUTTON, shadeVar))
+            {
+                move1Stock1 = 1
+                SB_SetText(move1)
+                sleep 1000
+            }
+            if (DetectObject(DICE_MOVE2CARD_BUTTON, shadeVar))
+            {
+                move2Stock1 = 1
+                SB_SetText(move2)
+                sleep 1000
+            }
+            if (DetectObject(DICE_MOVE3CARD_BUTTON, shadeVar))
+            {
+                move3Stock1 = 1
+                SB_SetText(move3)
+                sleep 1000
+            }
+            if (DetectObject(DICE_MOVE4CARD_BUTTON, shadeVar))
+            {
+                move4Stock1 = 1
+                SB_SetText(move4)
+                sleep 1000
+            }
+            if (DetectObject(DICE_MOVE5CARD_BUTTON, shadeVar))
+            {
+                move5Stock1 = 1
+                SB_SetText(move5)
+                sleep 1000
+            }
+            if (DetectObject(DICE_MOVE6CARD_BUTTON), shadeVar)
+            {
+                move6Stock1 = 1
+                SB_SetText(move6)
+                sleep 1000
+            }
+            if (DetectObject(DICE_MOVE10CARD_BUTTON, shadeVar))
+            {
+                move10Stock1 = 1
+                SB_SetText(move10)
+                sleep 1000
+            }
+            if (DetectObject(DICE_PROB1CARD_BUTTON, shadeVar))
+            {
+                prob1Stock1 = 1
+                SB_SetText(prob1Stock1)
+                sleep 1000
+            }
+            if (DetectObject(DICE_PROB2CARD_BUTTON, shadeVar))
+            {
+                prob2Stock1 := 1
+                SB_SetText(prob2Stock1)
+                sleep 1000
+            }
+            if (DetectObject(DICE_HIGHPROBCARD_BUTTON, shadeVar))
+            {
+                highDiceStock1 = 1
+                SB_SetText(highDiceStock1)
+                sleep 1000
+            }
+            if (DetectObject(DICE_LOWPROBCARD_BUTTON, shadeVar))
+            {
+                lowDiceStock1 = 1
+                SB_SetText(LowDiceStock1)
+                sleep 1000
+            }
+            if (DetectObject(DICE_ALLY2CARD_BUTTON, shadeVar))
+            {   ally2Stock1 := 1
+                SB_SetText(ally2Stock1)
+                sleep 1000
+            }
+            if (DetectObject(DICE_BRONZESTOPCARD_BUTTON, shadeVar))
+            {
+                bronzestopStock1 := 1
+                SB_SetText(bronzestopStock1)
+                sleep 1000
+            }
+            if (DetectObject(DICE_SILVERSTOPCARD_BUTTON), shadeVar)
+            {
+                silverstopStock1 = 1
+                SB_SetText(LowDiceStock1)
+                sleep 1000
+            }
+            ClickObject(DICE_CLOSECARDMENU_BUTTON)
+            sleep 1000
         }
-        if (DetectObject(DICE_CLOSECARDMENU_BUTTON))
+        if (DetectObject(DICE_MENU_BUTTON) || DetectObject(DICE_RETREAT_BUTTON))
         {
-            if (DetectObject(DICE_MOVE1CARD_BUTTON))
+            ClickAt(DICEMENU_X, DICEMENU_Y)
+            Sleep 1000
+            if (DetectObject(DICE_SKETCH_BUTTON))
             {
-                ClickObject(DICE_MOVE1CARD_BUTTON)
+                sketchDiceStock1 = 1
             }
-            else if (DetectObject(DICE_MOVE2CARD_BUTTON))
+            if (DetectObject(DICE_PORTRAIT_BUTTON))
             {
-                ClickObject(DICE_MOVE2CARD_BUTTON)
+                portraitDiceStock1 = 1
             }
-            else if (DetectObject(DICE_MOVE3CARD_BUTTON))
+            if (DetectObject(DICE_MASTER_BUTTON))
             {
-                ClickObject(DICE_MOVE3CARD_BUTTON)
+                masterDiceStock1 = 1
             }
-            else if (DetectObject(DICE_MOVE4CARD_BUTTON))
-            {
-                ClickObject(DICE_MOVE4CARD_BUTTON)
-            }
-            else if (DetectObject(DICE_MOVE5CARD_BUTTON))
-            {
-                ClickObject(DICE_MOVE5CARD_BUTTON)
-            }
-            else if (DetectObject(DICE_MOVE6CARD_BUTTON))
-            {
-                ClickObject(DICE_MOVE6CARD_BUTTON)
-            }
-            else if (DetectObject(DICE_PROB1CARD_BUTTON))
-            {
-                ClickObject(DICE_PROB1CARD_BUTTON)
-            }
-            else if (DetectObject(DICE_PROB2CARD_BUTTON))
-            {
-                ClickObject(DICE_PROB2CARD_BUTTON)
-            }
-            else if (DetectObject(DICE_HIGHPROBCARD_BUTTON))
-            {
-                ClickObject(DICE_HIGHPROBCARD_BUTTON)
-            }
-            else if (DetectObject(DICE_LOWPROBCARD_BUTTON))
-            {
-                ClickObject(DICE_LOWPROBCARD_BUTTON)
-            }
-            else
-            {
-                ClickObject(DICE_CLOSECARDMENU_BUTTON)
-            }
+            ClickObject(DICE_CLOSEDICESMENU_BUTTON)
+            sleep 1000
+        }
+        if (move6Stock1)
+        {
+            ClickAt(CARDMENU_X, CARDMENU_Y)
+            sleep 1000
+            ClickObject(DICE_MOVE6CARD_BUTTON, 27)
         }
         if (DetectObject(DICE_TITLE_IMAGE))
         {
@@ -618,32 +701,7 @@ loop,
         {
             ClickObject(DICE_USECARD_BUTTON)
         }
-        else if (DetectObject(DICE_FIRSTCARD_BUTTON))
-        {
-            ClickObject(DICE_FIRSTCARD_BUTTON)
-        }
-        if (DetectObject(DICE_DICESMENU_BUTTON))
-        {
-            ClickObject(DICE_DICESMENU_BUTTON)
-        }
-        if (DetectObject(DICE_MASTER_BUTTON))
-        {
-            ClickObject(DICE_MASTER_BUTTON)
-			sleep 2000
-			ClickObject(DICE_CLOSEDICESMENU_BUTTON)
-        }
-        else if (DetectObject(DICE_PORTRAIT_BUTTON))
-        {
-            ClickObject(DICE_PORTRAIT_BUTTON)
-			sleep 2000
-			ClickObject(DICE_CLOSEDICESMENU_BUTTON)
-        }
-        else if (DetectObject(DICE_SKETCH_BUTTON))
-        {
-            ClickObject(DICE_SKETCH_BUTTON)
-			sleep 2000
-			ClickObject(DICE_CLOSEDICESMENU_BUTTON)
-        }
+        
         else if (DetectObject(DICE_HEAL_BUTTON))
         {
             if (SHOULD_CLICK == 1)

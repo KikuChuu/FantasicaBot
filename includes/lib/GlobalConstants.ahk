@@ -101,7 +101,8 @@ Init_globals()
 		SCAN_START_Y := 68
 		SCAN_TILE_SIZE := 78
         
-        
+        CARDMENU_X := 100
+		CARDMENU_Y := 800
 	}
 	else if (width == 1282 && height == 749)
 	{
@@ -128,6 +129,9 @@ Init_globals()
         
         CARDMENU_X := 500
         CARDMENU_Y := 600
+        
+        DICEMENU_X := 800
+        DICEMENU_Y := 600
 	}
 	else if (width == 1920 && height == 1080)
 	{
@@ -383,10 +387,15 @@ Init_globals()
     DICE_MOVE4CARD_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttoncardmove4-" . width . "_" . height . ".png"
     DICE_MOVE5CARD_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttoncardmove5-" . width . "_" . height . ".png"
     DICE_MOVE6CARD_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttoncardmove6-" . width . "_" . height . ".png"
+    DICE_MOVE10CARD_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttoncardmove10-" . width . "_" . height . ".png"
     DICE_PROB1CARD_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttoncardprob1-" . width . "_" . height . ".png"
     DICE_PROB2CARD_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttoncardprob2-" . width . "_" . height . ".png"
     DICE_HIGHPROBCARD_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttoncardhighprob-" . width . "_" . height . ".png"
     DICE_LOWPROBCARD_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttoncardlowprob-" . width . "_" . height . ".png"
+    DICE_ALLY2CARD_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttoncardally2-" . width . "_" . height . ".png"
+    DICE_ALLY3CARD_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttoncardally3-" . width . "_" . height . ".png"
+    DICE_BRONZESTOPCARD_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttoncardbronzestop-" . width . "_" . height . ".png"
+    DICE_SILVERSTOPCARD_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttoncardsilverstop-" . width . "_" . height . ".png"
     DICE_MENU_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttonmenu-" . width . "_" . height . ".png"
     DICE_RETREAT_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttonretreat-" . width . "_" . height . ".png"
     ; --------------------------------------------------------------------------
