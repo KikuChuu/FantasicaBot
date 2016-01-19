@@ -8,6 +8,9 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 Init_globals() ; Found in GlobalConstants.ahk
 ;--------------------------------------------
 
+red := 0
+green := 0
+blue := 0
 cooldown := -1000
 loop,
 {	
@@ -58,7 +61,41 @@ loop,
         }
         if (DetectObject(CSH_BATTLESELECTTITLE))
         {
-            if (DetectObject(CSH_LEGEND))
+        
+            if (DetectObject(CSH_USETEPROMPT))
+            {
+                ClickObject(CSH_USETEYES)
+            }
+            else if (DetectObject(CSH_USE_TONIC_PROMPT))
+            {
+                ClickObject(CSH_USE_TONIC_YES)
+            }
+            else if (DetectObject(CSH_RESTORECPPROMPT))
+            {
+                if (viciousTonic == -1)
+                {
+                    InputBox, viciousTonic, "Vicious Tonic", "How many Vicious Tonics are there in stock?", 375, 189
+                }
+                if (timeElixir == -1)
+                {
+                    InputBox, timeElixir, "Time Elixirs", "How many Time Elixirs are there in stock?", 375, 189
+                }
+                if (viciousTonic > 0)
+                {
+                    ClickObject(CSH_RESTORE_VIA_TONIC)
+                    viciousTonic--
+                }
+                else if (timeElixir > 0)
+                {
+                    ClickObject(CSH_RESTORE_VIA_TE)
+                }
+                else
+                {
+                    ClickObject(CSH_CANCEL_RESTORE)
+                }
+               
+            }
+            else if (DetectObject(CSH_LEGEND))
             {
                 ClickObject(CSH_FIGHT_LEGEND)
             }
@@ -91,45 +128,53 @@ loop,
                 SB_SetText(sleepMsg)
                 sleep cooldown
             }
-            if (DetectObject(CSH_USETEPROMPT))
-            {
-                ClickObject(CSH_USETEYES)
-            }
-            else if (DetectObject(CSH_USE_TONIC_PROMPT))
-            {
-                ClickObject(CSH_USE_TONIC_YES)
-            }
-            if (DetectObject(CSH_RESTORECPPROMPT))
-            {
-                if (viciousTonic == -1)
-                {
-                    InputBox, viciousTonic, "Vicious Tonic", "How many Vicious Tonics are there in stock?", 375, 189
-                }
-                if (timeElixir == -1)
-                {
-                    InputBox, timeElixir, "Time Elixirs", "How many Time Elixirs are there in stock?", 375, 189
-                }
-                if (viciousTonic > 0)
-                {
-                    ClickObject(CSH_RESTORE_VIA_TONIC)
-                    viciousTonic--
-                }
-                else if (timeElixir > 0)
-                {
-                    ClickObject(CSH_RESTORE_VIA_TE)
-                }
-                else
-                {
-                    ClickObject(CSH_CANCEL_RESTORE)
-                }
-               
-            }
         }
         if (DetectObject(CSH_START))
         {
+            if (DetectObject(CSH_ENEMY1_MISSILE))
+            {
+                green++
+            }
+            if (DetectObject(CSH_ENEMY2_MISSILE))
+            {
+                green++
+            }
+            if (DetectObject(CSH_ENEMY3_MISSILE))
+            {
+                green++
+            }
+            if (DetectObject(CSH_ENEMY4_MISSILE))
+            {
+                green++
+            }
+            if (DetectObject(CSH_ENEMY5_MISSILE))
+            {
+                green++
+            }
+            if (DetectObject(CSH_ENEMY6_MISSILE))
+            {
+                green++
+            }
+            if (DetectObject(CSH_ENEMY7_MISSILE))
+            {
+                green++
+            }
+            if (DetectObject(CSH_ENEMY8_MISSILE))
+            {
+                green++
+            }
+            if (green == 8)
+            {
+                ClickObject(CSH_TEAM2)
+            }
             if (DetectObject(CSH_START))
             {
                 ClickObject(CSH_START)
+                
+                ; reset team selection control variables
+                green = 0
+                red = 0
+                blue = 0
             }
         }
         if (DetectObject(CSH_BEGINPROMPT))
@@ -150,21 +195,21 @@ loop,
                 ClickObject(CSH_TOP, 10)
             }
         }
-        if (DetectObject(CSH_SPEEDORDER))
+        if (DetectObject(CSH_SPEEDORDER, 50))
         {
-           ClickObject(CSH_SPEEDORDER)
+           ClickObject(CSH_SPEEDORDER, 50)
         }
-        else if (DetectObject(CSH_PENTAATTACK))
+        else if (DetectObject(CSH_PENTAATTACK, 50))
         {
-            ClickObject(CSH_PENTAATTACK)
+            ClickObject(CSH_PENTAATTACK, 50)
         }
-        else if (DetectObject(CSH_QUADATTACK))
+        else if (DetectObject(CSH_QUADATTACK, 50))
         {
-            ClickObject(CSH_QUADATTACK)
+            ClickObject(CSH_QUADATTACK, 50)
         }
-        else if (DetectObject(CSH_TRIPLEATTACK))
+        else if (DetectObject(CSH_TRIPLEATTACK, 50))
         {
-            ClickObject(CSH_TRIPLEATTACK)
+            ClickObject(CSH_TRIPLEATTACK, 50)
         }
         else if (DetectObject(CSH_SKIP))
         {

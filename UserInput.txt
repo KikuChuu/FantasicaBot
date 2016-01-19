@@ -8,8 +8,8 @@
 
 ; Item Settings
 ; -------------
-viciousTonic := 10
-timeElixir := 0
+viciousTonic := -1
+timeElixir := -1
 potion := 0
 
 ;Training Specification
