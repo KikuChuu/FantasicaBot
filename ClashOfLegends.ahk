@@ -10,30 +10,10 @@ Init_globals() ; Found in GlobalConstants.ahk
 
 
 
-switch := 1
-training := 0
-deployUnitNum := 0
-pendingAllies := 1
-latestEpisode := 1
 
-sketchDiceStock1 := 0
-portraitDiceStock1 := 0
-masterDiceStock1 := 0
-move1Stock1 := 0
-move2Stock1 := 0
-move3Stock1 := 0
-move4Stock1 := 0
-move5Stock1 := 0
-move6Stock1 := 0
-move10Stock1 := 0
-bronzestopStock1 := 0
-silverstopStock1 := 0
-lowprobStock1 := 0
-highprobStock1 := 0
-lowdiceStock1 := 0
-highdiceStock1 := 0
-ally2Stock1 := 0
-
+viciousTonic := -1
+timeElixir := -1
+potion := -1
 loop,
 {	
 	if (SHOULD_CLICK == 1)
@@ -61,9 +41,34 @@ loop,
             {
                 ClickObject(CSH_USETEYES)
             }
+            if (DetectObject(CSH_USE_TONIC_PROMPT))
+            {
+                ClickObject(CSH_USE_TONIC_YES)
+            }
             if (DetectObject(CSH_RESTORECPPROMPT))
             {
-                ClickObject(CSH_RESTOREYES)
+                if (viciousTonic == -1)
+                {
+                    InputBox, viciousTonic, "Vicious Tonic", "How many Vicious Tonics are there in stock?", 375, 189
+                }
+                if (timeElixir == -1)
+                {
+                    InputBox, timeElixir, "Time Elixirs", "How many Time Elixirs are there in stock?", 375, 189
+                }
+                if (viciousTonic > 0)
+                {
+                    ClickObject(CSH_RESTORE_VIA_TONIC)
+                    viciousTonic--
+                }
+                else if (timeElixir > 0)
+                {
+                    ClickObject(CSH_RESTORE_VIA_TE)
+                }
+                else
+                {
+                    ClickObject(CSH_CANCEL_RESTORE)
+                }
+               
             }
             if (DetectObject(CSH_LEGEND))
             {
@@ -126,11 +131,39 @@ loop,
         }
         else if (DetectObject(CSH_RETRYPROMPT))
         {
-            ClickObject(CSH_RETRYYES)
-        }
-        if (DetectObject(CSH_POTIONPROMPT))
-        {
-            ClickObject(CSH_POTIONYES)
+            if (viciousTonic == -1)
+            {
+                InputBox, viciousTonic, "Vicious Tonic", "How many Vicious Tonic is there in stock?", 375, 189
+            }
+            if (potion == -1)
+            {
+                InputBox, potion, "Potion", "How many Potions are there in stock?", 375, 189
+            }
+            if (viciousTonic > 0)
+            {
+                ClickObject(CSH_RETRY_VIA_TONIC)
+                viciousTonic--
+            }
+            else if (potion > 0)
+            {
+                ClickObject(CSH_RETRY_VIA_POTION)
+            }
+            else
+            {
+                ClickObject(CSH_CANCEL_RETRY)
+            }
+            if (DetectObject(CSH_POTION_PROMPT))
+            {
+                ClickObject(CSH_POTIONYES)
+            }
+            else if (DetectObject(CSH_TONIC_PROMPT))
+            {
+                ClickObject(CSH_TONIC_YES)
+            }
+            else if (DetectObject(CSH_GIVEUP_PROMPT))
+            {
+                ClickObject(CSH_GIVEUP_YES)
+            }
         }
     }
 }
