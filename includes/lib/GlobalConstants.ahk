@@ -80,7 +80,7 @@ Init_globals()
 	}
 	else if (width == 677 && height == 1102)
 	{
-		WAIT_X := 325
+		WAIT_X := 100
 		WAIT_Y := 420
 
 		BINGO_START_X := 110

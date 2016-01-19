@@ -81,8 +81,13 @@ loop,
                 {
                     InputBox, cooldown, "CP Timer", "How long do you want the script to sleep? (in milliseconds)", 375, 189
                 }
+                currTime := A_Now
+                computeWakeTime := currTime
+                secondsToAdd := cooldown // 1000 ; cooldown is in milliseconds
+                computeWakeTime += %secondsToAdd%, Seconds
+                FormatTime, wakeTime, %computeWakeTime%, Time
                 FormatTime, currTime, A_Now, Time
-                sleepMsg := "Script began sleeping since " . currTime
+                sleepMsg := "Script began sleeping since " . currTime . " and will wake at " . wakeTime
                 SB_SetText(sleepMsg)
                 sleep cooldown
             }
