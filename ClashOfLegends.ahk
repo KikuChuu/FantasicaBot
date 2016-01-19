@@ -131,41 +131,117 @@ loop,
         }
         if (DetectObject(CSH_START))
         {
-            if (DetectObject(CSH_ENEMY1_MISSILE))
+            if (DetectObject(CSH_ENEMY1_MAGIC))
+            {
+                blue++
+            }
+            else if (DetectObject(CSH_ENEMY1_MELEE))
+            {
+                red++
+            }
+            else if (DetectObject(CSH_ENEMY1_MISSILE))
             {
                 green++
             }
-            if (DetectObject(CSH_ENEMY2_MISSILE))
+            if (DetectObject(CSH_ENEMY2_MAGIC))
+            {
+                blue++
+            }
+            else if (DetectObject(CSH_ENEMY2_MELEE))
+            {
+                red++
+            }
+            else if (DetectObject(CSH_ENEMY2_MISSILE))
             {
                 green++
             }
-            if (DetectObject(CSH_ENEMY3_MISSILE))
+            if (DetectObject(CSH_ENEMY3_MAGIC))
+            {
+                blue++
+            }
+            else if (DetectObject(CSH_ENEMY3_MELEE))
+            {
+                red++
+            }
+            else if (DetectObject(CSH_ENEMY3_MISSILE))
             {
                 green++
             }
-            if (DetectObject(CSH_ENEMY4_MISSILE))
+            if (DetectObject(CSH_ENEMY4_MAGIC))
+            {
+                blue++
+            }
+            else if (DetectObject(CSH_ENEMY4_MELEE))
+            {
+                red++
+            }
+            else if (DetectObject(CSH_ENEMY4_MISSILE))
             {
                 green++
             }
-            if (DetectObject(CSH_ENEMY5_MISSILE))
+            if (DetectObject(CSH_ENEMY5_MAGIC))
+            {
+                blue++
+            }
+            else if (DetectObject(CSH_ENEMY5_MELEE))
+            {
+                red++
+            }
+            else if (DetectObject(CSH_ENEMY5_MISSILE))
             {
                 green++
             }
-            if (DetectObject(CSH_ENEMY6_MISSILE))
+            if (DetectObject(CSH_ENEMY6_MAGIC))
+            {
+                blue++
+            }
+            else if (DetectObject(CSH_ENEMY6_MELEE))
+            {
+                red++
+            }
+            else if (DetectObject(CSH_ENEMY6_MISSILE))
             {
                 green++
             }
-            if (DetectObject(CSH_ENEMY7_MISSILE))
+            if (DetectObject(CSH_ENEMY7_MAGIC))
+            {
+                blue++
+            }
+            else if (DetectObject(CSH_ENEMY7_MELEE))
+            {
+                red++
+            }
+            else if (DetectObject(CSH_ENEMY7_MISSILE))
             {
                 green++
             }
-            if (DetectObject(CSH_ENEMY8_MISSILE))
+            if (DetectObject(CSH_ENEMY8_MAGIC))
+            {
+                blue++
+            }
+            else if (DetectObject(CSH_ENEMY8_MELEE))
+            {
+                red++
+            }
+            else if (DetectObject(CSH_ENEMY8_MISSILE))
             {
                 green++
             }
-            if (green == 8)
+            if (blue == 8)
+            {
+                ClickObject(CSH_TEAM4)
+            }
+            else if (red == 8)
+            {
+                ClickObject(CSH_TEAM3)
+            }
+            else if (green == 8)
             {
                 ClickObject(CSH_TEAM2)
+            }
+            else if (red == 4 && green == 4)
+            {
+                ClickObject(CSH_TEAM3)
             }
             if (DetectObject(CSH_START))
             {
