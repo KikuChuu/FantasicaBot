@@ -65,7 +65,7 @@ loop,
             {
                 ClickObject(CSH_RESTOREYES)
             }
-            if (DetectObject(CSH_FIGHTL))
+            if (DetectObject(CSH_LEGEND))
             {
                 ClickObject(CSH_FIGHTL)
             }
@@ -124,7 +124,14 @@ loop,
         {
             ClickObject(CSH_SKIP)
         }
-        
+        else if (DetectObject(CSH_RETRYPROMPT))
+        {
+            ClickObject(CSH_RETRYYES)
+        }
+        if (DetectObject(CSH_POTIONPROMPT))
+        {
+            ClickObject(CSH_POTIONYES)
+        }
     }
 }
 ; ==============================================================================
