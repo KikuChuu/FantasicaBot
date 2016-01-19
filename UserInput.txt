@@ -6,6 +6,12 @@
 		      	; 0 = regular SLEEPTIME delay
 	SHOULD_CLICK := 1
 
+; Item Settings
+; -------------
+viciousTonic := -1
+timeElixir := -1
+potion := -1
+
 ;Training Specification
 ;----------------------
 	MAXTP = 300 ;your maximum training points

@@ -346,9 +346,10 @@ Init_globals()
     CSH_CPBAR3 := "FANTASICA IMAGES\Event\ClashOfLegends\cpbar3-" . width . "_" . height . ".png"
     CSH_CPBAR4 := "FANTASICA IMAGES\Event\ClashOfLegends\cpbar4-" . width . "_" . height . ".png"
     CSH_BATTLESELECTTITLE := "FANTASICA IMAGES\Event\ClashOfLegends\battleselectscreen\title-" . width . "_" . height . ".png"
-    CSH_FIGHT := "FANTASICA IMAGES\Event\ClashOfLegends\battleselectscreen\fightvet-" . width . "_" . height . ".png"
-    CSH_FIGHTM := "FANTASICA IMAGES\Event\ClashOfLegends\battleselectscreen\fightmaster-" . width . "_" . height . ".png"
-    CSH_FIGHTL := "FANTASICA IMAGES\Event\ClashOfLegends\battleselectscreen\fightlegend-" . width . "_" . height . ".png"
+    CSH_FIGHT_ADEPT := "FANTASICA IMAGES\Event\ClashOfLegends\battleselectscreen\fightadept-" . width . "_" . height . ".png"
+    CSH_FIGHT_VETERAN := "FANTASICA IMAGES\Event\ClashOfLegends\battleselectscreen\fightveteran-" . width . "_" . height . ".png"
+    CSH_FIGHT_MASTER := "FANTASICA IMAGES\Event\ClashOfLegends\battleselectscreen\fightmaster-" . width . "_" . height . ".png"
+    CSH_FIGHT_LEGEND := "FANTASICA IMAGES\Event\ClashOfLegends\battleselectscreen\fightlegend-" . width . "_" . height . ".png"
     CSH_LEGEND := "FANTASICA IMAGES\Event\ClashOfLegends\battleselectscreen\legend-" . width . "_" . height . ".png"
     CSH_RESTORECPPROMPT := "FANTASICA IMAGES\Event\ClashOfLegends\battleselectscreen\restorecpprompt-" . width . "_" . height . ".png"
     CSH_CANCEL_RESTORE := "FANTASICA IMAGES\Event\ClashOfLegends\battleselectscreen\cancelrestore-" . width . "_" . height . ".png"
@@ -379,6 +380,12 @@ Init_globals()
     CSH_RESULTSTITLE := "FANTASICA IMAGES\Event\ClashOfLegends\results\title-" . width . "_" . height . ".png"
     CSH_TOP := "FANTASICA IMAGES\Event\ClashOfLegends\results\top-" . width . "_" . height . ".png"
     CSH_NEXT := "FANTASICA IMAGES\Event\ClashOfLegends\results\next-" . width . "_" . height . ".png"
+    CSH_ASSIST_TITLE := "FANTASICA IMAGES\Event\ClashOfLegends\assistscreen\title-" . width . "_" . height . ".png"
+    CSH_ASSIST_ALL := "FANTASICA IMAGES\Event\ClashOfLegends\assistscreen\assistall-" . width . "_" . height . ".png"
+    CSH_REQUEST_ASSIST := "FANTASICA IMAGES\Event\ClashOfLegends\assistscreen\requestassist-" . width . "_" . height . ".png"
+    CSH_GOTO_BATTLE := "FANTASICA IMAGES\Event\ClashOfLegends\assistscreen\battle-" . width . "_" . height . ".png"
+    CSH_ASSIST_RESULTS_TITLE := "FANTASICA IMAGES\Event\ClashOfLegends\assistresults\title-" . width . "_" . height . ".png" 
+    CSH_ASSIST_BACK := "FANTASICA IMAGES\Event\ClashOfLegends\assistresults\back-" . width . "_" . height . ".png"
     ; --------------------------------------------------------------------------
     ; ROLL THE DICE EVENT
     ; --------------------------------------------------------------------------

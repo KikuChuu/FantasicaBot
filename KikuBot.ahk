@@ -480,12 +480,13 @@ loop,
     {
         if (DetectObject(CSH_TITLE))
         {
-            if (DetectObject(CSH_CPBAR1))
+            if (DetectObject(CSH_ASSIST))
             {
-                if (DetectObject(CSH_BATTLE))
-                {
-                    ClickObject(CSH_BATTLE)
-                }
+                ClickObject(CSH_ASSIST)
+            }
+            else if (DetectObject(CSH_BATTLE))
+            {
+                ClickObject(CSH_BATTLE)
             }
         }
         if (DetectObject(CSH_BATTLESELECTTITLE))

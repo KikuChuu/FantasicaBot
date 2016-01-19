@@ -8,12 +8,7 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 Init_globals() ; Found in GlobalConstants.ahk
 ;--------------------------------------------
 
-
-
-
-viciousTonic := -1
-timeElixir := -1
-potion := -1
+cooldown := -1000
 loop,
 {	
 	if (SHOULD_CLICK == 1)
@@ -30,18 +25,72 @@ loop,
     {
         if (DetectObject(CSH_TITLE))
         {
-            if (DetectObject(CSH_BATTLE))
+            if (DetectObject(CSH_ASSIST))
+            {
+                ClickObject(CSH_ASSIST)
+            }
+            else if (DetectObject(CSH_BATTLE))
             {
                 ClickObject(CSH_BATTLE)
             }
         }
+        if (DetectObject(CSH_ASSIST_TITLE))
+        {
+            if (DetectObject(CSH_ASSIST_ALL))
+            {
+                ClickObject(CSH_ASSIST_ALL)
+            }
+            else if (DetectObject(CSH_REQUEST_ASSIST))
+            {
+                ClickObject(CSH_REQUEST_ASSIST)
+            }
+            else
+            {
+                ClickObject(CSH_GOTO_BATTLE)
+            }
+        }
+        if (DetectObject(CSH_ASSIST_RESULTS_TITLE))
+        {
+            if (DetectObject(CSH_ASSIST_BACK))
+            {
+                ClickObject(CSH_ASSIST_BACK)
+            }
+        }
         if (DetectObject(CSH_BATTLESELECTTITLE))
         {
+            if (DetectObject(CSH_LEGEND))
+            {
+                ClickObject(CSH_FIGHT_LEGEND)
+            }
+            else if (DetectObject(CSH_CPBAR4, 100))
+            {
+                Scroll(QUEST_X1,QUEST_Y1, QUEST_X2, QUEST_Y2)
+                ClickObject(CSH_FIGHT_MASTER)
+            }
+            else if (DetectObject(CSH_CPBAR3, 100))
+            {
+                ClickObject(CSH_FIGHT_VETERAN)
+            }
+            else if (DetectObject(CSH_CPBAR2, 100))
+            {
+                ClickObject(CSH_FIGHT_ADEPT)
+            }
+            else
+            {
+                if (cooldown == -1000)
+                {
+                    InputBox, cooldown, "CP Timer", "How long do you want the script to sleep? (in milliseconds)", 375, 189
+                }
+                FormatTime, currTime, A_Now, Time
+                sleepMsg := "Script began sleeping since " . currTime
+                SB_SetText(sleepMsg)
+                sleep cooldown
+            }
             if (DetectObject(CSH_USETEPROMPT))
             {
                 ClickObject(CSH_USETEYES)
             }
-            if (DetectObject(CSH_USE_TONIC_PROMPT))
+            else if (DetectObject(CSH_USE_TONIC_PROMPT))
             {
                 ClickObject(CSH_USE_TONIC_YES)
             }
@@ -69,19 +118,6 @@ loop,
                     ClickObject(CSH_CANCEL_RESTORE)
                 }
                
-            }
-            if (DetectObject(CSH_LEGEND))
-            {
-                ClickObject(CSH_FIGHTL)
-            }
-            if (DetectObject(CSH_CPBAR4, 100))
-            {
-                Scroll(QUEST_X1,QUEST_Y1, QUEST_X2, QUEST_Y2)
-                ClickObject(CSH_FIGHTM)
-            }
-            else if (DetectObject(CSH_CPBAR3, 100))
-            {
-                ClickObject(CSH_FIGHT)
             }
         }
         if (DetectObject(CSH_START))
