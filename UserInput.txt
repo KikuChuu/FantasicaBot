@@ -19,7 +19,7 @@ potion := 0
 	
 ;Quest Selection Specification
 ;-----------------------------
-	QUEST = 6 ; Enter 1,2,3,4,5,6, or 7
+	QUEST = 7 ; Enter 1,2,3,4,5,6, or 7
 	EPISODE = 59
 ;Quest Battle specification
 ;--------------------------												 
