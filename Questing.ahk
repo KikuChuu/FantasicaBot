@@ -46,10 +46,37 @@ pendingAllies := 1
 latestEpisode := 1
 loop,
 {	
-	if (SHOULD_CLICK == 1)
-	{
-		SendEvent {ClickAt %WAIT_X%, %WAIT_Y%}
-	}
+    if (DetectObject(MYPAGEID_TEXT))
+    {
+        if (DetectObject(QUESTTIMER_TEXT))
+		{
+            scrollCount := QUEST_INDEX // 3
+			if (DetectObject(QUEST5_ICON, 100))
+			{
+				ClickObject(QUEST5_ICON, 100)
+			}
+            else
+            {
+                loop, %scrollCount%
+                {
+                    Scroll(MENU_X1, MENU_Y1, MENU_X2, MENU_Y2)
+                }
+                
+                if (DetectObject(QUEST5_ICON, 100))
+                {
+                    ClickObject(QUEST5_ICON, 100)
+                }
+                else 
+                {   
+                    scrollCount++
+                    loop, %scrollCount%
+                    {
+                        Scroll(MENU_X2, MENU_Y2, MENU_X1, MENU_Y1)
+                    }
+                }
+            }
+		} ; QUESTING
+    }
 	; ==========================================================================
 	; **************************************************************************
 	; ---------------------- QUEST SELECTION PAGE ------------------------------
@@ -164,7 +191,6 @@ loop,
 	{
 		ClickObject(CALLALLY_BUTTON)
 	}
-
 	if (DetectObject(CALLALLYPAGE_TEXT))
 	{
 		if (CallAlly(SORTINDEX, TYPEINDEX))

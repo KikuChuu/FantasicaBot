@@ -57,9 +57,9 @@ loop,
         {
             scrollCount := TRAINING_INDEX // 3
             
-            if (DetectObject(TRAINING5_ICON, 50))
+            if (DetectObject(TRAINING5_ICON, 100))
             {
-                ClickObject(TRAINING5_ICON, 50)
+                ClickObject(TRAINING5_ICON, 100)
             }
             else
             {
@@ -68,9 +68,9 @@ loop,
                     Scroll(MENU_X1, MENU_Y1, MENU_X2, MENU_Y2)
                 }
                 
-                if (DetectObject(TRAINING5_ICON))
+                if (DetectObject(TRAINING5_ICON, 100))
                 {
-                    ClickObject(TRAINING5_ICON)
+                    ClickObject(TRAINING5_ICON, 100)
                 }
                 else
                 {

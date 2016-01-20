@@ -840,15 +840,16 @@ PlaceUnitAt(CoordX, CoordY)
 }
 
 ;Scrolls down a list
-Scroll(X_init, Y_init, X_end, Y_end)
+Scroll(X_init, Y_init, X_end, Y_end, mouseSpeed := 0)
 {
 	global SLEEPTIME
-	SetDefaultMouseSpeed 0
-	MouseMove %X_init%, %Y_init% 
-	Sleep SLEEPTIME
-	SetDefaultMouseSpeed 100
-	SendEvent { Click down }{ Click up %X_end%, %Y_end%}
-	SetDefaultMouseSpeed 0
+	; SetDefaultMouseSpeed %mouseSpeed%
+	; MouseMove %X_init%, %Y_init% 
+	; Sleep SLEEPTIME
+    MouseClickDrag, Left, %X_init%, %Y_init%, %X_end%, %Y_end%, %mouseSpeed%
+	; SetDefaultMouseSpeed 100
+	; SendEvent { Click down }{ Click up %X_end%, %Y_end%}
+	; SetDefaultMouseSpeed 0
 	Sleep SLEEPTIME
 }
 

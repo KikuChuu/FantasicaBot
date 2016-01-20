@@ -114,13 +114,13 @@ Init_globals()
 		BINGO_TILE_SIZE := 70
 
 		QUEST_X1 := 500
-		QUEST_Y1 := 623
+		QUEST_Y1 := 273
 		QUEST_X2 := 500
 		QUEST_Y2 := 163
 
 		MENU_X1 := 760
 		MENU_Y1 := 710
-		MENU_X2 := 445
+		MENU_X2 := 700
 		MENU_Y2 := 710
 		
 		SCAN_START_X := 465

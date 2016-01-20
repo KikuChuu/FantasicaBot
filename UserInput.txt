@@ -4,7 +4,7 @@
 	QUICKSCAN = 2 	; 2 = reduce delay of unit placement scan to 1ms (not accurate)
 			; 1 = reduce delay of unit placement scan by half	of SLEEPTIME
 		      	; 0 = regular SLEEPTIME delay
-	SHOULD_CLICK := 1
+	SHOULD_CLICK := 0
 
 ; Item Settings
 ; -------------
@@ -40,7 +40,7 @@ potion := 0
 ;********************************************
 ;============================================
 ; -- First icon starts at index 0 --
-	QUEST_INDEX := 2
+	QUEST_INDEX := 3
     TRAINING_INDEX := 3
     INBOX_INDEX := 14
 
