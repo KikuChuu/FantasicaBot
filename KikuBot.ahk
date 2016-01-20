@@ -540,21 +540,21 @@ loop,
                 ClickObject(CSH_TOP)
             }
         }
-        if (DetectObject(CSH_SPEEDORDER))
+        if (DetectObject(CSH_SUPPORT1))
         {
-           ClickObject(CSH_SPEEDORDER)
+           ClickObject(CSH_SUPPORT1)
         }
-        else if (DetectObject(CSH_PENTAATTACK))
+        else if (DetectObject(CSH_SUPPORT2))
         {
-            ClickObject(CSH_PENTAATTACK)
+            ClickObject(CSH_SUPPORT2)
         }
-        else if (DetectObject(CSH_QUADATTACK))
+        else if (DetectObject(CSH_SUPPORT3))
         {
-            ClickObject(CSH_QUADATTACK)
+            ClickObject(CSH_SUPPORT3)
         }
-        else if (DetectObject(CSH_TRIPLEATTACK))
+        else if (DetectObject(CSH_SUPPORT4))
         {
-            ClickObject(CSH_TRIPLEATTACK)
+            ClickObject(CSH_SUPPORT4)
         }
         else if (DetectObject(CSH_SKIP))
         {

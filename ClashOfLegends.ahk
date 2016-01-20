@@ -239,10 +239,43 @@ loop,
             {
                 ClickObject(CSH_TEAM2)
             }
+            else if (blue == 4 && red == 4)
+            {
+                ClickObject(CSH_TEAM4)
+            }
             else if (red == 4 && green == 4)
             {
                 ClickObject(CSH_TEAM3)
             }
+            else if (green == 4 && blue == 4)
+            {
+                ClickObject(CSH_TEAM2)
+            }
+            else if (blue == 3 && red == 3 && green == 2)
+            {
+                ClickObject(CSH_TEAM4)
+            }
+            else if (red == 3 && green == 3 && blue == 2)
+            {
+                ClickObject(CSH_TEAM3)
+            }
+            else if (green == 3 && blue == 3 && red == 2)
+            {
+                ClickObject(CSH_TEAM2)
+            }
+            else if (blue >= 4)
+            {
+                ClickObject(CSH_TEAM4)
+            }
+            else if (red >= 4)
+            {
+                ClickObject(CSH_TEAM3)
+            }
+            else if (green >= 4)
+            {
+                ClickObject(CSH_TEAM2)
+            }
+            
             if (DetectObject(CSH_START))
             {
                 ClickObject(CSH_START)
@@ -271,21 +304,21 @@ loop,
                 ClickObject(CSH_TOP, 10)
             }
         }
-        if (DetectObject(CSH_SPEEDORDER, 50))
+        if (DetectObject(CSH_SUPPORT1))
         {
-           ClickObject(CSH_SPEEDORDER, 50)
+           ClickObject(CSH_SUPPORT1)
         }
-        else if (DetectObject(CSH_PENTAATTACK, 50))
+        else if (DetectObject(CSH_SUPPORT2))
         {
-            ClickObject(CSH_PENTAATTACK, 50)
+            ClickObject(CSH_SUPPORT2)
         }
-        else if (DetectObject(CSH_QUADATTACK, 50))
+        else if (DetectObject(CSH_SUPPORT3))
         {
-            ClickObject(CSH_QUADATTACK, 50)
+            ClickObject(CSH_SUPPORT3)
         }
-        else if (DetectObject(CSH_TRIPLEATTACK, 50))
+        else if (DetectObject(CSH_SUPPORT4))
         {
-            ClickObject(CSH_TRIPLEATTACK, 50)
+            ClickObject(CSH_SUPPORT4)
         }
         else if (DetectObject(CSH_SKIP))
         {
