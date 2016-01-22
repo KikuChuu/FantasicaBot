@@ -114,7 +114,7 @@ Init_globals()
 		BINGO_TILE_SIZE := 70
 
 		QUEST_X1 := 500
-		QUEST_Y1 := 273
+		QUEST_Y1 := 238
 		QUEST_X2 := 500
 		QUEST_Y2 := 163
 
@@ -197,13 +197,26 @@ Init_globals()
 	
 	QUEST_TEXT := "FANTASICA IMAGES\Quest\QuestSelection\textquest-" . width . "_" . height . ".png"
 	SELECTEPISODE_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonselectepisode-" . width . "_" . height . ".png" ;The 'Select Episode' button for quest
+    QUEST1 := "FANTASICA IMAGES\Quest\QuestSelection\quest1-" . width . "_" . height . ".png"
+    QUEST2 := "FANTASICA IMAGES\Quest\QuestSelection\quest2-" . width . "_" . height . ".png"
+    QUEST3 := "FANTASICA IMAGES\Quest\QuestSelection\quest3-" . width . "_" . height . ".png"
+    QUEST4 := "FANTASICA IMAGES\Quest\QuestSelection\quest4-" . width . "_" . height . ".png"
+    QUEST5 := "FANTASICA IMAGES\Quest\QuestSelection\quest5-" . width . "_" . height . ".png"
+    QUEST6 := "FANTASICA IMAGES\Quest\QuestSelection\quest6-" . width . "_" . height . ".png"
+    QUEST7 := "FANTASICA IMAGES\Quest\QuestSelection\quest7-" . width . "_" . height . ".png"
+    QUEST8 := "FANTASICA IMAGES\Quest\QuestSelection\quest8-" . width . "_" . height . ".png"
+    QUEST9 := "FANTASICA IMAGES\Quest\QuestSelection\quest9-" . width . "_" . height . ".png"
+    QUEST10 := "FANTASICA IMAGES\Quest\QuestSelection\quest10-" . width . "_" . height . ".png"
 	STARTQUEST1_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest1-" . width . "_" . height . ".png" ;quest #1
 	STARTQUEST2_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest2-" . width . "_" . height . ".png" ;quest #2
 	STARTQUEST3_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest3-" . width . "_" . height . ".png" ;quest #3
 	STARTQUEST4_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest4-" . width . "_" . height . ".png" ;quest #4
 	STARTQUEST5_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest5-" . width . "_" . height . ".png" ;quest #5
 	STARTQUEST6_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest6-" . width . "_" . height . ".png" ;quest #6
-	STARTQUEST7_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest7-" . width . "_" . height . ".png" ;quest #7 
+	STARTQUEST7_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest7-" . width . "_" . height . ".png" ;quest #7
+    STARTQUEST8_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest8-" . width . "_" . height . ".png" ;quest #8
+    STARTQUEST9_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest9-" . width . "_" . height . ".png" ;quest #9
+    STARTQUEST10_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest10-" . width . "_" . height . ".png" ;quest #10
 	
 	STARTTRAINING1_BUTTON := "FANTASICA IMAGES\Training\TrainingSelection\buttonstarttraining1-" . width . "_" . height . ".png"
 	STARTTRAINING2_BUTTON := "FANTASICA IMAGES\Training\TrainingSelection\buttonstarttraining2-" . width . "_" . height . ".png" 

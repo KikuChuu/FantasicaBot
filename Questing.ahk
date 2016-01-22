@@ -51,9 +51,9 @@ loop,
         if (DetectObject(QUESTTIMER_TEXT))
 		{
             scrollCount := QUEST_INDEX // 3
-			if (DetectObject(QUEST5_ICON, 100))
+			if (DetectObject(QUEST5_ICON, 150))
 			{
-				ClickObject(QUEST5_ICON, 100)
+				ClickObject(QUEST5_ICON, 150)
 			}
             else
             {
@@ -62,9 +62,9 @@ loop,
                     Scroll(MENU_X1, MENU_Y1, MENU_X2, MENU_Y2)
                 }
                 
-                if (DetectObject(QUEST5_ICON, 100))
+                if (DetectObject(QUEST5_ICON, 150))
                 {
-                    ClickObject(QUEST5_ICON, 100)
+                    ClickObject(QUEST5_ICON, 150)
                 }
                 else 
                 {   
@@ -144,22 +144,30 @@ loop,
 			}
 		}
 		else
-		{		
+		{
 			if (QUEST >= 4)
 			{
 			  Scroll(QUEST_X1, QUEST_Y1, QUEST_X2, QUEST_Y2)
 			}
-			
+            if (QUEST >= 6)
+            {
+                Scroll(QUEST_X1, QUEST_Y1, QUEST_X2, QUEST_Y2)
+            }
+            if (QUEST >= 7)
+            {
+                Scroll(QUEST_X1, QUEST_Y1, QUEST_X2, QUEST_Y2)
+            }
+            sleep 2000
 			questindex := assignquest(QUEST) ; Quest index represents the actual image path of the quest button
 			
-			scrollCount := 2 ; Introduced to scroll up to the very top of the quest selection
+			scrollCount := 4 ; Introduced to scroll up to the very top of the quest selection screen
 			if (DetectObject(questindex))
 			{
 				ClickObject(questindex)
 			}
 			else
 			{
-				loop, 2
+				loop, %scrollCount%
 				{
 					Scroll(QUEST_X2, QUEST_Y2, QUEST_X1, QUEST_Y1)
 				}

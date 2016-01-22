@@ -4,12 +4,12 @@
 	QUICKSCAN = 2 	; 2 = reduce delay of unit placement scan to 1ms (not accurate)
 			; 1 = reduce delay of unit placement scan by half	of SLEEPTIME
 		      	; 0 = regular SLEEPTIME delay
-	SHOULD_CLICK := 0
+	SHOULD_CLICK := 1
 
 ; Item Settings
 ; -------------
-viciousTonic := -1
-timeElixir := -1
+viciousTonic := 0
+timeElixir := 0
 potion := 0
 
 ;Training Specification
@@ -23,7 +23,7 @@ potion := 0
 	EPISODE = 59
 ;Quest Battle specification
 ;--------------------------												 
-	DEPLOY_NUMBER = 7 	;number of units to deploy
+	DEPLOY_NUMBER = 1 	;number of units to deploy
 	SORTINDEX = 0 	 	;land = 1, air = 2, sea = 3, default = 0
 	TYPEINDEX = 0		;Melee = 1, missile = 2, magic = 3, all = 0
 	LEVELBOT = 0		;0 = no, 1 = set starting point specifically for quest 2-7
@@ -40,7 +40,7 @@ potion := 0
 ;********************************************
 ;============================================
 ; -- First icon starts at index 0 --
-	QUEST_INDEX := 3
+	QUEST_INDEX := 2
     TRAINING_INDEX := 3
     INBOX_INDEX := 14
 
@@ -53,7 +53,7 @@ potion := 0
 	BotEvent := 1
     
     ; -- Training-Encounter event --
-	TrainEncounterEvent := 0
+	TrainEncounterEvent := 1
 	TrainEncounterEvent_USEITEM := 0
     
     ; -- Coliseum Event --

@@ -1277,7 +1277,7 @@ loop,
 		; msgbox % "Hello"
 		; ClickObject(TRNECT_TRAININGFLEE_BUTTON)
 	; }
-	; else 
+	; else
 	; if (DetectObject(TRNECT_LIMITEDBOSS_IMAGE))
 	; {
 		; ClickObject(TRNECT_TRAININGFIGHT_BUTTON)

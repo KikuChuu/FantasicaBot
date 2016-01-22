@@ -8,6 +8,7 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 AssignQuest(QuestNum)
 {
 	Global STARTQUEST1_BUTTON, STARTQUEST2_BUTTON, STARTQUEST3_BUTTON, STARTQUEST4_BUTTON, STARTQUEST5_BUTTON, STARTQUEST6_BUTTON, STARTQUEST7_BUTTON
+    global STARTQUEST8_BUTTON, STARTQUEST9_BUTTON, STARTQUEST10_BUTTON
 	
 	if QuestNum = 1
 		return %STARTQUEST1_BUTTON%
@@ -23,6 +24,12 @@ AssignQuest(QuestNum)
 		return %STARTQUEST6_BUTTON%
 	else if QuestNum  = 7
 		return %STARTQUEST7_BUTTON%
+    else if QuestNum  = 8
+		return %STARTQUEST8_BUTTON%
+    else if QuestNum  = 9
+		return %STARTQUEST9_BUTTON%
+    else if QuestNum  = 10
+		return %STARTQUEST10_BUTTON%    
 	else
 		MsgBox, 0, Invalid Quest Assignment, Soooorrrry, we don't support quest %QuestNum%.
 }
