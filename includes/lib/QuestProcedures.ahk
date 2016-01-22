@@ -8,7 +8,6 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 AssignQuest(QuestNum)
 {
 	Global STARTQUEST1_BUTTON, STARTQUEST2_BUTTON, STARTQUEST3_BUTTON, STARTQUEST4_BUTTON, STARTQUEST5_BUTTON, STARTQUEST6_BUTTON, STARTQUEST7_BUTTON
-    global STARTQUEST8_BUTTON, STARTQUEST9_BUTTON, STARTQUEST10_BUTTON
 	
 	if QuestNum = 1
 		return %STARTQUEST1_BUTTON%
@@ -24,12 +23,6 @@ AssignQuest(QuestNum)
 		return %STARTQUEST6_BUTTON%
 	else if QuestNum  = 7
 		return %STARTQUEST7_BUTTON%
-    else if QuestNum  = 8
-		return %STARTQUEST8_BUTTON%
-    else if QuestNum  = 9
-		return %STARTQUEST9_BUTTON%
-    else if QuestNum  = 10
-		return %STARTQUEST10_BUTTON%    
 	else
 		MsgBox, 0, Invalid Quest Assignment, Soooorrrry, we don't support quest %QuestNum%.
 }
@@ -847,16 +840,15 @@ PlaceUnitAt(CoordX, CoordY)
 }
 
 ;Scrolls down a list
-Scroll(X_init, Y_init, X_end, Y_end, mouseSpeed := 0)
+Scroll(X_init, Y_init, X_end, Y_end)
 {
 	global SLEEPTIME
-	; SetDefaultMouseSpeed %mouseSpeed%
-	; MouseMove %X_init%, %Y_init% 
-	; Sleep SLEEPTIME
-    MouseClickDrag, Left, %X_init%, %Y_init%, %X_end%, %Y_end%, %mouseSpeed%
-	; SetDefaultMouseSpeed 100
-	; SendEvent { Click down }{ Click up %X_end%, %Y_end%}
-	; SetDefaultMouseSpeed 0
+	SetDefaultMouseSpeed 0
+	MouseMove %X_init%, %Y_init% 
+	Sleep SLEEPTIME
+	SetDefaultMouseSpeed 100
+	SendEvent { Click down }{ Click up %X_end%, %Y_end%}
+	SetDefaultMouseSpeed 0
 	Sleep SLEEPTIME
 }
 
