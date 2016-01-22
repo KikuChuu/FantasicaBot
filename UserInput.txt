@@ -8,8 +8,8 @@
 
 ; Item Settings
 ; -------------
-viciousTonic := -1
-timeElixir := -1
+viciousTonic := 0
+timeElixir := 0
 potion := 0
 
 ;Training Specification
@@ -19,11 +19,11 @@ potion := 0
 	
 ;Quest Selection Specification
 ;-----------------------------
-	QUEST = 6 ; Enter 1,2,3,4,5,6, or 7
+	QUEST = 7 ; Enter 1,2,3,4,5,6, or 7
 	EPISODE = 59
 ;Quest Battle specification
 ;--------------------------												 
-	DEPLOY_NUMBER = 7 	;number of units to deploy
+	DEPLOY_NUMBER = 1 	;number of units to deploy
 	SORTINDEX = 0 	 	;land = 1, air = 2, sea = 3, default = 0
 	TYPEINDEX = 0		;Melee = 1, missile = 2, magic = 3, all = 0
 	LEVELBOT = 0		;0 = no, 1 = set starting point specifically for quest 2-7
@@ -53,7 +53,7 @@ potion := 0
 	BotEvent := 1
     
     ; -- Training-Encounter event --
-	TrainEncounterEvent := 0
+	TrainEncounterEvent := 1
 	TrainEncounterEvent_USEITEM := 0
     
     ; -- Coliseum Event --

@@ -76,183 +76,12 @@ DoQuest()
 	}
 }
 
-
-switch := 1
-training := 0
-deployUnitNum := 0
-pendingAllies := 1
-latestEpisode := 1
-
-sketchDiceStock1 := 0
-portraitDiceStock1 := 0
-masterDiceStock1 := 0
-move1Stock1 := 0
-move2Stock1 := 0
-move3Stock1 := 0
-move4Stock1 := 0
-move5Stock1 := 0
-move6Stock1 := 0
-move10Stock1 := 0
-bronzestopStock1 := 0
-silverstopStock1 := 0
-lowprobStock1 := 0
-highprobStock1 := 0
-lowdiceStock1 := 0
-highdiceStock1 := 0
-ally2Stock1 := 0
-
 loop,
 {	
 	if (SHOULD_CLICK == 1)
 	{
 		SendEvent {ClickAt %WAIT_X%, %WAIT_Y%}
 	}
-	if (DetectObject(LOGINBONUSMYPAGE_BUTTON))
-	{
-		ClickObject(LOGINBONUSMYPAGE_BUTTON)
-	}
-	if (DetectObject(LB_TITLE_IMAGE))
-	{
-		if (DetectObject(LB_SEAROAD_BUTTON))
-		{
-			ClickObject(LB_SEAROAD_BUTTON)
-		}
-		else if (DetectObject(LB_OCEANCALL_BUTTON))
-		{
-			ClickObject(LB_OCEANCALL_BUTTON)
-		}
-	}
-	if (DetectObject(POPUPCLOSE_BUTTON))
-	{
-		ClickObject(POPUPCLOSE_BUTTON)
-	}
-	; if (DetectObject(LB_YES_BUTTON))
-	; {
-		; ClickObject(LB_YES_BUTTON)
-	; }
-	; if (DetectObject(LB_WALK1_BUTTON))
-	; {
-		; ClickObject(LB_WALK1_BUTTON)
-	; }
-	; else if (DetectObject(LB_WALK2_BUTTON))
-	; {
-		; ClickObject(LB_WALK2_BUTTON)
-	; }
-	; if (DetectObject(LB_FIGHTYES_BUTTON))
-	; {
-		; ClickObject(LB_FIGHTYES_BUTTON)
-	; }
-	; else if (DetectObject(LB_FIGHT_BUTTON))
-	; {
-		; ClickObject(LB_FIGHT_BUTTON)
-	; }
-	; if (DetectObject(LB_AUTOBATTLE_BUTTON))
-	; {
-		; ClickObject(LB_AUTOBATTLE_BUTTON)
-	; }
-	; if (DetectObject(LB_RESULT1_TEXT))
-	; {
-		; ClickObject(LB_RESULTBACK_BUTTON)
-	; }
-	; if (DetectObject(LB_ENEMYLIST_TEXT))
-	; {
-		; if (DetectObject(LB_FIGHTAGAIN_BUTTON))
-		; {
-			; ClickObject(LB_FIGHTAGAIN_BUTTON)
-		; }
-	; }
-	; if (DetectObject(LB_RESULT3_TEXT) || DetectObject(LB_RESULT2_TEXT))
-	; {
-		; ClickObject(LB_COMPLETECLEARBACK_BUTTON)
-	; }
-	; if (DetectObject(LB_POTION_BUTTON))
-	; {
-		; ClickObject(LB_BATTLEFIELDBACK_BUTTON)
-		; Sleep 2000
-		; WaitObject(LB_BATTLEFIELDBACK_BUTTON)
-		; ClickObject(LB_BATTLEFIELDBACK_BUTTON)
-	; }
-	if (DetectObject(FANTASICAAPP_BUTTON))
-	{
-		LaunchGame()
-	}
-
-	if (DetectObject(STARTGAME_BUTTON))
-	{
-        if (DetectObject(RESUMEQUESTNO_BUTTON))
-        {
-            ClickObject(RESUMEQUESTNO_BUTTON)
-        }
-        else
-        {
-            ClickObject(STARTGAME_BUTTON)
-        }
-	}
-	if (DetectObject(ALLYPENDINGREQUEST_TEXT))
-	{
-		ClickObject(BACK_BUTTON)
-	}
-	else if (DetectObject(ALLY_TEXT))
-	{
-		ClickObject(BACK_BUTTON)
-	}
-	if (DetectObject(CONNECTIONERROR_BUTTON))
-	{
-		ClickObject(CONNECTIONERROR_BUTTON)
-	}
-	if (DetectObject(CONNECTIONERROR_TEXT))
-	{
-		Send {ESC down}
-		Sleep 1000
-		Send {ESC up}
-	}
-	if (DetectObject(CONFIRMEXITAPP_BUTTON))
-	{
-		ClickObject(CONFIRMEXITAPP_BUTTON)
-	}
-	if (DetectObject(LOGINBINGO_TEXT))
-	{
-		if (DetectObject(LOGINBINGORECEIVE_BUTTON))
-		{
-			ClickObject(LOGINBINGORECEIVE_BUTTON)
-		}
-		else
-		{
-			LoginBingoHelperClicker()
-		}
-	}
-	; if (DetectObject(TOP_TITLE_IMAGE))
-	; {
-		; if (DetectObject(TOP_CLIMBTREE_BUTTON) && !DetectObject(TOP_TRAININGPOINTS_TEXT))
-		; {
-			; ClickObject(TOP_CLIMBTREE_BUTTON)
-		; }
-		; else if (DetectObject(TOP_FIGHTBOSS_BUTTON))
-		; {
-			; ClickObject(TOP_FIGHTBOSS_BUTTON)
-		; }
-	; }
-	; if (DetectObject(TOP_ADVANCE1_BUTTON))
-	; {
-		; ClickObject(TOP_ADVANCE1_BUTTON)
-	; }
-	; if (DetectObject(TOP_ADVANCE2_BUTTON))
-	; {
-		; ClickObject(TOP_ADVANCE2_BUTTON)
-	; }
-	; if (DetectObject(TOP_FIGHT_BUTTON))
-	; {
-		; ClickObject(TOP_FIGHT_BUTTON)
-	; }
-	; if (DetectObject(TOP_UTTON))
-	; {
-		; ClickObject(TOP_TRAININGBACK_BUTTON)
-	; }
-	; if (DetectObject(TOP_TRAININGPOINTS_TEXT))
-	; {
-		; ClickObject(TOP_BACKTOMAINPAGE_BUTTON)
-	; }
-	
 	; ==============================================
 	; **********************************************
 	; ---------------- MAIN PAGE -------------------
@@ -1277,7 +1106,7 @@ loop,
 		; msgbox % "Hello"
 		; ClickObject(TRNECT_TRAININGFLEE_BUTTON)
 	; }
-	; else
+	; else 
 	; if (DetectObject(TRNECT_LIMITEDBOSS_IMAGE))
 	; {
 		; ClickObject(TRNECT_TRAININGFIGHT_BUTTON)

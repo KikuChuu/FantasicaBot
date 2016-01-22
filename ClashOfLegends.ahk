@@ -11,7 +11,7 @@ Init_globals() ; Found in GlobalConstants.ahk
 red := 0
 green := 0
 blue := 0
-cooldown := -1000
+cooldown := 2700000
 loop,
 {	
 	if (SHOULD_CLICK == 1)
