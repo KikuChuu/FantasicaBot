@@ -181,6 +181,15 @@ Init_globals()
 	
 	QUESTTIMER_TEXT := "FANTASICA IMAGES\MainPage\textquesttimer-" . width . "_" . height . ".png"
 	
+    BATTLE_ICON := "FANTASICA IMAGES\MainPage\battle-" . width . "_" . height . ".png"
+    BATTLE_SELECT_TITLE := "FANTASICA IMAGES\Battle\SelectOpponent\title-" . width . "_" . height . ".png"
+    BATTLE_SELECT := "FANTASICA IMAGES\Battle\SelectOpponent\select-" . width . "_" . height . ".png"
+    BATTLE_TITLE := "FANTASICA IMAGES\Battle\Battle\title-" . width . "_" . height . ".png"
+    BATTLE_BUTTON := "FANTASICA IMAGES\Battle\Battle\battle-" . width . "_" . height . ".png"
+    BATTLE_RESULTS_TITLE := "FANTASICA IMAGES\Battle\Results\title-" . width . "_" . height . ".png"
+    BATTLE_MYPAGE := "FANTASICA IMAGES\Battle\Results\mypage-" . width . "_" . height . ".png"
+    BATTLE_TIMER := "FANTASICA IMAGES\Battle\timer-" . width . "_" . height . ".png"
+    
 	EPISODESELECT1_BUTTON := "FANTASICA IMAGES\Quest\EpisodeSelection\buttonselectepisode1-" . width . "_" . height . ".png"
 	EPISODESELECT2_BUTTON := "FANTASICA IMAGES\Quest\EpisodeSelection\buttonselectepisode2-" . width . "_" . height . ".png"
 	EPISODESELECT3_BUTTON := "FANTASICA IMAGES\Quest\EpisodeSelection\buttonselectepisode3-" . width . "_" . height . ".png"
