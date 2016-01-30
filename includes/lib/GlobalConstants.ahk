@@ -538,21 +538,21 @@ Init_globals()
     ; --------------------------------------------------------------------------
     ; COLISEUM EVENT
     ; --------------------------------------------------------------------------
-    COL_EVENT_ICON := "FANTASICA IMAGES\Event\FiresOfPerdition\iconevent-" . width . "_" . height . ".png"
-    COL_EVENTTITLE_IMAGE := "FANTASICA IMAGES\Event\FiresOfPerdition\imageeventtitle-" . width . "_" . height . ".png"
-    COL_TOEVENT_BUTTON := "FANTASICA IMAGES\Event\FiresOfPerdition\buttontoeventselection-" . width . "_" . height . ".png"
-    COL_SELECTIONPAGETITLE_TEXT := "FANTASICA IMAGES\Event\FiresOfPerdition\SelectionPage\textselectionpagetitle-" . width . "_" . height . ".png"
-    COL_COOLDOWN_TEXT := "FANTASICA IMAGES\Event\FiresOfPerdition\SelectionPage\textcooldown-" . width . "_" . height . ".png"
-    COL_BATTLEMODE_BUTTON := "FANTASICA IMAGES\Event\FiresOfPerdition\SelectionPage\buttonbattlemode-" . width . "_" . height . ".png"
-    COL_AREA1_BUTTON := "FANTASICA IMAGES\Event\FiresOfPerdition\SelectionPage\buttonarea1-" . width . "_" . height . ".png"
-    COL_AREA2_BUTTON := "FANTASICA IMAGES\Event\FiresOfPerdition\SelectionPage\buttonarea2-" . width . "_" . height . ".png"
-    COL_SKIP_BUTTON := "FANTASICA IMAGES\Event\FiresOfPerdition\AreaPage\buttonskip-" . width . "_" . height . ".png"
-    COL_RESULTSPAGETITLE_TEXT := "FANTASICA IMAGES\Event\FiresOfPerdition\ResultsPage\textresultspagetitle-" . width . "_" . height . ".png"
-    COL_HEROSELECTIONPAGETITLE_TEXT := "FANTASICA IMAGES\Event\FiresOfPerdition\HeroSelectionPage\texttitle-" . width . "_" . height . ".png"
-    COL_CHOOSEHERO1_BUTTON := "FANTASICA IMAGES\Event\FiresOfPerdition\HeroSelectionPage\buttonchoosehero1-" . width . "_" . height . ".png"
-    COL_BATTLETITLE_TEXT := "FANTASICA IMAGES\Event\FiresOfPerdition\BattlePage\texttitle-" . width . "_" . height . ".png"
-    COL_BATTLECOOLDOWN_TEXT := "FANTASICA IMAGES\Event\FiresOfPerdition\BattlePage\textcooldown-" . width . "_" . height . ".png"
-    COL_BATTLE_BUTTON := "FANTASICA IMAGES\Event\FiresOfPerdition\BattlePage\buttonbattle-" . width . "_" . height . ".png"
+    COL_EVENT_ICON := "FANTASICA IMAGES\Event\Colliseum\iconevent-" . width . "_" . height . ".png"
+    COL_EVENTTITLE_IMAGE := "FANTASICA IMAGES\Event\Colliseum\imageeventtitle-" . width . "_" . height . ".png"
+    COL_TOEVENT_BUTTON := "FANTASICA IMAGES\Event\Colliseum\buttontoeventselection-" . width . "_" . height . ".png"
+    COL_SELECTIONPAGETITLE_TEXT := "FANTASICA IMAGES\Event\Colliseum\SelectionPage\textselectionpagetitle-" . width . "_" . height . ".png"
+    COL_COOLDOWN_TEXT := "FANTASICA IMAGES\Event\Colliseum\SelectionPage\textcooldown-" . width . "_" . height . ".png"
+    COL_BATTLEMODE_BUTTON := "FANTASICA IMAGES\Event\Colliseum\SelectionPage\buttonbattlemode-" . width . "_" . height . ".png"
+    COL_AREA1_BUTTON := "FANTASICA IMAGES\Event\Colliseum\SelectionPage\buttonarea1-" . width . "_" . height . ".png"
+    COL_AREA2_BUTTON := "FANTASICA IMAGES\Event\Colliseum\SelectionPage\buttonarea2-" . width . "_" . height . ".png"
+    COL_SKIP_BUTTON := "FANTASICA IMAGES\Event\Colliseum\AreaPage\buttonskip-" . width . "_" . height . ".png"
+    COL_RESULTSPAGETITLE_TEXT := "FANTASICA IMAGES\Event\Colliseum\ResultsPage\textresultspagetitle-" . width . "_" . height . ".png"
+    COL_HEROSELECTIONPAGETITLE_TEXT := "FANTASICA IMAGES\Event\Colliseum\HeroSelectionPage\texttitle-" . width . "_" . height . ".png"
+    COL_CHOOSEHERO1_BUTTON := "FANTASICA IMAGES\Event\Colliseum\HeroSelectionPage\buttonchoosehero1-" . width . "_" . height . ".png"
+    COL_BATTLETITLE_TEXT := "FANTASICA IMAGES\Event\Colliseum\BattlePage\texttitle-" . width . "_" . height . ".png"
+    COL_BATTLECOOLDOWN_TEXT := "FANTASICA IMAGES\Event\Colliseum\BattlePage\textcooldown-" . width . "_" . height . ".png"
+    COL_BATTLE_BUTTON := "FANTASICA IMAGES\Event\Colliseum\BattlePage\buttonbattle-" . width . "_" . height . ".png"
     ; ==========================================================================
     
      ; --------------------------------------------------------------------------

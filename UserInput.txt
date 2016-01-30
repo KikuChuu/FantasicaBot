@@ -58,7 +58,7 @@ potion := 0
 	TrainEncounterEvent_USEITEM := 0
     
     ; -- Coliseum Event --
-    ColiseumEvent := 0
+    ColiseumEvent := 1
     
     ; -- Frontlines Event --
     FrontlinesEvent := 0
