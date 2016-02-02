@@ -366,17 +366,17 @@ loop,
         else if (DetectObject(QUESTTIMER_TEXT))
 		{
             scrollCount := QUEST_INDEX // 3
-			if (DetectObject(QUEST3_ICON))
+			if (DetectObject(QUEST3_ICON, 150))
 			{
-				ClickObject(QUEST3_ICON)
+				ClickObject(QUEST3_ICON, 150)
 			}
-			else if (DetectObject(QUEST4_ICON))
+			else if (DetectObject(QUEST4_ICON, 150))
 			{
-				ClickObject(QUEST4_ICON)
+				ClickObject(QUEST4_ICON, 150)
 			}
-			else if (DetectObject(QUEST5_ICON))
+			else if (DetectObject(QUEST5_ICON, 150))
 			{
-				ClickObject(QUEST5_ICON)
+				ClickObject(QUEST5_ICON, 150)
 			}
             else
             {
@@ -385,17 +385,17 @@ loop,
                     Scroll(MENU_X1, MENU_Y1, MENU_X2, MENU_Y2)
                 }
                 
-                if (DetectObject(QUEST3_ICON))
+                if (DetectObject(QUEST3_ICON, 150))
                 {
-                    ClickObject(QUEST3_ICON)
+                    ClickObject(QUEST3_ICON, 150)
                 }
-                else if (DetectObject(QUEST4_ICON))
+                else if (DetectObject(QUEST4_ICON, 150))
                 {
-                    ClickObject(QUEST4_ICON)
+                    ClickObject(QUEST4_ICON, 150)
                 }
-                else if (DetectObject(QUEST5_ICON))
+                else if (DetectObject(QUEST5_ICON, 150))
                 {
-                    ClickObject(QUEST5_ICON)
+                    ClickObject(QUEST5_ICON, 150)
                 }
                 else 
                 {   
@@ -436,13 +436,13 @@ loop,
         {
             scrollCount := TRAINING_INDEX // 3
             
-            if (DetectObject(TRAINING5_ICON))
+            if (DetectObject(TRAINING5_ICON, 150))
             {
-                ClickObject(TRAINING5_ICON)
+                ClickObject(TRAINING5_ICON, 150)
             }
-            else if (DetectObject(TRAINING4_ICON))
+            else if (DetectObject(TRAINING4_ICON, 150))
             {
-                ClickObject(TRAINING4_ICON)
+                ClickObject(TRAINING4_ICON, 150)
             }
             else
             {
@@ -451,13 +451,13 @@ loop,
                     Scroll(MENU_X1, MENU_Y1, MENU_X2, MENU_Y2)
                 }
                 
-                if (DetectObject(TRAINING5_ICON))
+                if (DetectObject(TRAINING5_ICON, 150))
                 {
-                    ClickObject(TRAINING5_ICON)
+                    ClickObject(TRAINING5_ICON, 150)
                 }
-                else if (DetectObject(TRAINING4_ICON))
+                else if (DetectObject(TRAINING4_ICON, 150))
                 {
-                    ClickObject(TRAINING4_ICON)
+                    ClickObject(TRAINING4_ICON, 150)
                 }
                 else
                 {
@@ -1250,7 +1250,7 @@ loop,
 		ClickObject(CONTINUETRAINING_BUTTON)
 	}
     
-	if (DetectObject(HEAL_BUTTON) || DetectObject(HEALMID_BUTTON) || DetectObject(HEALDARK_BUTTON)
+	if (DetectObject(HEAL_BUTTON, 75) || DetectObject(HEALMID_BUTTON) || DetectObject(HEALDARK_BUTTON)
         || DetectObject(HEALMOBACOIN_BUTTON) || DetectObject(HEALMOBACOINDARK_BUTTON) || DetectObject(HEALMOBACOINMID_BUTTON))
 	{
 		if (USE_POTION)

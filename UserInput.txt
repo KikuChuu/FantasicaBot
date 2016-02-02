@@ -19,7 +19,7 @@ potion := 0
 	
 ;Quest Selection Specification
 ;-----------------------------
-	QUEST = 7 ; Enter 1,2,3,4,5,6, or 7
+	QUEST = 1 ; Enter 1,2,3,4,5,6, or 7
 	EPISODE = 59
 ;Quest Battle specification
 ;--------------------------												 
@@ -32,7 +32,7 @@ potion := 0
 
 ; Inbox Specification
 ;--------------------
-    CheckInbox := 1
+    CheckInbox := 0
 
 ;============================================
 ;********************************************
@@ -40,8 +40,8 @@ potion := 0
 ;********************************************
 ;============================================
 ; -- First icon starts at index 0 --
-	QUEST_INDEX := 2
-    TRAINING_INDEX := 3
+	QUEST_INDEX := 4
+    TRAINING_INDEX := 5
     INBOX_INDEX := 14
     BATTLE_INDEX := 13
 
@@ -54,11 +54,11 @@ potion := 0
 	BotEvent := 1
     
     ; -- Training-Encounter event --
-	TrainEncounterEvent := 1
+	TrainEncounterEvent := 0
 	TrainEncounterEvent_USEITEM := 0
     
     ; -- Coliseum Event --
-    ColiseumEvent := 1
+    ColiseumEvent := 0
     
     ; -- Frontlines Event --
     FrontlinesEvent := 0
@@ -75,7 +75,7 @@ potion := 0
     RollTheDiceSketchDice := 1
     
     ; -- Clash of Legends --
-    ClashOfLegendsEvent := 1
+    ClashOfLegendsEvent := 0
     
 	TIME_ELIXIR = 0
 	SEARCHLIMIT := 2
