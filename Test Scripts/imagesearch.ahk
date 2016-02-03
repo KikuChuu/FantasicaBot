@@ -8,7 +8,7 @@ image_name := "training.bmp"
 IfWinExist, Bluestacks App Player
     WinActivate ; use the window found above
 WinGetActiveStats, title, width, height, x, y
-ImageSearch, FoundX, FoundY, 0, 0, width, height, *75 %image_name%
+ImageSearch, FoundX, FoundY, 0, 0, width, height, %image_name%
 
 if ErrorLevel = 2
     tooltip Could not conduct the search.
@@ -16,16 +16,15 @@ else if ErrorLevel = 1
 {
     loop, 255
     {
-            ImageSearch, FoundX, FoundY, 0, 0, width, height, *%A_Index% %image_name%
-            tooltip Iteration %A_Index%: Image could not be found on the screen %width% and %height%
-            
-            if (ErrorLevel = 0)
-            {
-                mousemove, %FoundX%, %FoundY%, 10
-                tooltip The image was found at %FoundX%x%FoundY% after %A_Index% iterations.
-                ; break
-            }
+        ImageSearch, FoundX, FoundY, 0, 0, width, height, *%A_Index% %image_name%
+        tooltip Iteration %A_Index%: Image could not be found on the screen %width% and %height%.
         
+        if (ErrorLevel = 0)
+        {
+            mousemove, %FoundX%, %FoundY%, 10
+            tooltip The image was found at %FoundX%x%FoundY% after %A_Index% iterations.
+            ; break
+        }
     } 
 }
 else
