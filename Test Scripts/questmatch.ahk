@@ -16,16 +16,28 @@ else if ErrorLevel = 1
 {
     loop, 255
     {
-        ImageSearch, FirstPassX, FirstPassY, 0, 0, width, height, *%A_Index% %image_name%
-        tooltip Iteration %A_Index%: Image could not be found on the screen %width% and %height%
+        variation := A_Index
         
+        
+        loop, 10
+        {
+            dimension := 16 + A_Index - 1
+            ImageSearch, FirstPassX, FirstPassY, 0, 0, width, height, *w%dimension% *h-1 *%variation% %image_name%
+            tooltip Outer Iteration %variation%: Image of width and height of %dimension% could not be found on the screen %width% and %height%
+            
+            if (ErrorLevel = 0)
+            {
+                mousemove, %FirstPassX%, %FirstPassY%, 10
+                tooltip The image of width and height of %dimension% was found at %FirstPassX%x%FirstPassY% after %variation% outer iterations.
+                break
+            }
+        }
         if (ErrorLevel = 0)
         {
-            mousemove, %FirstPassX%, %FirstPassY%, 10
-            tooltip The image was found at %FirstPassX%x%FirstPassY% after %A_Index% iterations.
             break
         }
-    } 
+        
+    }
 }
 else
 {
@@ -50,7 +62,7 @@ else if (ErrorLevel = 1)
     loop, 255
     {
         ImageSearch, SecondPassX, SecondPassY, FirstPassX, FirstPassY, width, height, %image_name%
-        tooltip Iteration %A_Index%: Image could not be foundon the screen %width% and %height%
+        tooltip Iteration %A_Index%: Image could not be found on the screen %width% and %height%
         
         if (ErrorLevel = 0)
         {

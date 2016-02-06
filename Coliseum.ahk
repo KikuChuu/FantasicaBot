@@ -62,6 +62,7 @@ loop,
                 WaitObject(COL_SELECTIONPAGETITLE_TEXT)
                 ClickObject(BACK_BUTTON)
                 WaitObject(COL_EVENTTITLE_IMAGE)
+                ClickObject(BACK_BUTTON)
                 ColiseumEvent = 0
                 SetTimer, Coliseum, 600000
             }
