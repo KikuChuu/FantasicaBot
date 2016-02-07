@@ -546,6 +546,7 @@ Init_globals()
     COL_BATTLEMODE_BUTTON := "FANTASICA IMAGES\Event\Colliseum\SelectionPage\buttonbattlemode-" . width . "_" . height . ".png"
     COL_AREA1_BUTTON := "FANTASICA IMAGES\Event\Colliseum\SelectionPage\buttonarea1-" . width . "_" . height . ".png"
     COL_AREA2_BUTTON := "FANTASICA IMAGES\Event\Colliseum\SelectionPage\buttonarea2-" . width . "_" . height . ".png"
+    COL_AREA3_BUTTON := "FANTASICA IMAGES\Event\Colliseum\SelectionPage\buttonarea3-" . width . "_" . height . ".png"
     COL_SKIP_BUTTON := "FANTASICA IMAGES\Event\Colliseum\AreaPage\buttonskip-" . width . "_" . height . ".png"
     COL_YES_BUTTON := "FANTASICA IMAGES\Event\Colliseum\AreaPage\yes-" . width . "_" . height . ".png"
     COL_RESULTSPAGETITLE_TEXT := "FANTASICA IMAGES\Event\Colliseum\ResultsPage\textresultspagetitle-" . width . "_" . height . ".png"

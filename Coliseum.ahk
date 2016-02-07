@@ -46,7 +46,11 @@ loop,
             if (DetectObject(COL_COOLDOWN_TEXT))
             {
                 Scroll(QUEST_X1, QUEST_Y1, QUEST_X2, QUEST_Y2)
-                if (DetectObject(COL_AREA2_BUTTON))
+                if (DetectObject(COL_AREA3_BUTTON))
+                {
+                    ClickObject(COL_AREA3_BUTTON)
+                }
+                else if (DetectObject(COL_AREA2_BUTTON))
                 {
                     ClickObject(COL_AREA2_BUTTON)
                 }
