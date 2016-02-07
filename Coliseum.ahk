@@ -21,6 +21,22 @@ loop,
 	; ==========================================================================
     if (ColiseumEvent)
     {
+        if (DetectObject(COL_EVENT_ICON))
+        {
+            ClickObject(COL_EVENT_ICON)
+        }
+        else
+        {
+            if (scrollCount > 0)
+            {   
+                scrollCount++
+                loop, %scrollCount%
+                {
+                    Scroll(MENU_X2, MENU_Y2, MENU_X1, MENU_Y1)
+                }
+            }
+        }
+    
         if (DetectObject(COL_EVENTTITLE_IMAGE))
         {
             ClickObject(COL_TOEVENT_BUTTON)
@@ -70,6 +86,10 @@ loop,
         if (DetectObject(COL_SKIP_BUTTON))
         {
             ClickObject(COL_SKIP_BUTTON)
+        }
+        if (DetectObject(COL_YES_BUTTON))
+        {
+            ClickObject(COL_YES_BUTTON)
         }
         if (DetectObject(COL_RESULTSPAGETITLE_TEXT))
         {
