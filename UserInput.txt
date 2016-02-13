@@ -58,14 +58,14 @@ potion := 0
 	TrainEncounterEvent_USEITEM := 0
     
     ; -- Coliseum Event --
-    ColiseumEvent := 1
+    ColiseumEvent := 0
     
     ; -- Frontlines Event --
     FrontlinesEvent := 0
     FrontlinesHolyWaterCount := 0
     
     ; -- Roll the Dice --
-    RollTheDiceEvent := 0
+    RollTheDiceEvent := 1
     RollTheDiceUseDrops := 1
     RollTheDiceDropsCount := 4
     RollTheDiceUsePotion := 1
