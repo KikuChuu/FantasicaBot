@@ -347,6 +347,7 @@ Init_globals()
 	ROULETTENINE_TEXT := "FANTASICA IMAGES\MainPage\Roulette\textnine-" . width . "_" . height . ".png" ;the panel 9
 	ROULETTETHREE_TEXT := "FANTASICA IMAGES\MainPage\Roulette\textthree-" . width . "_" . height . ".png" ;the panel 3
 	
+    DAILY_BONUS := "FANTASICA IMAGES\MainPage\Bonus\dailybonus-" . width . "_" . height . ".png"
 	LOGINBONUSMYPAGE_BUTTON := "FANTASICA IMAGES\MainPage\Bonus\buttonmypage-" . width . "_" . height . ".png"
 	
 	BACK_BUTTON := "FANTASICA IMAGES\_GeneralPupose\buttonback-" . width . "_" . height . ".png" ;The back button found in the bottom right corner of the app screen (not the corner of bluestack screen)
