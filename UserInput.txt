@@ -66,7 +66,7 @@ potion := 0
     
     ; -- Roll the Dice --
     RollTheDiceEvent := 1
-    RollTheDiceUseDrops := 1
+    RollTheDiceUseDrops := 0
     RollTheDiceDropsCount := 4
     RollTheDiceUsePotion := 1
     RollTheDiceDoEvent := 1
