@@ -19,6 +19,9 @@ TOWER_BACK := "FANTASICA IMAGES/Event/Tower/buttonback.png"
 
 SetTimer, RandomPopupOrCrash, 300000 ;handles crashes, popup advertisements every 5 minutes
 
+
+deployUnitNum := 0
+pendingAllies := 1
 loop
 {
 	if (DetectObject(LOGINBONUSMYPAGE_BUTTON))
@@ -83,29 +86,41 @@ loop
 	if (DetectObject(TOWER_BACK)) {
 		ClickObject(TOWER_BACK)
 	}
-	hasDeployedAllAllies := 0
-	while A_index <= DEPLOY_NUMBER AND DetectObject(DEPLOYUNIT_BUTTON)
+	
+	; ==========================================================================
+	; **************************************************************************
+	; ---------------------------- QUEST BATTLE --------------------------------
+	; **************************************************************************
+	; ==========================================================================
+	if (DetectObject(SKIPQUEST_BUTTON) && SKIPQUEST == 1)
 	{
-		DeployUnit()
-	  
-		if (!hasDeployedAllAllies)
-		{		
-			while DetectObject(CALLALLY_BUTTON)
-			{   
-				if DetectObject(BACKQUEST_BUTTON)
-				{
-					while DetectObject(BACKQUEST_BUTTON)
-					{
-						WaitObject(BACKQUEST_BUTTON)
-						ClickObject(BACKQUEST_BUTTON)
-					}
-				}
-				if (CallAlly(SORTINDEX, TYPEINDEX) == 0)
-				{
-					hasDeployedAllAllies := 1
-					break
-				}
-			}
+		ClickObject(SKIPQUEST_BUTTON)
+	}
+	if (DetectObject(DEPLOYUNIT_BUTTON) && deployUnitNum < DEPLOY_NUMBER)
+	{
+		ClickObject(DEPLOYUNIT_BUTTON)
+	}
+	if (DetectObject(DEPLOY_TEXT))
+	{
+		if (DeployUnit(SORTINDEX, TYPEINDEX))
+		{
+			deployUnitNum++
+		}
+	}
+	if (DetectObject(CALLALLY_BUTTON) && pendingAllies)
+	{
+		ClickObject(CALLALLY_BUTTON)
+	}
+
+	if (DetectObject(CALLALLYPAGE_TEXT))
+	{
+		if (CallAlly(SORTINDEX, TYPEINDEX))
+		{
+			pendingAllies = 1
+		}
+		else
+		{
+			pendingAllies = 0
 		}
 	}
 }
