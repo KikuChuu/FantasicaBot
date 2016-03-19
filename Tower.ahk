@@ -19,7 +19,7 @@ TOWER_BACK := "FANTASICA IMAGES/Event/Tower/buttonback.png"
 
 SetTimer, RandomPopupOrCrash, 300000 ;handles crashes, popup advertisements every 5 minutes
 
-while
+loop
 {
 	if (DetectObject(LOGINBONUSMYPAGE_BUTTON))
 	{
