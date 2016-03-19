@@ -19,17 +19,70 @@ TOWER_BACK := "FANTASICA IMAGES/Event/Tower/buttonback.png"
 
 SetTimer, RandomPopupOrCrash, 300000 ;handles crashes, popup advertisements every 5 minutes
 
-while (1)
+while
 {
-	waitobject(TOWER_MYPAGE)
-	
-	
-
-	waitobject(TOWER_MYPAGE)
-	clickobject(TOWER_MYPAGE)
-
-	waitobject(DEPLOYUNIT_BUTTON)
-
+	if (DetectObject(LOGINBONUSMYPAGE_BUTTON))
+	{
+		ClickObject(LOGINBONUSMYPAGE_BUTTON)
+	} 
+	if (DetectObject(POPUPCLOSE_BUTTON))
+	{
+		ClickObject(POPUPCLOSE_BUTTON)
+	}	
+	if (DetectObject(FANTASICAAPP_BUTTON))
+	{
+		LaunchGame()
+	}
+	if (DetectObject(STARTGAME_BUTTON))
+	{
+		if (DetectObject(RESUMEQUESTNO_BUTTON))
+		{
+		    ClickObject(RESUMEQUESTNO_BUTTON)
+		}
+		else
+		{
+		    ClickObject(STARTGAME_BUTTON)
+		}
+	}
+	if (DetectObject(ALLYPENDINGREQUEST_TEXT))
+	{
+		ClickObject(BACK_BUTTON)
+	}
+	else if (DetectObject(ALLY_TEXT))
+	{
+		ClickObject(BACK_BUTTON)
+	}
+	if (DetectObject(CONNECTIONERROR_BUTTON))
+	{
+		ClickObject(CONNECTIONERROR_BUTTON)
+	}
+	if (DetectObject(CONNECTIONERROR_TEXT))
+	{
+		Send {ESC down}
+		Sleep 1000
+		Send {ESC up}
+	}
+	if (DetectObject(CONFIRMEXITAPP_BUTTON))
+	{
+		ClickObject(CONFIRMEXITAPP_BUTTON)
+	}
+	if (DetectObject(LOGINBINGO_TEXT))
+	{
+		if (DetectObject(LOGINBINGORECEIVE_BUTTON))
+		{
+			ClickObject(LOGINBINGORECEIVE_BUTTON)
+		}
+		else
+		{
+			LoginBingoHelperClicker()
+		}
+	}	
+	if (DetectObject(TOWER_BATTLESTART)) {
+		ClickObject(TOWER_BATTLESTART)
+	}
+	if (DetectObject(TOWER_BACK)) {
+		ClickObject(TOWER_BACK)
+	}
 	hasDeployedAllAllies := 0
 	while A_index <= DEPLOY_NUMBER AND DetectObject(DEPLOYUNIT_BUTTON)
 	{
@@ -55,23 +108,7 @@ while (1)
 			}
 		}
 	}
-
-
-	;quick fix
-	Sleep 500
-	if DetectObject(BACKQUEST_BUTTON)
-	{
-		while DetectObject(BACKQUEST_BUTTON)
-		{
-			WaitObject(BACKQUEST_BUTTON)
-			ClickObject(BACKQUEST_BUTTON)
-		}
-	}
-
-	WaitObject(RR_BACK_BUTTON) ;Basically waits until questing ends and we get our results
-	ClickObject(RR_BACK_BUTTON) ;return to quest selection
 }
-
 
 
 RandomPopupOrCrash:
@@ -88,23 +125,6 @@ return
 ;QUEST ENDS HERE
 ;========================================================
 
-
-
-
-;=====================
-TestFunction()
-{
-	Send { ESC down}
-	Sleep 1000
-}
-TestFunction2()
-{
-	Roulette()
-}
-Move(coord1,coord2)
-{
-	SendEvent {Click 780, 500}
-}
 F1::ExitApp
 F2::Pause
 F3::Reload
