@@ -13,14 +13,20 @@ Init_globals() ; Found in GlobalConstants.ahk
 ;==================== QUEST START =======================
 ;========================================================
 
+TOWER_MYPAGE := "FANTASICA IMAGES/Event/Tower/buttonmypage.png"
+TOWER_BATTLESTART := "FANTASICA IMAGES/Event/Tower/buttonbattlestart.png"
+TOWER_BACK := "FANTASICA IMAGES/Event/Tower/buttonback.png"
+
 SetTimer, RandomPopupOrCrash, 300000 ;handles crashes, popup advertisements every 5 minutes
 
 while (1)
 {
-	waitobject(RR_MYPAGE_BUTTON)
+	waitobject(TOWER_MYPAGE)
+	
+	
 
-	waitobject(RR_BATTLESTART_BUTTON)
-	clickobject(RR_BATTLESTART_BUTTON)
+	waitobject(TOWER_MYPAGE)
+	clickobject(TOWER_MYPAGE)
 
 	waitobject(DEPLOYUNIT_BUTTON)
 
