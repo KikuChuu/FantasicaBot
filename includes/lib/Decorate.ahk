@@ -10,5 +10,6 @@ Decorate(str)
   global width, height    ; Defined in GlobalConstants.ahk
   extension := "-" . width . "_" . height . ".png"
   foundPos := InStr(str, ".png", false, 1)
-  return SubStr(str, 1, foundPos) . extension
+  length := foundPos - 1
+  return SubStr(str, 1, length) . extension
 }
