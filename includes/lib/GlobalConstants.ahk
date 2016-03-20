@@ -264,6 +264,7 @@ Init_globals()
 	DEPLOYUNIT3_BUTTON := "FANTASICA IMAGES\Quest\QuestBattle\Unit\buttondeployunit3-" . width . "_" . height . ".png" ;third unit in the 'Deploy List'
 	DEPLOYUNIT4_BUTTON := "FANTASICA IMAGES\Quest\QuestBattle\Unit\buttondeployunit4-" . width . "_" . height . ".png" ;fourth unit in the 'Deploy List'
 	UNITFAVORITEON_BUTTON := "FANTASICA IMAGES\Quest\QuestBattle\Unit\buttonunitfavoriteon-" . width . "_" . height . ".png" ;favorite on
+	UNITFAVORITEOFF_BUTTON := "FANTASICA IMAGES\Quest\QuestBattle\Unit\buttonunitfavoriteoff-" . width . "_" . height . ".png" ;favorite on
 	UNIT1_INVISIBLEBUTTON := "FANTASICA IMAGES\Quest\QuestBattle\Unit\invisiblebuttonunit1-" . width . "_" . height . ".png" ;first unit when unable to deploy (due to insufficient unit cost)
 	UNIT2_INVISIBLEBUTTON := "FANTASICA IMAGES\Quest\QuestBattle\Unit\invisiblebuttonunit2-" . width . "_" . height . ".png" ;second unit when unable to deploy (due to insufficient unit cost)
 	UNIT3_INVISIBLEBUTTON := "FANTASICA IMAGES\Quest\QuestBattle\Unit\invisiblebuttonunit3-" . width . "_" . height . ".png" ;third unit when unable to deploy (due to insufficient unit cost)

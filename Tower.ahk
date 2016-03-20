@@ -111,6 +111,9 @@ loop
 	}
 	if (DetectObject(DEPLOY_TEXT))
 	{
+    if (DetectObject(UNITFAVORITEOFF_BUTTON)) {
+      ClickObject(UNITFAVORITEOFF_BUTTON)
+    }
 		if (DeployUnit(SORTINDEX, TYPEINDEX))
 		{
 			deployUnitNum++
