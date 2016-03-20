@@ -98,7 +98,7 @@ Init_globals()
 		MENU_X2 := 30
 		MENU_Y2 := 975
 		
-		SCAN_START_X := 167
+		SCAN_START_X := 102
 		SCAN_START_Y := 68
 		SCAN_TILE_SIZE := 78
         
