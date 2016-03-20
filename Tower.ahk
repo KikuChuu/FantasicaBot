@@ -16,7 +16,8 @@ Init_globals() ; Found in GlobalConstants.ahk
 TOWER_MYPAGE := Decorate("FANTASICA IMAGES/Event/Tower/buttonmypage.png")
 TOWER_BATTLESTART := Decorate("FANTASICA IMAGES/Event/Tower/buttonbattlestart.png")
 TOWER_BACK := Decorate("FANTASICA IMAGES/Event/Tower/resultscreen/buttonback.png")
-
+TOWER_USE_TIME_ELIXIR := Decorate("FANTASICA IMAGES/Event/Tower/buttonstartte.png")
+TOWER_YES := Decorate("FANTASICA IMAGES/Event/Tower/yes.png")
 SetTimer, RandomPopupOrCrash, 300000 ;handles crashes, popup advertisements every 5 minutes
 
 
@@ -83,8 +84,16 @@ loop
 	if (DetectObject(TOWER_BATTLESTART)) {
 		ClickObject(TOWER_BATTLESTART)
 	}
+  if (DetectObject(TOWER_USE_TIME_ELIXIR)) {
+    ClickObject(TOWER_USE_TIME_ELIXIR)
+  }
+  if (DetectObject(TOWER_YES)) {
+    ClickObject(TOWER_YES)
+  }
 	if (DetectObject(TOWER_BACK)) {
 		ClickObject(TOWER_BACK)
+    deployUnitNum := 0
+    pendingAllies := 1
 	}
 	
 	; ==========================================================================
