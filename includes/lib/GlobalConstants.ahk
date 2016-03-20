@@ -9,7 +9,8 @@ Init_globals()
 {
 	; Declare that call variables in this function are global variables
 	global
-	
+  maxPasses := 2	
+
 	; Discover the window title
 	if WinExist("BlueStacks App Player")
 	{

@@ -688,11 +688,8 @@ EventBoss(allycount=0)
 FindCoordinate(Byref X, Byref Y, Byref numOfPasses := 0, incrementCol := 0)
 {
 	global SLEEPTIME, RESTRICTPLACEMENTON_COL1, RESTRICTPLACEMENTON_COL2, QUICKSCAN, REVELATIONTOWER, LEVELBOT
-	global BLUESTACK_WINDOW_TITLE
+	global BLUESTACK_WINDOW_TITLE, maxPasses
 
-    ; Limit the number of passes
-    maxPasses := 1
-    
 	;declare our static vars here
 	static row:= 0
 	static col:= 0
