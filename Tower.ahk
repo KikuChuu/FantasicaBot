@@ -15,7 +15,7 @@ Init_globals() ; Found in GlobalConstants.ahk
 
 TOWER_MYPAGE := Decorate("FANTASICA IMAGES/Event/Tower/buttonmypage.png")
 TOWER_BATTLESTART := Decorate("FANTASICA IMAGES/Event/Tower/buttonbattlestart.png")
-TOWER_BACK := Decorate("FANTASICA IMAGES/Event/Tower/buttonback.png")
+TOWER_BACK := Decorate("FANTASICA IMAGES/Event/Tower/resultscreen/buttonback.png")
 
 SetTimer, RandomPopupOrCrash, 300000 ;handles crashes, popup advertisements every 5 minutes
 
