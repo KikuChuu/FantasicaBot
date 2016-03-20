@@ -11,4 +11,5 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 #include %A_ScriptDir%\includes\lib\QuestProcedures.ahk
 #include %A_ScriptDir%\includes\lib\ErrorHandlers\QuestErrorHandler.ahk
 #include %A_ScriptDir%\includes\lib\Log.ahk
+#include %A_ScriptDir%\includes\lib\Decorate.ahk
 #include %A_ScriptDir%\includes\lib\SB.ahk

@@ -13,7 +13,9 @@ Init_globals() ; Found in GlobalConstants.ahk
 ;==================== QUEST START =======================
 ;========================================================
 
-TOWER_MYPAGE := "FANTASICA IMAGES/Event/Tower/buttonmypage.png"
+TOWER_MYPAGE := Decorate("FANTASICA IMAGES/Event/Tower/buttonmypage.png")
+SB_SetText(TOWER_MYPAGE)
+PAUSE
 TOWER_BATTLESTART := "FANTASICA IMAGES/Event/Tower/buttonbattlestart.png"
 TOWER_BACK := "FANTASICA IMAGES/Event/Tower/buttonback.png"
 
