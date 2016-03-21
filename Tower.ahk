@@ -20,10 +20,8 @@ TOWER_BACK := Decorate("FANTASICA IMAGES/Event/Tower/resultscreen/buttonback.png
 TOWER_USE_TIME_ELIXIR := Decorate("FANTASICA IMAGES/Event/Tower/buttonbattlestartte.png")
 TOWER_YES := Decorate("FANTASICA IMAGES/Event/Tower/yes.png")
 
-mutex := 0
 deployUnitNum := 0
 pendingAllies := 1
-
 loop
 {
 	if (DetectObject(LOGINBONUSMYPAGE_BUTTON))
@@ -91,7 +89,6 @@ loop
 		}
 	}	
 
-  ; Event
   if (DetectObject(TOWER_ICON)) 
   {
     ClickObject(TOWER_ICON)
