@@ -846,12 +846,12 @@ Scroll(X_init, Y_init, X_end, Y_end, mouseSpeed := 100)
 {
 	global SLEEPTIME
 	; SetDefaultMouseSpeed %mouseSpeed%
-	; MouseMove %X_init%, %Y_init% 
+	 MouseMove %X_init%, %Y_init% 
 	; Sleep SLEEPTIME
-    MouseClickDrag, Left, %X_init%, %Y_init%, %X_end%, %Y_end%, %mouseSpeed%
-	; SetDefaultMouseSpeed 100
-	; SendEvent { Click down }{ Click up %X_end%, %Y_end%}
-	; SetDefaultMouseSpeed 0
+  ;  MouseClickDrag, Left, %X_init%, %Y_init%, %X_end%, %Y_end%, %mouseSpeed%
+	 SetDefaultMouseSpeed 100
+	 SendEvent { Click down }{ Click up %X_end%, %Y_end%}
+	 SetDefaultMouseSpeed 0
 	Sleep SLEEPTIME
 }
 
