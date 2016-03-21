@@ -8,6 +8,7 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ;------- INITIALIZE -------------------------
 Init_globals() ; Found in GlobalConstants.ahk
 ;--------------------------------------------
+SetDefaultMouseSpeed 0
 
 deployUnitNum := 0
 pendingAllies := 1
