@@ -51,7 +51,7 @@ potion := 0
 ;********************************************
 ;============================================
     ; -- Used in conjunction with questing --
-	BotEvent := 1
+	BotEvent := 0
     
     ; -- Training-Encounter event --
 	TrainEncounterEvent := 0
