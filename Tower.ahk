@@ -19,7 +19,6 @@ TOWER_BATTLESTART := Decorate("FANTASICA IMAGES/Event/Tower/buttonbattlestart.pn
 TOWER_BACK := Decorate("FANTASICA IMAGES/Event/Tower/resultscreen/buttonback.png")
 TOWER_USE_TIME_ELIXIR := Decorate("FANTASICA IMAGES/Event/Tower/buttonbattlestartte.png")
 TOWER_YES := Decorate("FANTASICA IMAGES/Event/Tower/yes.png")
-SetTimer, RandomPopupOrCrash, 300000 ;handles crashes, popup advertisements every 5 minutes
 
 
 deployUnitNum := 0
@@ -87,17 +86,19 @@ loop
   }
 	if (DetectObject(TOWER_BATTLESTART)) {
 		ClickObject(TOWER_BATTLESTART)
+    deployUnitNum := 0
+    pendingAllies := 1
 	}
   if (DetectObject(TOWER_USE_TIME_ELIXIR)) {
     ClickObject(TOWER_USE_TIME_ELIXIR)
   }
   if (DetectObject(TOWER_YES)) {
     ClickObject(TOWER_YES)
+    deployUnitNum := 0
+    pendingAllies := 1
   }
 	if (DetectObject(TOWER_BACK)) {
 		ClickObject(TOWER_BACK)
-    deployUnitNum := 0
-    pendingAllies := 1
 	}
 	
 	; ==========================================================================
@@ -141,22 +142,9 @@ loop
 	}
 }
 
-
-RandomPopupOrCrash:
-if (LaunchGame() || ConnectionError() || Maintenance())
-	Reload
-else
-	Advertisement()
-return
-
-InitGlobals:
-  Init_globals() ; Found in GlobalConstants.ahk
-return
-
 ;QUEST ENDS HERE
 ;========================================================
 
 F1::ExitApp
 F2::Pause
 F3::Reload
-F4::DetectObject("E:/Programmingasdfsdf")
