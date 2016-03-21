@@ -136,6 +136,50 @@ loop,
 		deployUnitNum = 0
 		pendingAllies = 1
 	}
+
+  if (DetectObject(QUESTTIMER_TEXT)) {
+    scrollCount := QUEST_INDEX // 3
+    if (DetectObject(QUEST3_ICON, 150))
+    {
+      ClickObject(QUEST3_ICON, 150)
+    }
+    else if (DetectObject(QUEST4_ICON, 150))
+    {
+      ClickObject(QUEST4_ICON, 150)
+    }
+    else if (DetectObject(QUEST5_ICON, 150))
+    {
+      ClickObject(QUEST5_ICON, 150)
+    }
+    else
+    {
+      loop, %scrollCount%
+      {
+        Scroll(MENU_X1, MENU_Y1, MENU_X2, MENU_Y2)
+      }
+      
+      if (DetectObject(QUEST3_ICON, 150))
+      {
+        ClickObject(QUEST3_ICON, 150)
+      }
+      else if (DetectObject(QUEST4_ICON, 150))
+      {
+        ClickObject(QUEST4_ICON, 150)
+      }
+      else if (DetectObject(QUEST5_ICON, 150))
+      {
+        ClickObject(QUEST5_ICON, 150)
+      }
+      else ; Scroll the opposite direction
+      {   
+        scrollCount++
+        loop, %scrollCount%
+        {
+            Scroll(MENU_X2, MENU_Y2, MENU_X1, MENU_Y1)
+        }
+      }
+    }
+  }
 }
 
 F1::ExitApp
