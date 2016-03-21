@@ -100,42 +100,6 @@ loop,
 			}
 		}
 	}
-    
-	; ==========================================================================
-	; **************************************************************************
-	; ------------------------ QUEST RESULTS PAGE ------------------------------
-	; **************************************************************************
-	; ==========================================================================	
-	if (DetectObject(QUESTCLEAR_TEXT) || DetectObject(QUESTRESULT_TEXT))
-	{
-		if (DetectObject(QUESTCLEAR_TEXT) && BOTALLQUEST)
-		{
-			if (QUEST < 7)
-			{
-				QUEST++
-			}
-			else
-			{
-				latestEpisode = 0
-			}
-		}
-		if (DetectObject(MYPAGE_BUTTON) && BotEvent == 1)
-		{
-			ClickObject(MYPAGE_BUTTON)
-		}
-		else if (DetectObject(BACKTOEVENT_BUTTON))
-		{
-			WaitObject(BACKTOEVENT_BUTTON)
-			ClickObject(BACKTOEVENT_BUTTON)
-		}
-		else if (DetectObject(CHOOSEQUESTCOMPLETED_BUTTON))
-		{
-			WaitObject(CHOOSEQUESTCOMPLETED_BUTTON)
-			ClickObject(CHOOSEQUESTCOMPLETED_BUTTON)
-		}
-		deployUnitNum = 0
-		pendingAllies = 1
-	}
 
   if (DetectObject(QUESTTIMER_TEXT)) {
     scrollCount := QUEST_INDEX // 3
