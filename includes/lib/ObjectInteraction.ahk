@@ -48,7 +48,7 @@ ClickObject(ByRef Path, variation := 0)
 	{
 		SB_SetText("Clicking " . Path)
 		ClickAt(FoundX, FoundY)
-		Sleep SLEEPTIME
+		;Sleep SLEEPTIME
 	}
 }
 
@@ -135,7 +135,7 @@ WaitObject(ByRef Path)
 		SendEvent {Click %randomX%, %randomY% }
 		ImageSearch, FoundX, FoundY, X1, Y1, X2, Y2, %Path%
 	}
-	Sleep SLEEPTIME
+	;Sleep SLEEPTIME
 	array := [Foundx, FoundY]
 	return array
 }
