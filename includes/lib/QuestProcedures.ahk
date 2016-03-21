@@ -370,10 +370,6 @@ DeployUnit(AllyPower = 0, AllyType = 0)
 {
 	global
 	
-	;WaitObject(DEPLOYUNIT_BUTTON) ;Waits for the 'Deploy_Unit' button
-	;ClickObject(DEPLOYUNIT_BUTTON) ;Click the 'Deploy Unit' button
-	;WaitObject(BACKQUEST_BUTTON)
-
 	if AllyPower = 0
 	{
 		;SORT BY DEFAULT
@@ -600,7 +596,7 @@ DeployUnit(AllyPower = 0, AllyType = 0)
 	WaitObject(CONFIRMUNITPLACEMENT_BUTTON)
 	ClickObject(CONFIRMUNITPLACEMENT_BUTTON)
 	
-    FindCoordinate(MapX, MapY, numOfPasses, 1)
+  FindCoordinate(MapX, MapY, numOfPasses, 1)
     
 	while DetectObject(CANCELPLACEMENT_BUTTON) ;busy wait until unit placement is done (in case of lag)
 	{
@@ -694,9 +690,11 @@ FindCoordinate(Byref X, Byref Y, Byref numOfPasses := 0, incrementCol := 0)
 	static row:= 0
 	static col:= 0
     
-    if (incrementCol && LEVELBOT == 0)
+    if (incrementCol)
     {
-        col++
+        if (LEVELBOT == 0) {
+          col++
+        }
     }
     else
     {
@@ -844,7 +842,7 @@ PlaceUnitAt(CoordX, CoordY)
 }
 
 ;Scrolls down a list
-Scroll(X_init, Y_init, X_end, Y_end, mouseSpeed := 0)
+Scroll(X_init, Y_init, X_end, Y_end, mouseSpeed := 100)
 {
 	global SLEEPTIME
 	; SetDefaultMouseSpeed %mouseSpeed%
