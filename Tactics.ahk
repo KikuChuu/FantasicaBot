@@ -18,6 +18,7 @@ TACTICS_NEXT := Decorate("FANTASICA IMAGES/Event/Tactics/results/next.png")
 TACTICS_TOP := Decorate("FANTASICA IMAGES/Event/Tactics/results/top.png")
 TACTICS_BOSS := Decorate("FANTASICA IMAGES/Event/Tactics/boss.png")
 TACTICS_NO := Decorate("FANTASICA IMAGES/Event/Tactics/no.png")
+TACTICS_SQUADINFO := Decorate("FANTASICA IMAGES/Event/Tactics/battle/skip.png")
 ; ======================
 loop
 {
