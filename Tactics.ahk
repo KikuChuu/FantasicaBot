@@ -21,63 +21,6 @@ TACTICS_NO := Decorate("FANTASICA IMAGES/Event/Tactics/no.png")
 ; ======================
 loop
 {
-	if (DetectObject(LOGINBONUSMYPAGE_BUTTON))
-	{
-		ClickObject(LOGINBONUSMYPAGE_BUTTON)
-	} 
-	if (DetectObject(POPUPCLOSE_BUTTON))
-	{
-		ClickObject(POPUPCLOSE_BUTTON)
-	}	
-	if (DetectObject(FANTASICAAPP_BUTTON))
-	{
-		LaunchGame()
-	}
-	if (DetectObject(STARTGAME_BUTTON))
-	{
-		if (DetectObject(RESUMEQUESTNO_BUTTON))
-		{
-		    ClickObject(RESUMEQUESTNO_BUTTON)
-		}
-		else
-		{
-		    ClickObject(STARTGAME_BUTTON)
-		}
-	}
-	if (DetectObject(ALLYPENDINGREQUEST_TEXT))
-	{
-		ClickObject(BACK_BUTTON)
-	}
-	else if (DetectObject(ALLY_TEXT))
-	{
-		ClickObject(BACK_BUTTON)
-	}
-	if (DetectObject(CONNECTIONERROR_BUTTON))
-	{
-		ClickObject(CONNECTIONERROR_BUTTON)
-	}
-	if (DetectObject(CONNECTIONERROR_TEXT))
-	{
-		Send {ESC down}
-		Sleep 1000
-		Send {ESC up}
-	}
-	if (DetectObject(CONFIRMEXITAPP_BUTTON))
-	{
-		ClickObject(CONFIRMEXITAPP_BUTTON)
-	}
-	if (DetectObject(LOGINBINGO_TEXT))
-	{
-		if (DetectObject(LOGINBINGORECEIVE_BUTTON))
-		{
-			ClickObject(LOGINBINGORECEIVE_BUTTON)
-		}
-		else
-		{
-			LoginBingoHelperClicker()
-		}
-	}	
-  
   if (DetectObject(TACTICS_EVENTICON)) {
     ClickObject(TACTICS_EVENTICON)
   }  
@@ -94,6 +37,10 @@ loop
     ClickObject(TACTICS_NO)
   }
 
+  if (DetectObject(TACTICS_SKIP)) {
+    ClickObject(TACTICS_SKIP)
+  }
+
   if (DetectObject(TACTICS_SQUADINFO)) {
     ; Squad ordering
     ; --------------
@@ -101,8 +48,8 @@ loop
     ; 4 5 6
     ClickAt(130, 850) ; Squad 4
     ClickAt(340, 850) ; Squad 5
-    ClickAt(340, 700) ; Squad 2
     ClickAt(130, 700) ; Squad 1
+    ClickAt(340, 700) ; Squad 2
     ClickAt(550, 700) ; Squad 3
     ClickAt(550, 850) ; Squad 6
   }
