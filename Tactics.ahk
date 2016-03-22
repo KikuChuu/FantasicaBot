@@ -14,17 +14,22 @@ Init_globals() ; Found in GlobalConstants.ahk
 TACTICS_EVENTICON := Decorate("FANTASICA IMAGES/Event/Tactics/eventicon.png")
 TACTICS_BATTLE := Decorate("FANTASICA IMAGES/Event/Tactics/battle.png")
 TACTICS_SQUADINFO := Decorate("FANTASICA IMAGES/Event/Tactics/battle/squadinfo.png")
+TACTICS_SKIP:= Decorate("FANTASICA IMAGES/Event/Tactics/battle/skip.png")
 TACTICS_NEXT := Decorate("FANTASICA IMAGES/Event/Tactics/results/next.png")
 TACTICS_TOP := Decorate("FANTASICA IMAGES/Event/Tactics/results/top.png")
 TACTICS_BOSS := Decorate("FANTASICA IMAGES/Event/Tactics/boss.png")
 TACTICS_NO := Decorate("FANTASICA IMAGES/Event/Tactics/no.png")
-TACTICS_SQUADINFO := Decorate("FANTASICA IMAGES/Event/Tactics/battle/skip.png")
+TACTICS_FORMTEAM := Decorate("FANTASICA IMAGES/Event/Tactics/formteam.png")
 ; ======================
 loop
 {
   if (DetectObject(TACTICS_EVENTICON)) {
     ClickObject(TACTICS_EVENTICON)
   }  
+
+  if (DetectObject(TACTICS_FORMTEAM)) {
+    ClickObject(TACTICS_FORMTEAM)
+  }
 
   if (DetectObject(TACTICS_BATTLE)) {
     ClickObject(TACTICS_BATTLE)
