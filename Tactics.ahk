@@ -53,7 +53,7 @@ loop
     ; --------------
     ; 1 2 3
     ; 4 5 6
-    Sleep 15000
+    Sleep 10000
     tempSleepTime = SLEEPTIME
     SLEEPTIME = 500
     ClickAt(130, 850) ; Squad 4
