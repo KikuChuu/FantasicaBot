@@ -14,7 +14,7 @@ SetDefaultMouseSpeed 0
 ; === Variables here ===
 TACTICS_EVENTICON := Decorate("FANTASICA IMAGES/Event/Tactics/eventicon.png")
 TACTICS_BATTLE := Decorate("FANTASICA IMAGES/Event/Tactics/battle.png")
-TACTICS_SQUADINFO := Decorate("FANTASICA IMAGES/Event/Tactics/battle/squadinfo.png")
+TACTICS_SKIP_PRESSED := Decorate("FANTASICA IMAGES/Event/Tactics/battle/skippressed.png")
 TACTICS_SKIP:= Decorate("FANTASICA IMAGES/Event/Tactics/battle/skip.png")
 TACTICS_NEXT := Decorate("FANTASICA IMAGES/Event/Tactics/results/next.png")
 TACTICS_TOP := Decorate("FANTASICA IMAGES/Event/Tactics/results/top.png")
@@ -48,7 +48,7 @@ loop
     ClickObject(TACTICS_SKIP)
   }
 
-  if (DetectObject(TACTICS_SQUADINFO)) {
+  if (DetectObject(TACTICS_SKIP_PRESSED)) {
     ; Squad ordering
     ; --------------
     ; 1 2 3

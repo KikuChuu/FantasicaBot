@@ -72,10 +72,7 @@ DetectObject(ByRef Path, variation := 0)
 		SB_SetText(msg)
 		Log(msg)
 		
-		
-		
 		; TODO ADD DRAG n' DROP function here
-		
 		
 		Sleep SLEEEPTIME
 		;MsgBox, 0, File Missing(DetectObject), We can't seem to find this file: `n%Path%. >_< `n`n                    Pausing Script.
