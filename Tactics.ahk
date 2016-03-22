@@ -90,9 +90,16 @@ loop
   }
 
   if (DetectObject(TACTICS_SQUADINFO)) {
-    ; ====================
-    ; ==== Insert code ===
-    ; ====================
+    ; Squad ordering
+    ; --------------
+    ; 1 2 3
+    ; 4 5 6
+    ClickAt(130, 850) ; Squad 4
+    ClickAt(340, 850) ; Squad 5
+    ClickAt(340, 700) ; Squad 2
+    ClickAt(130, 700) ; Squad 1
+    ClickAt(550, 700) ; Squad 3
+    ClickAt(550, 850) ; Squad 6
   }
 
   if (DetectObject(TACTICS_TOP)) {
