@@ -17,6 +17,7 @@ TACTICS_SQUADINFO := Decorate("FANTASICA IMAGES/Event/Tactics/battle/squadinfo.p
 TACTICS_NEXT := Decorate("FANTASICA IMAGES/Event/Tactics/results/next.png")
 TACTICS_TOP := Decorate("FANTASICA IMAGES/Event/Tactics/results/top.png")
 TACTICS_BOSS := Decorate("FANTASICA IMAGES/Event/Tactics/boss.png")
+TACTICS_NO := Decorate("FANTASICA IMAGES/Event/Tactics/no.png")
 ; ======================
 loop
 {
@@ -89,6 +90,10 @@ loop
     ClickObject(TACTICS_BOSS)
   }
 
+  if (DetectObject(TACTICS_NO)) {
+    ClickObject(TACTICS_NO)
+  }
+
   if (DetectObject(TACTICS_SQUADINFO)) {
     ; Squad ordering
     ; --------------
@@ -103,7 +108,7 @@ loop
   }
 
   if (DetectObject(TACTICS_TOP)) {
-    ClickObect(TACTICS_TOP)
+    ClickObject(TACTICS_TOP)
   }
 
   if (DetectObject(TACTICS_NEXT)) {
