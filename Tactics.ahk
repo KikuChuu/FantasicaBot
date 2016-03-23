@@ -22,6 +22,7 @@ TACTICS_BOSS := Decorate("FANTASICA IMAGES/Event/Tactics/boss.png")
 TACTICS_NO := Decorate("FANTASICA IMAGES/Event/Tactics/no.png")
 TACTICS_FORMTEAM := Decorate("FANTASICA IMAGES/Event/Tactics/formteam.png")
 TACTICS_ALL := Decorate("FANTASICA IMAGES/Event/Tactics/battle/all.png")
+TACTICS_AUTO := Decorate("FANTASICA IMAGES/Event/Tactics/battle/auto.png")
 ; ======================
 loop
 {
@@ -45,26 +46,17 @@ loop
     ClickObject(TACTICS_NO)
   }
 
+  if (DetectObject(TACTICS_AUTO)) {
+    ClickObject(TACTICS_AUTO)
+  }
+
   if (DetectObject(TACTICS_SKIP)) {
     ClickObject(TACTICS_SKIP)
   }
 
-  if (DetectObject(TACTICS_SKIP_PRESSED)) {
-    if (DetectObject(TACTICS_ALL, 75)) {
-      ; Sometimes bosses are large and clicking on the icon won't 'target' them. So we need to add an offset to the buffer coord.
-      ClickAt(BufferX - 100, BufferY + 100) 
-    }
-
-    ; Squad ordering
-    ; --------------
-    ; 1 2 3
-    ; 4 5 6
-    ClickAt(130, 850) ; Squad 4
-    ClickAt(340, 850) ; Squad 5
-    ClickAt(130, 700) ; Squad 1
-    ClickAt(340, 700) ; Squad 2
-    ClickAt(550, 700) ; Squad 3
-    ClickAt(550, 850) ; Squad 6
+  if (DetectObject(TACTICS_ALL, 75)) {
+    ; Sometimes bosses are large and clicking on the icon won't 'target' them. So we need to add an offset to the buffer coord.
+    ClickAt(BufferX - 100, BufferY + 100) 
   }
 
   if (DetectObject(TACTICS_TOP)) {
