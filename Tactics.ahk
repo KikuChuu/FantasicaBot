@@ -23,6 +23,7 @@ TACTICS_NO := Decorate("FANTASICA IMAGES/Event/Tactics/no.png")
 TACTICS_FORMTEAM := Decorate("FANTASICA IMAGES/Event/Tactics/formteam.png")
 TACTICS_ALL := Decorate("FANTASICA IMAGES/Event/Tactics/battle/allicon.png")
 TACTICS_MAGIC := Decorate("FANTASICA IMAGES/Event/Tactics/battle/magic.png")
+TACTICS_MISSILE := Decorate("FANTASICA IMAGES/Event/Tactics/battle/missile.png")
 ; ======================
 loop
 {
@@ -55,7 +56,7 @@ loop
   }
 
   ; Obtain values for globals BufferX and BufferY via DetectObject()
-  if (DetectObject(TACTICS_MAGIC)) {
+  if (DetectObject(TACTICS_MAGIC) || DetectObject(TACTICS_MISSILE)) {
     ; Squad ordering
     ; --------------
     ; 1 2 3
