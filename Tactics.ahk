@@ -21,6 +21,7 @@ TACTICS_TOP := Decorate("FANTASICA IMAGES/Event/Tactics/results/top.png")
 TACTICS_BOSS := Decorate("FANTASICA IMAGES/Event/Tactics/boss.png")
 TACTICS_NO := Decorate("FANTASICA IMAGES/Event/Tactics/no.png")
 TACTICS_FORMTEAM := Decorate("FANTASICA IMAGES/Event/Tactics/formteam.png")
+TACTICS_ALLICON := Decorate("FANTASICA IMAGES/Event/Tactics/battle/allicon.png")
 ; ======================
 loop
 {
@@ -46,6 +47,10 @@ loop
 
   if (DetectObject(TACTICS_SKIP)) {
     ClickObject(TACTICS_SKIP)
+  }
+
+  if (DetectObject(TACTICS_ALLICON, 50)) {
+    ClickAt(BufferX, BufferY)
   }
 
   if (DetectObject(TACTICS_SKIP_PRESSED)) {
