@@ -21,7 +21,8 @@ TACTICS_TOP := Decorate("FANTASICA IMAGES/Event/Tactics/results/top.png")
 TACTICS_BOSS := Decorate("FANTASICA IMAGES/Event/Tactics/boss.png")
 TACTICS_NO := Decorate("FANTASICA IMAGES/Event/Tactics/no.png")
 TACTICS_FORMTEAM := Decorate("FANTASICA IMAGES/Event/Tactics/formteam.png")
-TACTICS_ALLICON := Decorate("FANTASICA IMAGES/Event/Tactics/battle/allicon.png")
+TACTICS_ALL := Decorate("FANTASICA IMAGES/Event/Tactics/battle/allicon.png")
+TACTICS_MAGIC := Decorate("FANTASICA IMAGES/Event/Tactics/battle/magic.png")
 ; ======================
 loop
 {
@@ -49,16 +50,17 @@ loop
 ;    ClickObject(TACTICS_SKIP)
 ;  }
 
-  if (DetectObject(TACTICS_ALLICON, 75)) {
+  if (DetectObject(TACTICS_ALL, 75)) {
     ClickAt(BufferX, BufferY)
   }
 
-  if (DetectObject(TACTICS_SKIP)) {
+  ; Obtain values for globals BufferX and BufferY via DetectObject()
+  if (DetectObject(TACTICS_MAGIC)) {
     ; Squad ordering
     ; --------------
     ; 1 2 3
     ; 4 5 6
-    ClickAt(130, 850) ; Squad 4
+    ClickAt(BufferX, BufferY) ; Squad 4
     ClickAt(340, 850) ; Squad 5
     ClickAt(130, 700) ; Squad 1
     ClickAt(340, 700) ; Squad 2
