@@ -15,9 +15,9 @@ ClickAt(CoordX, CoordY)
 		WinActivate, %BLUESTACK_WINDOW_TITLE%
 	}
     
-    SendEvent { Click down %CoordX%, %CoordY%}
-    sleep SLEEPTIME
-    SendEvent { Click up }
+  SendEvent { Click down %CoordX%, %CoordY%}
+  sleep SLEEPTIME
+  SendEvent { Click up }
 }
 
 ;Objects are buttons and icons
