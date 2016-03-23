@@ -21,7 +21,7 @@ TACTICS_TOP := Decorate("FANTASICA IMAGES/Event/Tactics/results/top.png")
 TACTICS_BOSS := Decorate("FANTASICA IMAGES/Event/Tactics/boss.png")
 TACTICS_NO := Decorate("FANTASICA IMAGES/Event/Tactics/no.png")
 TACTICS_FORMTEAM := Decorate("FANTASICA IMAGES/Event/Tactics/formteam.png")
-TACTICS_ALL := Decorate("FANTASICA IMAGES/Event/Tactics/battle/allicon.png")
+TACTICS_ALL := Decorate("FANTASICA IMAGES/Event/Tactics/battle/all.png")
 TACTICS_MAGIC := Decorate("FANTASICA IMAGES/Event/Tactics/battle/magic.png")
 TACTICS_MISSILE := Decorate("FANTASICA IMAGES/Event/Tactics/battle/missile.png")
 ; ======================
