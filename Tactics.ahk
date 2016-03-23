@@ -49,7 +49,6 @@ loop
     ClickObject(TACTICS_SKIP)
   }
 
-  ; Obtain values for globals BufferX and BufferY via DetectObject()
   if (DetectObject(TACTICS_SKIP_PRESSED) {
     if (DetectObject(TACTICS_ALL, 75)) {
       ; Sometimes bosses are large and clicking on the icon won't 'target' them. So we need to add an offset to the buffer coord.
