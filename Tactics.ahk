@@ -52,7 +52,8 @@ loop
 ;  }
 
   if (DetectObject(TACTICS_ALL, 75)) {
-    ClickAt(BufferX, BufferY)
+    ; Sometimes bosses are large and clicking on the icon won't 'target' them. So we need to add an offset to the buffer coord.
+    ClickAt(BufferX - 100, BufferY + 100) 
   }
 
   ; Obtain values for globals BufferX and BufferY via DetectObject()
@@ -61,6 +62,7 @@ loop
     ; --------------
     ; 1 2 3
     ; 4 5 6
+    Sleep 1000
     ClickAt(BufferX, BufferY) ; Squad 4
     ClickAt(340, 850) ; Squad 5
     ClickAt(130, 700) ; Squad 1
