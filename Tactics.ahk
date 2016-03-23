@@ -45,15 +45,15 @@ loop
     ClickObject(TACTICS_NO)
   }
 
-  if (DetectObject(TACTICS_SKIP)) {
-    ClickObject(TACTICS_SKIP)
-  }
+;  if (DetectObject(TACTICS_SKIP)) {
+;    ClickObject(TACTICS_SKIP)
+;  }
 
-  if (DetectObject(TACTICS_ALLICON, 50)) {
+  if (DetectObject(TACTICS_ALLICON, 75)) {
     ClickAt(BufferX, BufferY)
   }
 
-  if (DetectObject(TACTICS_SKIP_PRESSED)) {
+  if (DetectObject(TACTICS_SKIP)) {
     ; Squad ordering
     ; --------------
     ; 1 2 3
