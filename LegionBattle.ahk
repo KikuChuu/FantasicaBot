@@ -23,7 +23,7 @@ loop
     ClickObject(LEGION_SEAAREA)
   }
 
-  if (DetectObject(LEGION_YES) {
+  if (DetectObject(LEGION_YES)) {
     ClickObject(LEGION_YES)
   }
 }
