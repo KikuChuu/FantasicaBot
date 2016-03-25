@@ -17,6 +17,7 @@ MsgBox % A_WinDelay
 ; ======================
 loop
 {
+
 }
 
 F1::ExitApp
