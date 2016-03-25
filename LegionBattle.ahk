@@ -14,10 +14,18 @@ MsgBox % A_WinDelay
 
 ; ======================
 ; === Variables here ===
+LEGION_SEAAREA := Decorate("FANTASICA IMAGES/Event/LegionBattle/seaarea.png")
+LEGION_YES := Decorate("FANTASICA IMAGES/Event/LegionBattle/yes.png")
 ; ======================
 loop
 {
+  if (DetectObject(LEGION_SEAAREA)) {
+    ClickObject(LEGION_SEAAREA)
+  }
 
+  if (DetectObject(LEGION_YES) {
+    ClickObject(LEGION_YES)
+  }
 }
 
 F1::ExitApp
