@@ -58,6 +58,10 @@ loop
     ClickObject(LEGION_AUTOBATTLE)
   }
 
+  if (DetectObject(LEGION_FIELD_CLEARED)) {
+    ClickObject(LEGION_FIELD_CLEARED_BACK)
+  }
+
   if (DetectObject(LEGION_BACK)) {
     ClickObject(LEGION_BACK)
   }
