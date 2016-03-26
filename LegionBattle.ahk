@@ -15,6 +15,7 @@ SetDefaultMouseSpeed 0
 LEGION_SEAAREA := Decorate("FANTASICA IMAGES/Event/LegionBattle/seaarea.png")
 LEGION_YESAREA := Decorate("FANTASICA IMAGES/Event/LegionBattle/yes.png")
 LEGION_WALK := Decorate("FANTASICA IMAGES/Event/LegionBattle/area/walk.png")
+LEGION_SENDBRAVE := Decorate("FANTASICA IMAGES/Event/LegionBattle/area/sendbranve.png")
 LEGION_FIGHT := Decorate("FANTASICA IMAGES/Event/LegionBattle/area/fight.png")
 LEGION_YESFIGHT := Decorate("FANTASICA IMAGES/Event/LegionBattle/area/yes.png")
 LEGION_AUTOBATTLE := Decorate("FANTASICA IMAGES/Event/LegionBattle/battle/autobattle.png")
@@ -32,6 +33,10 @@ loop
 
   if (DetectObject(LEGION_WALK)) {
     ClickObject(LEGION_WALK)
+  }
+
+  if (DetectObject(LEGION_SENDBRAVE)) {
+    ClickObject(LEGION_SENDBRAVE)
   }
 
   if (DetectObject(LEGION_FIGHT)) {
