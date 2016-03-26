@@ -40,6 +40,10 @@ loop
   if (DetectObject(LEGION_YESFIGHT)) {
     ClickObject(LEGION_YESFIGHT)
   }
+
+  if (DetectObject(LEGION_AUTOBATTLE)) {
+    ClickObject(LEGION_AUTOBATTLE)
+  }
 }
 
 F1::ExitApp
