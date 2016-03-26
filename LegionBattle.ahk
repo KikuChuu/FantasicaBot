@@ -39,6 +39,10 @@ loop
     ClickObject(LEGION_WALK)
   }
 
+  if (DetectObject(LEGION_HEAL)) {
+    ClickObject(BACK_BUTTON)
+  }
+
   if (DetectObject(LEGION_WALK_AFTER_SENT_BRAVE)) {
     ClickObject(LEGION_WALK_AFTER_SENT_BRAVE)
   }
