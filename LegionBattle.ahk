@@ -13,6 +13,7 @@ SetDefaultMouseSpeed 0
 ; ======================
 ; === Variables here ===
 LEGION_SEAAREA := Decorate("FANTASICA IMAGES/Event/LegionBattle/seaarea.png")
+LEGION_SPECIAL_AREA := Decorate("FANTASICA IMAGES/Event/LegionBattle/specialarea.png")
 LEGION_YESAREA := Decorate("FANTASICA IMAGES/Event/LegionBattle/yes.png")
 LEGION_WALK := Decorate("FANTASICA IMAGES/Event/LegionBattle/area/walk.png")
 LEGION_HEAL := Decorate("FANTASICA IMAGES/Event/LegionBattle/area/heal.png")
