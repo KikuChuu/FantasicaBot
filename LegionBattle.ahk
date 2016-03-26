@@ -27,6 +27,18 @@ loop
   if (DetectObject(LEGION_YESAREA)) {
     ClickObject(LEGION_YESAREA)
   }
+
+  if (DetectObject(LEGION_WALK)) {
+    ClickObject(LEGION_WALK)
+  }
+
+  if (DetectObject(LEGION_FIGHT)) {
+    ClickObject(LEGION_FIGHT)
+  }
+
+  if (DetectObject(LEGION_YESFIGHT)) {
+    ClickObject(LEGION_YESFIGHT)
+  }
 }
 
 F1::ExitApp
