@@ -26,9 +26,14 @@ LEGION_FIELD_CLEARED_BACK := Decorate("FANTASICA IMAGES/Event/LegionBattle/arear
 LEGION_FIELD_CLEARED := Decorate("FANTASICA IMAGES/Event/LegionBattle/arearesult/fieldcleared.png")
 LEGION_BACK := Decorate("FANTASICA IMAGES/Event/LegionBattle/result/back.png")
 LEGION_ARCH_ENEMY_LIST := Decorate("FANTASICA IMAGES/Event/LegionBattle/archenemylist/archenemylist.png")
+LEGION_RESULT := Decorate("FANTASICA IMAGES/Event/LegionBattle/result/result.png")
 ; ======================
 loop
 {
+  if (DetectObject(LEGION_RESULT)) {
+    ClickObject(LEGION_RESULT)
+  }
+
   if (DetectObject(LEGION_SPECIAL_AREA)) {
     ClickObject(LEGION_SPECIAL_AREA)
   } 
