@@ -20,6 +20,8 @@ LEGION_WALK_AFTER_SENT_BRAVE := Decorate("FANTASICA IMAGES/Event/LegionBattle/ar
 LEGION_FIGHT := Decorate("FANTASICA IMAGES/Event/LegionBattle/area/fight.png")
 LEGION_YESFIGHT := Decorate("FANTASICA IMAGES/Event/LegionBattle/area/yes.png")
 LEGION_AUTOBATTLE := Decorate("FANTASICA IMAGES/Event/LegionBattle/battle/autobattle.png")
+LEGION_FIELD_CLEARED_BACK := Decorate("FANTASICA IMAGES/Event/LegionBattle/arearesult/back.png")
+LEGION_FIELD_CLEARED := Decorate("FANTASICA IMAGES/Event/LegionBattle/arearesult/fieldcleared.png")
 LEGION_BACK := Decorate("FANTASICA IMAGES/Event/LegionBattle/result/back.png")
 ; ======================
 loop
