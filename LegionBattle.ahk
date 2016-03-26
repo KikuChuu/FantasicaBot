@@ -25,6 +25,7 @@ LEGION_AUTOBATTLE := Decorate("FANTASICA IMAGES/Event/LegionBattle/battle/autoba
 LEGION_FIELD_CLEARED_BACK := Decorate("FANTASICA IMAGES/Event/LegionBattle/arearesult/back.png")
 LEGION_FIELD_CLEARED := Decorate("FANTASICA IMAGES/Event/LegionBattle/arearesult/fieldcleared.png")
 LEGION_BACK := Decorate("FANTASICA IMAGES/Event/LegionBattle/result/back.png")
+LEGION_ARCH_ENEMY_LIST := Decorate("FANTASICA IMAGES/Event/LegionBattle/archenemylist/archenemylist.png")
 ; ======================
 loop
 {
@@ -44,6 +45,10 @@ loop
   }
 
   if (DetectObject(LEGION_HEAL)) {
+    ClickObject(LEGION_FIELD_CLEARED_BACK)
+  }
+
+  if (DetectObject(LEGION_ARCH_ENEMY_LIST)) {
     ClickObject(LEGION_FIELD_CLEARED_BACK)
   }
 
