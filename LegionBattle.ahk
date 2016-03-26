@@ -31,7 +31,7 @@ LEGION_RESULT := Decorate("FANTASICA IMAGES/Event/LegionBattle/result/result.png
 loop
 {
   if (DetectObject(LEGION_RESULT)) {
-    ClickObject(LEGION_RESULT)
+    ClickObject(LEGION_FIELD_CLEARED_BACK)
   }
 
   if (DetectObject(LEGION_SPECIAL_AREA)) {
