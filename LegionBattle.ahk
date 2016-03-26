@@ -17,6 +17,7 @@ LEGION_YESAREA := Decorate("FANTASICA IMAGES/Event/LegionBattle/yes.png")
 LEGION_WALK := Decorate("FANTASICA IMAGES/Event/LegionBattle/area/walk.png")
 LEGION_FIGHT := Decorate("FANTASICA IMAGES/Event/LegionBattle/area/fight.png")
 LEGION_YESFIGHT := Decorate("FANTASICA IMAGES/Event/LegionBattle/area/yes.png")
+LEGION_AUTOBATTLE := Decorate("FANTASICA IMAGES/Event/LegionBattle/battle/autobattle.png")
 ; ======================
 loop
 {
