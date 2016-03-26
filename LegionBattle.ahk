@@ -36,6 +36,10 @@ loop
     ClickObject(LEGION_WALK)
   }
 
+  if (DetectObject(LEGION_WALK_AFTER_SENT_BRAVE)) {
+    ClickObject(LEGION_WALK_AFTER_SENT_BRAVE)
+  }
+
   if (DetectObject(LEGION_SENDBRAVE)) {
     ClickObject(LEGION_SENDBRAVE)
   }
