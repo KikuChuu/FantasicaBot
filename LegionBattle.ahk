@@ -28,7 +28,10 @@ LEGION_BACK := Decorate("FANTASICA IMAGES/Event/LegionBattle/result/back.png")
 ; ======================
 loop
 {
-  if (DetectObject(LEGION_SEAAREA)) {
+  if (DetectObject(LEGION_SPECIAL_AREA)) {
+    ClickObject(LEGION_SPECIAL_AREA)
+  } 
+  else if (DetectObject(LEGION_SEAAREA)) {
     ClickObject(LEGION_SEAAREA)
   }
 
