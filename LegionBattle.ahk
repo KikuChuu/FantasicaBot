@@ -18,6 +18,7 @@ LEGION_WALK := Decorate("FANTASICA IMAGES/Event/LegionBattle/area/walk.png")
 LEGION_FIGHT := Decorate("FANTASICA IMAGES/Event/LegionBattle/area/fight.png")
 LEGION_YESFIGHT := Decorate("FANTASICA IMAGES/Event/LegionBattle/area/yes.png")
 LEGION_AUTOBATTLE := Decorate("FANTASICA IMAGES/Event/LegionBattle/battle/autobattle.png")
+LEGION_BACK := Decorate("FANTASICA IMAGES/Event/LegionBattle/result/back.png")
 ; ======================
 loop
 {
@@ -43,6 +44,10 @@ loop
 
   if (DetectObject(LEGION_AUTOBATTLE)) {
     ClickObject(LEGION_AUTOBATTLE)
+  }
+
+  if (DetectObject(LEGION_BACK)) {
+    ClickObject(LEGION_BACK)
   }
 }
 
