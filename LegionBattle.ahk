@@ -10,8 +10,6 @@ Init_globals() ; Found in GlobalConstants.ahk
 ;--------------------------------------------
 SetDefaultMouseSpeed 0
 
-MsgBox % A_WinDelay
-
 ; ======================
 ; === Variables here ===
 LEGION_SEAAREA := Decorate("FANTASICA IMAGES/Event/LegionBattle/seaarea.png")

@@ -10,8 +10,6 @@ Init_globals() ; Found in GlobalConstants.ahk
 ;--------------------------------------------
 SetDefaultMouseSpeed 0
 
-MsgBox % A_WinDelay
-
 ; ======================
 ; === Variables here ===
 TACTICS_EVENTICON := Decorate("FANTASICA IMAGES/Event/Tactics/eventicon.png")
