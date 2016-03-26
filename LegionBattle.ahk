@@ -13,7 +13,10 @@ SetDefaultMouseSpeed 0
 ; ======================
 ; === Variables here ===
 LEGION_SEAAREA := Decorate("FANTASICA IMAGES/Event/LegionBattle/seaarea.png")
-LEGION_YES := Decorate("FANTASICA IMAGES/Event/LegionBattle/yes.png")
+LEGION_YESAREA := Decorate("FANTASICA IMAGES/Event/LegionBattle/yes.png")
+LEGION_WALK := Decorate("FANTASICA IMAGES/Event/LegionBattle/area/walk.png")
+LEGION_FIGHT := Decorate("FANTASICA IMAGES/Event/LegionBattle/area/fight.png")
+LEGION_YESFIGHT := Decorate("FANTASICA IMAGES/Event/LegionBattle/area/yes.png")
 ; ======================
 loop
 {
@@ -21,8 +24,8 @@ loop
     ClickObject(LEGION_SEAAREA)
   }
 
-  if (DetectObject(LEGION_YES)) {
-    ClickObject(LEGION_YES)
+  if (DetectObject(LEGION_YESAREA)) {
+    ClickObject(LEGION_YESAREA)
   }
 }
 
