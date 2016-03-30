@@ -75,7 +75,7 @@ ToggleBrew(ByRef brew)
 {
   static x := 0
   x++
-  brew = Mod(x,2)
+  brew := Mod(x,2)
 
   ; Notify the user of this change
   if (brew) {
