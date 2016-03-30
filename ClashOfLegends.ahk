@@ -19,6 +19,7 @@ CLASH_SKIP := Decorate("FANTASICA IMAGES/Event/ClashofLegends/battle/skip.png")
 CLASH_SKIP_ACTIVE := Decorate("FANTASICA IMAGES/Event/ClashofLegends/battle/skipactive.png")
 CLASH_OFFENSIVE_SKILL := Decorate("FANTASICA IMAGES/Event/ClashofLegends/battle/offensiveskill.png")
 CLASH_DEFENSIVE_SKILL := Decorate("FANTASICA IMAGES/Event/ClashofLegends/battle/defensiveskill.png")
+CLASH_BATTLE := Decorate("FANTASICA IMAGES/Event/ClashofLegends/result/battle.png")
 ; ======================
 loop
 {
@@ -49,6 +50,10 @@ loop
     else if (DetectObject(CLASH_DEFENSIVE_SKILL, 50)) {
       ClickObject(CLASH_DEFENSIVE_SKILL, 50)
     }
+  }
+
+  if (DetectObject(CLASH_BATTLE)) {
+    ClickObject(CLASH_BATTLE)
   }
 }
 ; ==============================================================================
