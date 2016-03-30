@@ -21,7 +21,8 @@ CLASH_SKIP_ACTIVE := Decorate("FANTASICA IMAGES/Event/ClashofLegends/battle/skip
 CLASH_OFFENSIVE_SKILL := Decorate("FANTASICA IMAGES/Event/ClashofLegends/battle/offensiveskill.png")
 CLASH_DEFENSIVE_SKILL := Decorate("FANTASICA IMAGES/Event/ClashofLegends/battle/defensiveskill.png")
 CLASH_BATTLE := Decorate("FANTASICA IMAGES/Event/ClashofLegends/result/battle.png")
-CLASH_RETRY := Decorate("FANTASICA IMAGES/Event/ClashofLegends/battle/yes.png")
+CLASH_RETRY := Decorate("FANTASICA IMAGES/Event/ClashofLegends/battle/potion.png")
+CLASH_RETRY_YES := Decorate("FANTASICA IMAGES/Event/ClashofLegends/battle/yes.png")
 useBrew := 0
 ; ======================
 
@@ -29,10 +30,6 @@ loop
 {
   if (DetectObject(CLASH_FIGHT)) {
     ClickObject(CLASH_FIGHT)
-  }
-  
-  if (DetectObject(CLASH_RETRY)) {
-    ClickObject(CLASH_RETRY)
   }
 
   if (useBrew) {
@@ -68,6 +65,14 @@ loop
     else if (DetectObject(CLASH_DEFENSIVE_SKILL, 50)) {
       ClickObject(CLASH_DEFENSIVE_SKILL, 50)
     }
+  }
+  
+  if (DetectObject(CLASH_RETRY)) {
+    ClickObject(CLASH_RETRY)
+  }
+
+  if (DetectObject(CLASH_RETRY_YES)) {
+    ClickObject(CLASH_RETRY_YES)
   }
 
   if (DetectObject(CLASH_BATTLE)) {
