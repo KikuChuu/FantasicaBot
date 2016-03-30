@@ -43,8 +43,8 @@ loop
   }
 
   if (DetectObject(CLASH_SKIP_ACTIVE)) {
-    if (DetectObject(CLASH_OFFENSIVE_SKILL)) {
-      ClickObject(CLASH_OFFSENSIVE_SKILL, 50)
+    if (DetectObject(CLASH_OFFENSIVE_SKILL, 50)) {
+      ClickObject(CLASH_OFFENSIVE_SKILL, 50)
     }
     else if (DetectObject(CLASH_DEFENSIVE_SKILL, 50)) {
       ClickObject(CLASH_DEFENSIVE_SKILL, 50)
