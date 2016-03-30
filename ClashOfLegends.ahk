@@ -21,15 +21,27 @@ CLASH_SKIP_ACTIVE := Decorate("FANTASICA IMAGES/Event/ClashofLegends/battle/skip
 CLASH_OFFENSIVE_SKILL := Decorate("FANTASICA IMAGES/Event/ClashofLegends/battle/offensiveskill.png")
 CLASH_DEFENSIVE_SKILL := Decorate("FANTASICA IMAGES/Event/ClashofLegends/battle/defensiveskill.png")
 CLASH_BATTLE := Decorate("FANTASICA IMAGES/Event/ClashofLegends/result/battle.png")
+useBrew := 0
 ; ======================
+
 loop
 {
   if (DetectObject(CLASH_FIGHT)) {
     ClickObject(CLASH_FIGHT)
   }
-
-  if (DetectObject(CLASH_NO)) {
-    ClickObject(CLASH_NO)
+  
+  if (useBrew) {
+    if (DetectObject(CLASH_BREW)) {
+      ClickObject(CLASH_BREW)
+    }
+    if (DetectObject(CLASH_YES)) {
+      ClickObject(CLASH_YES)
+    }
+  }
+  else {
+    if (DetectObject(CLASH_NO)) {
+      ClickObject(CLASH_NO)
+    }
   }
 
   if (DetectObject(CLASH_START)) {
@@ -59,6 +71,23 @@ loop
 }
 ; ==============================================================================
 
+ToggleBrew(ByRef brew)
+{
+  static x := 0
+  x++
+  brew = Mod(x,2)
+
+  ; Notify the user of this change
+  if (brew) {
+    SB_SetText("Brew usage turned on")
+  }
+  else {
+    SB_SetText("Brew usage turned off")
+  }
+  sleep 1000
+}
+
 F1::ExitApp
 F2::Pause
 F3::Reload
+F4::ToggleBrew(useBrew)
