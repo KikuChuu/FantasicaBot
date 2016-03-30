@@ -16,6 +16,8 @@ CLASH_NO := Decorate("FANTASICA IMAGES/Event/ClashofLegends/selection/no.png")
 CLASH_START := Decorate("FANTASICA IMAGES/Event/ClashofLegends/preparation/start.png")
 CLASH_YES := Decorate("FANTASICA IMAGES/Event/ClashofLegends/preparation/yes.png")
 CLASH_SKIP := Decorate("FANTASICA IMAGES/Event/ClashofLegends/battle/skip.png")
+CLASH_SKIP_ACTIVE := Decorate("FANTASICA IMAGES/Event/ClashofLegends/battle/skipactive.png")
+CLASH_SUPPORT := Decorate("FANTASICA IMAGES/Event/ClashofLegends/battle/support.png")
 ; ======================
 loop
 {
@@ -37,6 +39,10 @@ loop
 
   if (DetectObject(CLASH_SKIP)) {
     ClickObject(CLASH_SKIP)
+  }
+
+  if (DetectObject(CLASH_SKIP_ACTIVE)) {
+    ClickObject(CLASH_SUPPORT)
   }
 }
 ; ==============================================================================
