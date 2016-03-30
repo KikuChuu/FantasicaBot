@@ -13,6 +13,7 @@ SetDefaultMouseSpeed 0
 ; === Variables here ===
 CLASH_FIGHT := Decorate("FANTASICA IMAGES/Event/ClashofLegends/selection/fight.png")
 CLASH_NO := Decorate("FANTASICA IMAGES/Event/ClashofLegends/selection/no.png")
+CLASH_BREW := Decorate("FANTASICA IMAGES/Event/ClashofLegends/selection/yes.png")
 CLASH_START := Decorate("FANTASICA IMAGES/Event/ClashofLegends/preparation/start.png")
 CLASH_YES := Decorate("FANTASICA IMAGES/Event/ClashofLegends/preparation/yes.png")
 CLASH_SKIP := Decorate("FANTASICA IMAGES/Event/ClashofLegends/battle/skip.png")
