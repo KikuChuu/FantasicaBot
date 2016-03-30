@@ -17,7 +17,8 @@ CLASH_START := Decorate("FANTASICA IMAGES/Event/ClashofLegends/preparation/start
 CLASH_YES := Decorate("FANTASICA IMAGES/Event/ClashofLegends/preparation/yes.png")
 CLASH_SKIP := Decorate("FANTASICA IMAGES/Event/ClashofLegends/battle/skip.png")
 CLASH_SKIP_ACTIVE := Decorate("FANTASICA IMAGES/Event/ClashofLegends/battle/skipactive.png")
-CLASH_SUPPORT := Decorate("FANTASICA IMAGES/Event/ClashofLegends/battle/support.png")
+CLASH_OFFENSIVE_SKILL := Decorate("FANTASICA IMAGES/Event/ClashofLegends/battle/offensiveskill.png")
+CLASH_DEFENSIVE_SKILL := Decorate("FANTASICA IMAGES/Event/ClashofLegends/battle/defensiveskill.png")
 ; ======================
 loop
 {
@@ -42,7 +43,12 @@ loop
   }
 
   if (DetectObject(CLASH_SKIP_ACTIVE)) {
-    ClickObject(CLASH_SUPPORT)
+    if (DetectObject(CLASH_OFFENSIVE_SKILL)) {
+      ClickObject(CLASH_OFFSENSIVE_SKILL, 50)
+    }
+    else if (DetectObject(CLASH_DEFENSIVE_SKILL, 50)) {
+      ClickObject(CLASH_DEFENSIVE_SKILL, 50)
+    }
   }
 }
 ; ==============================================================================
