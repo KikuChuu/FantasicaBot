@@ -16,6 +16,7 @@ DICE_STOP := Decorate("FANTASICA IMAGES/Event/Dice/board/stop.png")
 DICE_FIGHT := Decorate("FANTASICA IMAGES/Event/Dice/board/fight.png")
 DICE_NEXT := Decorate("FANTASICA IMAGES/Event/Dice/result/next.png")
 DICE_BOARD := Decorate("FANTASICA IMAGES/Event/Dice/result/board.png")
+DICE_CLOSE := Decorate("FANTASICA IMAGES/Event/Dice/board/close.png")
 ; ======================
 
 loop
@@ -38,6 +39,10 @@ loop
 
   if (DetectObject(DICE_BOARD)) {
     ClickObject(DICE_BOARD)
+  }
+
+  if (DetectObject(DICE_CLOSE)) {
+    ClickObject(DICE_CLOSE)
   }
 }
 ; ==============================================================================
