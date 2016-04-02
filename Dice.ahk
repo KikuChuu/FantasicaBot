@@ -12,12 +12,17 @@ SetDefaultMouseSpeed 0
 ; ======================
 ; === Variables here ===
 DICE_ROLL := Decorate("FANTASICA IMAGES/Event/Dice/board/roll.png")
+DICE_STOP := Decorate("FANTASICA IMAGES/Event/Dice/board/stop.png")
 ; ======================
 
 loop
 {
   if (DetectObject(DICE_ROLL)) {
     ClickObject(DICE_ROLL)
+  }
+
+  if (DetectObject(DICE_STOP)) {
+    ClickObject(DICE_STOP)
   }
 }
 ; ==============================================================================
