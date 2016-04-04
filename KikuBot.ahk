@@ -1254,7 +1254,7 @@ loop,
 		ClickObject(CONTINUETRAINING_BUTTON)
 	}
     
-	if (DetectObject(HEAL_BUTTON, 75) || DetectObject(HEALMID_BUTTON) || DetectObject(HEALDARK_BUTTON)
+	if (DetectObject(HEAL_BUTTON) || DetectObject(HEALMID_BUTTON) || DetectObject(HEALDARK_BUTTON)
         || DetectObject(HEALMOBACOIN_BUTTON) || DetectObject(HEALMOBACOINDARK_BUTTON) || DetectObject(HEALMOBACOINMID_BUTTON))
 	{
 		if (USE_POTION)
