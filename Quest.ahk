@@ -11,11 +11,11 @@ SetWorkingDir %A_ScriptDir%
 Init_globals() ; Found in GlobalConstants.ahk
 ;============================================
 
-deployCnt := 0
+deployUnitNum := 0
 loop,
 {
-  if (DetectObject(DEPLOY_UNIT) && deployCnt < DEPLOY_NUMBER) {
-    ClickObject(DEPLOY_UNIT)
+  if (DetectObject(DEPLOYUNIT_BUTTON) && deployUnitNum < DEPLOY_NUMBER) {
+    ClickObject(DEPLOYUNIT_BUTTON)
   }
 
   if (DetectObject(DEPLOY_TEXT)) {
@@ -26,14 +26,18 @@ loop,
       ClickObject(DEPLOYUNIT2_BUTTON)
     }
     else if (DetectObject(DEPLOYUNIT3_BUTTON)) {
-      ClickObject(DEPLOYUNIT2_BUTTON)
+      ClickObject(DEPLOYUNIT3_BUTTON)
     }
     else if (DetectObject(DEPLOYUNIT4_BUTTON)) {
-      ClickObject(DEPLOYUNIT2_BUTTON)
+      ClickObject(DEPLOYUNIT4_BUTTON)
     }
     else {
       ClickObject(BACKQUEST_BUTTON)
     }
+  }
+
+  if (DetectObject(CANCELPLACEMENT_BUTTON)) {
+    ClickObject(CANCELPLACEMENT_BUTTON)
   }
 }
 
