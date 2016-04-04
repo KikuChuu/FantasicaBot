@@ -18,10 +18,26 @@ DICE_NEXT := Decorate("FANTASICA IMAGES/Event/Dice/result/next.png")
 DICE_BOARD := Decorate("FANTASICA IMAGES/Event/Dice/result/board.png")
 DICE_CLOSE := Decorate("FANTASICA IMAGES/Event/Dice/board/close.png")
 DICE_MOVE := Decorate("FANTASICA IMAGES/Event/Dice/board/move.png")
+DICE_ARROW := Decorate("FANTASICA IMAGES/Event/Dice/board/arrow.png")
+DICE_OPEN := Decorate("FANTASICA IMAGES/Event/Dice/board/open.png")
+DICE_DICEMENU := Decorate("FANTASICA IMAGES/Event/Dice/board/dice.png")
+DICE_DOUBLEDIE := Decorate("FANTASICA IMAGES/Event/Dice/board/doubledie.png")
+DICE_CLOSEDIEMENU := Decorate("FANTASICA IMAGES/Event/Dice/board/closediemenu.png")
 ; ======================
-
 loop
-{
+{ 
+  if (DetectObject(DICE_DOUBLEDIE)) {
+	ClickObject(DICE_DOUBLEDIE)
+  }
+	
+  if (DetectObject(DICE_CLOSEDIEMENU)) {
+	ClickObject(DICE_CLOSEDIEMENU)
+  }
+
+  if (DetectObject(DICE_DICEMENU, 20)) {
+	ClickObject(DICE_DICEMENU, 20)
+  }
+  
   if (DetectObject(DICE_ROLL)) {
     ClickObject(DICE_ROLL)
   }
@@ -48,6 +64,14 @@ loop
 
   if (DetectObject(DICE_MOVE)) {
     ClickObject(DICE_MOVE)
+  }
+  
+  if (DetectObject(DICE_ARROW,50)) {
+	ClickObject(DICE_ARROW, 50)
+  }
+  
+  if (DetectObject(DICE_OPEN)) {
+	ClickObject(DICE_OPEN)
   }
 }
 ; ==============================================================================
