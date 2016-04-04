@@ -2,7 +2,7 @@
 SendMode Input
 SetWorkingDir %A_ScriptDir%
 
-#Include %A_WorkingDir%\includes\IncludeScript.ahk
+#Include %A_ScriptDir%\includes\IncludeScript.ahk
 
 ;============================================
 ;Init Global by invoking the following 
