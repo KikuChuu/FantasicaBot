@@ -19,25 +19,10 @@ loop,
   }
 
   if (DetectObject(DEPLOY_TEXT)) {
-    if (DetectObject(DEPLOYUNIT1_BUTTON)) {
-      ClickObject(DEPLOYUNIT1_BUTTON)
+    retval := DeployUnit()
+    if (retval) {
+      deployUnitNum++
     }
-    else if (DetectObject(DEPLOYUNIT2_BUTTON)) {
-      ClickObject(DEPLOYUNIT2_BUTTON)
-    }
-    else if (DetectObject(DEPLOYUNIT3_BUTTON)) {
-      ClickObject(DEPLOYUNIT3_BUTTON)
-    }
-    else if (DetectObject(DEPLOYUNIT4_BUTTON)) {
-      ClickObject(DEPLOYUNIT4_BUTTON)
-    }
-    else {
-      ClickObject(BACKQUEST_BUTTON)
-    }
-  }
-
-  if (DetectObject(CANCELPLACEMENT_BUTTON)) {
-    ClickObject(CANCELPLACEMENT_BUTTON)
   }
 }
 
