@@ -1198,6 +1198,10 @@ loop,
 	}
 	if (DetectObject(DEPLOY_TEXT))
 	{
+    if (DetectObject(UNITFAVORITEOFF_BUTTON)) {
+      ClickObject(UNITFAVORIATEOFF_BUTTON)
+    }
+
 		if (DeployUnit(SORTINDEX, TYPEINDEX))
 		{
 			deployUnitNum++
