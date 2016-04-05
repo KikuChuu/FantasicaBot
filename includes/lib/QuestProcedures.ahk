@@ -706,6 +706,7 @@ FindCoordinate(Byref X, Byref Y, Byref numOfPasses := 0, incrementCol := 0)
     else
     {
       global SCAN_START_X, SCAN_START_Y, SCAN_TILE_SIZE, CONFIRMUNITPLACEMENT_BUTTON
+      tileSize := SCAN_TILE_SIZE / 2
       MapMaxRow := 14 ;starting with row 0
       MapMaxCol := 14 ;starting with col 0
       
@@ -730,7 +731,7 @@ FindCoordinate(Byref X, Byref Y, Byref numOfPasses := 0, incrementCol := 0)
           }
           while row <= MapMaxRow
           {
-              CurrentRowCoord := SCAN_START_Y + (row * SCAN_TILE_SIZE)
+              CurrentRowCoord := SCAN_START_Y + (row * tileSize)
               while col <= (MapMaxCol)
               {
                 if (row == 0 && col == 0) 
@@ -739,7 +740,7 @@ FindCoordinate(Byref X, Byref Y, Byref numOfPasses := 0, incrementCol := 0)
                   continue
                 }
 
-                CurrentColCoord := SCAN_START_X + (col * SCAN_TILE_SIZE)
+                CurrentColCoord := SCAN_START_X + (col * tileSize)
                 PlaceUnitAt(CurrentColCoord, CurrentRowCoord)
                 if (DetectObject(CONFIRMUNITPLACEMENT_BUTTON)) {
                   col++
