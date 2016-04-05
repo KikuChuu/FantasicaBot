@@ -581,7 +581,8 @@ ChooseUnit()
 ; Return     - Returns 1 if a unit was deployed, 0 otherwise.
 DeployUnit(attackType = 0, attribType = 0)
 {
-	global
+	global CONFIRMUNITPLACEMENT_BUTTON, CANCELPLACEMENT_BUTTON, BACKQUEST_BUTTON
+
   ; Toggle attack and attribute type
   ToggleAttackType(attackType)
   ToggleAttribType(attribType)
@@ -593,28 +594,25 @@ DeployUnit(attackType = 0, attribType = 0)
   numOfPasses := 0
 ;	FindCoordinate(MapX, MapY, numOfPasses)
 ; PlaceUnitAt(MapX, MapY)	;Place unit at (MapX, MapY)
-  while (DetectObject(CANCELPLACEMENT_BUTTON)) 
+  while not (DetectObject(CONFIRMUNITPLACEMENT_BUTTON))
   {
-    while not (DetectObject(CONFIRMUNITPLACEMENT_BUTTON))
+    if (FindCoordinate(MapX, MapY, numOfPasses) == 0) ;modifies MapX and MapY to valid coordinates
     {
-      if (FindCoordinate(MapX, MapY, numOfPasses) == 0) ;modifies MapX and MapY to valid coordinates
-      {
-        ClickObject(CANCELPLACEMENT_BUTTON)
-        WaitObject(BACKQUEST_BUTTON)
-        ClickObject(BACKQUEST_BUTTON)
-        return 0
-      }
-      else
-      {
-        PlaceUnitAt(MapX, MapY)	;Place unit at (MapX, MapY)
-      }
+      ClickObject(CANCELPLACEMENT_BUTTON)
+      WaitObject(BACKQUEST_BUTTON)
+      ClickObject(BACKQUEST_BUTTON)
+      return 0
     }
+    else
+    {
+      PlaceUnitAt(MapX, MapY)	;Place unit at (MapX, MapY)
+    }
+  }
 
-    if (DetectObject(CONFIRMPLACEMENT_BUTTON)) {
-      ClickObject(CONFIRMPLACEMENT_BUTTON)
-    }
-  }	
-  	
+  if (DetectObject(CONFIRMUNITPLACEMENT_BUTTON)) {
+    ClickObject(CONFIRMUNITPLACEMENT_BUTTON)
+  }
+  
   FindCoordinate(MapX, MapY, numOfPasses, 1) ; Advance the search index by 1 column
 	return 1
 }
