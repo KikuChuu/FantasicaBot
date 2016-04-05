@@ -358,6 +358,195 @@ ChooseAlly()
 	return 0
 }
 
+ToggleAttackType(attackType := 0)
+{
+  global
+  checkInvariant := DetectObject(SORTBYDEFAULT_BUTTON) || DetectObject(SORTBYGROUNDATK_BUTTON) || DetectObject(SORTBYAIRATK_BUTTON) || DetectObject(SORTBYSEAATK_BUTTON)
+  if (checkInvariant == 1)
+  {
+    if (attackType == 0)
+    {
+      ;SORT BY DEFAULT
+      while not DetectObject(SORTBYDEFAULT_BUTTON)
+      {
+        if DetectObject(SORTBYSEAATK_BUTTON)
+        {
+          WaitObject(SORTBYSEAATK_BUTTON)
+          ClickObject(SORTBYSEAATK_BUTTON)
+        }
+        if DetectObject(SORTBYGROUNDATK_BUTTON)
+        {
+          WaitObject(SORTBYGROUNDATK_BUTTON)
+          ClickObject(SORTBYGROUNDATK_BUTTON)
+        }
+        if DetectObject(SORTBYAIRATK_BUTTON)
+        {
+          WaitObject(SORTBYAIRATK_BUTTON)
+          ClickObject(SORTBYAIRATK_BUTTON)
+        }
+      }
+    }
+    else if (attackType == 1)
+    {
+      ;SORT BY GROUND ATK
+      while not DetectObject(SORTBYGROUNDATK_BUTTON)
+      {
+        if DetectObject(SORTBYDEFAULT_BUTTON)
+        {
+          WaitObject(SORTBYDEFAULT_BUTTON)
+          ClickObject(SORTBYDEFAULT_BUTTON)
+        }
+        if DetectObject(SORTBYAIRATK_BUTTON)
+        {
+          WaitObject(SORTBYAIRATK_BUTTON)
+          ClickObject(SORTBYAIRATK_BUTTON)
+        }
+        if DetectObject(SORTBYSEAATK_BUTTON)
+        {
+          WaitObject(SORTBYSEAATK_BUTTON)
+          ClickObject(SORTBYSEAATK_BUTTON)
+        }
+      }
+    }
+    else if (attackType == 2)
+    {
+      ;SORT BY AIR ATK
+      while not DetectObject(SORTBYAIRATK_BUTTON)
+      {
+        if DetectObject(SORTBYGROUNDATK_BUTTON)
+        {
+          WaitObject(SORTBYGROUNDATK_BUTTON)
+          ClickObject(SORTBYGROUNDATK_BUTTON)
+        }
+        if DetectObject(SORTBYSEAATK_BUTTON)
+        {
+          WaitObject(SORTBYSEAATK_BUTTON)
+          ClickObject(SORTBYSEAATK_BUTTON)
+        }
+        if DetectObject(SORTBYDEFAULT_BUTTON)
+        {
+          WaitObject(SORTBYDEFAULT_BUTTON)
+          ClickObject(SORTBYDEFAULT_BUTTON)
+        }
+      }
+    }
+    else if (attackType == 3)
+    {
+      ;SORT BY SEA ATK
+      while not DetectObject(SORTBYSEAATK_BUTTON)
+      {
+        if DetectObject(SORTBYAIRATK_BUTTON)
+        {
+          WaitObject(SORTBYAIRATK_BUTTON)
+          ClickObject(SORTBYAIRATK_BUTTON)
+        }
+        if DetectObject(SORTBYDEFAULT_BUTTON)
+        {
+          WaitObject(SORTBYDEFAULT_BUTTON)
+          ClickObject(SORTBYDEFAULT_BUTTON)
+        }
+        if DetectObject(SORTBYGROUNDATK_BUTTON)
+        {
+          WaitObject(SORTBYGROUNDATK_BUTTON)
+          ClickObject(SORTBYGROUNDATK_BUTTON)
+        }
+      }
+    }
+  }
+}
+
+ToggleAttribType(attribType := 0)
+{
+  checkInvariant := DetectObject(UNITALL_BUTTON) || DetectObject(UNITMELEE_BUTTON) || DetectObject(UNITMISSILE_BUTTON) || DetectObject(UNITMAGIC_BUTTON)
+  if (checkInvariant == 1)
+  {
+    if (attribType == 0)
+    {
+      while not DetectObject(UNITAll_BUTTON)
+      {
+        if DetectObject(UNITMAGIC_BUTTON)
+        {
+          WaitObject(UNITMAGIC_BUTTON)
+          ClickObject(UNITMAGIC_BUTTON)
+        }
+        if (DetectObject(UNITMELEE_BUTTON))
+        {
+          WaitObject(UNITMELEE_BUTTON)
+          ClickObject(UNITMELEE_BUTTON)
+        }
+        if DetectObject(UNITMISSILE_BUTTON)
+        {
+          WaitObject(UNITMISSILE_BUTTON)
+          ClickObject(UNITMISSILE_BUTTON)
+        }
+      }
+    }
+    else if (attribType == 1)
+    {
+      while not DetectObject(UNITMELEE_BUTTON)
+      {
+        if DetectObject(UNITALL_BUTTON)
+        {
+          WaitObject(UNITALL_BUTTON)
+          ClickObject(UNITALL_BUTTON)
+        }
+        if (DetectObject(UNITMISSILE_BUTTON))
+        {
+          WaitObject(UNITMISSILE_BUTTON)
+          ClickObject(UNITMISSILE_BUTTON)
+        }
+        if DetectObject(UNITMAGIC_BUTTON)
+        {
+          WaitObject(UNITMAGIC_BUTTON)
+          ClickObject(UNITMAGIC_BUTTON)
+        }
+      }
+    }
+    else if (attribType == 2)
+    {
+      while not DetectObject(UNITMISSILE_BUTTON)
+      {
+        if DetectObject(UNITMELEE_BUTTON)
+        {
+          WaitObject(UNITMELEE_BUTTON)
+          ClickObject(UNITMELEE_BUTTON)
+        }
+        if (DetectObject(UNITMAGIC_BUTTON))
+        {
+          WaitObject(UNITMAGIC_BUTTON)
+          ClickObject(UNITMAGIC_BUTTON)
+        }
+        if DetectObject(UNITALL_BUTTON)
+        {
+          WaitObject(UNITALL_BUTTON)
+          ClickObject(UNITALL_BUTTON)
+        }
+      }
+    }
+    else if (attribType == 3)
+    {
+      while not DetectObject(UNITMAGIC_BUTTON)
+      {
+        if DetectObject(UNITMISSILE_BUTTON)
+        {
+          WaitObject(UNITMISSILE_BUTTON)
+          ClickObject(UNITMISSILE_BUTTON)
+        }
+        if (DetectObject(UNITALL_BUTTON))
+        {
+          WaitObject(UNITALL_BUTTON)
+          ClickObject(UNITALL_BUTTON)
+        }
+        if DetectObject(UNITMELEE_BUTTON)
+        {
+          WaitObject(UNITMELEE_BUTTON)
+          ClickObject(UNITMELEE_BUTTON)
+        }
+      }
+    }
+  }
+}
+
 
 ; DeployUnit - Performs a sequence of steps to deploy a unit. Filters units as
 ;              according to input parameters.
@@ -366,184 +555,13 @@ ChooseAlly()
 ; AllyType   - Controls how to filter the list by unit type
 ;               0 = Default, 1 = Melee, 2 = Missile, 3 = Magic
 ; Return     - Returns 1 if a unit was deployed, 0 otherwise.
-DeployUnit(AllyPower = 0, AllyType = 0)
+DeployUnit(attackType = 0, attribType = 0)
 {
 	global
-	
-	if AllyPower = 0
-	{
-		;SORT BY DEFAULT
-		while not DetectObject(SORTBYDEFAULT_BUTTON)
-		{
-			if DetectObject(SORTBYSEAATK_BUTTON)
-			{
-				WaitObject(SORTBYSEAATK_BUTTON)
-				ClickObject(SORTBYSEAATK_BUTTON)
-			}
-			if DetectObject(SORTBYGROUNDATK_BUTTON)
-			{
-				WaitObject(SORTBYGROUNDATK_BUTTON)
-				ClickObject(SORTBYGROUNDATK_BUTTON)
-			}
-			if DetectObject(SORTBYAIRATK_BUTTON)
-			{
-				WaitObject(SORTBYAIRATK_BUTTON)
-				ClickObject(SORTBYAIRATK_BUTTON)
-			}
-		}
-	}
-	else if AllyPower = 1
-	{
-		;SORT BY GROUND ATK
-		while not DetectObject(SORTBYGROUNDATK_BUTTON)
-		{
-			if DetectObject(SORTBYDEFAULT_BUTTON)
-			{
-				WaitObject(SORTBYDEFAULT_BUTTON)
-				ClickObject(SORTBYDEFAULT_BUTTON)
-			}
-			if DetectObject(SORTBYAIRATK_BUTTON)
-			{
-				WaitObject(SORTBYAIRATK_BUTTON)
-				ClickObject(SORTBYAIRATK_BUTTON)
-			}
-			if DetectObject(SORTBYSEAATK_BUTTON)
-			{
-				WaitObject(SORTBYSEAATK_BUTTON)
-				ClickObject(SORTBYSEAATK_BUTTON)
-			}
-		}
-	}
-	else if AllyPower = 2
-	{
-		;SORT BY AIR ATK
-		while not DetectObject(SORTBYAIRATK_BUTTON)
-		{
-			if DetectObject(SORTBYGROUNDATK_BUTTON)
-			{
-				WaitObject(SORTBYGROUNDATK_BUTTON)
-				ClickObject(SORTBYGROUNDATK_BUTTON)
-			}
-			if DetectObject(SORTBYSEAATK_BUTTON)
-			{
-				WaitObject(SORTBYSEAATK_BUTTON)
-				ClickObject(SORTBYSEAATK_BUTTON)
-			}
-			if DetectObject(SORTBYDEFAULT_BUTTON)
-			{
-				WaitObject(SORTBYDEFAULT_BUTTON)
-				ClickObject(SORTBYDEFAULT_BUTTON)
-			}
-		}
-	}
-	else if AllyPower = 3
-	{
-		;SORT BY SEA ATK
-		while not DetectObject(SORTBYSEAATK_BUTTON)
-		{
-			if DetectObject(SORTBYAIRATK_BUTTON)
-			{
-				WaitObject(SORTBYAIRATK_BUTTON)
-				ClickObject(SORTBYAIRATK_BUTTON)
-			}
-			if DetectObject(SORTBYDEFAULT_BUTTON)
-			{
-				WaitObject(SORTBYDEFAULT_BUTTON)
-				ClickObject(SORTBYDEFAULT_BUTTON)
-			}
-			if DetectObject(SORTBYGROUNDATK_BUTTON)
-			{
-				WaitObject(SORTBYGROUNDATK_BUTTON)
-				ClickObject(SORTBYGROUNDATK_BUTTON)
-			}
-		}
-	}
-	
-	if (AllyType == 0)
-	{
-		while not DetectObject(UNITAll_BUTTON)
-		{
-			if DetectObject(UNITMAGIC_BUTTON)
-			{
-				WaitObject(UNITMAGIC_BUTTON)
-				ClickObject(UNITMAGIC_BUTTON)
-			}
-			if (DetectObject(UNITMELEE_BUTTON))
-			{
-				WaitObject(UNITMELEE_BUTTON)
-				ClickObject(UNITMELEE_BUTTON)
-			}
-			if DetectObject(UNITMISSILE_BUTTON)
-			{
-				WaitObject(UNITMISSILE_BUTTON)
-				ClickObject(UNITMISSILE_BUTTON)
-			}
-		}
-	}
-	else if (AllyType == 1)
-	{
-		while not DetectObject(UNITMELEE_BUTTON)
-		{
-			if DetectObject(UNITALL_BUTTON)
-			{
-				WaitObject(UNITALL_BUTTON)
-				ClickObject(UNITALL_BUTTON)
-			}
-			if (DetectObject(UNITMISSILE_BUTTON))
-			{
-				WaitObject(UNITMISSILE_BUTTON)
-				ClickObject(UNITMISSILE_BUTTON)
-			}
-			if DetectObject(UNITMAGIC_BUTTON)
-			{
-				WaitObject(UNITMAGIC_BUTTON)
-				ClickObject(UNITMAGIC_BUTTON)
-			}
-		}
-	}
-	else if (AllyType == 2)
-	{
-		while not DetectObject(UNITMISSILE_BUTTON)
-		{
-			if DetectObject(UNITMELEE_BUTTON)
-			{
-				WaitObject(UNITMELEE_BUTTON)
-				ClickObject(UNITMELEE_BUTTON)
-			}
-			if (DetectObject(UNITMAGIC_BUTTON))
-			{
-				WaitObject(UNITMAGIC_BUTTON)
-				ClickObject(UNITMAGIC_BUTTON)
-			}
-			if DetectObject(UNITALL_BUTTON)
-			{
-				WaitObject(UNITALL_BUTTON)
-				ClickObject(UNITALL_BUTTON)
-			}
-		}
-	}
-	else if (AllyType == 3)
-	{
-		while not DetectObject(UNITMAGIC_BUTTON)
-		{
-			if DetectObject(UNITMISSILE_BUTTON)
-			{
-				WaitObject(UNITMISSILE_BUTTON)
-				ClickObject(UNITMISSILE_BUTTON)
-			}
-			if (DetectObject(UNITALL_BUTTON))
-			{
-				WaitObject(UNITALL_BUTTON)
-				ClickObject(UNITALL_BUTTON)
-			}
-			if DetectObject(UNITMELEE_BUTTON)
-			{
-				WaitObject(UNITMELEE_BUTTON)
-				ClickObject(UNITMELEE_BUTTON)
-			}
-		}
-	}
-	
+  ; Toggle attack and attribute type
+  ToggleAttackType(attackType)
+  ToggleAttribType(attribType)
+
 	;Choose a unit to deploy
 	if DetectObject(DEPLOYUNIT1_BUTTON)
 	{
@@ -575,28 +593,29 @@ DeployUnit(AllyPower = 0, AllyType = 0)
 		return 0
 	}
     
-    numOfPasses := 0
+  ; Locate a tile to place the unit
+  numOfPasses := 0
 	FindCoordinate(MapX, MapY, numOfPasses)
-    PlaceUnitAt(MapX, MapY)	;Place unit at (MapX, MapY)
+  PlaceUnitAt(MapX, MapY)	;Place unit at (MapX, MapY)
 	
-    while not DetectObject(CONFIRMUNITPLACEMENT_BUTTON)
+  while not (DetectObject(CONFIRMUNITPLACEMENT_BUTTON))
 	{
 		if (FindCoordinate(MapX, MapY, numOfPasses) == 0) ;modifies MapX and MapY to valid coordinates
-        {
-            ClickObject(CANCELPLACEMENT_BUTTON)
-            WaitObject(BACKQUEST_BUTTON)
-            ClickObject(BACKQUEST_BUTTON)
-            return 0
-        }
+    {
+      ClickObject(CANCELPLACEMENT_BUTTON)
+      WaitObject(BACKQUEST_BUTTON)
+      ClickObject(BACKQUEST_BUTTON)
+      return 0
+    }
 		else
-        {
-            PlaceUnitAt(MapX, MapY)	;Place unit at (MapX, MapY)
-        }
+    {
+      PlaceUnitAt(MapX, MapY)	;Place unit at (MapX, MapY)
+    }
 	}
 	WaitObject(CONFIRMUNITPLACEMENT_BUTTON)
 	ClickObject(CONFIRMUNITPLACEMENT_BUTTON)
 	
-  FindCoordinate(MapX, MapY, numOfPasses, 1)
+  FindCoordinate(MapX, MapY, numOfPasses, 1) ; Advance the search index by 1 column
     
 	while DetectObject(CANCELPLACEMENT_BUTTON) ;busy wait until unit placement is done (in case of lag)
 	{
