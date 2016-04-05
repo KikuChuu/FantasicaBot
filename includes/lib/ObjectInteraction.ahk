@@ -32,8 +32,6 @@ ClickObject(ByRef Path, variation := 0)
 	ImageSearch, FoundX, FoundY, X1, Y1, X2, Y2, *%variation% %Path%
 	if ErrorLevel = 2
 	{
-		;MsgBox, 0, File Missing(ClickObject), We can't seem to find this file: `n%Path%. >_< `n`n Pausing Script.
-		;Pause
 		msg := "File Missing(ClickObject), We can't seem to find this file: " . Path
 		SB_SetText(msg)
 		Log(msg)
@@ -48,7 +46,6 @@ ClickObject(ByRef Path, variation := 0)
 	{
 		SB_SetText("Clicking " . Path)
 		ClickAt(FoundX, FoundY)
-		;Sleep SLEEPTIME
 	}
 }
 
