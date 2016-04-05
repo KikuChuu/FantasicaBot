@@ -662,6 +662,12 @@ FindCoordinate(Byref X, Byref Y, Byref numOfPasses := 0, incrementCol := 0)
           CurrentRowCoord := SCAN_START_Y + (row * SCAN_TILE_SIZE)
           while (col <= MapMaxCol)
           {
+            if (row == 0 && col == 0) 
+            {
+              col++
+              continue
+            }
+
             CurrentColCoord := SCAN_START_X + (col * SCAN_TILE_SIZE)
 
             PlaceUnitAt(CurrentColCoord, CurrentRowCoord)
@@ -727,16 +733,22 @@ FindCoordinate(Byref X, Byref Y, Byref numOfPasses := 0, incrementCol := 0)
               CurrentRowCoord := SCAN_START_Y + (row * SCAN_TILE_SIZE)
               while col <= (MapMaxCol)
               {
-                  CurrentColCoord := SCAN_START_X + (col * SCAN_TILE_SIZE)
-                  PlaceUnitAt(CurrentColCoord, CurrentRowCoord)
-                  if (DetectObject(CONFIRMUNITPLACEMENT_BUTTON)) {
-                    col++
-                    return 1
-                  }
-                  else
-                  {
-                    col++
-                  }
+                if (row == 0 && col == 0) 
+                {
+                  col++
+                  continue
+                }
+
+                CurrentColCoord := SCAN_START_X + (col * SCAN_TILE_SIZE)
+                PlaceUnitAt(CurrentColCoord, CurrentRowCoord)
+                if (DetectObject(CONFIRMUNITPLACEMENT_BUTTON)) {
+                  col++
+                  return 1
+                }
+                else
+                {
+                  col++
+                }
                   
            ;       PixelGetColor, tileColor, %CurrentColCoord%, %CurrentRowCoord%
            ;       comparisonColor := tileColor

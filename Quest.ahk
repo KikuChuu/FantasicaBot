@@ -22,8 +22,9 @@ loop,
     ToggleAttackType()
     ToggleAttribType()
     ChooseUnit()
+    Sleep 500
   }
-  if (DetectObject(CANCELUNITPLACEMENT_BUTTON)) {
+  if (DetectObject(CANCELPLACEMENT_BUTTON)) {
     if (DeployUnit()) {
       deployUnitNum++
     }
