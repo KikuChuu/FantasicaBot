@@ -603,10 +603,6 @@ DeployUnit(attackType = 0, attribType = 0)
       ClickObject(BACKQUEST_BUTTON)
       return 0
     }
-    else
-    {
-      PlaceUnitAt(MapX, MapY)	;Place unit at (MapX, MapY)
-    }
   }
 
   if (DetectObject(CONFIRMUNITPLACEMENT_BUTTON)) {
@@ -636,10 +632,7 @@ FindCoordinate(Byref X, Byref Y, Byref numOfPasses := 0, incrementCol := 0)
   {
     if (LEVELBOT == 1)
     {
-      global SCAN_START_X, SCAN_START_Y, SCAN_TILE_SIZE
-      StartX := SCAN_START_X
-      StartY := SCAN_START_Y
-      TileSize := SCAN_TILE_SIZE
+      global SCAN_START_X, SCAN_START_Y, SCAN_TILE_SIZE, CONFIRMUNITPLACEMENT_BUTTON
       MapMaxRow := 7 ;starting with row 0
       MapMaxCol := 7 ;starting with col 0	
       
@@ -664,27 +657,36 @@ FindCoordinate(Byref X, Byref Y, Byref numOfPasses := 0, incrementCol := 0)
         }
         while (row <= MapMaxRow)
         {
-          CurrentRowCoord := StartY + (row * TileSize)
+          CurrentRowCoord := SCAN_START_Y + (row * SCAN_TILE_SIZE)
           while (col <= MapMaxCol)
           {
-            CurrentColCoord := StartX + (col * TileSize)
+            CurrentColCoord := SCAN_START_X + (col * SCAN_TILE_SIZE)
 
-            PixelGetColor, tileColor, %CurrentColCoord%, %CurrentRowCoord%
-            comparisonColor := tileColor
-            Sleep, SLEEPTEMP
-            PixelGetColor, tileColor, %CurrentColCoord%, %CurrentRowCoord%
-            SB_SetText("Scanning for available coordinates (x" . CurrentColCoord . ", y" . CurrentRowCoord . ")" )
-            if (tileColor <> comparisonColor)
-            {
-                X := CurrentColCoord
-                Y := CurrentRowCoord
-                col++
-                return 1
+            PlaceUnitAt(CurrentRowCoord, CurrentColCoord)
+            if (DetectObject(CONFIRMUNITPLACEMENT_BUTTON)) {
+              col++
+              return 1
             }
-            else 
+            else
             {
               col++
             }
+           ; PixelGetColor, tileColor, %CurrentColCoord%, %CurrentRowCoord%
+           ; comparisonColor := tileColor
+           ; Sleep, SLEEPTEMP
+           ; PixelGetColor, tileColor, %CurrentColCoord%, %CurrentRowCoord%
+           ; SB_SetText("Scanning for available coordinates (x" . CurrentColCoord . ", y" . CurrentRowCoord . ")" )
+           ; if (tileColor <> comparisonColor)
+           ; {
+           ;     X := CurrentColCoord
+           ;     Y := CurrentRowCoord
+           ;     col++
+           ;     return 1
+           ; }
+           ; else 
+           ; {
+           ;   col++
+           ; }
           }
           row++
           col := 0
@@ -695,10 +697,7 @@ FindCoordinate(Byref X, Byref Y, Byref numOfPasses := 0, incrementCol := 0)
     }
     else
     {
-      global SCAN_START_X, SCAN_START_Y, SCAN_TILE_SIZE
-      StartX := SCAN_START_X
-      StartY := SCAN_START_Y
-      TileSize := SCAN_TILE_SIZE / 2
+      global SCAN_START_X, SCAN_START_Y, SCAN_TILE_SIZE, CONFIRMUNITPLACEMENT_BUTTON
       MapMaxRow := 14 ;starting with row 0
       MapMaxCol := 14 ;starting with col 0
       
@@ -723,23 +722,33 @@ FindCoordinate(Byref X, Byref Y, Byref numOfPasses := 0, incrementCol := 0)
           }
           while row <= MapMaxRow
           {
-              CurrentRowCoord := StartY + (row * TileSize)
+              CurrentRowCoord := SCAN_START_Y + (row * SCAN_TILE_SIZE)
               while col <= (MapMaxCol)
               {
-                  CurrentColCoord := StartX + (col * TileSize)
-                  PixelGetColor, tileColor, %CurrentColCoord%, %CurrentRowCoord%
-                  comparisonColor := tileColor
-                  Sleep SLEEPTEMP
-                  PixelGetColor, tileColor, %CurrentColCoord%, %CurrentRowCoord%
-                  SB_SetText("Scanning for available coordinates (" . CurrentColCoord . "x" . CurrentRowCoord . ")")
-                  if (tileColor <> comparisonColor)
-                  {
-                      X := CurrentColCoord
-                      Y := CurrentRowCoord
-                      col++
-                      return 1
+                  CurrentColCoord := SCAN_START_X + (col * SCAN_TILE_SIZE)
+                  PlaceUnitAt(CurrentRowCoord, CurrentColCoord)
+                  if (DetectObject(CONFIRMUNITPLACEMENT_BUTTON)) {
+                    col++
+                    return 1
                   }
-                  col++
+                  else
+                  {
+                    col++
+                  }
+                  
+           ;       PixelGetColor, tileColor, %CurrentColCoord%, %CurrentRowCoord%
+           ;       comparisonColor := tileColor
+           ;       Sleep SLEEPTEMP
+           ;       PixelGetColor, tileColor, %CurrentColCoord%, %CurrentRowCoord%
+           ;       SB_SetText("Scanning for available coordinates (" . CurrentColCoord . "x" . CurrentRowCoord . ")")
+           ;       if (tileColor <> comparisonColor)
+           ;       {
+           ;           X := CurrentColCoord
+           ;           Y := CurrentRowCoord
+           ;           col++
+           ;           return 1
+           ;       }
+           ;       col++
               }
               row++
               col := 0
