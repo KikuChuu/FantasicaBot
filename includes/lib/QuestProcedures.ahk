@@ -584,11 +584,11 @@ DeployUnit(attackType = 0, attribType = 0)
 	global CONFIRMUNITPLACEMENT_BUTTON, CANCELPLACEMENT_BUTTON, BACKQUEST_BUTTON
 
   ; Toggle attack and attribute type
-  ToggleAttackType(attackType)
-  ToggleAttribType(attribType)
+;  ToggleAttackType(attackType)
+;  ToggleAttribType(attribType)
 
 	;Choose a unit to deploy
-  ChooseUnit()
+;  ChooseUnit()
 
   ; Locate a tile to place the unit
   numOfPasses := 0

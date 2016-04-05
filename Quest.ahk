@@ -19,8 +19,12 @@ loop,
   }
 
   if (DetectObject(DEPLOY_TEXT)) {
-    retval := DeployUnit()
-    if (retval) {
+    ToggleAttackType()
+    ToggleAttribType()
+    ChooseUnit()
+  }
+  if (DetectObject(CANCELUNITPLACEMENT_BUTTON)) {
+    if (DeployUnit()) {
       deployUnitNum++
     }
   }
