@@ -457,6 +457,7 @@ ToggleAttackType(attackType := 0)
 
 ToggleAttribType(attribType := 0)
 {
+  global
   checkInvariant := DetectObject(UNITALL_BUTTON) || DetectObject(UNITMELEE_BUTTON) || DetectObject(UNITMISSILE_BUTTON) || DetectObject(UNITMAGIC_BUTTON)
   if (checkInvariant == 1)
   {
@@ -549,6 +550,7 @@ ToggleAttribType(attribType := 0)
 
 ChooseUnit()
 {
+  global
 	if (DetectObject(DEPLOYUNIT1_BUTTON))
 	{
 		ClickObject(DEPLOYUNIT1_BUTTON)
@@ -662,7 +664,7 @@ FindCoordinate(Byref X, Byref Y, Byref numOfPasses := 0, incrementCol := 0)
           {
             CurrentColCoord := SCAN_START_X + (col * SCAN_TILE_SIZE)
 
-            PlaceUnitAt(CurrentRowCoord, CurrentColCoord)
+            PlaceUnitAt(CurrentColCoord, CurrentRowCoord)
             if (DetectObject(CONFIRMUNITPLACEMENT_BUTTON)) {
               col++
               return 1
@@ -726,7 +728,7 @@ FindCoordinate(Byref X, Byref Y, Byref numOfPasses := 0, incrementCol := 0)
               while col <= (MapMaxCol)
               {
                   CurrentColCoord := SCAN_START_X + (col * SCAN_TILE_SIZE)
-                  PlaceUnitAt(CurrentRowCoord, CurrentColCoord)
+                  PlaceUnitAt(CurrentColCoord, CurrentRowCoord)
                   if (DetectObject(CONFIRMUNITPLACEMENT_BUTTON)) {
                     col++
                     return 1
