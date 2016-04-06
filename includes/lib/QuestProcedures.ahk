@@ -596,22 +596,19 @@ DeployUnit(attackType = 0, attribType = 0)
   numOfPasses := 0
 ;	FindCoordinate(MapX, MapY, numOfPasses)
 ; PlaceUnitAt(MapX, MapY)	;Place unit at (MapX, MapY)
-  while not (DetectObject(CONFIRMUNITPLACEMENT_BUTTON))
+  if (FindCoordinate(MapX, MapY, numOfPasses) == 0) ;modifies MapX and MapY to valid coordinates
   {
-    if (FindCoordinate(MapX, MapY, numOfPasses) == 0) ;modifies MapX and MapY to valid coordinates
-    {
-      ClickObject(CANCELPLACEMENT_BUTTON)
-      WaitObject(BACKQUEST_BUTTON)
-      ClickObject(BACKQUEST_BUTTON)
-      return 0
-    }
+    ClickObject(CANCELPLACEMENT_BUTTON)
+    WaitObject(BACKQUEST_BUTTON)
+    ClickObject(BACKQUEST_BUTTON)
+    return 0
   }
 
   if (DetectObject(CONFIRMUNITPLACEMENT_BUTTON)) {
     ClickObject(CONFIRMUNITPLACEMENT_BUTTON)
   }
   
-  FindCoordinate(MapX, MapY, numOfPasses, 1) ; Advance the search index by 1 column
+  Sleep 500
 	return 1
 }
 

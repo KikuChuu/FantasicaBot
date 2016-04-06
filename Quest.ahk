@@ -3,7 +3,7 @@ SendMode Input
 SetWorkingDir %A_ScriptDir%
 
 #Include %A_ScriptDir%\includes\IncludeScript.ahk
-
+SetDefaultMouseSpeed 0
 ;============================================
 ;Init Global by invoking the following 
 ;GlobalConstants.ahk function.
@@ -24,6 +24,7 @@ loop,
     ChooseUnit()
     Sleep 500
   }
+
   if (DetectObject(CANCELPLACEMENT_BUTTON)) {
     if (DeployUnit()) {
       deployUnitNum++
