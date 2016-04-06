@@ -37,7 +37,7 @@ AssignQuest(QuestNum)
 ;Call ally
 ;AllyPower sort by damage (land = 1, air = 2, sea = 3, no sort = 0 (default))
 ;AllyType is sort by type (melee = 1, missile = 2, magic = 3, no specific type = 0 (default))
-CallAlly(AllyPower=0, AllyType=0) 
+CallAlly(attackType = 0, attribType = 0) 
 {
 	global SLEEPTIME
     global BACKQUEST_BUTTON, BACKTOEVENT_BUTTON, CALLALLY_BUTTON, CARDBACK_BUTTON, DEPLOYALLY1_BUTTON, DEPLOYALLY2_BUTTON, DEPLOYALLY3_BUTTON, CHOOSEQUESTCOMPLETED_BUTTON 
@@ -46,9 +46,6 @@ CallAlly(AllyPower=0, AllyType=0)
 	global UNITALL_BUTTON, UNITMELEE_BUTTON, UNITMISSILE_BUTTON, UNITMAGIC_BUTTON
 	global RR_BACK_BUTTON
 	static hasFilteredAllyListByType := 0
-	
-	;WaitObject(CALLALLY_BUTTON) ;wait on ally button
-	;ClickObject(CALLALLY_BUTTON) ;go to ally list
 	
 	while not DetectObject(CALLALLY_BUTTON)
 	{
@@ -66,206 +63,21 @@ CallAlly(AllyPower=0, AllyType=0)
 		}
 	}
 	;if no allies, exit ally list and skip body
-	if AllyPower = 0
-	{
-		;SORT BY DEFAULT
-		while not DetectObject(SORTBYDEFAULT_BUTTON)
-		{
-			if DetectObject(SORTBYSEAATK_BUTTON)
-			{
-				WaitObject(SORTBYSEAATK_BUTTON)
-				ClickObject(SORTBYSEAATK_BUTTON)
-			}
-			if DetectObject(SORTBYGROUNDATK_BUTTON)
-			{
-				WaitObject(SORTBYGROUNDATK_BUTTON)
-				ClickObject(SORTBYGROUNDATK_BUTTON)
-			}
-			if DetectObject(SORTBYAIRATK_BUTTON)
-			{
-				WaitObject(SORTBYAIRATK_BUTTON)
-				ClickObject(SORTBYAIRATK_BUTTON)
-			}
-		}
-	}
-	else if AllyPower = 1
-	{
-		;SORT BY GROUND ATK
-		while not DetectObject(SORTBYGROUNDATK_BUTTON)
-		{
-			if DetectObject(SORTBYDEFAULT_BUTTON)
-			{
-				WaitObject(SORTBYDEFAULT_BUTTON)
-				ClickObject(SORTBYDEFAULT_BUTTON)
-			}
-			if DetectObject(SORTBYAIRATK_BUTTON)
-			{
-				WaitObject(SORTBYAIRATK_BUTTON)
-				ClickObject(SORTBYAIRATK_BUTTON)
-			}
-			if DetectObject(SORTBYSEAATK_BUTTON)
-			{
-				WaitObject(SORTBYSEAATK_BUTTON)
-				ClickObject(SORTBYSEAATK_BUTTON)
-			}
-		}
-	}
-	
-	else if AllyPower = 2
-	{
-		;SORT BY AIR ATK
-		while not DetectObject(SORTBYAIRATK_BUTTON)
-		{
-			if DetectObject(SORTBYGROUNDATK_BUTTON)
-			{
-				WaitObject(SORTBYGROUNDATK_BUTTON)
-				ClickObject(SORTBYGROUNDATK_BUTTON)
-			}
-			if DetectObject(SORTBYSEAATK_BUTTON)
-			{
-				WaitObject(SORTBYSEAATK_BUTTON)
-				ClickObject(SORTBYSEAATK_BUTTON)
-			}
-			if DetectObject(SORTBYDEFAULT_BUTTON)
-			{
-				WaitObject(SORTBYDEFAULT_BUTTON)
-				ClickObject(SORTBYDEFAULT_BUTTON)
-			}
-		}
-	}
-	else if AllyPower = 3
-	{
-		;SORT BY SEA ATK
-		while not DetectObject(SORTBYSEAATK_BUTTON)
-		{
-			if DetectObject(SORTBYAIRATK_BUTTON)
-			{
-				WaitObject(SORTBYAIRATK_BUTTON)
-				ClickObject(SORTBYAIRATK_BUTTON)
-			}
-			if DetectObject(SORTBYDEFAULT_BUTTON)
-			{
-				WaitObject(SORTBYDEFAULT_BUTTON)
-				ClickObject(SORTBYDEFAULT_BUTTON)
-			}
-			if DetectObject(SORTBYGROUNDATK_BUTTON)
-			{
-				WaitObject(SORTBYGROUNDATK_BUTTON)
-				ClickObject(SORTBYGROUNDATK_BUTTON)
-			}
-		}
-	}
+  ToggleAttackType(attackType)
 	
 	if (!hasFilteredAllyListByType)
 	{
-	    hasFilteredAllyListByType := 1
-		if (AllyType == 0)
-		{
-			while not DetectObject(UNITAll_BUTTON)
-			{
-				if DetectObject(UNITMAGIC_BUTTON)
-				{
-					WaitObject(UNITMAGIC_BUTTON)
-					ClickObject(UNITMAGIC_BUTTON)
-				}
-				if (DetectObject(UNITMELEE_BUTTON))
-				{
-					WaitObject(UNITMELEE_BUTTON)
-					ClickObject(UNITMELEE_BUTTON)
-				}
-				if DetectObject(UNITMISSILE_BUTTON)
-				{
-					WaitObject(UNITMISSILE_BUTTON)
-					ClickObject(UNITMISSILE_BUTTON)
-				}
-			}
-		}
-		else if (AllyType == 1)
-		{
-			while not DetectObject(UNITMELEE_BUTTON)
-			{
-				if DetectObject(UNITALL_BUTTON)
-				{
-					WaitObject(UNITALL_BUTTON)
-					ClickObject(UNITALL_BUTTON)
-				}
-				if (DetectObject(UNITMISSILE_BUTTON))
-				{
-					WaitObject(UNITMISSILE_BUTTON)
-					ClickObject(UNITMISSILE_BUTTON)
-				}
-				if DetectObject(UNITMAGIC_BUTTON)
-				{
-					WaitObject(UNITMAGIC_BUTTON)
-					ClickObject(UNITMAGIC_BUTTON)
-				}
-			}
-		}
-		else if (AllyType == 2)
-		{
-			while not DetectObject(UNITMISSILE_BUTTON)
-			{
-				if DetectObject(UNITMELEE_BUTTON)
-				{
-					WaitObject(UNITMELEE_BUTTON)
-					ClickObject(UNITMELEE_BUTTON)
-				}
-				if (DetectObject(UNITMAGIC_BUTTON))
-				{
-					WaitObject(UNITMAGIC_BUTTON)
-					ClickObject(UNITMAGIC_BUTTON)
-				}
-				if DetectObject(UNITALL_BUTTON)
-				{
-					WaitObject(UNITALL_BUTTON)
-					ClickObject(UNITALL_BUTTON)
-				}
-			}
-		}
-		else if (AllyType == 3)
-		{
-			while not DetectObject(UNITMAGIC_BUTTON)
-			{
-				if DetectObject(UNITMISSILE_BUTTON)
-				{
-					WaitObject(UNITMISSILE_BUTTON)
-					ClickObject(UNITMISSILE_BUTTON)
-				}
-				if (DetectObject(UNITALL_BUTTON))
-				{
-					WaitObject(UNITALL_BUTTON)
-					ClickObject(UNITALL_BUTTON)
-				}
-				if DetectObject(UNITMELEE_BUTTON)
-				{
-					WaitObject(UNITMELEE_BUTTON)
-					ClickObject(UNITMELEE_BUTTON)
-				}
-			}
-		}
+	  hasFilteredAllyListByType := 1
+    ToggleAttribType(attribType)
 	}
+
+  invariantCheck := ChooseAlly()
 	
-	if not ChooseAlly() ;if no ally was chosen, exit out of ally list
+	if (invariantCheck != 1) ;if no ally was chosen, remove type filter and try again, then exit out of ally list if no allies
 	{
-		while not DetectObject(UNITAll_BUTTON)
-		{
-			if DetectObject(UNITMAGIC_BUTTON)
-			{
-				WaitObject(UNITMAGIC_BUTTON)
-				ClickObject(UNITMAGIC_BUTTON)
-			}
-			if (DetectObject(UNITMELEE_BUTTON))
-			{
-				WaitObject(UNITMELEE_BUTTON)
-				ClickObject(UNITMELEE_BUTTON)
-			}
-			if DetectObject(UNITMISSILE_BUTTON)
-			{
-				WaitObject(UNITMISSILE_BUTTON)
-				ClickObject(UNITMISSILE_BUTTON)
-			}
-		}
-		if not ChooseAlly()
+    ToggleAttackType(0)
+    invariantCheck := ChooseAlly()
+		if (invariantCheck != 1)
 		{
 			ClickObject(BACKQUEST_BUTTON)
 			WaitObject(CALLALLY_BUTTON)
@@ -274,32 +86,22 @@ CallAlly(AllyPower=0, AllyType=0)
 		}
 	}
 	
-    numOfPasses := 0
-    
+  numOfPasses := 0
+  
 	;Find valid coordinates and place unit
-	while not DetectObject(CONFIRMUNITPLACEMENT_BUTTON)
-	{
-		if (FindCoordinate(MapX, MapY, numOfPasses) == 0) ;modifies MapX and MapY to valid coordinates
-        {
-            ClickObject(CANCELPLACEMENT_BUTTON)
-            WaitObject(BACKQUEST_BUTTON)
-            ClickObject(BACKQUEST_BUTTON)
-            return 0
-        }
-		else
-        {
-            PlaceUnitAt(MapX, MapY)	;Place unit at (MapX, MapY)
-        }
-	}
-	WaitObject(CONFIRMUNITPLACEMENT_BUTTON)
-	ClickObject(CONFIRMUNITPLACEMENT_BUTTON)
+  if (FindCoordinate(MapX, MapY, numOfPasses) == 0) ;modifies MapX and MapY to valid coordinates
+  {
+    ClickObject(CANCELPLACEMENT_BUTTON)
+    WaitObject(BACKQUEST_BUTTON)
+    ClickObject(BACKQUEST_BUTTON)
+    return 0
+  }
+	if (DetectObject(CONFIRMUNITPLACEMENT_BUTTON)) {
+    ClickObject(CONFIRMUNITPLACEMENT_BUTTON)
+  }
 	
-    FindCoordinate(MapX, MapY, numOfPasses, 1)
+  FindCoordinate(MapX, MapY, numOfPasses, 1)
     
-	while DetectObject(CANCELPLACEMENT_BUTTON) 
-	{
-		Sleep SLEEPTIME
-	}
 	return 1
 }
 

@@ -133,6 +133,22 @@ loop,
     }
   }
 
+	if (DetectObject(CALLALLY_BUTTON) && pendingAllies)
+	{
+		ClickObject(CALLALLY_BUTTON)
+	}
+
+	if (DetectObject(CALLALLYPAGE_TEXT))
+	{
+		if (CallAlly(SORTINDEX, TYPEINDEX))
+		{
+			pendingAllies = 1
+		}
+		else
+		{
+			pendingAllies = 0
+		}
+  }
 	; ==========================================================================
 	; **************************************************************************
 	; ------------------------ QUEST RESULTS PAGE ------------------------------
