@@ -12,7 +12,7 @@ Init_globals() ; Found in GlobalConstants.ahk
 ;============================================
 
 deployUnitNum := 0
-pendingAllies := 0
+pendingAllies := 1
 loop,
 {
 	; ==========================================================================
