@@ -25,6 +25,7 @@ PATH_OF_FATE_SKIP := Decorate("FANTASICA IMAGES/Event/PathsOfFate/GameBoard/skip
 PATH_OF_FATE_POT := Decorate("FANTASICA IMAGES/Event/PathsOfFate/GameBoard/potion.png")
 PATH_OF_FATE_POT_YES := Decorate("FANTASICA IMAGES/Event/PathsOfFate/GameBoard/yes.png")
 PATH_OF_FATE_BACK := Decorate("FANTASICA IMAGES/Event/PathsOfFate/result/back.png")
+PATH_OF_FATE_ARCHRIVAL := Decorate("FANTASICA IMAGES/Event/PathsOfFate/archrival.png")
 hasSelectedPath := 0
 ; =================================================================================================
 
@@ -48,6 +49,10 @@ loop,
 {
   if (DetectObject(PATH_OF_FATE_BATTLE)) {
     ClickObject(PATH_OF_FATE_BATTLE)
+  }
+
+  if (DetectObject(PATH_OF_FATE_ARCHRIVAL, 15)) {
+  	ClickObject(PATH_OF_FATE_ARCHRIVAL, 15)
   }
 
   if (DetectObject(PATH_OF_FATE_OPPSEL)) {
