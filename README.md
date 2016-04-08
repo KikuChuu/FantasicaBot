@@ -2,7 +2,8 @@
 <p>
 Clash of Legends<br>
 Legion Battle<br>
-Tactics<br>
+Paths of Fate<br>
 Quest<br>
+Tactics<br>
 </p>
 
