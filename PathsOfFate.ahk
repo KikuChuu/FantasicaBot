@@ -14,17 +14,17 @@ Init_globals() ; Found in GlobalConstants.ahk
 
 ; =================================================================================================
 ; ------------------------------------------ Variables here ---------------------------------------
-PATH_OF_FATE_BATTLE := Decorate("FANTASICA IMAGES/Event/PathOfFates/battle.png")
-PATH_OF_FATE_OPPSEL := Decorate("FANTASICA IMAGES/Event/PathOfFates/OpponentSelection/battle.png")
-PATH_OF_FATE_6FP := Decorate("FANTASICA IMAGES/Event/PathOfFates/OpponentSelection/6fp.png")
-PATH_OF_FATE_NO := Decorate("FANTASICA IMAGES/Event/PathOfFates/OpponentSelection/no.png")
-PATH_OF_FATE_DEPLOY := Decorate("FANTASICA IMAGES/Event/PathOfFates/GameBoard/deploy.png")
-PATH_OF_FATE_SINGLE := Decorate("FANTASICA IMAGES/Event/PathOfFates/GameBoard/singlepath.png")
-PATH_OF_FATE_BEGIN := Decorate("FANTASICA IMAGES/Event/PathOfFates/GameBoard/begin.png")
-PATH_OF_FATE_SKIP := Decorate("FANTASICA IMAGES/Event/PathOfFates/GameBoard/skip.png")
-PATH_OF_FATE_POT := Decorate("FANTASICA IMAGES/Event/PathOfFates/GameBoard/potion.png")
-PATH_OF_FATE_POT_YES := Decorate("FANTASICA IMAGES/Event/PathOfFates/GameBoard/yes.png")
-PATH_OF_FATE_BACK := Decorate("FANTASICA IMAGES/Event/PathOfFates/result/back.png")
+PATH_OF_FATE_BATTLE := Decorate("FANTASICA IMAGES/Event/PathsOfFate/battle.png")
+PATH_OF_FATE_OPPSEL := Decorate("FANTASICA IMAGES/Event/PathsOfFate/OpponentSelection/battle.png")
+PATH_OF_FATE_6FP := Decorate("FANTASICA IMAGES/Event/PathsOfFate/OpponentSelection/6fp.png")
+PATH_OF_FATE_NO := Decorate("FANTASICA IMAGES/Event/PathsOfFate/OpponentSelection/no.png")
+PATH_OF_FATE_DEPLOY := Decorate("FANTASICA IMAGES/Event/PathsOfFate/GameBoard/deploy.png")
+PATH_OF_FATE_SINGLE := Decorate("FANTASICA IMAGES/Event/PathsOfFate/GameBoard/singlepath.png")
+PATH_OF_FATE_BEGIN := Decorate("FANTASICA IMAGES/Event/PathsOfFate/GameBoard/begin.png")
+PATH_OF_FATE_SKIP := Decorate("FANTASICA IMAGES/Event/PathsOfFate/GameBoard/skip.png")
+PATH_OF_FATE_POT := Decorate("FANTASICA IMAGES/Event/PathsOfFate/GameBoard/potion.png")
+PATH_OF_FATE_POT_YES := Decorate("FANTASICA IMAGES/Event/PathsOfFate/GameBoard/yes.png")
+PATH_OF_FATE_BACK := Decorate("FANTASICA IMAGES/Event/PathsOfFate/result/back.png")
 hasSelectedPath := 0
 ; =================================================================================================
 
