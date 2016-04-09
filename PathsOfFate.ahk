@@ -28,18 +28,18 @@ PATH_OF_FATE_POT_YES := Decorate("FANTASICA IMAGES/Event/PathsOfFate/GameBoard/y
 PATH_OF_FATE_BACK := Decorate("FANTASICA IMAGES/Event/PathsOfFate/result/back.png")
 PATH_OF_FATE_ARCHRIVAL := Decorate("FANTASICA IMAGES/Event/PathsOfFate/archrival.png")
 PATH_OF_FATE_FLASK := Decorate("FANTASICA IMAGES/Event/PathsOfFate/flask.png")
-PATH_OF_FATE_HISTORY := Decorate("")
-PATH_OF_FATE_RECEIVE := Decorate("")
-PATH_OF_FATE_DEF_HIST := Decorate("")
-PATH_OF_FATE_VIEW_DEFEATS := Decorate("")
-PATH_OF_FATE_REMATCH := Decorate("")
+PATH_OF_FATE_HISTORY := Decorate("FANTASICA IMAGES/Event/PathsOfFate/history.png")
+PATH_OF_FATE_RECEIVE_ALL := Decorate("FANTASICA IMAGES/Event/PathsOfFate/History/receiveall.png")
+PATH_OF_FATE_DEF_HIST := Decorate("FANTASICA IMAGES/Event/PathsOfFate/History/defensehistory.png")
+PATH_OF_FATE_VIEW_DEFEATS := Decorate("FANTASICA IMAGES/Event/PathsOfFate/History/viewdefeats.png")
+PATH_OF_FATE_REMATCH := Decorate("FANTASICA IMAGES/Event/PathsOfFate/History/rematch.png")
 hasSelectedPath := 0
 useFlask := 0
 rematch := 0
 ; =================================================================================================
 
 ; setPathFlag - Sets the by referenced variable to the decimal value 1
-; ByRef int - The referenced variable to set to 1
+; @param ByRef int - The referenced variable to set to 1
 ; @return string - Returns a blank value (empty string) to its caller
 setPathFlag(ByRef var)
 {
@@ -47,13 +47,16 @@ setPathFlag(ByRef var)
 }
 
 ; resetPathFlag - Resets the referenced variable to decimal value 0
-; ByRef int - The referenced variable to set to 0
+; @param ByRef int - The referenced variable to set to 0
 ; @return string - Returns a blank value (empty string) to its caller
 resetPathFlag(ByRef var)
 {
   var = 0
 }
 
+; toggleFlasKFlag - Sets the referenced variable to either 0 or 1
+; @param ByRef int - The referenced variable to toggle between 0 and 1
+; @return string - Returns a blank value (empty string) to its caller
 toggleFlaskFlag(ByRef var)
 {
   static counter := 1
@@ -70,11 +73,41 @@ toggleFlaskFlag(ByRef var)
   Sleep 1000
 }
 
+; toggleRematchFlag - Sets the referenced variable to either 0 or 1
+; @param ByRef int - The referenced variable to toggle between 0 and 1
+; @return string - Returns a blank value (empty string) to its caller
+toggleRematchFlag(ByRef var)
+{
+  static counter := 1
+  var := Mod(counter++, 2)
+
+  ; Notify the user of this change
+  if (var) {
+    SB_SetText("Rematch turned on")
+  }
+  else {
+    SB_SetText("Rematch turned off")
+  }
+
+  Sleep 1000
+}
+
 loop,
 {
+  if (DetectObject(PATH_OF_FATE_HISTORY)) {
+    ClickObject(PATH_OF_FATE_HISTORY)
+  }
+  else if (DetectObject(PATH_OF_FATE_BATTLE)) {
+    ClickObject(PATH_OF_FATE_BATTLE)
+  }
+  else if (DetectObject(PATH_OF_FATE_ARCHRIVAL, 15)) {
+  	ClickObject(PATH_OF_FATE_ARCHRIVAL, 15)
+  }
+  
+  
   if (DetectObject(PATH_OF_FATE_DEF_HIST)) {
-    if (DetectObject(PATH_OF_FATE_RECEIVE)) {
-      ClickObject(PATH_OF_FATE_RECEIVE)
+    if (DetectObject(PATH_OF_FATE_RECEIVE_ALL)) {
+      ClickObject(PATH_OF_FATE_RECEIVE_ALL)
     }
     else if (rematch) {
       if (DetectObject(PATH_OF_FATE_VIEW_DEFEATS)) {
@@ -92,18 +125,6 @@ loop,
 
   if (DetectObject(PATH_OF_FATE_EVENT)) {
     ClickObject(PATH_OF_FATE_EVENT)
-  }
-
-  if (DetectObject(PATH_OF_FATE_BATTLE)) {
-    ClickObject(PATH_OF_FATE_BATTLE)
-  }
-
-  if (DetectObject(PATH_OF_FATE_ARCHRIVAL, 15)) {
-  	ClickObject(PATH_OF_FATE_ARCHRIVAL, 15)
-  }
-
-  if (DetectObject(PATH_OF_FATE_HISTORY)) {
-    ClickObject(PATH_OF_FATE_HISTORY)
   }
 
   if (DetectObject(PATH_OF_FATE_OPPSEL)) {
@@ -157,3 +178,4 @@ F1::ExitApp
 F2::PAUSE
 F3::Reload
 F4::toggleFlaskFlag(useFlask)
+F5::toggleRematchFlag(rematch)
