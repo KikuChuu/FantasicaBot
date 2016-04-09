@@ -59,6 +59,8 @@ toggleFlaskFlag(ByRef var)
   else {
     SB_SetText("Flask usage turned off")
   }
+
+  Sleep 1000
 }
 
 loop,
