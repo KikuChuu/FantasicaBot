@@ -28,8 +28,14 @@ PATH_OF_FATE_POT_YES := Decorate("FANTASICA IMAGES/Event/PathsOfFate/GameBoard/y
 PATH_OF_FATE_BACK := Decorate("FANTASICA IMAGES/Event/PathsOfFate/result/back.png")
 PATH_OF_FATE_ARCHRIVAL := Decorate("FANTASICA IMAGES/Event/PathsOfFate/archrival.png")
 PATH_OF_FATE_FLASK := Decorate("FANTASICA IMAGES/Event/PathsOfFate/flask.png")
+PATH_OF_FATE_HISTORY := Decorate("")
+PATH_OF_FATE_RECEIVE := Decorate("")
+PATH_OF_FATE_DEF_HIST := Decorate("")
+PATH_OF_FATE_VIEW_DEFEATS := Decorate("")
+PATH_OF_FATE_REMATCH := Decorate("")
 hasSelectedPath := 0
 useFlask := 0
+rematch := 0
 ; =================================================================================================
 
 ; setPathFlag - Sets the by referenced variable to the decimal value 1
@@ -66,6 +72,24 @@ toggleFlaskFlag(ByRef var)
 
 loop,
 {
+  if (DetectObject(PATH_OF_FATE_DEF_HIST)) {
+    if (DetectObject(PATH_OF_FATE_RECEIVE)) {
+      ClickObject(PATH_OF_FATE_RECEIVE)
+    }
+    else if (rematch) {
+      if (DetectObject(PATH_OF_FATE_VIEW_DEFEATS)) {
+        ClickObject(PATH_OF_FATE_VIEW_DEFEATS)
+      }
+
+      if (DetectObject(PATH_OF_FATE_REMATCH)) {
+        ClickObject(PATH_OF_FATE_REMATCH)
+      }
+    }
+    else if (DetectObject(BACK_BUTTON)) {
+      ClickObject(BACK_BUTTON)
+    }
+  }
+
   if (DetectObject(PATH_OF_FATE_EVENT)) {
     ClickObject(PATH_OF_FATE_EVENT)
   }
@@ -76,6 +100,10 @@ loop,
 
   if (DetectObject(PATH_OF_FATE_ARCHRIVAL, 15)) {
   	ClickObject(PATH_OF_FATE_ARCHRIVAL, 15)
+  }
+
+  if (DetectObject(PATH_OF_FATE_HISTORY)) {
+    ClickObject(PATH_OF_FATE_HISTORY)
   }
 
   if (DetectObject(PATH_OF_FATE_OPPSEL)) {
