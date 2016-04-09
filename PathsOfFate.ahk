@@ -26,7 +26,9 @@ PATH_OF_FATE_POT := Decorate("FANTASICA IMAGES/Event/PathsOfFate/GameBoard/potio
 PATH_OF_FATE_POT_YES := Decorate("FANTASICA IMAGES/Event/PathsOfFate/GameBoard/yes.png")
 PATH_OF_FATE_BACK := Decorate("FANTASICA IMAGES/Event/PathsOfFate/result/back.png")
 PATH_OF_FATE_ARCHRIVAL := Decorate("FANTASICA IMAGES/Event/PathsOfFate/archrival.png")
+PATH_OF_FATE_FLASK := Decorate("FANTASICA IMAGES/Event/PathsOfFate/flash.png")
 hasSelectedPath := 0
+useFlask := 0
 ; =================================================================================================
 
 ; setPathFlag - Sets the by referenced variable to the decimal value 1
@@ -45,6 +47,11 @@ resetPathFlag(ByRef var)
   var = 0
 }
 
+toggleFlaskFlag(ByRef var)
+{
+  static counter := 1
+  var := Mod(counter++, 2)
+}
 loop,
 {
   if (DetectObject(PATH_OF_FATE_BATTLE)) {
@@ -63,7 +70,10 @@ loop,
     ClickObject(PATH_OF_FATE_6FP)
   }
 
-  if (DetectObject(PATH_OF_FATE_NO)) {
+  if (DetectObject(PATH_OF_FATE_FLASK) && useFlask) {
+    ClickObject(PATH_OF_FATE_FLASK) 
+  }
+  else if (DetectObject(PATH_OF_FATE_NO)) {
     ClickObject(PATH_OF_FATE_NO)
   }
   
@@ -102,3 +112,4 @@ loop,
 F1::ExitApp
 F2::PAUSE
 F3::Reload
+F4::toggleFlaskFlag(useFlask)
