@@ -14,6 +14,7 @@ Init_globals() ; Found in GlobalConstants.ahk
 
 ; =================================================================================================
 ; ------------------------------------------ Variables here ---------------------------------------
+PATH_OF_FATE_EVENT := Decorate("FANTASICA IMAGES/Event/PathsOfFate/eventicon.png")
 PATH_OF_FATE_BATTLE := Decorate("FANTASICA IMAGES/Event/PathsOfFate/battle.png")
 PATH_OF_FATE_OPPSEL := Decorate("FANTASICA IMAGES/Event/PathsOfFate/OpponentSelection/battle.png")
 PATH_OF_FATE_6FP := Decorate("FANTASICA IMAGES/Event/PathsOfFate/OpponentSelection/6fp.png")
@@ -65,6 +66,10 @@ toggleFlaskFlag(ByRef var)
 
 loop,
 {
+  if (DetectObject(PATH_OF_FATE_EVENT)) {
+    ClickObject(PATH_OF_FATE_EVENT)
+  }
+
   if (DetectObject(PATH_OF_FATE_BATTLE)) {
     ClickObject(PATH_OF_FATE_BATTLE)
   }
