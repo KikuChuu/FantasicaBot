@@ -26,7 +26,7 @@ PATH_OF_FATE_POT := Decorate("FANTASICA IMAGES/Event/PathsOfFate/GameBoard/potio
 PATH_OF_FATE_POT_YES := Decorate("FANTASICA IMAGES/Event/PathsOfFate/GameBoard/yes.png")
 PATH_OF_FATE_BACK := Decorate("FANTASICA IMAGES/Event/PathsOfFate/result/back.png")
 PATH_OF_FATE_ARCHRIVAL := Decorate("FANTASICA IMAGES/Event/PathsOfFate/archrival.png")
-PATH_OF_FATE_FLASK := Decorate("FANTASICA IMAGES/Event/PathsOfFate/flash.png")
+PATH_OF_FATE_FLASK := Decorate("FANTASICA IMAGES/Event/PathsOfFate/flask.png")
 hasSelectedPath := 0
 useFlask := 0
 ; =================================================================================================
@@ -51,7 +51,16 @@ toggleFlaskFlag(ByRef var)
 {
   static counter := 1
   var := Mod(counter++, 2)
+
+  ; Notify the user of this change
+  if (var) {
+    SB_SetText("Flask usage turned on")
+  }
+  else {
+    SB_SetText("Flask usage turned off")
+  }
 }
+
 loop,
 {
   if (DetectObject(PATH_OF_FATE_BATTLE)) {
