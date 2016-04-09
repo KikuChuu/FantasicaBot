@@ -104,7 +104,6 @@ loop,
   	ClickObject(PATH_OF_FATE_ARCHRIVAL, 15)
   }
   
-  
   if (DetectObject(PATH_OF_FATE_DEF_HIST)) {
     if (DetectObject(PATH_OF_FATE_RECEIVE_ALL)) {
       ClickObject(PATH_OF_FATE_RECEIVE_ALL)
