@@ -94,14 +94,14 @@ toggleRematchFlag(ByRef var)
 
 loop,
 {
-  if (DetectObject(PATH_OF_FATE_HISTORY)) {
+  if (DetectObject(PATH_OF_FATE_ARCHRIVAL, 15)) {
+  	ClickObject(PATH_OF_FATE_ARCHRIVAL, 15)
+  }
+  else if (DetectObject(PATH_OF_FATE_HISTORY)) {
     ClickObject(PATH_OF_FATE_HISTORY)
   }
   else if (DetectObject(PATH_OF_FATE_BATTLE)) {
     ClickObject(PATH_OF_FATE_BATTLE)
-  }
-  else if (DetectObject(PATH_OF_FATE_ARCHRIVAL, 15)) {
-  	ClickObject(PATH_OF_FATE_ARCHRIVAL, 15)
   }
   
   if (DetectObject(PATH_OF_FATE_DEF_HIST)) {
@@ -113,7 +113,7 @@ loop,
         ClickObject(PATH_OF_FATE_VIEW_DEFEATS)
       }
 
-      if (DetectObject(PATH_OF_FATE_REMATCH)) {
+      if(DetectObject(PATH_OF_FATE_REMATCH)) {
         ClickObject(PATH_OF_FATE_REMATCH)
       }
     }
