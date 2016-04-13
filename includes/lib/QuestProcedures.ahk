@@ -1,37 +1,83 @@
-﻿#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
-; #Warn  ; Enable warnings to assist with detecting common errors.
+﻿; =============================================================================
+; QuestProcedures.ahk
+;
+; - A series of functions designed to perform quest-related operations
+;
+;
+; The MIT License
+;
+; Copyright (c) 2016 Ricky Tran <rickytran991@gmail.com>
+;
+; Permission is hereby granted, free of charge, to any person obtaining a copy
+; of this software and associated documentation files (the "Software"), to deal
+; in the Software without restriction, including without limitation the rights
+; to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+; copies of the Software, and to permit persons to whom the Software is
+; furnished to do so, subject to the following conditions:
+; 
+; The above copyright notice and this permission notice shall be included in
+; all copies or substantial portions of the Software.
+; 
+; THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+; IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+; FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+; AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+; LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+; OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+; THE SOFTWARE.
+; =============================================================================
+
+#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 
-;Takes a int and returns the relative STARTQUEST#_BUTTON constant
-AssignQuest(QuestNum)
+;assignQuest() - A helper function that maps an integer to the path of the 
+;                corresponding quest's start button.
+;@param int - An integer which is used to determine which path it should return
+;@return string - If the argument is valid, returns the path to the quest's 
+;                 start button. Otheriwse, force the app to exit
+assignQuest(questNum)
 {
-	Global STARTQUEST1_BUTTON, STARTQUEST2_BUTTON, STARTQUEST3_BUTTON, STARTQUEST4_BUTTON, STARTQUEST5_BUTTON, STARTQUEST6_BUTTON, STARTQUEST7_BUTTON
-    global STARTQUEST8_BUTTON, STARTQUEST9_BUTTON, STARTQUEST10_BUTTON
+	global STARTQUEST1_BUTTON, STARTQUEST2_BUTTON, STARTQUEST3_BUTTON
+  global STARTQUEST4_BUTTON, STARTQUEST5_BUTTON, STARTQUEST6_BUTTON
+  global STARTQUEST7_BUTTON, STARTQUEST8_BUTTON, STARTQUEST9_BUTTON 
+  global STARTQUEST10_BUTTON
 	
-	if QuestNum = 1
+	if (questNum == 1) {
 		return %STARTQUEST1_BUTTON%
-	else if QuestNum = 2
+  }
+	else if (questNum == 2) {
 		return %STARTQUEST2_BUTTON%
-	else if QuestNum = 3
+  }
+	else if (questNum == 3) {
 		return %STARTQUEST3_BUTTON%
-	else if QuestNum = 4
+  }
+	else if (questNum == 4) {
 		return %STARTQUEST4_BUTTON%
-	else if QuestNum = 5
+  }
+	else if (questNum == 5) {
 		return %STARTQUEST5_BUTTON%
-	else if QuestNum = 6
+  }
+	else if (questNum == 6) {
 		return %STARTQUEST6_BUTTON%
-	else if QuestNum  = 7
+  }
+	else if (questNum  == 7) {
 		return %STARTQUEST7_BUTTON%
-    else if QuestNum  = 8
+  }
+  else if (questNum  == 8) {
 		return %STARTQUEST8_BUTTON%
-    else if QuestNum  = 9
+  }
+  else if (questNum  == 9) {
 		return %STARTQUEST9_BUTTON%
-    else if QuestNum  = 10
-		return %STARTQUEST10_BUTTON%    
-	else
+  }
+  else if (questNum  == 10) {
+		return %STARTQUEST10_BUTTON%
+  }
+	else {
 		MsgBox, 0, Invalid Quest Assignment, Soooorrrry, we don't support quest %QuestNum%.
+    ExitApp
+  }
 }
 
 ;Call ally
@@ -40,47 +86,25 @@ AssignQuest(QuestNum)
 CallAlly(attackType = 0, attribType = 0) 
 {
 	global SLEEPTIME
-    global BACKQUEST_BUTTON, BACKTOEVENT_BUTTON, CALLALLY_BUTTON, CARDBACK_BUTTON, DEPLOYALLY1_BUTTON, DEPLOYALLY2_BUTTON, DEPLOYALLY3_BUTTON, CHOOSEQUESTCOMPLETED_BUTTON 
-	global CALLALLYPAGE_TEXT, CANCELPLACEMENT_BUTTON, CONFIRMUNITPLACEMENT_BUTTON, EVENT_ICON, NEXTPAGE_BUTTON, PAGE10ALLYLIST_TEXT, RESTRICTPLACMENTON_COL1, RESTRICTPLACMENTON_COL2, STARTBATTLE_BUTTON
-	global SORTBYAIRATK_BUTTON, SORTBYDEFAULT_BUTTON, SORTBYGROUNDATK_BUTTON, SORTBYSEAATK_BUTTON
-	global UNITALL_BUTTON, UNITMELEE_BUTTON, UNITMISSILE_BUTTON, UNITMAGIC_BUTTON
-	global RR_BACK_BUTTON
-	static hasFilteredAllyListByType := 0
-	
-	while not DetectObject(CALLALLY_BUTTON)
-	{
-		if DetectObject(BACKQUEST_BUTTON) ;some useful code to break out of forever loop
-		{
-			break
-		}
-		else if (DetectObject(CHOOSEQUESTCOMPLETED_BUTTON)) ;if some small chance that quest ends (returns to my page) and leaves bot stuck in clicking ally button
-		{
-			return
-		}
-		else if (DetectObject(RR_BACK_BUTTON)) 
-		{
-			return
-		}
-	}
-	;if no allies, exit ally list and skip body
-  ToggleAttackType(attackType)
-	
-	if (!hasFilteredAllyListByType)
-	{
-	  hasFilteredAllyListByType := 1
-    ToggleAttribType(attribType)
-	}
+  global BACKQUEST_BUTTON, BACKTOEVENT_BUTTON, CALLALLY_BUTTON, CARDBACK_BUTTON
+  global DEPLOYALLY1_BUTTON, DEPLOYALLY2_BUTTON, DEPLOYALLY3_BUTTON
+  global CHOOSEQUESTCOMPLETED_BUTTON, CALLALLYPAGE_TEXT, CANCELPLACEMENT_BUTTON
+  global CONFIRMUNITPLACEMENT_BUTTON, EVENT_ICON, NEXTPAGE_BUTTON
+  global PAGE10ALLYLIST_TEXT, RESTRICTPLACMENTON_COL1, RESTRICTPLACMENTON_COL2
+  global STARTBATTLE_BUTTON, SORTBYAIRATK_BUTTON, SORTBYDEFAULT_BUTTON
+  global SORTBYGROUNDATK_BUTTON, SORTBYSEAATK_BUTTON, UNITALL_BUTTON
+  global UNITMELEE_BUTTON, UNITMISSILE_BUTTON, UNITMAGIC_BUTTON, RR_BACK_BUTTON
 
   invariantCheck := ChooseAlly()
 	
-	if (invariantCheck != 1) ;if no ally was chosen, remove type filter and try again, then exit out of ally list if no allies
+	if (!invariantCheck) ;if the invariant check fails...
 	{
-    ToggleAttackType(0)
+    toggleAttackType(0)
     invariantCheck := ChooseAlly()
 		if (invariantCheck != 1)
 		{
-			ClickObject(BACKQUEST_BUTTON)
-			WaitObject(CALLALLY_BUTTON)
+			clickObject(BACKQUEST_BUTTON)
+			waitObject(CALLALLY_BUTTON)
 			hasFilteredAllyListByType := 0
 			return 0
 		}
@@ -387,18 +411,8 @@ DeployUnit(attackType = 0, attribType = 0)
 {
 	global CONFIRMUNITPLACEMENT_BUTTON, CANCELPLACEMENT_BUTTON, BACKQUEST_BUTTON
 
-  ; Toggle attack and attribute type
-;  ToggleAttackType(attackType)
-;  ToggleAttribType(attribType)
-
-	;Choose a unit to deploy
-;  ChooseUnit()
-
   ; Locate a tile to place the unit
-  numOfPasses := 0
-;	FindCoordinate(MapX, MapY, numOfPasses)
-; PlaceUnitAt(MapX, MapY)	;Place unit at (MapX, MapY)
-  if (FindCoordinate(MapX, MapY, numOfPasses) == 0) ;modifies MapX and MapY to valid coordinates
+  if (FindCoordinate() == 0)
   {
     ClickObject(CANCELPLACEMENT_BUTTON)
     WaitObject(BACKQUEST_BUTTON)
@@ -409,171 +423,85 @@ DeployUnit(attackType = 0, attribType = 0)
   if (DetectObject(CONFIRMUNITPLACEMENT_BUTTON)) {
     ClickObject(CONFIRMUNITPLACEMENT_BUTTON)
   }
-  
+ 
   Sleep 500
 	return 1
 }
 
-FindCoordinate(Byref X, Byref Y, Byref numOfPasses := 0, incrementCol := 0)
+;findCoordinate() - Performs a tile-by-tile placement on the map until a valid position is found.
+;@return int - If a valid position is found, return 1. Otherwise, return 0
+findCoordinate()
 {
-	global SLEEPTIME, RESTRICTPLACEMENTON_COL1, RESTRICTPLACEMENTON_COL2, QUICKSCAN, REVELATIONTOWER, LEVELBOT
-	global BLUESTACK_WINDOW_TITLE, maxPasses
+	global BLUESTACK_WINDOW_TITLE, SLEEPTIME, LEVELBOT, SCAN_START_X
+  global SCAN_START_Y, SCAN_TILE_SIZE, CONFIRMPLACEMENT_BUTTON
+	global maxPasses
 
-	;declare our static vars here
-	static row:= 0
-	static col:= 0
-    
-  if (incrementCol)
-  {
-      if (LEVELBOT == 0) {
-        col++
-      }
-  }
-  else
-  {
-    if (LEVELBOT == 1)
+	;declare our static variables
+	static currRow:= 0
+	static currCol:= 0
+  static mapMaxRow := 0
+  static mapMaxCol := 0
+  static tileSize := 0
+  static currPass := 0
+
+  if (mapMaxRow == 0) {
+    if (LEVELBOT == 1) 
     {
-      global SCAN_START_X, SCAN_START_Y, SCAN_TILE_SIZE, CONFIRMUNITPLACEMENT_BUTTON
-      MapMaxRow := 7 ;starting with row 0
-      MapMaxCol := 7 ;starting with col 0	
-      
-      if (QUICKSCAN == 2)
-      {
-          SLEEPTEMP := 1 ; Set sleep variable to .001 seconds 
-      }
-      else if (QUICKSCAN == 1)
-      {
-          SLEEPTEMP := SLEEPTIME // 2
-      }
-      else
-      {
-          SLEEPTEMP := SLEEPTIME
-      }
-      
-      while (numOfPasses < maxPasses)
-      {
-        IfWinNotActive, %BLUESTACK_WINDOW_TITLE%
-        {
-          WinActivate, %BLUESTACK_WINDOW_TITLE%
-        }
-        while (row <= MapMaxRow)
-        {
-          CurrentRowCoord := SCAN_START_Y + (row * SCAN_TILE_SIZE)
-          while (col <= MapMaxCol)
-          {
-            if (row == 0 && col == 0) 
-            {
-              col++
-              continue
-            }
-
-            CurrentColCoord := SCAN_START_X + (col * SCAN_TILE_SIZE)
-
-            PlaceUnitAt(CurrentColCoord, CurrentRowCoord)
-            if (DetectObject(CONFIRMUNITPLACEMENT_BUTTON)) {
-              col++
-              return 1
-            }
-            else
-            {
-              col++
-            }
-           ; PixelGetColor, tileColor, %CurrentColCoord%, %CurrentRowCoord%
-           ; comparisonColor := tileColor
-           ; Sleep, SLEEPTEMP
-           ; PixelGetColor, tileColor, %CurrentColCoord%, %CurrentRowCoord%
-           ; SB_SetText("Scanning for available coordinates (x" . CurrentColCoord . ", y" . CurrentRowCoord . ")" )
-           ; if (tileColor <> comparisonColor)
-           ; {
-           ;     X := CurrentColCoord
-           ;     Y := CurrentRowCoord
-           ;     col++
-           ;     return 1
-           ; }
-           ; else 
-           ; {
-           ;   col++
-           ; }
-          }
-          row++
-          col := 0
-        }
-        row := 0 ;scanned the entire map, starting from beginning
-        numOfPasses++
-      }
+      mapMaxRow = 7 ; This number 7 came from counting the tiles in the game
+      mapMaxCol = mapMaxRow
+      tileSize = SCAN_TILE_SIZE
     }
     else
     {
-      global SCAN_START_X, SCAN_START_Y, SCAN_TILE_SIZE, CONFIRMUNITPLACEMENT_BUTTON
-      tileSize := SCAN_TILE_SIZE / 2
-      MapMaxRow := 14 ;starting with row 0
-      MapMaxCol := 14 ;starting with col 0
-      
-      if (QUICKSCAN == 2)
-      {
-          SLEEPTEMP := 1
-      }
-      else if (QUICKSCAN == 1)
-      {
-          SLEEPTEMP := SLEEPTIME // 2
-      }
-      else
-      {
-          SLEEPTEMP := SLEEPTIME
-      }
-      
-      while (numOfPasses < maxPasses)
-      {
-          IfWinNotActive, %BLUESTACK_WINDOW_TITLE%
-          {
-              WinActivate, %BLUESTACK_WINDOW_TITLE%
-          }
-          while row <= MapMaxRow
-          {
-              CurrentRowCoord := SCAN_START_Y + (row * tileSize)
-              while col <= (MapMaxCol)
-              {
-                if (row == 0 && col == 0) 
-                {
-                  col++
-                  continue
-                }
-
-                CurrentColCoord := SCAN_START_X + (col * tileSize)
-                PlaceUnitAt(CurrentColCoord, CurrentRowCoord)
-                if (DetectObject(CONFIRMUNITPLACEMENT_BUTTON)) {
-                  col++
-                  return 1
-                }
-                else
-                {
-                  col++
-                }
-                  
-           ;       PixelGetColor, tileColor, %CurrentColCoord%, %CurrentRowCoord%
-           ;       comparisonColor := tileColor
-           ;       Sleep SLEEPTEMP
-           ;       PixelGetColor, tileColor, %CurrentColCoord%, %CurrentRowCoord%
-           ;       SB_SetText("Scanning for available coordinates (" . CurrentColCoord . "x" . CurrentRowCoord . ")")
-           ;       if (tileColor <> comparisonColor)
-           ;       {
-           ;           X := CurrentColCoord
-           ;           Y := CurrentRowCoord
-           ;           col++
-           ;           return 1
-           ;       }
-           ;       col++
-              }
-              row++
-              col := 0
-              switch++
-          }
-          row := 0 ;scanned the entire map, starting from beginning
-          numOfPasses++
-      }
+      mapMaxRow = 7*2 ; Since we scan at half-a-tile, we double the tile count
+      mapMaxCol = mapMaxRow
+      tileSize = SCAN_TILE_SIZE // 2
     }
-    return 0
   }
+  
+  while (currPass < maxPasses) {
+    if (winExist(BLUESTACK_WINDOW_TITLE)) {
+      WinActivate, %BLUESTACK_WINDOW_TITLE%
+    }
+
+    while (currRow < mapMaxRow) {
+      if (currRow == 0 && currCol == 0) {
+        col++
+        continue
+      }
+
+      ; Compute the y-coordinate
+      currYCoord := SCAN_START_Y + (tileSize * currRow) 
+      while (currCol < mapMaxCol) {
+
+        ; Compute the x-coordinate
+        currXCoord := SCAN_START_X + (tileSize * currCol)
+
+        placeUnitAt(currXCoord, currYCoord)
+        if (DetectObject(CONFIRMPLACEMENT_BUTTON)) 
+        {
+          if (!LEVELBOT) {
+            currCol += 2
+          } 
+          else {
+            currCol++
+          }
+          return 1
+        }
+        else 
+        {
+          currCol++
+        }
+      }
+      row++
+      currCol = 0
+    }
+    currPass++
+    row = 0
+  }
+  currPass = 0
+  
+  return 0
 }
 
 ; Wraps the lower-level function ClickAt with a sensible function name

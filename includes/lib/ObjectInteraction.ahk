@@ -31,6 +31,7 @@
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
+
 ;ClickAt - Performs a left-mouse click at the coordinates specified by the arguments
 ;@param int - The x coordinate
 ;@param int - The y coordinate
@@ -112,6 +113,7 @@ DetectObject(path, variation := 0)
 
 		; TODO ADD DRAG n' DROP function here
 		Sleep SLEEEPTIME
+    return 0
 	}
 	else if (ErrorLevel = 1)
   {
