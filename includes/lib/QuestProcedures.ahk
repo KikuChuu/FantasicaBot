@@ -241,7 +241,8 @@ findCoordinate()
 	static currCol:= 0
   static mapMaxRow := 0
   static mapMaxCol := 0
-  static tileSize := 0
+  static tileHeight := 0
+  static tileWidth := 0
   static currPass := 0
 
   if (mapMaxRow == 0 && mapMaxCol == 0) {
@@ -270,7 +271,7 @@ findCoordinate()
 
     while (currRow < mapMaxRow) {
       if (currRow == 0 && currCol == 0) {
-        col++
+        currCol++
         continue
       }
 
@@ -318,14 +319,14 @@ findCoordinate()
 ;@return string - Returns a blank value (empty string) to its caller
 scroll(xInit, yInit, xEnd, yEnd)
 {
-  ;global SLEEPTIME
-  ;MouseMove, %X_init%, %Y_init% 
+  global SLEEPTIME
+  MouseMove, %xInit%, %yInit% 
 
   SetDefaultMouseSpeed, 100
-  SendEvent { Click, %X_init%, %Y_init%, down }{ Click, %X_end%, %Y_end%, up}
+  SendEvent { Click, %xInit%, %yInit%, down }{ Click, %xEnd%, %yEnd%, up}
   SetDefaultMouseSpeed, 0
 
-	;Sleep SLEEPTIME
+	Sleep SLEEPTIME
 }
 
 ;toggleAttackType - Performs several left-mouse clicks to sort the unit list
