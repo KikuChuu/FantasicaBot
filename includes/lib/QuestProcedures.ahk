@@ -336,96 +336,72 @@ scroll(xInit, yInit, xEnd, yEnd)
 toggleAttackType(attackType := 0)
 {
   global SORTBYDEFAULT_BUTTON 
-  global SORTBYGROUNDATK_BUTTON, SORTBYAIRATK_BUTTON, SORTBYSEA_BUTTON
+  global SORTBYGROUNDATK_BUTTON, SORTBYAIRATK_BUTTON, SORTBYSEAATK_BUTTON
 
-  checkInvariant := DetectObject(SORTBYDEFAULT_BUTTON) || DetectObject(SORTBYGROUNDATK_BUTTON) || DetectObject(SORTBYAIRATK_BUTTON) || DetectObject(SORTBYSEAATK_BUTTON)
+  checkInvariant := detectObject(SORTBYDEFAULT_BUTTON) || detectObject(SORTBYGROUNDATK_BUTTON) || detectObject(SORTBYAIRATK_BUTTON) || detectObject(SORTBYSEAATK_BUTTON)
   if (checkInvariant == 1)
   {
     if (attackType == 0)
     {
       ;SORT BY DEFAULT
-      while not DetectObject(SORTBYDEFAULT_BUTTON)
+      while (detectObject(SORTBYDEFAULT_BUTTON))
       {
-        if DetectObject(SORTBYSEAATK_BUTTON)
-        {
-          WaitObject(SORTBYSEAATK_BUTTON)
-          ClickObject(SORTBYSEAATK_BUTTON)
+        if (detectObject(SORTBYSEAATK_BUTTON)) {
+          clickObject(SORTBYSEAATK_BUTTON)
         }
-        if DetectObject(SORTBYGROUNDATK_BUTTON)
-        {
-          WaitObject(SORTBYGROUNDATK_BUTTON)
-          ClickObject(SORTBYGROUNDATK_BUTTON)
+        else if (detectObject(SORTBYGROUNDATK_BUTTON)) {
+          clickObject(SORTBYGROUNDATK_BUTTON)
         }
-        if DetectObject(SORTBYAIRATK_BUTTON)
-        {
-          WaitObject(SORTBYAIRATK_BUTTON)
-          ClickObject(SORTBYAIRATK_BUTTON)
+        else if (detectObject(SORTBYAIRATK_BUTTON)) {
+          clickObject(SORTBYAIRATK_BUTTON)
         }
       }
     }
     else if (attackType == 1)
     {
       ;SORT BY GROUND ATK
-      while not DetectObject(SORTBYGROUNDATK_BUTTON)
+      while (!detectObject(SORTBYGROUNDATK_BUTTON))
       {
-        if DetectObject(SORTBYDEFAULT_BUTTON)
-        {
-          WaitObject(SORTBYDEFAULT_BUTTON)
-          ClickObject(SORTBYDEFAULT_BUTTON)
+        if (detectObject(SORTBYDEFAULT_BUTTON)) {
+          clickObject(SORTBYDEFAULT_BUTTON)
         }
-        if DetectObject(SORTBYAIRATK_BUTTON)
-        {
-          WaitObject(SORTBYAIRATK_BUTTON)
-          ClickObject(SORTBYAIRATK_BUTTON)
+        else if (detectObject(SORTBYAIRATK_BUTTON)) {
+          clickObject(SORTBYAIRATK_BUTTON)
         }
-        if DetectObject(SORTBYSEAATK_BUTTON)
-        {
-          WaitObject(SORTBYSEAATK_BUTTON)
-          ClickObject(SORTBYSEAATK_BUTTON)
+        else if (detectObject(SORTBYSEAATK_BUTTON)) {
+          clickObject(SORTBYSEAATK_BUTTON)
         }
       }
     }
     else if (attackType == 2)
     {
       ;SORT BY AIR ATK
-      while not DetectObject(SORTBYAIRATK_BUTTON)
+      while not (detectObject(SORTBYAIRATK_BUTTON))
       {
-        if DetectObject(SORTBYGROUNDATK_BUTTON)
-        {
-          WaitObject(SORTBYGROUNDATK_BUTTON)
-          ClickObject(SORTBYGROUNDATK_BUTTON)
+        if (detectObject(SORTBYGROUNDATK_BUTTON)) {
+          clickObject(SORTBYGROUNDATK_BUTTON)
         }
-        if DetectObject(SORTBYSEAATK_BUTTON)
-        {
-          WaitObject(SORTBYSEAATK_BUTTON)
-          ClickObject(SORTBYSEAATK_BUTTON)
+        else if (detectObject(SORTBYSEAATK_BUTTON) {
+          clickObject(SORTBYSEAATK_BUTTON)
         }
-        if DetectObject(SORTBYDEFAULT_BUTTON)
-        {
-          WaitObject(SORTBYDEFAULT_BUTTON)
-          ClickObject(SORTBYDEFAULT_BUTTON)
+        else if (detectObject(SORTBYDEFAULT_BUTTON)) {
+          clickObject(SORTBYDEFAULT_BUTTON)
         }
       }
     }
     else if (attackType == 3)
     {
       ;SORT BY SEA ATK
-      while not DetectObject(SORTBYSEAATK_BUTTON)
+      while (!detectObject(SORTBYSEAATK_BUTTON))
       {
-        if DetectObject(SORTBYAIRATK_BUTTON)
-        {
-          WaitObject(SORTBYAIRATK_BUTTON)
-          ClickObject(SORTBYAIRATK_BUTTON)
+        if (detectObject(SORTBYAIRATK_BUTTON)) {
+          clickObject(SORTBYAIRATK_BUTTON)
         }
-        if DetectObject(SORTBYDEFAULT_BUTTON)
-        {
-          WaitObject(SORTBYDEFAULT_BUTTON)
-          ClickObject(SORTBYDEFAULT_BUTTON)
+        else if (detectObject(SORTBYDEFAULT_BUTTON)) {
+          clickObject(SORTBYDEFAULT_BUTTON)
         }
-        if DetectObject(SORTBYGROUNDATK_BUTTON)
-        {
-          WaitObject(SORTBYGROUNDATK_BUTTON)
-          ClickObject(SORTBYGROUNDATK_BUTTON)
+        else if (detectObject(SORTBYGROUNDATK_BUTTON)) {
+          clickObject(SORTBYGROUNDATK_BUTTON)
         }
       }
     }
@@ -440,90 +416,66 @@ toggleAttribType(attribType := 0)
 {
   global UNITALL_BUTTON, UNITMELEE_BUTTON, UNITMISSILE_BUTTON, UNITMAGIC_BUTTON
 
-  checkInvariant := DetectObject(UNITALL_BUTTON) || DetectObject(UNITMELEE_BUTTON) || DetectObject(UNITMISSILE_BUTTON) || DetectObject(UNITMAGIC_BUTTON)
+  checkInvariant := detectObject(UNITALL_BUTTON) || detectObject(UNITMELEE_BUTTON) || detectObject(UNITMISSILE_BUTTON) || detectObject(UNITMAGIC_BUTTON)
   if (checkInvariant == 1)
   {
     if (attribType == 0)
     {
-      while not DetectObject(UNITAll_BUTTON)
+      while (!detectObject(UNITAll_BUTTON))
       {
-        if DetectObject(UNITMAGIC_BUTTON)
-        {
-          WaitObject(UNITMAGIC_BUTTON)
-          ClickObject(UNITMAGIC_BUTTON)
+        if (detectObject(UNITMAGIC_BUTTON)) {
+          clickObject(UNITMAGIC_BUTTON)
         }
-        if (DetectObject(UNITMELEE_BUTTON))
-        {
-          WaitObject(UNITMELEE_BUTTON)
-          ClickObject(UNITMELEE_BUTTON)
+        else if ((detectObject(UNITMELEE_BUTTON))) {
+          clickObject(UNITMELEE_BUTTON)
         }
-        if DetectObject(UNITMISSILE_BUTTON)
-        {
-          WaitObject(UNITMISSILE_BUTTON)
-          ClickObject(UNITMISSILE_BUTTON)
+        else if (detectObject(UNITMISSILE_BUTTON)) {
+          clickObject(UNITMISSILE_BUTTON)
         }
       }
     }
     else if (attribType == 1)
     {
-      while not DetectObject(UNITMELEE_BUTTON)
+      while (!detectObject(UNITMELEE_BUTTON))
       {
-        if DetectObject(UNITALL_BUTTON)
-        {
-          WaitObject(UNITALL_BUTTON)
-          ClickObject(UNITALL_BUTTON)
+        if (detectObject(UNITALL_BUTTON)) {
+          clickObject(UNITALL_BUTTON)
         }
-        if (DetectObject(UNITMISSILE_BUTTON))
-        {
-          WaitObject(UNITMISSILE_BUTTON)
-          ClickObject(UNITMISSILE_BUTTON)
+        else if (detectObject(UNITMISSILE_BUTTON)) {
+          clickObject(UNITMISSILE_BUTTON)
         }
-        if DetectObject(UNITMAGIC_BUTTON)
-        {
-          WaitObject(UNITMAGIC_BUTTON)
-          ClickObject(UNITMAGIC_BUTTON)
+        else if (detectObject(UNITMAGIC_BUTTON)) {
+          clickObject(UNITMAGIC_BUTTON)
         }
       }
     }
     else if (attribType == 2)
     {
-      while not DetectObject(UNITMISSILE_BUTTON)
+      while (!detectObject(UNITMISSILE_BUTTON))
       {
-        if DetectObject(UNITMELEE_BUTTON)
-        {
-          WaitObject(UNITMELEE_BUTTON)
-          ClickObject(UNITMELEE_BUTTON)
+        if (detectObject(UNITMELEE_BUTTON)) {
+          clickObject(UNITMELEE_BUTTON)
         }
-        if (DetectObject(UNITMAGIC_BUTTON))
-        {
-          WaitObject(UNITMAGIC_BUTTON)
-          ClickObject(UNITMAGIC_BUTTON)
+        else if (detectObject(UNITMAGIC_BUTTON)) {
+          clickObject(UNITMAGIC_BUTTON)
         }
-        if DetectObject(UNITALL_BUTTON)
-        {
-          WaitObject(UNITALL_BUTTON)
-          ClickObject(UNITALL_BUTTON)
+        else if (detectObject(UNITALL_BUTTON)) {
+          clickObject(UNITALL_BUTTON)
         }
       }
     }
     else if (attribType == 3)
     {
-      while not DetectObject(UNITMAGIC_BUTTON)
+      while (!detectObject(UNITMAGIC_BUTTON))
       {
-        if DetectObject(UNITMISSILE_BUTTON)
-        {
-          WaitObject(UNITMISSILE_BUTTON)
-          ClickObject(UNITMISSILE_BUTTON)
+        if (detectObject(UNITMISSILE_BUTTON)) {
+          clickObject(UNITMISSILE_BUTTON)
         }
-        if (DetectObject(UNITALL_BUTTON))
-        {
-          WaitObject(UNITALL_BUTTON)
-          ClickObject(UNITALL_BUTTON)
+        else if (detectObject(UNITALL_BUTTON)) {
+          clickObject(UNITALL_BUTTON)
         }
-        if DetectObject(UNITMELEE_BUTTON)
-        {
-          WaitObject(UNITMELEE_BUTTON)
-          ClickObject(UNITMELEE_BUTTON)
+        else if (detectObject(UNITMELEE_BUTTON)) {
+          clickObject(UNITMELEE_BUTTON)
         }
       }
     }
