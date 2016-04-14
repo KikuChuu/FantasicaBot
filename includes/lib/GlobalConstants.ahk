@@ -100,7 +100,8 @@ Init_globals()
 		
 		SCAN_START_X := 102
 		SCAN_START_Y := 68
-		SCAN_TILE_SIZE := 78
+    SCAN_TILE_HEIGHT := 40
+		SCAN_TILE_WIDTH := 39
         
         CARDMENU_X := 100
 		CARDMENU_Y := 800

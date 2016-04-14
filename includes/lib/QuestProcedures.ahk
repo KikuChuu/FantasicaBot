@@ -233,7 +233,7 @@ deployUnit(attackType := 0, attribType := 0)
 findCoordinate()
 {
 	global BLUESTACK_WINDOW_TITLE, LEVELBOT, SCAN_START_X
-  global SCAN_START_Y, SCAN_TILE_SIZE, CONFIRMPLACEMENT_BUTTON
+  global SCAN_START_Y, SCAN_TILE_SIZE, CONFIRMUNITPLACEMENT_BUTTON
 	global maxPasses
 
 	;declare our static variables
@@ -244,18 +244,22 @@ findCoordinate()
   static tileSize := 0
   static currPass := 0
 
-  if (mapMaxRow == 0) {
+  if (mapMaxRow == 0 && mapMaxCol == 0) {
     if (LEVELBOT == 1) 
     {
-      mapMaxRow = 7 ; This number 7 came from counting the tiles in the game
-      mapMaxCol = mapMaxRow
-      tileSize = SCAN_TILE_SIZE
+      mapMaxRow := 16 // 2 ; There are 16 tiles, but since we've doubled the 
+                           ; size of the tile's dimensions, we halve the 
+                           ; total number of tiles to scan
+      mapMaxCol := mapMaxRow
+      tileWidth := SCAN_TILE_WIDTH * 2
+      tileHeight := SCAN_TILE_HEIGHT * 2
     }
     else
     {
-      mapMaxRow = 7*2 ; Since we scan at half-a-tile, we double the tile count
-      mapMaxCol = mapMaxRow
-      tileSize = SCAN_TILE_SIZE // 2
+      mapMaxRow := 16 ; I counted the tiles on the map, and there are 16 tiles
+      mapMaxCol := mapMaxRow
+      tileWidth := SCAN_TILE_WIDTH
+      tileHeight := SCAN_TILE_HEIGHT
     }
   }
   
@@ -271,14 +275,15 @@ findCoordinate()
       }
 
       ; Compute the y-coordinate
-      currYCoord := SCAN_START_Y + (tileSize * currRow) 
+      currYCoord := SCAN_START_Y + (tileHeight * currRow) 
       while (currCol < mapMaxCol) {
 
         ; Compute the x-coordinate
-        currXCoord := SCAN_START_X + (tileSize * currCol)
+        currXCoord := SCAN_START_X + (tileWidth * currCol)
 
+        SB_SetText("Click at (x" . currYCoord . ",y" . currXCoord . ")")
         clickAt(currXCoord, currYCoord)
-        if (DetectObject(CONFIRMPLACEMENT_BUTTON)) 
+        if (detectObject(CONFIRMUNITPLACEMENT_BUTTON)) 
         {
           if (!LEVELBOT) {
             currCol += 2
@@ -293,13 +298,13 @@ findCoordinate()
           currCol++
         }
       }
-      row++
-      currCol = 0
+      currRow++
+      currCol := 0
     }
     currPass++
-    row = 0
+    currRow := 0
   }
-  currPass = 0
+  currPass := 0
   
   return 0
 }
