@@ -11,26 +11,27 @@ Init_globals() ; Found in GlobalConstants.ahk
 
 loop
 {
-	if (DetectObject(FANTASICAAPP_BUTTON))
-	{
-		LaunchGame()
+	if (detectObject(FANTASICAAPP_BUTTON)) {
+    clickObject(FANTASICAAPP_BUTTON)
+	}
+  
+  if (detectObject(STARTGAME_BUTTON)) {
+    clickObject(STARTGAME_BUTTON)
+  }
+
+	if (detectObject(CONNECTIONERROR_BUTTON)) {
+		clickObject(CONNECTIONERROR_BUTTON)
 	}
 
-	if (DetectObject(CONNECTIONERROR_BUTTON))
-	{
-		ClickObject(CONNECTIONERROR_BUTTON)
-	}
-
-	if (DetectObject(CONNECTIONERROR_TEXT))
+	if (detectObject(CONNECTIONERROR_TEXT))
 	{
 		Send {ESC down}
 		Sleep 1000
 		Send {ESC up}
 	}
 
-	if (DetectObject(CONFIRMEXITAPP_BUTTON))
-	{
-		ClickObject(CONFIRMEXITAPP_BUTTON)
+	if (detectObject(CONFIRMEXITAPP_BUTTON)) {
+		clickObject(CONFIRMEXITAPP_BUTTON)
 	}
 }
 
