@@ -376,12 +376,12 @@ toggleAttackType(attackType := 0)
     else if (attackType == 2)
     {
       ;SORT BY AIR ATK
-      while not (detectObject(SORTBYAIRATK_BUTTON))
+      while (!detectObject(SORTBYAIRATK_BUTTON))
       {
         if (detectObject(SORTBYGROUNDATK_BUTTON)) {
           clickObject(SORTBYGROUNDATK_BUTTON)
         }
-        else if (detectObject(SORTBYSEAATK_BUTTON) {
+        else if (detectObject(SORTBYSEAATK_BUTTON)) {
           clickObject(SORTBYSEAATK_BUTTON)
         }
         else if (detectObject(SORTBYDEFAULT_BUTTON)) {
