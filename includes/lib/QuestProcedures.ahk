@@ -233,7 +233,7 @@ deployUnit(attackType := 0, attribType := 0)
 findCoordinate()
 {
 	global BLUESTACK_WINDOW_TITLE, LEVELBOT, SCAN_START_X
-  global SCAN_START_Y, SCAN_TILE_SIZE, CONFIRMUNITPLACEMENT_BUTTON
+  global SCAN_START_Y, SCAN_TILE_HEIGHT, SCAN_TILE_WIDTH, CONFIRMUNITPLACEMENT_BUTTON
 	global maxPasses
 
 	;declare our static variables
