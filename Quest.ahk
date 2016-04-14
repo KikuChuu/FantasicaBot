@@ -16,6 +16,51 @@ deployUnitNum := 0
 pendingAllies := 1
 loop,
 {
+  if (detectObject(QUESTTIMER_TEXT))
+	{
+    scrollCount := QUEST_INDEX // 3
+    if (detectObject(QUEST3_ICON, 150))
+    {
+      clickObject(QUEST3_ICON, 150)
+    }
+    else if (detectObject(QUEST4_ICON, 150))
+    {
+      clickObject(QUEST4_ICON, 150)
+    }
+    else if (detectObject(QUEST5_ICON, 150))
+    {
+      clickObject(QUEST5_ICON, 150)
+    }
+    else
+    {
+      loop, %scrollCount%
+      {
+        scroll(MENU_X1, MENU_Y1, MENU_X2, MENU_Y2)
+      }
+      
+      if (detectObject(QUEST3_ICON, 150))
+      {
+        clickObject(QUEST3_ICON, 150)
+      }
+      else if (detectObject(QUEST4_ICON, 150))
+      {
+        clickObject(QUEST4_ICON, 150)
+      }
+      else if (detectObject(QUEST5_ICON, 150))
+      {
+        clickObject(QUEST5_ICON, 150)
+      }
+      else 
+      {   
+        scrollCount++
+        loop, %scrollCount%
+        {
+            scroll(MENU_X2, MENU_Y2, MENU_X1, MENU_Y1)
+        }
+      }
+    }
+  }
+
 	; ==========================================================================
 	; **************************************************************************
 	; ---------------------- QUEST SELECTION PAGE ------------------------------
