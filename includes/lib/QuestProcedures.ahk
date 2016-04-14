@@ -36,7 +36,7 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ;                corresponding quest's start button.
 ;@param int - An integer which is used to determine which path it should return
 ;@return string - If the argument is valid, returns the path to the quest's 
-;                 start button. Otheriwse, force the app to exit
+;                 start button. Otheriwse, terminate the script.
 assignQuest(questNum)
 {
 	global STARTQUEST1_BUTTON, STARTQUEST2_BUTTON, STARTQUEST3_BUTTON
@@ -74,119 +74,264 @@ assignQuest(questNum)
   else if (questNum  == 10) {
 		return %STARTQUEST10_BUTTON%
   }
-	else {
-		MsgBox, 0, Invalid Quest Assignment, Soooorrrry, we don't support quest %QuestNum%.
+  else {
+    MsgBox, 0, Invalid Quest Assignment, Soooorrrry, we don't support quest %QuestNum%.
     ExitApp
   }
 }
 
-;Call ally
-;AllyPower sort by damage (land = 1, air = 2, sea = 3, no sort = 0 (default))
-;AllyType is sort by type (melee = 1, missile = 2, magic = 3, no specific type = 0 (default))
-CallAlly(attackType = 0, attribType = 0) 
-{
-	global SLEEPTIME
-  global BACKQUEST_BUTTON, BACKTOEVENT_BUTTON, CALLALLY_BUTTON, CARDBACK_BUTTON
-  global DEPLOYALLY1_BUTTON, DEPLOYALLY2_BUTTON, DEPLOYALLY3_BUTTON
-  global CHOOSEQUESTCOMPLETED_BUTTON, CALLALLYPAGE_TEXT, CANCELPLACEMENT_BUTTON
-  global CONFIRMUNITPLACEMENT_BUTTON, EVENT_ICON, NEXTPAGE_BUTTON
-  global PAGE10ALLYLIST_TEXT, RESTRICTPLACMENTON_COL1, RESTRICTPLACMENTON_COL2
-  global STARTBATTLE_BUTTON, SORTBYAIRATK_BUTTON, SORTBYDEFAULT_BUTTON
-  global SORTBYGROUNDATK_BUTTON, SORTBYSEAATK_BUTTON, UNITALL_BUTTON
-  global UNITMELEE_BUTTON, UNITMISSILE_BUTTON, UNITMAGIC_BUTTON, RR_BACK_BUTTON
-
-  invariantCheck := ChooseAlly()
-	
-	if (!invariantCheck) ;if the invariant check fails...
-	{
-    toggleAttackType(0)
-    invariantCheck := ChooseAlly()
-		if (invariantCheck != 1)
-		{
-			clickObject(BACKQUEST_BUTTON)
-			waitObject(CALLALLY_BUTTON)
-			hasFilteredAllyListByType := 0
-			return 0
-		}
-	}
-	
-  numOfPasses := 0
-  
-	;Find valid coordinates and place unit
-  if (FindCoordinate(MapX, MapY, numOfPasses) == 0) ;modifies MapX and MapY to valid coordinates
-  {
-    ClickObject(CANCELPLACEMENT_BUTTON)
-    WaitObject(BACKQUEST_BUTTON)
-    ClickObject(BACKQUEST_BUTTON)
-    return 0
-  }
-	if (DetectObject(CONFIRMUNITPLACEMENT_BUTTON)) {
-    ClickObject(CONFIRMUNITPLACEMENT_BUTTON)
-  }
-	
-  FindCoordinate(MapX, MapY, numOfPasses, 1)
-    
-	return 1
-}
-
-;Chooses an ally from the ally list
-;returns 0 if no ally is available
-ChooseAlly()
+;chooseAlly() - A private helper function for the deployAlly(). Searchs the
+;               ally list for any deployable allies. Returns if an ally was
+;               selected or the end of the list was reached.
+;@return int - Returns 1 if an ally was chosen. Otherwise, returns 0
+chooseAlly()
 {
 	global DEPLOYALLY1_BUTTON, DEPLOYALLY2_BUTTON, DEPLOYALLY3_BUTTON, NEXTPAGE_BUTTON, NONEXTPAGE_BUTTON
-	while not DetectObject(NONEXTPAGE_BUTTON)
+	while (!detectObject(NONEXTPAGE_BUTTON))
 	{
-		if DetectObject(DEPLOYALLY1_BUTTON)
+		if (detectObject(DEPLOYALLY1_BUTTON))
 		{
-			WaitObject(DEPLOYALLY1_BUTTON)
-			ClickObject(DEPLOYALLY1_BUTTON)
+			clickObject(DEPLOYALLY1_BUTTON)
 			return 1
 		}
-		else if DetectObject(DEPLOYALLY2_BUTTON)
+		else if (detectObject(DEPLOYALLY2_BUTTON))
 		{
-			WaitObject(DEPLOYALLY2_BUTTON)
-			ClickObject(DEPLOYALLY2_BUTTON)
+			clickObject(DEPLOYALLY2_BUTTON)
 			return 1
 		}
-		else if DetectObject(DEPLOYALLY3_BUTTON)
+		else if (detectObject(DEPLOYALLY3_BUTTON))
 		{
-			WaitObject(DEPLOYALLY3_BUTTON)
-			ClickObject(DEPLOYALLY3_BUTTON)
+			clickObject(DEPLOYALLY3_BUTTON)
 			return 1
 		}
-		else if DetectObject(NEXTPAGE_BUTTON)
+		else if (detectObject(NEXTPAGE_BUTTON))
 		{
-			WaitObject(NEXTPAGE_BUTTON)
-			ClickObject(NEXTPAGE_BUTTON)
-			;some lag may occur here which ends the loop
+			clickObject(NEXTPAGE_BUTTON)
+			;some lag (hardware-related) may occur here which ends the loop
 		}
 	}
-	
-	if DetectObject(DEPLOYALLY1_BUTTON)
+
+	if (detectObject(DEPLOYALLY1_BUTTON))
 	{
-		WaitObject(DEPLOYALLY1_BUTTON)
-		ClickObject(DEPLOYALLY1_BUTTON)
+		clickObject(DEPLOYALLY1_BUTTON)
 		return 1
 	}
-	else if DetectObject(DEPLOYALLY2_BUTTON)
+	else if (detectObject(DEPLOYALLY2_BUTTON))
 	{
-		WaitObject(DEPLOYALLY2_BUTTON)
-		ClickObject(DEPLOYALLY2_BUTTON)
+		clickObject(DEPLOYALLY2_BUTTON)
 		return 1
 	}
-	else if DetectObject(DEPLOYALLY3_BUTTON)
+	else if (detectObject(DEPLOYALLY3_BUTTON))
 	{
-		WaitObject(DEPLOYALLY3_BUTTON)
-		ClickObject(DEPLOYALLY3_BUTTON)
+		clickObject(DEPLOYALLY3_BUTTON)
 		return 1
 	}
-	
-	return 0
+  else 
+  {
+	  return 0
+  }	
 }
 
-ToggleAttackType(attackType := 0)
+;deployAlly() - Performs a sequence of steps to deploy an ally.
+;@param int - An integer that controls how to sort the list by attack type:
+;               0 = Default, 1 = Ground, 2 = Air, 3 = Sea
+;@param int - An integer that controls how to filter the list by attribute type:
+;               0 = Default, 1 = Melee, 2 = Missile, 3 = Magic
+;@return int - Returns 1 if an ally was deployed. Otherwise, returns 0.
+deployAlly(attackType = 0, attribType = 0) 
 {
-  global
+  global BACKQUEST_BUTTON, CALLALLYPAGE_TEXT
+  global CONFIRMUNITPLACEMENT_BUTTON, CANCELPLACEMENT_BUTTON
+
+  if (detectObject(CALLALLYPAGE_TEXT)) {
+    toggleAttackType(attackType)
+    toggleAttribType(attribType)
+    invariantCheck := ChooseAlly()
+
+    if (invariantCheck)
+    {
+      if (findCoordinate())
+      {
+        clickObject(CONFIRMUNITPLACEMENT_BUTTON)
+        return 1
+      }
+      else {
+        clickObject(CANCELPLACEMENT_BUTTON)
+        waitObject(BACKQUEST_BUTTON)
+        clickObject(BACKQUEST_BUTTON)
+        return 0
+      }
+    }
+    else
+    {
+      clickObject(BACKQUEST_BUTTON)
+      return 0
+    }
+  }
+  else
+  {
+    return 0
+  }
+}
+
+;deployUnit() - Performs a sequence of steps to deploy a unit. Filter and sort
+;              units as specified by the input arguments.
+;@param int - Controls how to sort the list by attack type.
+;               0 = Default, 1 = Ground, 2 = Air, 3 = Sea
+;@param int - Controls how to filter the list by attribute type
+;               0 = Default, 1 = Melee, 2 = Missile, 3 = Magic
+;@return int - Returns 1 if a unit was deployed. Otherwise, returns 0.
+deployUnit(attackType := 0, attribType := 0)
+{
+  global DEPLOY_TEXT, DEPLOYUNIT1_BUTTON, DEPLOYUNIT2_BUTTON
+  global DEPLOYUNIT3_BUTTON, DEPLOYUNIT4_BUTTON
+  global BACKQUEST_BUTTON
+	global CONFIRMUNITPLACEMENT_BUTTON, CANCELPLACEMENT_BUTTON
+
+  if (detectObject(DEPLOY_TEXT)) {
+    toggleAttackType(attackType)
+    toggleAttribType(attribType)
+
+    if (detectObject(DEPLOYUNIT1_BUTTON)) {
+      clickObject(DEPLOYUNIT1_BUTTON)
+    }
+    else if (detectObject(DEPLOYUNIT2_BUTTON)) {
+      clickObject(DEPLOYUNIT2_BUTTON)
+    }
+    else if (detectObject(DEPLOYUNIT3_BUTTON)) {
+      clickObject(DEPLOYUNIT3_BUTTON)
+    }
+    else if (detectObject(DEPLOYUNIT4_BUTTON)) {
+      clickObject(DEPLOYUNIT4_BUTTON)
+    }
+    else if (detectObject(BACKQUEST_BUTTON)) 
+    {
+      clickObject(BACKQUEST_BUTTON)
+      return 0
+    }
+  }
+
+  ; Locate a tile to place the unit
+  if (findCoordinate())
+  {
+    clickObject(CONFIRMUNITPLACEMENT_BUTTON)
+    return 1
+  }
+  else 
+  {
+    clickObject(CANCELPLACEMENT_BUTTON)
+    waitObject(BACKQUEST_BUTTON)
+    clickObject(BACKQUEST_BUTTON)
+    return 0
+  }
+}
+
+;findCoordinate() - Performs a tile-by-tile placement on the map until a valid 
+;                   position is found. A valid position is determined by whether
+;                   the confirm placement button is visible.
+;@return int - If a valid position is found, return 1. Otherwise, return 0
+findCoordinate()
+{
+	global BLUESTACK_WINDOW_TITLE, LEVELBOT, SCAN_START_X
+  global SCAN_START_Y, SCAN_TILE_SIZE, CONFIRMPLACEMENT_BUTTON
+	global maxPasses
+
+	;declare our static variables
+	static currRow:= 0
+	static currCol:= 0
+  static mapMaxRow := 0
+  static mapMaxCol := 0
+  static tileSize := 0
+  static currPass := 0
+
+  if (mapMaxRow == 0) {
+    if (LEVELBOT == 1) 
+    {
+      mapMaxRow = 7 ; This number 7 came from counting the tiles in the game
+      mapMaxCol = mapMaxRow
+      tileSize = SCAN_TILE_SIZE
+    }
+    else
+    {
+      mapMaxRow = 7*2 ; Since we scan at half-a-tile, we double the tile count
+      mapMaxCol = mapMaxRow
+      tileSize = SCAN_TILE_SIZE // 2
+    }
+  }
+  
+  while (currPass < maxPasses) {
+    if (winExist(BLUESTACK_WINDOW_TITLE)) {
+      WinActivate, %BLUESTACK_WINDOW_TITLE%
+    }
+
+    while (currRow < mapMaxRow) {
+      if (currRow == 0 && currCol == 0) {
+        col++
+        continue
+      }
+
+      ; Compute the y-coordinate
+      currYCoord := SCAN_START_Y + (tileSize * currRow) 
+      while (currCol < mapMaxCol) {
+
+        ; Compute the x-coordinate
+        currXCoord := SCAN_START_X + (tileSize * currCol)
+
+        clickAt(currXCoord, currYCoord)
+        if (DetectObject(CONFIRMPLACEMENT_BUTTON)) 
+        {
+          if (!LEVELBOT) {
+            currCol += 2
+          } 
+          else {
+            currCol++
+          }
+          return 1
+        }
+        else 
+        {
+          currCol++
+        }
+      }
+      row++
+      currCol = 0
+    }
+    currPass++
+    row = 0
+  }
+  currPass = 0
+  
+  return 0
+}
+
+;scroll() - Performs a drag operation starting at the init coordinates
+;           and stopping at the end coordinates specified as arguments
+;@param int - The x-coordinate where the drag operation will start
+;@param int - The y-coordinate where the drag operation will start
+;@param int - The x-coordinate where the drag opeartion will end
+;@param int - The y-coordinate where the drag operation will end
+;@return string - Returns a blank value (empty string) to its caller
+scroll(xInit, yInit, xEnd, yEnd)
+{
+  ;global SLEEPTIME
+  ;MouseMove, %X_init%, %Y_init% 
+
+  SetDefaultMouseSpeed, 100
+  SendEvent { Click, %X_init%, %Y_init%, down }{ Click, %X_end%, %Y_end%, up}
+  SetDefaultMouseSpeed, 0
+
+	;Sleep SLEEPTIME
+}
+
+;toggleAttackType - Performs several left-mouse clicks to sort the unit list
+;                   by attack type. The target type is specified as an integer
+;@param int - An integer between 0 and 3 (inclusive)
+;@return string - Returns a blank value (empty string) to its caller
+toggleAttackType(attackType := 0)
+{
+  global SORTBYDEFAULT_BUTTON 
+  global SORTBYGROUNDATK_BUTTON, SORTBYAIRATK_BUTTON, SORTBYSEA_BUTTON
+
   checkInvariant := DetectObject(SORTBYDEFAULT_BUTTON) || DetectObject(SORTBYGROUNDATK_BUTTON) || DetectObject(SORTBYAIRATK_BUTTON) || DetectObject(SORTBYSEAATK_BUTTON)
   if (checkInvariant == 1)
   {
@@ -281,9 +426,14 @@ ToggleAttackType(attackType := 0)
   }
 }
 
-ToggleAttribType(attribType := 0)
+;toggleAttribType - Performs several left-mouse clicks to filter a unit list by
+;                   attribute type. The target type is specified as an integer
+;@param int - An integer between 0 and 3 (inclusive)
+;@return string - Returns a blank value (empty string) to its caller
+toggleAttribType(attribType := 0)
 {
-  global
+  global UNITALL_BUTTON, UNITMELEE_BUTTON, UNITMISSILE_BUTTON, UNITMAGIC_BUTTON
+
   checkInvariant := DetectObject(UNITALL_BUTTON) || DetectObject(UNITMELEE_BUTTON) || DetectObject(UNITMISSILE_BUTTON) || DetectObject(UNITMAGIC_BUTTON)
   if (checkInvariant == 1)
   {
@@ -374,201 +524,51 @@ ToggleAttribType(attribType := 0)
   }
 }
 
-ChooseUnit()
-{
-  global
-	if (DetectObject(DEPLOYUNIT1_BUTTON))
-	{
-		ClickObject(DEPLOYUNIT1_BUTTON)
-	}
-	else if (DetectObject(DEPLOYUNIT2_BUTTON))
-	{
-		ClickObject(DEPLOYUNIT2_BUTTON)
-	}
-	else if (DetectObject(DEPLOYUNIT3_BUTTON))
-	{
-		ClickObject(DEPLOYUNIT3_BUTTON)
-	}
-	else if (DetectObject(DEPLOYUNIT4_BUTTON))
-	{
-		ClickObject(DEPLOYUNIT4_BUTTON)
-	}
-	else if (DetectObject(BACKQUEST_BUTTON))
-	{
-		ClickObject(BACKQUEST_BUTTON)
-		return 0
-	}
-}
-
-; DeployUnit - Performs a sequence of steps to deploy a unit. Filters units as
-;              according to input parameters.
-; attackType  - Controls how to filter the list by unit attack points.
-;               0 = Default, 1 = Ground, 2 = Air, 3 = Sea
-; attribType   - Controls how to filter the list by unit type
-;               0 = Default, 1 = Melee, 2 = Missile, 3 = Magic
-; Return     - Returns 1 if a unit was deployed, 0 otherwise.
-DeployUnit(attackType = 0, attribType = 0)
-{
-	global CONFIRMUNITPLACEMENT_BUTTON, CANCELPLACEMENT_BUTTON, BACKQUEST_BUTTON
-
-  ; Locate a tile to place the unit
-  if (FindCoordinate() == 0)
-  {
-    ClickObject(CANCELPLACEMENT_BUTTON)
-    WaitObject(BACKQUEST_BUTTON)
-    ClickObject(BACKQUEST_BUTTON)
-    return 0
-  }
-
-  if (DetectObject(CONFIRMUNITPLACEMENT_BUTTON)) {
-    ClickObject(CONFIRMUNITPLACEMENT_BUTTON)
-  }
- 
-  Sleep 500
-	return 1
-}
-
-;findCoordinate() - Performs a tile-by-tile placement on the map until a valid position is found.
-;@return int - If a valid position is found, return 1. Otherwise, return 0
-findCoordinate()
-{
-	global BLUESTACK_WINDOW_TITLE, SLEEPTIME, LEVELBOT, SCAN_START_X
-  global SCAN_START_Y, SCAN_TILE_SIZE, CONFIRMPLACEMENT_BUTTON
-	global maxPasses
-
-	;declare our static variables
-	static currRow:= 0
-	static currCol:= 0
-  static mapMaxRow := 0
-  static mapMaxCol := 0
-  static tileSize := 0
-  static currPass := 0
-
-  if (mapMaxRow == 0) {
-    if (LEVELBOT == 1) 
-    {
-      mapMaxRow = 7 ; This number 7 came from counting the tiles in the game
-      mapMaxCol = mapMaxRow
-      tileSize = SCAN_TILE_SIZE
-    }
-    else
-    {
-      mapMaxRow = 7*2 ; Since we scan at half-a-tile, we double the tile count
-      mapMaxCol = mapMaxRow
-      tileSize = SCAN_TILE_SIZE // 2
-    }
-  }
-  
-  while (currPass < maxPasses) {
-    if (winExist(BLUESTACK_WINDOW_TITLE)) {
-      WinActivate, %BLUESTACK_WINDOW_TITLE%
-    }
-
-    while (currRow < mapMaxRow) {
-      if (currRow == 0 && currCol == 0) {
-        col++
-        continue
-      }
-
-      ; Compute the y-coordinate
-      currYCoord := SCAN_START_Y + (tileSize * currRow) 
-      while (currCol < mapMaxCol) {
-
-        ; Compute the x-coordinate
-        currXCoord := SCAN_START_X + (tileSize * currCol)
-
-        placeUnitAt(currXCoord, currYCoord)
-        if (DetectObject(CONFIRMPLACEMENT_BUTTON)) 
-        {
-          if (!LEVELBOT) {
-            currCol += 2
-          } 
-          else {
-            currCol++
-          }
-          return 1
-        }
-        else 
-        {
-          currCol++
-        }
-      }
-      row++
-      currCol = 0
-    }
-    currPass++
-    row = 0
-  }
-  currPass = 0
-  
-  return 0
-}
-
-; Wraps the lower-level function ClickAt with a sensible function name
-PlaceUnitAt(CoordX, CoordY)
-{
-  ClickAt(CoordX, CoordY)
-}
-
-;Scrolls down a list
-Scroll(X_init, Y_init, X_end, Y_end, mouseSpeed := 100)
-{
-	global SLEEPTIME
-	; SetDefaultMouseSpeed %mouseSpeed%
-	 MouseMove %X_init%, %Y_init% 
-	; Sleep SLEEPTIME
-  ;  MouseClickDrag, Left, %X_init%, %Y_init%, %X_end%, %Y_end%, %mouseSpeed%
-	 SetDefaultMouseSpeed 100
-	 SendEvent { Click down }{ Click up %X_end%, %Y_end%}
-	 SetDefaultMouseSpeed 0
-	Sleep SLEEPTIME
-}
-
-SelectEpisode(CURRENTEPISODE, EPISODE)
-{
-	SetDefaultMouseSpeed, 100
-	i := CURRENTEPISODE - (EPISODE + 5)
-	loop, %i%
-	{
-		SendEvent {Click 816, 600, down}{click 816, 715, up}
-		Sleep 500
-	}
-	
-	if (i = -5)		;current quest
-	{
-		Click 956, 755 down
-		Sleep 500
-		Click up
-	}
-	else if (i = -4)	;1 episode before current quest
-	{
-		Click 956, 629 down
-		Sleep 500
-		Click up
-	}
-	else if (i= -3) 	;2 episodes before current quest
-	{
-		Click 956, 514 down
-		Sleep 500
-		Click up
-	}
-	else if (i= -2)	;3 episodes before current quest
-	{
-		Click 956, 399 down
-		Sleep 500
-		Click up
-	}
-	else if (i= -1)	;4 episodes before current quest
-	{
-		Click 956, 284 down
-		Sleep 500
-		Click up
-	}
-	else			;whichever episode is at the top of the screen
-	{
-		Click 956, 169 down
-		Sleep 500
-		Click up
-	}
-	SetDefaultMouseSpeed, 50
-}
+;SelectEpisode(CURRENTEPISODE, EPISODE)
+;{
+;	SetDefaultMouseSpeed, 100
+;	i := CURRENTEPISODE - (EPISODE + 5)
+;	loop, %i%
+;	{
+;		SendEvent {Click, 816, 600, down}{Click, 816, 715, up}
+;		Sleep 500
+;	}
+;	
+;	if (i = -5)		;current quest
+;	{
+;		Click 956, 755 down
+;		Sleep 500
+;		Click up
+;	}
+;	else if (i = -4)	;1 episode before current quest
+;	{
+;		Click 956, 629 down
+;		Sleep 500
+;		Click up
+;	}
+;	else if (i= -3) 	;2 episodes before current quest
+;	{
+;		Click 956, 514 down
+;		Sleep 500
+;		Click up
+;	}
+;	else if (i= -2)	;3 episodes before current quest
+;	{
+;		Click 956, 399 down
+;		Sleep 500
+;		Click up
+;	}
+;	else if (i= -1)	;4 episodes before current quest
+;	{
+;		Click 956, 284 down
+;		Sleep 500
+;		Click up
+;	}
+;	else			;whichever episode is at the top of the screen
+;	{
+;		Click 956, 169 down
+;		Sleep 500
+;		Click up
+;	}
+;	SetDefaultMouseSpeed, 50
+;}
