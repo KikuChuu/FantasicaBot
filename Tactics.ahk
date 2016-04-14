@@ -56,7 +56,7 @@ loop
 
   if (DetectObject(TACTICS_ALL, 75)) {
     ; Sometimes bosses are large and clicking on the icon won't 'target' them. So we need to add an offset to the buffer coord.
-    ClickAt(BufferX - 50, BufferY + 100)
+    ClickAt(BUFFER_X - 50, BUFFER_Y + 100)
   }
 
   if (DetectObject(TACTICS_TOP)) {

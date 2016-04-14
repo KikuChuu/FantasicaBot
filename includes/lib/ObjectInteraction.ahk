@@ -32,11 +32,11 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 
-;ClickAt - Performs a left-mouse click at the coordinates specified by the arguments
+;clickAt() - Performs a left-mouse click at the coordinates specified by the arguments
 ;@param int - The x coordinate
 ;@param int - The y coordinate
 ;@return string - Returns a blank value (empty string) to its caller
-ClickAt(coordX, coordY)
+clickAt(coordX, coordY)
 {
 	global SLEEPTIME
 	global BLUESTACK_WINDOW_TITLE
@@ -50,13 +50,14 @@ ClickAt(coordX, coordY)
   SendEvent { Click up }
 }
 
-;ClickObject - Searchs for the image specified as an argument and if found, performs a click on the image
+;clickObject() - Searchs for the image specified as an argument. If the image
+;                is found, performs a click on the image
 ;@param string - The path of the image to match
-;@param int - The allowed number of shades of variation in either direction for the intensity
-;                       of the red, green, and blue components of each pixel's color
-;                       Specify between 0 to 255 (inclusive)
+;@param int - The allowed number of shades of variation in either direction for
+;             the intensity of the red, green, and blue components of each 
+;             pixel's color. Specify between 0 to 255 (inclusive)
 ;@return string - Returns a blank value (empty string) to its caller
-ClickObject(path, variation := 0)
+clickObject(path, variation := 0)
 {
 	global SLEEPTIME, X1,X2,Y1,Y2
 	global BLUESTACK_WINDOW_TITLE
@@ -85,20 +86,21 @@ ClickObject(path, variation := 0)
 	}
 }
 
-;DetectObject - Scans the window for the image specified by the argument path.
+;detectObject - Scans the window for the image specified by the argument path.
 ;               If the image is found, set the global buffer coordinates to the
 ;               coordinates where the matching image within the window is found
 ;               and return 1. Otherwise, return 0.
 ;@param string - The path of the image to match
-;@param int - The allowed number of shades of variation in either direction for the intensity
-;             of the red, green, and blue components of each pixel's color
-;             Specify between 0 to 255 (inclusive).
-;@return int - Returns 1 if the image matched within the window. Otherwise, returns 0.
-DetectObject(path, variation := 0)
+;@param int - The allowed number of shades of variation in either direction for 
+;             the intensity of the red, green, and blue components of each 
+;             pixel's color. Specify between 0 to 255 (inclusive)
+;@return int - Returns 1 if the image matched within the window. 
+;              Otherwise, returns 0.
+detectObject(path, variation := 0)
 {
 	global X1,X2,Y1,Y2, BACK_BUTTON, SLEEEPTIME
 	global BLUESTACK_WINDOW_TITLE
-	global BufferX, BufferY
+	global BUFFER_X, BUFFER_Y
 
   if (winExist(BLUESTACK_WINDOW_TITLE)) {
 	  WinActivate, %BLUESTACK_WINDOW_TITLE%
@@ -124,21 +126,21 @@ DetectObject(path, variation := 0)
 	}
 	else
   {
-		BufferX := FoundX
-		BufferY := FoundY
+		BUFFER_X := FoundX
+		BUFFER_Y := FoundY
 		return 1
 	}
 }
 
-;WaitObject - Continuously scans the window for the image specified in the
-;             argument until the image is found, then returns a pair
-;             object containing the coordinates where the match occurred.
+;waitObject - Continuously scans the window for the image specified in the
+;               argument until the image is found, then returns a pair object
+;               containing the coordinates where the match occurred.
 ;@param ByRef path - The path of the image which we want to match.
 ;@return int[2] - If the image is foun, returns a pair object where the first 
 ;                 element holds the x-coordinate and the second element holds
 ;                 the y-coordinate. Otherwise, this function never terminates
-;                 and loops indefinitely.
-WaitObject(ByRef path)
+;                 and loops indefinitely (busy-waiting).
+waitObject(ByRef path)
 {
 	global X1, X2, Y1, Y2, SLEEPTIME
 	global WAIT_X, WAIT_Y
