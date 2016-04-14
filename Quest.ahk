@@ -11,6 +11,7 @@ SetDefaultMouseSpeed 0
 Init_globals() ; Found in GlobalConstants.ahk
 ;============================================
 
+
 deployUnitNum := 0
 pendingAllies := 1
 loop,
@@ -20,61 +21,61 @@ loop,
 	; ---------------------- QUEST SELECTION PAGE ------------------------------
 	; **************************************************************************
 	; ==========================================================================		
-	if (DetectObject(QUEST_TEXT))
+	if (detectObject(QUEST_TEXT))
 	{
 		if (BOTALLQUEST == 1 && !latestEpisode)
 		{
-			if (DetectObject(SELECTEPISODE_BUTTON))
+			if (detectObject(SELECTEPISODE_BUTTON))
 			{
-				ClickObject(SELECTEPISODE_BUTTON)
+				clickObject(SELECTEPISODE_BUTTON)
 			}
-			else if (DetectObject(EPISODELISTNEXT_BUTTON))
+			else if (detectObject(EPISODELISTNEXT_BUTTON))
 			{
-				ClickObject(EPISODELISTNEXT_BUTTON)
+				clickObject(EPISODELISTNEXT_BUTTON)
 			}
 			else
 			{
-				Scroll(QUEST_X1, QUEST_Y1, QUEST_X2, QUEST_Y2)
+				scroll(QUEST_X1, QUEST_Y1, QUEST_X2, QUEST_Y2)
 
-				if DetectObject(EPISODESELECT10_BUTTON)
+  			if (detectObject(EPISODESELECT10_BUTTON))
 				{
-					ClickObject(EPISODESELECT10_BUTTON)
+					clickObject(EPISODESELECT10_BUTTON)
 				}
-				else if DetectObject(EPISODESELECT9_BUTTON)
+				else if (detectObject(EPISODESELECT9_BUTTON))
 				{
-					ClickObject(EPISODESELECT9_BUTTON)
+					clickObject(EPISODESELECT9_BUTTON)
 				}
-				else if DetectObject(EPISODESELECT8_BUTTON)
+				else if (detectObject(EPISODESELECT8_BUTTON))
 				{
-					ClickObject(EPISODESELECT8_BUTTON)
+					clickObject(EPISODESELECT8_BUTTON)
 				}
-				else if DetectObject(EPISODESELECT7_BUTTON)
+				else if (detectObject(EPISODESELECT7_BUTTON))
 				{
-					ClickObject(EPISODESELECT7_BUTTON)
+					clickObject(EPISODESELECT7_BUTTON)
 				}
-				else if DetectObject(EPISODESELECT6_BUTTON)
+				else if (detectObject(EPISODESELECT6_BUTTON))
 				{
-					ClickObject(EPISODESELECT6_BUTTON)
+					clickObject(EPISODESELECT6_BUTTON)
 				}
-				else if DetectObject(EPISODESELECT5_BUTTON)
+				else if (detectObject(EPISODESELECT5_BUTTON))
 				{
-					ClickObject(EPISODESELECT5_BUTTON)
+					clickObject(EPISODESELECT5_BUTTON)
 				}
-				else if DetectObject(EPISODESELECT4_BUTTON)
+				else if (detectObject(EPISODESELECT4_BUTTON))
 				{
-					ClickObject(EPISODESELECT4_BUTTON)
+					clickObject(EPISODESELECT4_BUTTON)
 				}
-				else if DetectObject(EPISODESELECT3_BUTTON)
+				else if (detectObject(EPISODESELECT3_BUTTON))
 				{
-					ClickObject(EPISODESELECT3_BUTTON)
+					clickObject(EPISODESELECT3_BUTTON)
 				}
-				else if DetectObject(EPISODESELECT2_BUTTON)
+				else if (detectObject(EPISODESELECT2_BUTTON))
 				{
-					ClickObject(EPISODESELECT2_BUTTON)
+					clickObject(EPISODESELECT2_BUTTON)
 				}
-				else if DetectObject(EPISODESELECT1_BUTTON)
+				else if (detectObject(EPISODESELECT1_BUTTON))
 				{
-					ClickObject(EPISODESELECT1_BUTTON)
+					clickObject(EPISODESELECT1_BUTTON)
 				}
 				
 				QUEST = 1
@@ -82,24 +83,24 @@ loop,
 			}
 		}
 		else
-		{		
+		{
 			if (QUEST >= 4)
 			{
-			  Scroll(QUEST_X1, QUEST_Y1, QUEST_X2, QUEST_Y2)
+			  scroll(QUEST_X1, QUEST_Y1, QUEST_X2, QUEST_Y2)
 			}
 			
 			questindex := assignquest(QUEST) ; Quest index represents the actual image path of the quest button
 			
 			scrollCount := 2 ; Introduced to scroll up to the very top of the quest selection
-			if (DetectObject(questindex))
+			if (detectObject(questindex))
 			{
-				ClickObject(questindex)
+				clickObject(questindex)
 			}
 			else
 			{
 				loop, 2
 				{
-					Scroll(QUEST_X2, QUEST_Y2, QUEST_X1, QUEST_Y1)
+					scroll(QUEST_X2, QUEST_Y2, QUEST_X1, QUEST_Y1)
 				}
 			}
 		}
@@ -107,40 +108,33 @@ loop,
 ; ====================================================
 ; ------------------- QUEST BATTLE -------------------
 ; ====================================================
-	if (DetectObject(SKIPQUEST_BUTTON) && SKIPQUEST == 1)
+	if (detectObject(SKIPQUEST_BUTTON) && SKIPQUEST == 1)
 	{
-		ClickObject(SKIPQUEST_BUTTON)
+		clickObject(SKIPQUEST_BUTTON)
 	}
 
-  if (DetectObject(DEPLOYUNIT_BUTTON) && deployUnitNum < DEPLOY_NUMBER) {
-    ClickObject(DEPLOYUNIT_BUTTON)
+  if (detectObject(DEPLOYUNIT_BUTTON) && deployUnitNum < DEPLOY_NUMBER) {
+    clickObject(DEPLOYUNIT_BUTTON)
   }
 
-  if (DetectObject(DEPLOY_TEXT)) {
-    if (DetectObject(UNITFAVORITEOFF_BUTTON)) {
-      ClickObject(UNITFAVORITEOFF_BUTTON)
+  if (detectObject(DEPLOY_TEXT)) {
+    if (detectObject(UNITFAVORITEOFF_BUTTON)) {
+      clickObject(UNITFAVORITEOFF_BUTTON)
     }
 
-    ToggleAttackType()
-    ToggleAttribType()
-    ChooseUnit()
-    Sleep 500
-  }
-
-  if (DetectObject(CANCELPLACEMENT_BUTTON)) {
-    if (DeployUnit()) {
+    if (deployUnit(ATTACK_TYPE, ATTRIB_TYPE)) {
       deployUnitNum++
     }
   }
 
-	if (DetectObject(CALLALLY_BUTTON) && pendingAllies)
+	if (detectObject(CALLALLY_BUTTON) && pendingAllies)
 	{
-		ClickObject(CALLALLY_BUTTON)
+		clickObject(CALLALLY_BUTTON)
 	}
 
-	if (DetectObject(CALLALLYPAGE_TEXT))
+	if (detectObject(CALLALLYPAGE_TEXT))
 	{
-		if (CallAlly(SORTINDEX, TYPEINDEX))
+		if (deployAlly(ATTACK_TYPE, ATTRIB_TYPE))
 		{
 			pendingAllies = 1
 		}
@@ -154,9 +148,9 @@ loop,
 	; ------------------------ QUEST RESULTS PAGE ------------------------------
 	; **************************************************************************
 	; ==========================================================================	
-	if (DetectObject(QUESTCLEAR_TEXT) || DetectObject(QUESTRESULT_TEXT))
+	if (detectObject(QUESTCLEAR_TEXT) || detectObject(QUESTRESULT_TEXT))
 	{
-		if (DetectObject(QUESTCLEAR_TEXT) && BOTALLQUEST)
+		if (detectObject(QUESTCLEAR_TEXT) && BOTALLQUEST)
 		{
 			if (QUEST < 7)
 			{
@@ -167,19 +161,19 @@ loop,
 				latestEpisode = 0
 			}
 		}
-		if (DetectObject(MYPAGE_BUTTON) && BotEvent == 1)
+		if (detectObject(MYPAGE_BUTTON) && BotEvent == 1)
 		{
-			ClickObject(MYPAGE_BUTTON)
+			clickObject(MYPAGE_BUTTON)
 		}
-		else if (DetectObject(BACKTOEVENT_BUTTON))
+		else if (detectObject(BACKTOEVENT_BUTTON))
 		{
-			WaitObject(BACKTOEVENT_BUTTON)
-			ClickObject(BACKTOEVENT_BUTTON)
+			waitObject(BACKTOEVENT_BUTTON)
+			clickObject(BACKTOEVENT_BUTTON)
 		}
-		else if (DetectObject(CHOOSEQUESTCOMPLETED_BUTTON))
+		else if (detectObject(CHOOSEQUESTCOMPLETED_BUTTON))
 		{
-			WaitObject(CHOOSEQUESTCOMPLETED_BUTTON)
-			ClickObject(CHOOSEQUESTCOMPLETED_BUTTON)
+			waitObject(CHOOSEQUESTCOMPLETED_BUTTON)
+			clickObject(CHOOSEQUESTCOMPLETED_BUTTON)
 		}
 		deployUnitNum = 0
 		pendingAllies = 1
