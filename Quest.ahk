@@ -35,17 +35,22 @@ SendMode Input
 SetWorkingDir %A_ScriptDir%
 
 #Include %A_ScriptDir%\includes\IncludeScript.ahk
-SetDefaultMouseSpeed 0
 ;==============================================================================
 ;Init Global by invoking the following 
 ;GlobalConstants.ahk function.
 
 initGlobals() ; Found in GlobalConstants.ahk
 ;==============================================================================
+SetDefaultMouseSpeed 0
 
 
+; =============================================================================
+; ------------------------- Define variables here -----------------------------
 deployUnitNum := 0
 pendingAllies := 1
+; =============================================================================
+
+
 loop,
 {
   if (detectObject(QUESTTIMER_TEXT))
@@ -185,8 +190,7 @@ loop,
 ; ====================================================
 ; ------------------- QUEST BATTLE -------------------
 ; ====================================================
-	if (detectObject(SKIPQUEST_BUTTON) && SKIPQUEST == 1)
-	{
+	if (detectObject(SKIPQUEST_BUTTON) && SKIPQUEST == 1) {
 		clickObject(SKIPQUEST_BUTTON)
 	}
 
@@ -202,24 +206,25 @@ loop,
     if (deployUnit(ATTACK_TYPE, ATTRIB_TYPE)) {
       deployUnitNum++
     }
+    else {
+      deployUnitNum := DEPLOY_NUMBER
+    }
   }
 
-	if (detectObject(CALLALLY_BUTTON) && pendingAllies)
-	{
+	if (detectObject(CALLALLY_BUTTON) && pendingAllies)	{
 		clickObject(CALLALLY_BUTTON)
 	}
 
 	if (detectObject(CALLALLYPAGE_TEXT))
 	{
-		if (deployAlly(ATTACK_TYPE, ATTRIB_TYPE))
-		{
+		if (deployAlly(ATTACK_TYPE, ATTRIB_TYPE)) {
 			pendingAllies = 1
 		}
-		else
-		{
+		else {
 			pendingAllies = 0
 		}
   }
+
 	; ==========================================================================
 	; **************************************************************************
 	; ------------------------ QUEST RESULTS PAGE ------------------------------
@@ -229,33 +234,26 @@ loop,
 	{
 		if (detectObject(QUESTCLEAR_TEXT) && BOTALLQUEST)
 		{
-			if (QUEST < 7)
-			{
+			if (QUEST < 7) {
 				QUEST++
 			}
-			else
-			{
+			else {
 				latestEpisode = 0
 			}
 		}
-		if (detectObject(MYPAGE_BUTTON) && BotEvent == 1)
-		{
+
+		if (detectObject(MYPAGE_BUTTON) && BotEvent == 1) {
 			clickObject(MYPAGE_BUTTON)
 		}
-		else if (detectObject(BACKTOEVENT_BUTTON))
-		{
-			waitObject(BACKTOEVENT_BUTTON)
-			clickObject(BACKTOEVENT_BUTTON)
-		}
-		else if (detectObject(CHOOSEQUESTCOMPLETED_BUTTON))
-		{
-			waitObject(CHOOSEQUESTCOMPLETED_BUTTON)
+		else if (detectObject(CHOOSEQUESTCOMPLETED_BUTTON)) {
 			clickObject(CHOOSEQUESTCOMPLETED_BUTTON)
 		}
+
 		deployUnitNum = 0
 		pendingAllies = 1
 	}
 }
+
 
 F1::ExitApp
 F2::PAUSE
