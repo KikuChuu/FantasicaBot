@@ -79,27 +79,32 @@ toggleTimeElixir(ByRef var)
 loop
 {
   if (detectObject(TOWER_ICON)) {
-    clickObject(TOWER_ICON)
+    clickAt(BUFFER_X, BUFFER_Y)
+    ;clickObject(TOWER_ICON)
   }
 
 	if (detectObject(TOWER_BATTLESTART)) {
-		clickObject(TOWER_BATTLESTART)
+    clickAt(BUFFER_X, BUFFER_Y)
+		;clickObject(TOWER_BATTLESTART)
     deployUnitNum := 0
     pendingAllies := 1
 	}
 
   if (detectObject(TOWER_USE_TIME_ELIXIR) && useTimeElixir) {
-    clickObject(TOWER_USE_TIME_ELIXIR)
+    clickAt(BUFFER_X, BUFFER_Y)
+   ; clickObject(TOWER_USE_TIME_ELIXIR)
   }
 
   if (detectObject(TOWER_YES) && useTimeElixir) {
-    clickObject(TOWER_YES)
+    clickAt(BUFFER_X, BUFFER_Y)
+    ;clickObject(TOWER_YES)
     deployUnitNum := 0
     pendingAllies := 1
   }
 
 	if (detectObject(TOWER_BACK)) {
-		clickObject(TOWER_BACK)
+    clickAt(BUFFER_X, BUFFER_Y)
+		;clickObject(TOWER_BACK)
 	}
 	
 	; ==========================================================================
@@ -108,16 +113,19 @@ loop
 	; **************************************************************************
 	; ==========================================================================
 	if (detectObject(SKIPQUEST_BUTTON) && SKIPQUEST == 1) {
-		clickObject(SKIPQUEST_BUTTON)
+    clickAt(BUFFER_X, BUFFER_Y)
+		;clickObject(SKIPQUEST_BUTTON)
 	}
 
   if (detectObject(DEPLOYUNIT_BUTTON) && deployUnitNum < DEPLOY_NUMBER) {
-    clickObject(DEPLOYUNIT_BUTTON)
+    clickAt(BUFFER_X, BUFFER_Y)
+    ;clickObject(DEPLOYUNIT_BUTTON)
   }
 
   if (detectObject(DEPLOY_TEXT)) {
     if (detectObject(UNITFAVORITEOFF_BUTTON)) {
-      clickObject(UNITFAVORITEOFF_BUTTON)
+    clickAt(BUFFER_X, BUFFER_Y)
+    ;  clickObject(UNITFAVORITEOFF_BUTTON)
     }
 
     if (deployUnit(ATTACK_TYPE, ATTRIB_TYPE)) {
@@ -130,7 +138,8 @@ loop
 
 	if (detectObject(CALLALLY_BUTTON) && pendingAllies)
 	{
-		clickObject(CALLALLY_BUTTON)
+    clickAt(BUFFER_X, BUFFER_Y)
+		;clickObject(CALLALLY_BUTTON)
 	}
 
 	if (detectObject(CALLALLYPAGE_TEXT))
