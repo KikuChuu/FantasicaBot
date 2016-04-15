@@ -152,7 +152,9 @@ deployAlly(attackType = 0, attribType = 0)
     {
       if (findCoordinate())
       {
-        clickObject(CONFIRMUNITPLACEMENT_BUTTON)
+        while (detectObject(CONFIRMPLACEMENT_BUTTON)) {
+          clickObject(CONFIRMUNITPLACEMENT_BUTTON)
+        }
         return 1
       }
       else {
@@ -214,7 +216,7 @@ deployUnit(attackType := 0, attribType := 0)
   ; Locate a tile to place the unit
   if (findCoordinate())
   {
-    if (detectObject(CONFIRMUNITPLACEMENT_BUTTON)) {
+    while (detectObject(CONFIRMUNITPLACEMENT_BUTTON)) {
       clickObject(CONFIRMUNITPLACEMENT_BUTTON)
     }
     return 1
