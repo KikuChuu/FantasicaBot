@@ -1,59 +1,73 @@
-﻿#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
-; #Warn  ; Enable warnings to assist with detecting common errors.
+﻿; =============================================================================
+; Login.ahk
+;
+; - Handles login-related tasks
+;
+;
+; The MIT License
+;
+; Copyright (c) 2016 Ricky Tran <rickytran991@gmail.com>
+;
+; Permission is hereby granted, free of charge, to any person obtaining a copy
+; of this software and associated documentation files (the "Software"), to deal
+; in the Software without restriction, including without limitation the rights
+; to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+; copies of the Software, and to permit persons to whom the Software is
+; furnished to do so, subject to the following conditions:
+; 
+; The above copyright notice and this permission notice shall be included in
+; all copies or substantial portions of the Software.
+; 
+; THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+; IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+; FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+; AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+; LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+; OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+; THE SOFTWARE.
+; =============================================================================
+#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 #include %A_ScriptDir%\includes\IncludeScript.ahk
 
-;------- INITIALIZE -------------------------
+; =============================================================================
 Init_globals() ; Found in GlobalConstants.ahk
-;--------------------------------------------
+; =============================================================================
+
 
 loop
 {
-	if (DetectObject(STARTGAME_BUTTON))
+	if (detectObject(LOGINBINGO_TEXT))
 	{
-		if (DetectObject(RESUMEQUESTNO_BUTTON))
-		{
-		    ClickObject(RESUMEQUESTNO_BUTTON)
+    if (detectObject(LOGINBINGOMYPAGE_BUTTON)) {
+      clickObject(LOGINBINGOMYPAGE_BUTTON)
+    }
+		else if (detectObject(LOGINBINGORECEIVE_BUTTON)) {
+			clickObject(LOGINBINGORECEIVE_BUTTON)
 		}
-		else
-		{
-		    ClickObject(STARTGAME_BUTTON)
-		}
-	}
-
-	if (DetectObject(LOGINBINGO_TEXT))
-	{
-		if (DetectObject(LOGINBINGORECEIVE_BUTTON))
-		{
-			ClickObject(LOGINBINGORECEIVE_BUTTON)
-		}
-		else
-		{
-			LoginBingoHelperClicker()
+		else if (detectObject(LOGINBINGOPANEL_ICON), 50) {
+		  clickObject(LOGINBINGOPANEL_ICON, 50)
 		}
 	}	
 
-	if (DetectObject(LOGINBONUSMYPAGE_BUTTON))
-	{
-		ClickObject(LOGINBONUSMYPAGE_BUTTON)
+	if (detectObject(LOGINBONUSMYPAGE_BUTTON)) {
+		clickObject(LOGINBONUSMYPAGE_BUTTON)
 	}
 
-	if (DetectObject(ALLYPENDINGREQUEST_TEXT))
-	{
-		ClickObject(BACK_BUTTON)
+	if (detectObject(ALLYPENDINGREQUEST_TEXT)) {
+		clickObject(BACK_BUTTON)
 	}
-	else if (DetectObject(ALLY_TEXT))
-	{
-		ClickObject(BACK_BUTTON)
+	else if (detectObject(ALLY_TEXT))	{
+		clickObject(BACK_BUTTON)
 	}
 
-	if (DetectObject(POPUPCLOSE_BUTTON))
-	{
-		ClickObject(POPUPCLOSE_BUTTON)
+	if (detectObject(POPUPCLOSE_BUTTON)) {
+		clickObject(POPUPCLOSE_BUTTON)
 	}
 }
+
 
 F1::ExitApp
 F2::Pause
