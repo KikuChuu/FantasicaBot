@@ -1,9 +1,6 @@
 ;General Specification
 ;---------------------
 	SLEEPTIME = 200 ;DELAY OF BUTTON CLICKS
-	QUICKSCAN = 2 	; 2 = reduce delay of unit placement scan to 1ms (not accurate)
-			; 1 = reduce delay of unit placement scan by half	of SLEEPTIME
-		      	; 0 = regular SLEEPTIME delay
 	SHOULD_CLICK := 1
 
 ; Item Settings
@@ -19,14 +16,14 @@ potion := 0
 	
 ;Quest Selection Specification
 ;-----------------------------
-	QUEST = 1 ; Enter 1,2,3,4,5,6, or 7
+	QUEST = 7 ; Enter 1,2,3,4,5,6, or 7
 	EPISODE = 59
 ;Quest Battle specification
 ;--------------------------												 
 	DEPLOY_NUMBER = 1 	;number of units to deploy
-	ATTACK_TYPE = 0 	 	;land = 1, air = 2, sea = 3, default = 0
-	ATTRIB_TYPE = 0		;Melee = 1, missile = 2, magic = 3, all = 0
-	LEVELBOT = 0		;0 = no, 1 = set starting point specifically for quest 2-7
+	ATTACK_TYPE = 3 	 	;land = 1, air = 2, sea = 3, default = 0
+	ATTRIB_TYPE = 3		;Melee = 1, missile = 2, magic = 3, all = 0
+	LEVELBOT = 1		;0 = no, 1 = set starting point specifically for quest 2-7
 	BOTALLQUEST = 0     ;0 = repeat the same quest, 1 = quest progression
 	SKIPQUEST = 1		;1 = speeds up quest battle, 0 = ignore the skip quest button in quest
 
