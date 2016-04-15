@@ -40,7 +40,7 @@ SetDefaultMouseSpeed 0
 ;Init Global by invoking the following 
 ;GlobalConstants.ahk function.
 
-Init_globals() ; Found in GlobalConstants.ahk
+initGlobals() ; Found in GlobalConstants.ahk
 ;==============================================================================
 
 

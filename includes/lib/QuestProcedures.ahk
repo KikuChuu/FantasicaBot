@@ -152,7 +152,7 @@ deployAlly(attackType = 0, attribType = 0)
     {
       if (findCoordinate())
       {
-        while (detectObject(CONFIRMPLACEMENT_BUTTON)) {
+        while (detectObject(CONFIRMUNITPLACEMENT_BUTTON)) {
           clickObject(CONFIRMUNITPLACEMENT_BUTTON)
         }
         return 1

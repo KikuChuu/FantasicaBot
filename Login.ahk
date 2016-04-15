@@ -33,7 +33,7 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 #include %A_ScriptDir%\includes\IncludeScript.ahk
 
 ; =============================================================================
-Init_globals() ; Found in GlobalConstants.ahk
+initGlobals() ; Found in GlobalConstants.ahk
 ; =============================================================================
 
 

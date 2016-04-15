@@ -35,7 +35,7 @@ SetWorkingDir %A_ScriptDir%
 ;============================================
 ;Init Global by invoking the following 
 ;GlobalConstants.ahk function.
-Init_globals() ; Found in GlobalConstants.ahk
+initGlobals() ; Found in GlobalConstants.ahk
 ;============================================
 SetDefaultMouseSpeed 0
 
