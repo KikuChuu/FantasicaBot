@@ -99,6 +99,9 @@ loop
     if (deployUnit(ATTACK_TYPE, ATTRIB_TYPE)) {
       deployUnitNum++
     }
+    else {
+      deployUnitNum := DEPLOY_NUMBER
+    }
   }
 
 	if (detectObject(CALLALLY_BUTTON) && pendingAllies)

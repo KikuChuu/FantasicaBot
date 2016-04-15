@@ -115,7 +115,8 @@ initGlobals()
 		; The third parameter tells the bot how large a unit tile roughly is.
 		SCAN_START_X := 95
 		SCAN_START_Y := 72
-		SCAN_TILE_SIZE := 73
+    SCAN_TILE_HEIGHT := 36
+    SCAN_TILE_WIDTH := 36
 	}
 	else if (width == 677 && height == 1102)
 	{
