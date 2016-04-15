@@ -1,24 +1,57 @@
-﻿#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
-; #Warn  ; Enable warnings to assist with detecting common errors.
+﻿; =============================================================================
+; GlobalConstants.ahk
+;
+; - This script is responsible for initializing the variables used by other
+;   scripts within this system.
+;
+;
+; The MIT License
+;
+; Copyright (c) 2016 Ricky Tran <rickytran991@gmail.com>
+;
+; Permission is hereby granted, free of charge, to any person obtaining a copy
+; of this software and associated documentation files (the "Software"), to deal
+; in the Software without restriction, including without limitation the rights
+; to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+; copies of the Software, and to permit persons to whom the Software is
+; furnished to do so, subject to the following conditions:
+; 
+; The above copyright notice and this permission notice shall be included in
+; all copies or substantial portions of the Software.
+; 
+; THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+; IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+; FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+; AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+; LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+; OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+; THE SOFTWARE.
+; =============================================================================
+
+#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 SetWinDelay, 0
 
-Init_globals()
+
+; initGlobals - Discovers the window's width and height dimensions and initialize
+;               values appropriately.
+; @return string - Returns a blank value (empty string) to its caller
+initGlobals()
 {
 	; Declare that call variables in this function are global variables
 	global
-  maxPasses := 2	
 
 	; Discover the window title
-	if WinExist("BlueStacks App Player")
+  BLUESTACK_WINDOW_TITLE := ""
+	if (winExist("BlueStacks App Player"))
 	{
 		BLUESTACK_WINDOW_TITLE := "BlueStacks App Player"
 		WinActivate, %BLUESTACK_WINDOW_TITLE%
 		WinWaitActive, %BLUESTACK_WINDOW_TITLE%, , 2
 	}
-	else if WinExist("Bluestacks App Player")
+	else if (winExist("Bluestacks App Player"))
 	{
 		BLUESTACK_WINDOW_TITLE := "Bluestacks App Player"
 		WinActivate, %BLUESTACK_WINDOW_TITLE%
@@ -26,10 +59,11 @@ Init_globals()
 	}
 	else
 	{
-		MsgBox % "Did not find any of the following matching window titles: `n"
-				 . "'BlueStacks App Player'`n'Bluestacks App Player'"
-				 . "`nPausing the script."
-		Pause
+    msg := "Check to see if your Bluestack's title is one of the following: `n"
+            . " BlueStacks App Player`n"
+            . " Bluestacks App Player"
+		MsgBox,, "Error", msg
+    ExitApp
 	}
 
 	; Obtain the window size in terms of width and height.
@@ -38,10 +72,14 @@ Init_globals()
 	WinGetPos,,,width, height, %BLUESTACK_WINDOW_TITLE%
 	if (width == 0 || height == 0)
 	{
-		MsgBox % "Invalid window size"
+		MsgBox,, "Error", "Invalid window size"
+    ExitApp
 	}
-	X2 := width
-	Y2 := height
+	else 
+  {
+    X2 := width
+	  Y2 := height
+  }
 
 
 	if (width == 632 && height == 1030)
@@ -103,7 +141,7 @@ Init_globals()
     SCAN_TILE_HEIGHT := 40
 		SCAN_TILE_WIDTH := 39
         
-        CARDMENU_X := 100
+    CARDMENU_X := 100
 		CARDMENU_Y := 800
 	}
 	else if (width == 1282 && height == 749)
@@ -128,12 +166,6 @@ Init_globals()
 		SCAN_START_X := 465
 		SCAN_START_Y := 99
 		SCAN_TILE_SIZE := 51
-        
-        CARDMENU_X := 500
-        CARDMENU_Y := 600
-        
-        DICEMENU_X := 800
-        DICEMENU_Y := 600
 	}
 	else if (width == 1920 && height == 1080)
 	{
@@ -180,17 +212,16 @@ Init_globals()
 	QUEST3_ICON := "FANTASICA IMAGES\MainPage\iconquest3-" . width . "_" . height . ".png" ;Quest icon on home page
 	QUEST4_ICON := "FANTASICA IMAGES\MainPage\iconquest4-" . width . "_" . height . ".png" ;Quest icon on home page
 	QUEST5_ICON := "FANTASICA IMAGES\MainPage\iconquest5-" . width . "_" . height . ".png" ;Quest icon on home page
-	
 	QUESTTIMER_TEXT := "FANTASICA IMAGES\MainPage\textquesttimer-" . width . "_" . height . ".png"
 	
-    BATTLE_ICON := "FANTASICA IMAGES\MainPage\battle-" . width . "_" . height . ".png"
-    BATTLE_SELECT_TITLE := "FANTASICA IMAGES\Battle\SelectOpponent\title-" . width . "_" . height . ".png"
-    BATTLE_SELECT := "FANTASICA IMAGES\Battle\SelectOpponent\select-" . width . "_" . height . ".png"
-    BATTLE_TITLE := "FANTASICA IMAGES\Battle\Battle\title-" . width . "_" . height . ".png"
-    BATTLE_BUTTON := "FANTASICA IMAGES\Battle\Battle\battle-" . width . "_" . height . ".png"
-    BATTLE_RESULTS_TITLE := "FANTASICA IMAGES\Battle\Results\title-" . width . "_" . height . ".png"
-    BATTLE_MYPAGE := "FANTASICA IMAGES\Battle\Results\mypage-" . width . "_" . height . ".png"
-    BATTLE_TIMER := "FANTASICA IMAGES\Battle\timer-" . width . "_" . height . ".png"
+  BATTLE_ICON := "FANTASICA IMAGES\MainPage\battle-" . width . "_" . height . ".png"
+  BATTLE_SELECT_TITLE := "FANTASICA IMAGES\Battle\SelectOpponent\title-" . width . "_" . height . ".png"
+  BATTLE_SELECT := "FANTASICA IMAGES\Battle\SelectOpponent\select-" . width . "_" . height . ".png"
+  BATTLE_TITLE := "FANTASICA IMAGES\Battle\Battle\title-" . width . "_" . height . ".png"
+  BATTLE_BUTTON := "FANTASICA IMAGES\Battle\Battle\battle-" . width . "_" . height . ".png"
+  BATTLE_RESULTS_TITLE := "FANTASICA IMAGES\Battle\Results\title-" . width . "_" . height . ".png"
+  BATTLE_MYPAGE := "FANTASICA IMAGES\Battle\Results\mypage-" . width . "_" . height . ".png"
+  BATTLE_TIMER := "FANTASICA IMAGES\Battle\timer-" . width . "_" . height . ".png"
     
 	EPISODESELECT1_BUTTON := "FANTASICA IMAGES\Quest\EpisodeSelection\buttonselectepisode1-" . width . "_" . height . ".png"
 	EPISODESELECT2_BUTTON := "FANTASICA IMAGES\Quest\EpisodeSelection\buttonselectepisode2-" . width . "_" . height . ".png"
@@ -208,16 +239,16 @@ Init_globals()
 	
 	QUEST_TEXT := "FANTASICA IMAGES\Quest\QuestSelection\textquest-" . width . "_" . height . ".png"
 	SELECTEPISODE_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonselectepisode-" . width . "_" . height . ".png" ;The 'Select Episode' button for quest
-    QUEST1 := "FANTASICA IMAGES\Quest\QuestSelection\quest1-" . width . "_" . height . ".png"
-    QUEST2 := "FANTASICA IMAGES\Quest\QuestSelection\quest2-" . width . "_" . height . ".png"
-    QUEST3 := "FANTASICA IMAGES\Quest\QuestSelection\quest3-" . width . "_" . height . ".png"
-    QUEST4 := "FANTASICA IMAGES\Quest\QuestSelection\quest4-" . width . "_" . height . ".png"
-    QUEST5 := "FANTASICA IMAGES\Quest\QuestSelection\quest5-" . width . "_" . height . ".png"
-    QUEST6 := "FANTASICA IMAGES\Quest\QuestSelection\quest6-" . width . "_" . height . ".png"
-    QUEST7 := "FANTASICA IMAGES\Quest\QuestSelection\quest7-" . width . "_" . height . ".png"
-    QUEST8 := "FANTASICA IMAGES\Quest\QuestSelection\quest8-" . width . "_" . height . ".png"
-    QUEST9 := "FANTASICA IMAGES\Quest\QuestSelection\quest9-" . width . "_" . height . ".png"
-    QUEST10 := "FANTASICA IMAGES\Quest\QuestSelection\quest10-" . width . "_" . height . ".png"
+  QUEST1 := "FANTASICA IMAGES\Quest\QuestSelection\quest1-" . width . "_" . height . ".png"
+  QUEST2 := "FANTASICA IMAGES\Quest\QuestSelection\quest2-" . width . "_" . height . ".png"
+  QUEST3 := "FANTASICA IMAGES\Quest\QuestSelection\quest3-" . width . "_" . height . ".png"
+  QUEST4 := "FANTASICA IMAGES\Quest\QuestSelection\quest4-" . width . "_" . height . ".png"
+  QUEST5 := "FANTASICA IMAGES\Quest\QuestSelection\quest5-" . width . "_" . height . ".png"
+  QUEST6 := "FANTASICA IMAGES\Quest\QuestSelection\quest6-" . width . "_" . height . ".png"
+  QUEST7 := "FANTASICA IMAGES\Quest\QuestSelection\quest7-" . width . "_" . height . ".png"
+  QUEST8 := "FANTASICA IMAGES\Quest\QuestSelection\quest8-" . width . "_" . height . ".png"
+  QUEST9 := "FANTASICA IMAGES\Quest\QuestSelection\quest9-" . width . "_" . height . ".png"
+  QUEST10 := "FANTASICA IMAGES\Quest\QuestSelection\quest10-" . width . "_" . height . ".png"
 	STARTQUEST1_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest1-" . width . "_" . height . ".png" ;quest #1
 	STARTQUEST2_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest2-" . width . "_" . height . ".png" ;quest #2
 	STARTQUEST3_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest3-" . width . "_" . height . ".png" ;quest #3
@@ -225,9 +256,9 @@ Init_globals()
 	STARTQUEST5_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest5-" . width . "_" . height . ".png" ;quest #5
 	STARTQUEST6_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest6-" . width . "_" . height . ".png" ;quest #6
 	STARTQUEST7_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest7-" . width . "_" . height . ".png" ;quest #7
-    STARTQUEST8_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest8-" . width . "_" . height . ".png" ;quest #8
-    STARTQUEST9_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest9-" . width . "_" . height . ".png" ;quest #9
-    STARTQUEST10_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest10-" . width . "_" . height . ".png" ;quest #10
+  STARTQUEST8_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest8-" . width . "_" . height . ".png" ;quest #8
+  STARTQUEST9_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest9-" . width . "_" . height . ".png" ;quest #9
+  STARTQUEST10_BUTTON := "FANTASICA IMAGES\Quest\QuestSelection\buttonstartquest10-" . width . "_" . height . ".png" ;quest #10
 	
 	STARTTRAINING1_BUTTON := "FANTASICA IMAGES\Training\TrainingSelection\buttonstarttraining1-" . width . "_" . height . ".png"
 	STARTTRAINING2_BUTTON := "FANTASICA IMAGES\Training\TrainingSelection\buttonstarttraining2-" . width . "_" . height . ".png" 
@@ -241,16 +272,15 @@ Init_globals()
 	HEAL_BUTTON := "FANTASICA IMAGES\Training\ActualTraining\buttonheal-" . width . "_" . height . ".png"
 	HEALMID_BUTTON := "FANTASICA IMAGES\Training\ActualTraining\buttonhealmid-" . width . "_" . height . ".png"
 	HEALDARK_BUTTON := "FANTASICA IMAGES\Training\ActualTraining\buttonhealdark-" . width . "_" . height . ".png" 
-    HEALMOBACOIN_BUTTON := "FANTASICA IMAGES\Training\ActualTraining\buttonhealmobacoin-" . width . "_" . height . ".png"
-    HEALMOBACOINMID_BUTTON := "FANTASICA IMAGES\Training\ActualTraining\buttonhealmobacoinmid-" . width . "_" . height . ".png"
-    HEALMOBACOINDARK_BUTTON := "FANTASICA IMAGES\Training\ActualTraining\buttonhealmobacoindark-" . width . "_" . height . ".png"
+  HEALMOBACOIN_BUTTON := "FANTASICA IMAGES\Training\ActualTraining\buttonhealmobacoin-" . width . "_" . height . ".png"
+  HEALMOBACOINMID_BUTTON := "FANTASICA IMAGES\Training\ActualTraining\buttonhealmobacoinmid-" . width . "_" . height . ".png"
+  HEALMOBACOINDARK_BUTTON := "FANTASICA IMAGES\Training\ActualTraining\buttonhealmobacoindark-" . width . "_" . height . ".png"
 	USEPOTIONYES_BUTTON := "FANTASICA IMAGES\Training\ActualTraining\buttonpotionyes-" . width . "_" . height . ".png" 
 	OUTOFTP_TEXT := "FANTASICA IMAGES\Training\ActualTraining\texttrainingpoints-" . width . "_" . height . ".png"
 	CONTINUETRAINING_BUTTON := "FANTASICA IMAGES\Training\ActualTraining\buttoncontinuetraining-" . width . "_" . height . ".png"
 	TRAININGMYPAGE_BUTTON := "FANTASICA IMAGES\Training\ActualTraining\buttonmypage-" . width . "_" . height . ".png"
 	TRAININGFIGHT_BUTTON := "FANTASICA IMAGES\Training\ActualTraining\buttonfight-" . width . "_" . height . ".png"
 	TRAININGSUMMONALLY_BUTTON := "FANTASICA IMAGES\Training\ActualTraining\buttonsummonally-" . width . "_" . height . ".png"
-	
 	TRAININGPROGRESSCOMPLETE_TEXT := "FANTASICA IMAGES\Training\ActualTraining\textprogresscomplete-" . width . "_" . height . ".png"
     
 	CALLALLY_BUTTON := "FANTASICA IMAGES\Quest\QuestBattle\buttoncallally-" . width . "_" . height . ".png" ;the call ally button in questing
@@ -330,315 +360,21 @@ Init_globals()
 	TRAINING2_ICON := "FANTASICA IMAGES\MainPage\icontraining2-" . width . "_" . height . ".png" ;Training icon on homepage at index 2 (starting with index 0)
 	TRAINING3_ICON := "FANTASICA IMAGES\MainPage\icontraining3-" . width . "_" . height . ".png" ;Training icon on homepage at index 3 (starting with index 0)	
 	TRAINING4_ICON := "FANTASICA IMAGES\MainPage\icontraining4-" . width . "_" . height . ".png" ;Training icon on homepage at index 4 (starting with index 0)	
-    TRAINING5_ICON := "FANTASICA IMAGES\MainPage\icontraining5-" . width . "_" . height . ".png" ;Training icon on homepage at index 5 (starting with index 0)	
+  TRAINING5_ICON := "FANTASICA IMAGES\MainPage\icontraining5-" . width . "_" . height . ".png" ;Training icon on homepage at index 5 (starting with index 0)	
 	LOGINBINGOPANEL_ICON := "FANTASICA IMAGES\MainPage\Bingo\iconbingopanel-" . width . "_" . height . ".png" ;login bingo panel
 	LOGINBINGOMYPAGE_BUTTON := "FANTASICA IMAGES\MainPage\Bingo\buttonbingomypage-" . width . "_" . height . ".png" ;button to return to mypage from login bingo
 	LOGINBINGORECEIVE_BUTTON := "FANTASICA IMAGES\MainPage\Bingo\buttonbingoreceive-" . width . "_" . height . ".png" ; receive button when you click a panel in the daily login bingo
 	LOGINBINGO_TEXT := "FANTASICA IMAGES\MainPage\Bingo\textbingo-" . width . "_" . height . ".png" ;"Login Bingo"
 	
-    INBOX1_ICON := "FANTASICA IMAGES\MainPage\iconinbox15-" . width . "_" . height . ".png"
-    INBOX2_ICON := "FANTASICA IMAGES\MainPage\iconinbox16-" . width . "_" . height . ".png"
-    INBOX_TITLE := "FANTASICA IMAGES\Inbox\texttitle-" . width . "_" . height . ".png"
-    INBOX_ALL_BUTTON := "FANTASICA IMAGES\Inbox\buttonall-" . width . "_" . height . ".png"
-    INBOX_ITEMS_BUTTON := "FANTASICA IMAGES\Inbox\buttonitems-" . width . "_" . height . ".png"
-    INBOX_RECEIVE_BUTTON := "FANTASICA IMAGES\Inbox\buttonreceive-" . width . "_" . height . ".png"
+  INBOX1_ICON := "FANTASICA IMAGES\MainPage\iconinbox15-" . width . "_" . height . ".png"
+  INBOX2_ICON := "FANTASICA IMAGES\MainPage\iconinbox16-" . width . "_" . height . ".png"
+  INBOX_TITLE := "FANTASICA IMAGES\Inbox\texttitle-" . width . "_" . height . ".png"
+  INBOX_ALL_BUTTON := "FANTASICA IMAGES\Inbox\buttonall-" . width . "_" . height . ".png"
+  INBOX_ITEMS_BUTTON := "FANTASICA IMAGES\Inbox\buttonitems-" . width . "_" . height . ".png"
+  INBOX_RECEIVE_BUTTON := "FANTASICA IMAGES\Inbox\buttonreceive-" . width . "_" . height . ".png"
     
-	ROULETTESTART_BUTTON := "FANTASICA IMAGES\MainPage\Roulette\buttonstartroulette-" . width . "_" . height . ".png" ;the start button to start spinning the wheel
-	ROULETTESTOP_BUTTON := "FANTASICA IMAGES\MainPage\Roulette\buttonstoproulette-" . width . "_" . height . ".png" ;the stop button to stop the wheel
-	ROULETTENINEBLUE3_TEXT := "FANTASICA IMAGES\MainPage\Roulette\textnineblue3-" . width . "_" . height . ".png" ;the blue panel 9 at the 3rd index
-	ROULETTENINEBLUE4_TEXT := "FANTASICA IMAGES\MainPage\Roulette\textnineblue4-" . width . "_" . height . ".png" ;the blue panel 9 at the 4th index
-	ROULETTENINE_TEXT := "FANTASICA IMAGES\MainPage\Roulette\textnine-" . width . "_" . height . ".png" ;the panel 9
-	ROULETTETHREE_TEXT := "FANTASICA IMAGES\MainPage\Roulette\textthree-" . width . "_" . height . ".png" ;the panel 3
-	
-    DAILY_BONUS := "FANTASICA IMAGES\MainPage\Bonus\dailybonus-" . width . "_" . height . ".png"
+  DAILY_BONUS := "FANTASICA IMAGES\MainPage\Bonus\dailybonus-" . width . "_" . height . ".png"
 	LOGINBONUSMYPAGE_BUTTON := "FANTASICA IMAGES\MainPage\Bonus\buttonmypage-" . width . "_" . height . ".png"
 	
 	BACK_BUTTON := "FANTASICA IMAGES\_GeneralPupose\buttonback-" . width . "_" . height . ".png" ;The back button found in the bottom right corner of the app screen (not the corner of bluestack screen)
-	
-	;===========================================================================
-	;***************************************************************************
-	;---------------------------- EVENT VARIABLES ------------------------------
-	;***************************************************************************
-	;===========================================================================
-    ; --------------------------------------------------------------------------
-    ; CLASH OF LEGENDS EVENT
-    ; --------------------------------------------------------------------------
-    CSH_TITLE := "FANTASICA IMAGES\Event\ClashOfLegends\title-" . width . "_" . height . ".png"
-    CSH_TOMES := "FANTASICA IMAGES\Event\ClashOfLegends\tomes-" . width . "_" . height . ".png"
-    CSH_BATTLE := "FANTASICA IMAGES\Event\ClashOfLegends\battle-" . width . "_" . height . ".png"
-    CSH_ASSIST := "FANTASICA IMAGES\Event\ClashOfLegends\assist-" . width . "_" . height . ".png"
-    CSH_CPBAR1 := "FANTASICA IMAGES\Event\ClashOfLegends\cpbar1-" . width . "_" . height . ".png"
-    CSH_CPBAR2 := "FANTASICA IMAGES\Event\ClashOfLegends\cpbar2-" . width . "_" . height . ".png"
-    CSH_CPBAR3 := "FANTASICA IMAGES\Event\ClashOfLegends\cpbar3-" . width . "_" . height . ".png"
-    CSH_CPBAR4 := "FANTASICA IMAGES\Event\ClashOfLegends\cpbar4-" . width . "_" . height . ".png"
-    CSH_BATTLESELECTTITLE := "FANTASICA IMAGES\Event\ClashOfLegends\battleselectscreen\title-" . width . "_" . height . ".png"
-    CSH_FIGHT_ADEPT := "FANTASICA IMAGES\Event\ClashOfLegends\battleselectscreen\fightadept-" . width . "_" . height . ".png"
-    CSH_FIGHT_VETERAN := "FANTASICA IMAGES\Event\ClashOfLegends\battleselectscreen\fightveteran-" . width . "_" . height . ".png"
-    CSH_FIGHT_MASTER := "FANTASICA IMAGES\Event\ClashOfLegends\battleselectscreen\fightmaster-" . width . "_" . height . ".png"
-    CSH_FIGHT_LEGEND := "FANTASICA IMAGES\Event\ClashOfLegends\battleselectscreen\fightlegend-" . width . "_" . height . ".png"
-    CSH_LEGEND := "FANTASICA IMAGES\Event\ClashOfLegends\battleselectscreen\legend-" . width . "_" . height . ".png"
-    CSH_RESTORECPPROMPT := "FANTASICA IMAGES\Event\ClashOfLegends\battleselectscreen\restorecpprompt-" . width . "_" . height . ".png"
-    CSH_CANCEL_RESTORE := "FANTASICA IMAGES\Event\ClashOfLegends\battleselectscreen\cancelrestore-" . width . "_" . height . ".png"
-    CSH_RESTORE_VIA_TE := "FANTASICA IMAGES\Event\ClashOfLegends\battleselectscreen\restoreviate-" . width . "_" . height . ".png"
-    CSH_RESTORE_VIA_TONIC := "FANTASICA IMAGES\Event\ClashOfLegends\battleselectscreen\restoreviatonic-" . width . "_" . height . ".png"
-    CSH_USETEPROMPT := "FANTASICA IMAGES\Event\ClashOfLegends\battleselectscreen\useteprompt-" . width . "_" . height . ".png"
-    CSH_USETEYES := "FANTASICA IMAGES\Event\ClashOfLegends\battleselectscreen\useteyes-" . width . "_" . height . ".png"
-    CSH_USE_TONIC_PROMPT := "FANTASICA IMAGES\Event\ClashOfLegends\battleselectscreen\usetonicprompt-" . width . "_" . height . ".png"
-    CSH_USE_TONIC_YES := "FANTASICA IMAGES\Event\ClashOfLegends\battleselectscreen\usetonicyes-" . width . "_" . height . ".png"
-    CSH_TEAM1 := "FANTASICA IMAGES\Event\ClashOfLegends\teamscreen\team1-" . width . "_" . height . ".png"
-    CSH_TEAM2 := "FANTASICA IMAGES\Event\ClashOfLegends\teamscreen\team2-" . width . "_" . height . ".png"
-    CSH_TEAM3 := "FANTASICA IMAGES\Event\ClashOfLegends\teamscreen\team3-" . width . "_" . height . ".png"
-    CSH_TEAM4 := "FANTASICA IMAGES\Event\ClashOfLegends\teamscreen\team4-" . width . "_" . height . ".png"
-    CSH_ENEMY1_MAGIC := "FANTASICA IMAGES\Event\ClashOfLegends\teamscreen\enemy1magic-" . width . "_" . height . ".png"
-    CSH_ENEMY1_MELEE := "FANTASICA IMAGES\Event\ClashOfLegends\teamscreen\enemy1melee-" . width . "_" . height . ".png"
-    CSH_ENEMY1_MISSILE := "FANTASICA IMAGES\Event\ClashOfLegends\teamscreen\enemy1missile-" . width . "_" . height . ".png"
-    CSH_ENEMY2_MAGIC := "FANTASICA IMAGES\Event\ClashOfLegends\teamscreen\enemy2magic-" . width . "_" . height . ".png"
-    CSH_ENEMY2_MELEE := "FANTASICA IMAGES\Event\ClashOfLegends\teamscreen\enemy2melee-" . width . "_" . height . ".png"
-    CSH_ENEMY2_MISSILE := "FANTASICA IMAGES\Event\ClashOfLegends\teamscreen\enemy2missile-" . width . "_" . height . ".png"
-    CSH_ENEMY3_MAGIC := "FANTASICA IMAGES\Event\ClashOfLegends\teamscreen\enemy3magic-" . width . "_" . height . ".png"
-    CSH_ENEMY3_MELEE := "FANTASICA IMAGES\Event\ClashOfLegends\teamscreen\enemy3melee-" . width . "_" . height . ".png"
-    CSH_ENEMY3_MISSILE := "FANTASICA IMAGES\Event\ClashOfLegends\teamscreen\enemy3missile-" . width . "_" . height . ".png"
-    CSH_ENEMY4_MAGIC := "FANTASICA IMAGES\Event\ClashOfLegends\teamscreen\enemy4magic-" . width . "_" . height . ".png"
-    CSH_ENEMY4_MELEE := "FANTASICA IMAGES\Event\ClashOfLegends\teamscreen\enemy4melee-" . width . "_" . height . ".png"
-    CSH_ENEMY4_MISSILE := "FANTASICA IMAGES\Event\ClashOfLegends\teamscreen\enemy4missile-" . width . "_" . height . ".png"
-    CSH_ENEMY5_MAGIC := "FANTASICA IMAGES\Event\ClashOfLegends\teamscreen\enemy5magic-" . width . "_" . height . ".png"
-    CSH_ENEMY5_MELEE := "FANTASICA IMAGES\Event\ClashOfLegends\teamscreen\enemy5melee-" . width . "_" . height . ".png"
-    CSH_ENEMY5_MISSILE := "FANTASICA IMAGES\Event\ClashOfLegends\teamscreen\enemy5missile-" . width . "_" . height . ".png"
-    CSH_ENEMY6_MAGIC := "FANTASICA IMAGES\Event\ClashOfLegends\teamscreen\enemy6magic-" . width . "_" . height . ".png"
-    CSH_ENEMY6_MELEE := "FANTASICA IMAGES\Event\ClashOfLegends\teamscreen\enemy6melee-" . width . "_" . height . ".png"
-    CSH_ENEMY6_MISSILE := "FANTASICA IMAGES\Event\ClashOfLegends\teamscreen\enemy6missile-" . width . "_" . height . ".png"
-    CSH_ENEMY7_MAGIC := "FANTASICA IMAGES\Event\ClashOfLegends\teamscreen\enemy7magic-" . width . "_" . height . ".png"
-    CSH_ENEMY7_MELEE := "FANTASICA IMAGES\Event\ClashOfLegends\teamscreen\enemy7melee-" . width . "_" . height . ".png"
-    CSH_ENEMY7_MISSILE := "FANTASICA IMAGES\Event\ClashOfLegends\teamscreen\enemy7missile-" . width . "_" . height . ".png"
-    CSH_ENEMY8_MAGIC := "FANTASICA IMAGES\Event\ClashOfLegends\teamscreen\enemy8magic-" . width . "_" . height . ".png"
-    CSH_ENEMY8_MELEE := "FANTASICA IMAGES\Event\ClashOfLegends\teamscreen\enemy8melee-" . width . "_" . height . ".png"
-    CSH_ENEMY8_MISSILE := "FANTASICA IMAGES\Event\ClashOfLegends\teamscreen\enemy8missile-" . width . "_" . height . ".png"
-    CSH_START := "FANTASICA IMAGES\Event\ClashOfLegends\teamscreen\start-" . width . "_" . height . ".png"
-    CSH_BEGINPROMPT := "FANTASICA IMAGES\Event\ClashOfLegends\teamscreen\beginprompt-" . width . "_" . height . ".png"
-    CSH_YES := "FANTASICA IMAGES\Event\ClashOfLegends\teamscreen\yes-" . width . "_" . height . ".png"
-    CSH_SUPPORT1 := "FANTASICA IMAGES\Event\ClashOfLegends\battlescreen\support1-" . width . "_" . height . ".png"
-    CSH_SUPPORT2 := "FANTASICA IMAGES\Event\ClashOfLegends\battlescreen\support2-" . width . "_" . height . ".png"
-    CSH_SUPPORT3 := "FANTASICA IMAGES\Event\ClashOfLegends\battlescreen\support3-" . width . "_" . height . ".png"
-    CSH_SUPPORT4 := "FANTASICA IMAGES\Event\ClashOfLegends\battlescreen\support4-" . width . "_" . height . ".png"
-    CSH_SKIP := "FANTASICA IMAGES\Event\ClashOfLegends\battlescreen\skip-" . width . "_" . height . ".png"
-    CSH_RETRYPROMPT := "FANTASICA IMAGES\Event\ClashOfLegends\battlescreen\retryprompt-" . width . "_" . height . ".png"
-    CSH_CANCEL_RETRY := "FANTASICA IMAGES\Event\ClashOfLegends\battlescreen\cancelretry-" . width . "_" . height . ".png"
-    CSH_RETRY_VIA_POTION := "FANTASICA IMAGES\Event\ClashOfLegends\battlescreen\retryviapotion-" . width . "_" . height . ".png"
-    CSH_RETRY_VIA_TONIC := "FANTASICA IMAGES\Event\ClashOfLegends\battlescreen\retryviatonic-" . width . "_" . height . ".png"
-    CSH_POTION_PROMPT := "FANTASICA IMAGES\Event\ClashOfLegends\battlescreen\potionprompt-" . width . "_" . height . ".png"
-    CSH_POTIONYES := "FANTASICA IMAGES\Event\ClashOfLegends\battlescreen\potionyes-" . width . "_" . height . ".png"
-    CSH_TONIC_PROMPT := "FANTASICA IMAGES\Event\ClashOfLegends\battlescreen\tonicprompt-" . width . "_" . height . ".png"
-    CSH_TONIC_YES := "FANTASICA IMAGES\Event\ClashOfLegends\battlescreen\tonicyes-" . width . "_" . height . ".png"
-    CSH_GIVEUP_PROMPT := "FANTASICA IMAGES\Event\ClashOfLegends\battlescreen\giveupprompt-" . width . "_" . height . ".png"
-    CSH_GIVEUP_YES := "FANTASICA IMAGES\Event\ClashOfLegends\battlescreen\giveupyes-" . width . "_" . height . ".png"
-    CSH_RESULTSTITLE := "FANTASICA IMAGES\Event\ClashOfLegends\results\title-" . width . "_" . height . ".png"
-    CSH_TOP := "FANTASICA IMAGES\Event\ClashOfLegends\results\top-" . width . "_" . height . ".png"
-    CSH_NEXT := "FANTASICA IMAGES\Event\ClashOfLegends\results\next-" . width . "_" . height . ".png"
-    CSH_ASSIST_TITLE := "FANTASICA IMAGES\Event\ClashOfLegends\assistscreen\title-" . width . "_" . height . ".png"
-    CSH_ASSIST_ALL := "FANTASICA IMAGES\Event\ClashOfLegends\assistscreen\assistall-" . width . "_" . height . ".png"
-    CSH_REQUEST_ASSIST := "FANTASICA IMAGES\Event\ClashOfLegends\assistscreen\requestassist-" . width . "_" . height . ".png"
-    CSH_GOTO_BATTLE := "FANTASICA IMAGES\Event\ClashOfLegends\assistscreen\battle-" . width . "_" . height . ".png"
-    CSH_ASSIST_RESULTS_TITLE := "FANTASICA IMAGES\Event\ClashOfLegends\assistresults\title-" . width . "_" . height . ".png" 
-    CSH_ASSIST_BACK := "FANTASICA IMAGES\Event\ClashOfLegends\assistresults\back-" . width . "_" . height . ".png"
-    ; --------------------------------------------------------------------------
-    ; ROLL THE DICE EVENT
-    ; --------------------------------------------------------------------------
-    DICE_EVENT_ICON := "FANTASICA IMAGES\Event\DiceEvent\iconevent-" . width . "_" . height . ".png"
-    DICE_TITLE_IMAGE:= "FANTASICA IMAGES\Event\DiceEvent\imagetitle-" . width . "_" . height . ".png"
-    DICE_BEGINEVENT_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\buttonbeginevent-" . width . "_" . height . ".png"
-    DICE_ROLL_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttonrolldice-" . width . "_" . height . ".png"
-    DICE_ROLLDISABLED_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttonrolldicedisabled-" . width . "_" . height . ".png"
-    DICE_DROPSSTOCK0_TEXT := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\textdropsstock0-" . width . "_" . height . ".png"
-    DICE_MOVE_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttonmove-" . width . "_" . height . ".png"
-    DICE_HEAL_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttonheal-" . width . "_" . height . ".png"
-    DICE_OPENCHEST_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttonopenchest-"  . width . "_" . height . ".png"
-    DICE_SINGLEDICEFACE1_TEXT := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\textdiceface1-" . width . "_" . height . ".png"
-    DICE_FIVESETDICE1FACE1_TEXT := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\textfivesetdice1face1-" . width . "_" . height . ".png"
-    DICE_FIVESETDICE2FACE1_TEXT := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\textfivesetdice2face1-" . width . "_" . height . ".png"
-    DICE_FIVESETDICE3FACE1_TEXT := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\textfivesetdice3face1-" . width . "_" . height . ".png"
-    DICE_FIVESETDICE4FACE1_TEXT := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\textfivesetdice4face1-" . width . "_" . height . ".png"
-    DICE_FIVESETDICE5FACE1_TEXT := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\textfivesetdice5face1-" . width . "_" . height . ".png"
-    DICE_STOP_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttonstop-" . width . "_" . height . ".png"
-    DICE_CLOSEPOPUP_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttonclose-" . width . "_" . height . ".png"
-    DICE_FIGHT_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttonfight-" . width . "_" . height . ".png"
-    DICE_RESULTS_TITLE := "FANTASICA IMAGES\Event\DiceEvent\resultsscreen\texttitle-" . width . "_" . height . ".png"
-    DICE_TOBOARD_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\resultsscreen\buttontoboard-" . width . "_" . height . ".png"
-    DICE_NEXT_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\resultsscreen\buttonnext-" . width . "_" . height . ".png"
-    DICE_LEFT_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttonleftarrow-" . width . "_" . height . ".png"
-    DICE_RIGHT_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttonrightarrow-" . width . "_" . height . ".png"
-    DICE_UP_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttonuparrow-" . width . "_" . height . ".png"
-    DICE_DOWN_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttondownarrow-" . width . "_" . height . ".png"
-    DICE_BOARDBACK_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttonback-" . width . "_" . height . ".png"
-    DICE_MPBACK_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\buttonback-" . width . "_" . height . ".png"
-    DICE_DISCARD_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttondiscard-" . width . "_" . height . ".png"
-    DICE_DISCARDYES_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttondiscardyes-" . width . "_" . height . ".png"
-    DICE_WARPBONUSBOARDYES_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\resultsscreen\buttonwarpbonusboardyes-" . width . "_" . height . ".png"
-    DICE_POTIONPROMPT_TEXT := "FANTASICA IMAGES\Event\DiceEvent\battlescreen\textpotionprompt-" . width . "_" . height . ".png"
-    DICE_USEPOTIONYES_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\battlescreen\buttonusepotionyes-" . width . "_" . height . ".png"
-    DICE_USEPOTIONNO_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\battlescreen\buttonusepotionno-" . width . "_" . height . ".png"
-    DICE_GIVEUPYES_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\battlescreen\buttongiveupyes-" . width . "_" . height . ".png"
-    DICE_DICESMENU_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttondices-" . width . "_" . height . ".png"
-    DICE_MASTER_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttonmasterdice-" . width . "_" . height . ".png"
-    DICE_PORTRAIT_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttonportraitdice-" . width . "_" . height . ".png"
-    DICE_SKETCH_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttonsketchdice-" . width . "_" . height . ".png"
-    DICE_CLOSEDICESMENU_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttonclosedicesmenu-" . width . "_" . height . ".png"
-    DICE_CARDMENU_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttoncardmenu-" . width . "_" . height . ".png"
-    DICE_FIRSTCARD_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttonfirstcard-" . width . "_" . height . ".png"
-    DICE_CLOSECARDMENU_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttonclosecardmenu-" . width . "_" . height . ".png"
-    DICE_USECARD_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttonusecard-" . width . "_" . height . ".png"
-    DICE_USECARDYES_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttonusecardyes-" . width . "_" . height . ".png"
-    DICE_MOVE1CARD_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttoncardmove1-" . width . "_" . height . ".png"
-    DICE_MOVE2CARD_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttoncardmove2-" . width . "_" . height . ".png"
-    DICE_MOVE3CARD_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttoncardmove3-" . width . "_" . height . ".png"
-    DICE_MOVE4CARD_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttoncardmove4-" . width . "_" . height . ".png"
-    DICE_MOVE5CARD_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttoncardmove5-" . width . "_" . height . ".png"
-    DICE_MOVE6CARD_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttoncardmove6-" . width . "_" . height . ".png"
-    DICE_MOVE10CARD_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttoncardmove10-" . width . "_" . height . ".png"
-    DICE_PROB1CARD_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttoncardprob1-" . width . "_" . height . ".png"
-    DICE_PROB2CARD_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttoncardprob2-" . width . "_" . height . ".png"
-    DICE_HIGHPROBCARD_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttoncardhighprob-" . width . "_" . height . ".png"
-    DICE_LOWPROBCARD_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttoncardlowprob-" . width . "_" . height . ".png"
-    DICE_ALLY2CARD_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttoncardally2-" . width . "_" . height . ".png"
-    DICE_ALLY3CARD_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttoncardally3-" . width . "_" . height . ".png"
-    DICE_BRONZESTOPCARD_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttoncardbronzestop-" . width . "_" . height . ".png"
-    DICE_SILVERSTOPCARD_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttoncardsilverstop-" . width . "_" . height . ".png"
-    DICE_MENU_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttonmenu-" . width . "_" . height . ".png"
-    DICE_RETREAT_BUTTON := "FANTASICA IMAGES\Event\DiceEvent\boardscreen\buttonretreat-" . width . "_" . height . ".png"
-    ; --------------------------------------------------------------------------
-    ; TRAIN-ENCOUNTER EVENT
-    ; --------------------------------------------------------------------------
-	EVO_EVENT_ICON := "FANTASICA IMAGES\Event\EvoEvent\iconevent-" . width . "_" . height . ".png" ;Event icon on home page. Change this path for every event
-    EVO_SKIP := "FANTASICA IMAGES\Event\EvoEvent\battle\skip-" . width . "_" . height . ".png" ;Event icon on home page. Change this path for every event
-	EVO_TRAIN_BUTTON := "FANTASICA IMAGES\Event\EvoEvent\buttontrain-" . width . "_" . height . ".png"
-	EVO_BOSSLIST_BUTTON := "FANTASICA IMAGES\Event\EvoEvent\buttonbosslist-" . width . "_" . height . ".png"
-	EVO_ASSISTLIST_BUTTON := "FANTASICA IMAGES\Event\EvoEvent\buttonassist-" . width . "_" . height . ".png"
-	EVO_TRAININGFIGHT_BUTTON := "FANTASICA IMAGES\Event\EvoEvent\Training\buttonfight-" . width . "_" . height . ".png"
-	EVO_TRAININGFLEE_BUTTON := "FANTASICA IMAGES\Event\EvoEvent\Training\buttonflee-" . width . "_" . height . ".png"
-	EVO_TRAININGUSEGLOBE_BUTTON := "FANTASICA IMAGES\Event\EvoEvent\Training\buttonuseglacialglobe-" . width . "_" . height . ".png"
-	EVO_REGULARBOSS1_IMAGE := "FANTASICA IMAGES\Event\EvoEvent\Training\imageregularboss1-" . width . "_" . height . ".png"
-	EVO_REGULARBOSS2_IMAGE := "FANTASICA IMAGES\Event\EvoEvent\Training\imageregularboss2-" . width . "_" . height . ".png"
-	EVO_REGULARBOSS3_IMAGE := "FANTASICA IMAGES\Event\EvoEvent\Training\imageregularboss3-" . width . "_" . height . ".png"
-	EVO_SPECIALBOSS1_IMAGE := "FANTASICA IMAGES\Event\EvoEvent\Training\imagespecialboss1-" . width . "_" . height . ".png"
-	EVO_SPECIALBOSS2_IMAGE := "FANTASICA IMAGES\Event\EvoEvent\Training\imagespecialboss2-" . width . "_" . height . ".png"
-	EVO_LIMITEDBOSS_IMAGE := "FANTASICA IMAGES\Event\EvoEvent\Training\imagelimitedboss-" . width . "_" . height . ".png"
-	EVO_EVENTTITLE_IMAGE := "FANTASICA IMAGES\Event\EvoEvent\imageeventtitle-" . width . "_" . height . ".png"
-	EVO_ASSISTALLY_BUTTON := "FANTASICA IMAGES\Event\EvoEvent\Assist\buttonassistally-" . width . "_" . height . ".png"
-	EVO_ASSISTLIST2_BUTTON := "FANTASICA IMAGES\Event\EvoEvent\Assist\buttonassistlist-" . width . "_" . height . ".png"
-	EVO_ASSISTALLIES_TEXT := "FANTASICA IMAGES\Event\EvoEvent\Assist\textassistallies-" . width . "_" . height . ".png"
-	EVO_BOSSLISTFROMASSISTALLIES_BUTTON := "FANTASICA IMAGES\Event\EvoEvent\Assist\buttonbosslist-" . width . "_" . height . ".png"
-	EVO_BOSSLIST_TEXT := "FANTASICA IMAGES\Event\EvoEvent\Bosses\textselectboss-" . width . "_" . height . ".png"
-	EVO_USEEVENTITEM_BUTTON := "FANTASICA IMAGES\Event\EvoEvent\Bosses\buttonuseeventitem-" . width . "_" . height . ".png"
-	EVO_REQUESTASSIST_BUTTON := "FANTASICA IMAGES\Event\EvoEvent\Bosses\buttonrequestassist-" . width . "_" . height . ".png"
-	EVO_FIGHT_BUTTON := "FANTASICA IMAGES\Event\EvoEvent\Bosses\buttonfight-" . width . "_" . height . ".png"
-	EVO_EVENT_BUTTON := "FANTASICA IMAGES\Event\EvoEvent\Bosses\buttonevent-" . width . "_" . height . ".png"
-	EVO_POTIONFIGHT_BUTTON := "FANTASICA IMAGES\Event\EvoEvent\Bosses\buttonusepotion-" . width . "_" . height . ".png"
-	EVO_SENDEVENTITEM_BUTTON := "FANTASICA IMAGES\Event\EvoEvent\Assist\buttonsendeventitem-" . width . "_" . height . ".png"
-    EVO_RESULTS_TTILE := "FANTASICA IMAGES\Event\EvoEvent\Results\title-" . width . "_" . height . ".png"
-    EVO_BACK_TO_EVENTS := "FANTASICA IMAGES\Event\EvoEvent\Results\backtoevents-" . width . "_" . height . ".png"
-    EVO_MAIN_MENU := "FANTASICA IMAGES\Event\EvoEvent\mainmenu-" . width . "_" . height . ".png"
-    EVO_TRAINING := "FANTASICA IMAGES\Event\EvoEvent\training-" . width . "_" . height . ".png"
-	; ==========================================================================
-    
-    ; --------------------------------------------------------------------------
-    ; COLISEUM EVENT
-    ; --------------------------------------------------------------------------
-    COL_EVENT_ICON := "FANTASICA IMAGES\Event\Colliseum\iconevent-" . width . "_" . height . ".png"
-    COL_EVENTTITLE_IMAGE := "FANTASICA IMAGES\Event\Colliseum\imageeventtitle-" . width . "_" . height . ".png"
-    COL_TOEVENT_BUTTON := "FANTASICA IMAGES\Event\Colliseum\buttontoeventselection-" . width . "_" . height . ".png"
-    COL_SELECTIONPAGETITLE_TEXT := "FANTASICA IMAGES\Event\Colliseum\SelectionPage\textselectionpagetitle-" . width . "_" . height . ".png"
-    COL_COOLDOWN_TEXT := "FANTASICA IMAGES\Event\Colliseum\SelectionPage\textcooldown-" . width . "_" . height . ".png"
-    COL_BATTLEMODE_BUTTON := "FANTASICA IMAGES\Event\Colliseum\SelectionPage\buttonbattlemode-" . width . "_" . height . ".png"
-    COL_AREA1_BUTTON := "FANTASICA IMAGES\Event\Colliseum\SelectionPage\buttonarea1-" . width . "_" . height . ".png"
-    COL_AREA2_BUTTON := "FANTASICA IMAGES\Event\Colliseum\SelectionPage\buttonarea2-" . width . "_" . height . ".png"
-    COL_AREA3_BUTTON := "FANTASICA IMAGES\Event\Colliseum\SelectionPage\buttonarea3-" . width . "_" . height . ".png"
-    COL_SKIP_BUTTON := "FANTASICA IMAGES\Event\Colliseum\AreaPage\buttonskip-" . width . "_" . height . ".png"
-    COL_YES_BUTTON := "FANTASICA IMAGES\Event\Colliseum\AreaPage\yes-" . width . "_" . height . ".png"
-    COL_RESULTSPAGETITLE_TEXT := "FANTASICA IMAGES\Event\Colliseum\ResultsPage\textresultspagetitle-" . width . "_" . height . ".png"
-    COL_HEROSELECTIONPAGETITLE_TEXT := "FANTASICA IMAGES\Event\Colliseum\HeroSelectionPage\texttitle-" . width . "_" . height . ".png"
-    COL_CHOOSEHERO1_BUTTON := "FANTASICA IMAGES\Event\Colliseum\HeroSelectionPage\buttonchoosehero1-" . width . "_" . height . ".png"
-    COL_BATTLETITLE_TEXT := "FANTASICA IMAGES\Event\Colliseum\BattlePage\texttitle-" . width . "_" . height . ".png"
-    COL_BATTLECOOLDOWN_TEXT := "FANTASICA IMAGES\Event\Colliseum\BattlePage\textcooldown-" . width . "_" . height . ".png"
-    COL_BATTLE_BUTTON := "FANTASICA IMAGES\Event\Colliseum\BattlePage\buttonbattle-" . width . "_" . height . ".png"
-    ; ==========================================================================
-    
-     ; --------------------------------------------------------------------------
-    ; FRONTLINES EVENT
-    ; --------------------------------------------------------------------------
-    FL_EVENT_ICON := "FANTASICA IMAGES\Event\Frontlines\iconevent-" . width . "_" . height . ".png"
-    FL_TITLE_IMAGE := "FANTASICA IMAGES\Event\Frontlines\imagetitle-" . width . "_" . height . ".png"
-    FL_CPBAR0_TEXT := "FANTASICA IMAGES\Event\Frontlines\maineventscreen\textcpbar0-" . width . "_" . height . ".png"
-	FL_CPBAR1_TEXT := "FANTASICA IMAGES\Event\Frontlines\maineventscreen\textcpbar1-" . width . "_" . height . ".png"
-    FL_REWARDS_BUTTON := "FANTASICA IMAGES\Event\Frontlines\maineventscreen\buttonrewards-" . width . "_" . height . ".png"
-    FL_REWARDSNOTIFICATION_BUTTON := "FANTASICA IMAGES\Event\Frontlines\maineventscreen\buttonrewardsnotification-" . width . "_" . height . ".png"
-    FL_ASSISTNOTIFICATION_ICON := "FANTASICA IMAGES\Event\Frontlines\maineventscreen\buttonassistnotification-" . width . "_" . height . ".png"
-    FL_ASSIST_BUTTON  := "FANTASICA IMAGES\Event\Frontlines\maineventscreen\buttonassist-" . width . "_" . height . ".png"
-    FL_MYPAGE_BUTTON := "FANTASICA IMAGES\Event\Frontlines\maineventscreen\buttonmypage-" . width . "_" . height . ".png"
-    
-	FL_FIGHT_BUTTON := "FANTASICA IMAGES\Event\Frontlines\maineventscreen\buttonfight-" . width . "_" . height . ".png"
-    FL_HOLYWATERSTOCK0_TEXT := "FANTASICA IMAGES\Event\Frontlines\maineventscreen\textholywaterstock0-" . width . "_" . height . ".png"
-    FL_HOLYWATER_BUTTON := "FANTASICA IMAGES\Event\Frontlines\maineventscreen\buttonholywater-" . width . "_" . height . ".png"
-    FL_HOLYWATERYES_BUTTON := "FANTASICA IMAGES\Event\Frontlines\maineventscreen\buttonholywateryes-" . width . "_" . height . ".png"
-    FL_CLOSE_BUTTON := "FANTASICA IMAGES\Event\Frontlines\maineventscreen\buttonclose-" . width . "_" . height . ".png"
-    FL_SKILL1_BUTTON := "FANTASICA IMAGES\Event\Frontlines\battlescreen\buttonskill1-" . width . "_" . height . ".png"
-    FL_SKILL2_BUTTON := "FANTASICA IMAGES\Event\Frontlines\battlescreen\buttonskill2-" . width . "_" . height . ".png"
-	FL_SKILL3_BUTTON := "FANTASICA IMAGES\Event\Frontlines\battlescreen\buttonskill3-" . width . "_" . height . ".png"
-	FL_SKIP_BUTTON := "FANTASICA IMAGES\Event\Frontlines\battlescreen\buttonskip-" . width . "_" . height . ".png"
-    
-	FL_OPPONENTSELECTION_TITLE := "FANTASICA IMAGES\Event\Frontlines\opponentselectionscreen\texttitle-" . width . "_" . height . ".png"
-    FL_OPPONENT1_BUTTON := "FANTASICA IMAGES\Event\Frontlines\opponentselectionscreen\buttonopponent1-" . width . "_" . height . ".png"
-	FL_OPPONENT2_BUTTON := "FANTASICA IMAGES\Event\Frontlines\opponentselectionscreen\buttonopponent2-" . width . "_" . height . ".png"
-	FL_OPPONENT3_BUTTON := "FANTASICA IMAGES\Event\Frontlines\opponentselectionscreen\buttonopponent3-" . width . "_" . height . ".png"
-	FL_OPPONENT4_BUTTON := "FANTASICA IMAGES\Event\Frontlines\opponentselectionscreen\buttonopponent4-" . width . "_" . height . ".png"
-	FL_OPPONENT5_BUTTON := "FANTASICA IMAGES\Event\Frontlines\opponentselectionscreen\buttonopponent5-" . width . "_" . height . ".png"
-	FL_OPPONENT16_BUTTON := "FANTASICA IMAGES\Event\Frontlines\opponentselectionscreen\buttonopponent16-" . width . "_" . height . ".png"
-	FL_OPPONENT17_BUTTON := "FANTASICA IMAGES\Event\Frontlines\opponentselectionscreen\buttonopponent17-" . width . "_" . height . ".png"
-	FL_OPPONENT18_BUTTON := "FANTASICA IMAGES\Event\Frontlines\opponentselectionscreen\buttonopponent18-" . width . "_" . height . ".png"
-	FL_OPPONENT19_BUTTON := "FANTASICA IMAGES\Event\Frontlines\opponentselectionscreen\buttonopponent19-" . width . "_" . height . ".png"
-	FL_OPPONENT20_BUTTON := "FANTASICA IMAGES\Event\Frontlines\opponentselectionscreen\buttonopponent20-" . width . "_" . height . ".png"
-	FL_BACK_BUTTON := "FANTASICA IMAGES\Event\Frontlines\resultscreen\buttonback-" . width . "_" . height . ".png"
-	FL_REMATCH_BUTTON := "FANTASICA IMAGES\Event\Frontlines\resultscreen\buttonrematch-" . width . "_" . height . ".png"
-	FL_RESULTVICTORY_TEXT := "FANTASICA IMAGES\Event\Frontlines\resultscreen\textvictory-" . width . "_" . height . ".png"
-    FL_RESULTDEFEAT_TEXT := "FANTASICA IMAGES\Event\Frontlines\resultscreen\textdefeat-" . width . "_" . height . ".png"
-    
-    FL_REWARDS_TITLE := "FANTASICA IMAGES\Event\Frontlines\rewardsscreen\texttitle-" . width . "_" . height . ".png"
-    FL_RECEIVE_BUTTON := "FANTASICA IMAGES\Event\Frontlines\rewardsscreen\buttonreceive-" . width . "_" . height . ".png"
-    
-    FL_ASSIST_TITLE := "FANTASICA IMAGES\Event\Frontlines\assistscreen\texttitle-" . width . "_" . height . ".png"
-    FL_ASSISTBACK_BUTTON := "FANTASICA IMAGES\Event\Frontlines\assistscreen\buttonassistback-" . width . "_" . height . ".png"
-    FL_REQUESTASSISTANCE_BUTTON := "FANTASICA IMAGES\Event\Frontlines\assistscreen\buttonrequestassistance-" . width . "_" . height . ".png"
-	FL_ASSISTALL_BUTTON := "FANTASICA IMAGES\Event\Frontlines\assistscreen\buttonassistall-" . width . "_" . height . ".png"
-    ; ==========================================================================
-    
-    TOP_CLIMBTREE_BUTTON := "FANTASICA IMAGES\Event\TreeOfParadise\buttonclimbtree-" . width . "_" . height . ".png"
-	TOP_TITLE_IMAGE := "FANTASICA IMAGES\Event\TreeOfParadise\imagetitle-" . width . "_" . height . ".png"
-	TOP_ADVANCE1_BUTTON := "FANTASICA IMAGES\Event\TreeOfParadise\Training\buttonadvance1-" . width . "_" . height . ".png"
-	TOP_ADVANCE2_BUTTON := "FANTASICA IMAGES\Event\TreeOfParadise\Training\buttonadvance2-" . width . "_" . height . ".png"
-	TOP_FIGHT_BUTTON := "FANTASICA IMAGES\Event\TreeOfParadise\Training\buttonfight-" . width . "_" . height . ".png"
-	TOP_HEAL_BUTTON := "FANTASICA IMAGES\Event\TreeOfParadise\Training\buttonheal-" . width . "_" . height . ".png"
-	TOP_TRAININGBACK_BUTTON := "FANTASICA IMAGES\Event\TreeOfParadise\Training\buttonback-" . width . "_" . height . ".png"
-	TOP_TRAININGPOINTS_TEXT := "FANTASICA IMAGES\Event\TreeOfParadise\texttrainingpoints-" . width . "_" . height . ".png"
-	TOP_BACKTOMAINPAGE_BUTTON := "FANTASICA IMAGES\Event\TreeOfParadise\buttonback-" . width . "_" . height . ".png"
-	TOP_FIGHTBOSS_BUTTON := "FANTASICA IMAGES\Event\TreeOfParadise\buttonfightboss-" . width . "_" . height . ".png"
-	LB_SEAROAD_BUTTON := "FANTASICA IMAGES\Event\LegionBattle\buttonsearoad-" . width . "_" . height . ".png"
-	LB_YES_BUTTON := "FANTASICA IMAGES\Event\LegionBattle\buttonyes-"  . width . "_" . height . ".png"
-	LB_TITLE_IMAGE := "FANTASICA IMAGES\Event\LegionBattle\imagetitle-"  . width . "_" . height . ".png"
-	LB_WALK1_BUTTON := "FANTASICA IMAGES\Event\LegionBattle\Battlefield\buttonwalk1-"  . width . "_" . height . ".png"
-	LB_WALK2_BUTTON := "FANTASICA IMAGES\Event\LegionBattle\Battlefield\buttonwalk2-"  . width . "_" . height . ".png"
-	LB_ADVANCE_BUTTON := "FANTASICA IMAGES\Event\LegionBattle\Battlefield\buttonadvance-"  . width . "_" . height . ".png"
-	LB_FIGHTYES_BUTTON := "FANTASICA IMAGES\Event\LegionBattle\Battlefield\buttonyes-" . width . "_" . height . ".png"
-	LB_RESULT1_TEXT := "FANTASICA IMAGES\Event\LegionBattle\Result\textbattlefieldresult-" . width . "_" . height . ".png"
-	LB_RESULT2_TEXT := "FANTASICA IMAGES\Event\LegionBattle\Result\textbattleresult-" . width . "_" . height . ".png"
-	LB_RESULT3_TEXT := "FANTASICA IMAGES\Event\LegionBattle\Result\textcompleteclearresult-" . width . "_" . height . ".png"
-	LB_RESULTBACK_BUTTON := "FANTASICA IMAGES\Event\LegionBattle\Result\buttonback-" . width . "_" . height . ".png"
-	LB_POTION_BUTTON := "FANTASICA IMAGES\Event\LegionBattle\Battlefield\buttonpotion-" . width . "_" . height . ".png"
-	LB_BATTLEFIELDBACK_BUTTON := "FANTASICA IMAGES\Event\LegionBattle\Battlefield\buttonback-" . width . "_" . height . ".png"
-	LB_FIGHT_BUTTON := "FANTASICA IMAGES\Event\LegionBattle\Battlefield\buttonfight-" . width . "_" . height . ".png"
-	LB_AUTOBATTLE_BUTTON := "FANTASICA IMAGES\Event\LegionBattle\Battlefield\buttonautobattle-" . width . "_" . height . ".png"
-	LB_COMPLETECLEARBACK_BUTTON := "FANTASICA IMAGES\Event\LegionBattle\Result\buttoncompleteclearback-" . width . "_" . height . ".png"
-	LB_OCEANCALL_BUTTON := "FANTASICA IMAGES\Event\LegionBattle\buttonoceancall-" . width . "_" . height . ".png"
-	LB_ENEMYLIST_TEXT := "FANTASICA IMAGES\Event\LegionBattle\Enemylist\textenemylist-" . width . "_" . height . ".png"
-	LB_FIGHTAGAIN_BUTTON := "FANTASICA IMAGES\Event\LegionBattle\Enemylist\buttonfight-" . width . "_" . height . ".png"
 }
-;Bluestack
-;---------
-EXITAPP_BUTTON = FANTASICA IMAGES\Bluestack\buttonexitapp.png ;the exit app button in the lower left corner of bluestack

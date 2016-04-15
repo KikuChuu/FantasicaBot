@@ -238,16 +238,16 @@ findCoordinate()
 {
 	global BLUESTACK_WINDOW_TITLE, LEVELBOT, SCAN_START_X
   global SCAN_START_Y, SCAN_TILE_HEIGHT, SCAN_TILE_WIDTH, CONFIRMUNITPLACEMENT_BUTTON
-	global maxPasses
 
 	;declare our static variables
 	static currRow:= 0
 	static currCol:= 0
+  static currPass := 0
   static mapMaxRow := 0
   static mapMaxCol := 0
+  static maxPasses := 2
   static tileHeight := 0
   static tileWidth := 0
-  static currPass := 0
 
   if (mapMaxRow == 0 && mapMaxCol == 0) {
     if (LEVELBOT == 1) 
