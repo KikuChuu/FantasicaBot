@@ -68,10 +68,10 @@ toggleTimeElixir(ByRef var)
   var := Mod(x, 2)
   x++
   if (var) {
-    SB_SetText(Time Elixir usage turned on")
+    SB_SetText("Time Elixir usage turned on")
   }
   else {
-    SB_SetText(Time Elixir usage turned off")
+    SB_SetText("Time Elixir usage turned off")
   }
 }
 ; ==============================================================================
