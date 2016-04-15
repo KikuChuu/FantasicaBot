@@ -1,13 +1,42 @@
-﻿#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
-; #Warn  ; Enable warnings to assist with detecting common errors.
+﻿; =============================================================================
+; Tower.ahk
+;
+; - Automates the tower event
+;
+;
+; The MIT License
+;
+; Copyright (c) 2016 Ricky Tran <rickytran991@gmail.com>
+;
+; Permission is hereby granted, free of charge, to any person obtaining a copy
+; of this software and associated documentation files (the "Software"), to deal
+; in the Software without restriction, including without limitation the rights
+; to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+; copies of the Software, and to permit persons to whom the Software is
+; furnished to do so, subject to the following conditions:
+; 
+; The above copyright notice and this permission notice shall be included in
+; all copies or substantial portions of the Software.
+; 
+; THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+; IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+; FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+; AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+; LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+; OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+; THE SOFTWARE.
+; =============================================================================
+
+
+#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 #include %A_ScriptDir%\includes\IncludeScript.ahk
 
-;------- INITIALIZE -------------------------
-Init_globals() ; Found in GlobalConstants.ahk
-;--------------------------------------------
+; ============================= Initialize Globals ============================
+initGlobals() ; Found in GlobalConstants.ahk
+; =============================================================================
 
 ;========================================================
 ;==================== QUEST START =======================
@@ -25,80 +54,28 @@ deployUnitNum := 0
 pendingAllies := 1
 loop
 {
-	if (DetectObject(LOGINBONUSMYPAGE_BUTTON))
-	{
-		ClickObject(LOGINBONUSMYPAGE_BUTTON)
-	} 
-	if (DetectObject(POPUPCLOSE_BUTTON))
-	{
-		ClickObject(POPUPCLOSE_BUTTON)
-	}	
-	if (DetectObject(FANTASICAAPP_BUTTON))
-	{
-		LaunchGame()
-	}
-	if (DetectObject(STARTGAME_BUTTON))
-	{
-		if (DetectObject(RESUMEQUESTNO_BUTTON))
-		{
-		    ClickObject(RESUMEQUESTNO_BUTTON)
-		}
-		else
-		{
-		    ClickObject(STARTGAME_BUTTON)
-		}
-	}
-	if (DetectObject(ALLYPENDINGREQUEST_TEXT))
-	{
-		ClickObject(BACK_BUTTON)
-	}
-	else if (DetectObject(ALLY_TEXT))
-	{
-		ClickObject(BACK_BUTTON)
-	}
-	if (DetectObject(CONNECTIONERROR_BUTTON))
-	{
-		ClickObject(CONNECTIONERROR_BUTTON)
-	}
-	if (DetectObject(CONNECTIONERROR_TEXT))
-	{
-		Send {ESC down}
-		Sleep 1000
-		Send {ESC up}
-	}
-	if (DetectObject(CONFIRMEXITAPP_BUTTON))
-	{
-		ClickObject(CONFIRMEXITAPP_BUTTON)
-	}
-	if (DetectObject(LOGINBINGO_TEXT))
-	{
-		if (DetectObject(LOGINBINGORECEIVE_BUTTON))
-		{
-			ClickObject(LOGINBINGORECEIVE_BUTTON)
-		}
-		else
-		{
-			LoginBingoHelperClicker()
-		}
-	}	
-  if (DetectObject(TOWER_ICON)) {
-    ClickObject(TOWER_ICON)
+  if (detectObject(TOWER_ICON)) {
+    clickObject(TOWER_ICON)
   }
-	if (DetectObject(TOWER_BATTLESTART)) {
-		ClickObject(TOWER_BATTLESTART)
+
+	if (detectObject(TOWER_BATTLESTART)) {
+		clickObject(TOWER_BATTLESTART)
     deployUnitNum := 0
     pendingAllies := 1
 	}
-  if (DetectObject(TOWER_USE_TIME_ELIXIR)) {
-    ClickObject(TOWER_USE_TIME_ELIXIR)
+
+  if (detectObject(TOWER_USE_TIME_ELIXIR)) {
+    clickObject(TOWER_USE_TIME_ELIXIR)
   }
-  if (DetectObject(TOWER_YES)) {
-    ClickObject(TOWER_YES)
+
+  if (detectObject(TOWER_YES)) {
+    clickObject(TOWER_YES)
     deployUnitNum := 0
     pendingAllies := 1
   }
-	if (DetectObject(TOWER_BACK)) {
-		ClickObject(TOWER_BACK)
+
+	if (detectObject(TOWER_BACK)) {
+		clickObject(TOWER_BACK)
 	}
 	
 	; ==========================================================================
@@ -106,32 +83,32 @@ loop
 	; ---------------------------- QUEST BATTLE --------------------------------
 	; **************************************************************************
 	; ==========================================================================
-	if (DetectObject(SKIPQUEST_BUTTON) && SKIPQUEST == 1)
-	{
-		ClickObject(SKIPQUEST_BUTTON)
-	}
-	if (DetectObject(DEPLOYUNIT_BUTTON) && deployUnitNum < DEPLOY_NUMBER)
-	{
-		ClickObject(DEPLOYUNIT_BUTTON)
-	}
-	if (DetectObject(DEPLOY_TEXT))
-	{
-    if (DetectObject(UNITFAVORITEOFF_BUTTON)) {
-      ClickObject(UNITFAVORITEOFF_BUTTON)
-    }
-		if (DeployUnit(SORTINDEX, TYPEINDEX))
-		{
-			deployUnitNum++
-		}
-	}
-	if (DetectObject(CALLALLY_BUTTON) && pendingAllies)
-	{
-		ClickObject(CALLALLY_BUTTON)
+	if (detectObject(SKIPQUEST_BUTTON) && SKIPQUEST == 1) {
+		clickObject(SKIPQUEST_BUTTON)
 	}
 
-	if (DetectObject(CALLALLYPAGE_TEXT))
+  if (detectObject(DEPLOYUNIT_BUTTON) && deployUnitNum < DEPLOY_NUMBER) {
+    clickObject(DEPLOYUNIT_BUTTON)
+  }
+
+  if (detectObject(DEPLOY_TEXT)) {
+    if (detectObject(UNITFAVORITEOFF_BUTTON)) {
+      clickObject(UNITFAVORITEOFF_BUTTON)
+    }
+
+    if (deployUnit(ATTACK_TYPE, ATTRIB_TYPE)) {
+      deployUnitNum++
+    }
+  }
+
+	if (detectObject(CALLALLY_BUTTON) && pendingAllies)
 	{
-		if (CallAlly(SORTINDEX, TYPEINDEX))
+		clickObject(CALLALLY_BUTTON)
+	}
+
+	if (detectObject(CALLALLYPAGE_TEXT))
+	{
+		if (deployAlly(ATTACK_TYPE, ATTRIB_TYPE))
 		{
 			pendingAllies = 1
 		}
@@ -139,11 +116,9 @@ loop
 		{
 			pendingAllies = 0
 		}
-	}
+  }
 }
 
-;QUEST ENDS HERE
-;========================================================
 
 F1::ExitApp
 F2::Pause
