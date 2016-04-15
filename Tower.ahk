@@ -25,7 +25,7 @@
 ; LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 ; OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 ; THE SOFTWARE.
-; =============================================================================
+; ==============================================================================
 
 
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
@@ -34,24 +34,48 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 #include %A_ScriptDir%\includes\IncludeScript.ahk
 
-; ============================= Initialize Globals ============================
+; ==============================================================================
+; ============================= Initialize Globals =============================
 initGlobals() ; Found in GlobalConstants.ahk
-; =============================================================================
+; ==============================================================================
 
-;========================================================
-;==================== QUEST START =======================
-;========================================================
 
+; ==============================================================================
+; -------------------------- Define variables here -----------------------------
 TOWER_ICON := Decorate("FANTASICA IMAGES/Event/Tower/eventicon.png")
 TOWER_MYPAGE := Decorate("FANTASICA IMAGES/Event/Tower/buttonmypage.png")
 TOWER_BATTLESTART := Decorate("FANTASICA IMAGES/Event/Tower/buttonbattlestart.png")
 TOWER_BACK := Decorate("FANTASICA IMAGES/Event/Tower/resultscreen/buttonback.png")
 TOWER_USE_TIME_ELIXIR := Decorate("FANTASICA IMAGES/Event/Tower/buttonbattlestartte.png")
 TOWER_YES := Decorate("FANTASICA IMAGES/Event/Tower/yes.png")
-
-
 deployUnitNum := 0
 pendingAllies := 1
+useTimeElixir := 0
+; ==============================================================================
+
+
+; ==============================================================================
+; ------------------------ Define functions here -------------------------------
+
+
+; toggleTimeElixir - Sets the referenced input variable to either 1 or 0.
+;                    Alternates between each call.
+; @param ByRef int - The referenced variable to set to either 1 or 0.
+; @return string - Returns a blank value (empty string) to its caller.
+toggleTimeElixir(ByRef var) 
+{
+  static x := 1
+  var := Mod(x, 2)
+  x++
+  if (var) {
+    SB_SetText(Time Elixir usage turned on")
+  }
+  else {
+    SB_SetText(Time Elixir usage turned off")
+  }
+}
+; ==============================================================================
+
 loop
 {
   if (detectObject(TOWER_ICON)) {
@@ -64,11 +88,11 @@ loop
     pendingAllies := 1
 	}
 
-  if (detectObject(TOWER_USE_TIME_ELIXIR)) {
+  if (detectObject(TOWER_USE_TIME_ELIXIR) && useTimeElixir) {
     clickObject(TOWER_USE_TIME_ELIXIR)
   }
 
-  if (detectObject(TOWER_YES)) {
+  if (detectObject(TOWER_YES) && useTimeElixir) {
     clickObject(TOWER_YES)
     deployUnitNum := 0
     pendingAllies := 1
@@ -126,3 +150,4 @@ loop
 F1::ExitApp
 F2::Pause
 F3::Reload
+F4::toggleTimeElixir(useTimeElixir)
