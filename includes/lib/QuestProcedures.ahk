@@ -214,7 +214,9 @@ deployUnit(attackType := 0, attribType := 0)
   ; Locate a tile to place the unit
   if (findCoordinate())
   {
-    clickObject(CONFIRMUNITPLACEMENT_BUTTON)
+    if (detectObject(CONFIRMUNITPLACEMENT_BUTTON)) {
+      clickObject(CONFIRMUNITPLACEMENT_BUTTON)
+    }
     return 1
   }
   else 
@@ -344,7 +346,7 @@ toggleAttackType(attackType := 0)
     if (attackType == 0)
     {
       ;SORT BY DEFAULT
-      while (detectObject(SORTBYDEFAULT_BUTTON))
+      while (!detectObject(SORTBYDEFAULT_BUTTON))
       {
         if (detectObject(SORTBYSEAATK_BUTTON)) {
           clickObject(SORTBYSEAATK_BUTTON)
