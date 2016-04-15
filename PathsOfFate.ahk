@@ -1,19 +1,47 @@
+; =============================================================================
+; PathsOfFate.ahk
+;
+; - Automates the Paths of Fate event
+;
+;
+; The MIT License
+;
+; Copyright (c) 2016 Ricky Tran <rickytran991@gmail.com>
+;
+; Permission is hereby granted, free of charge, to any person obtaining a copy
+; of this software and associated documentation files (the "Software"), to deal
+; in the Software without restriction, including without limitation the rights
+; to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+; copies of the Software, and to permit persons to whom the Software is
+; furnished to do so, subject to the following conditions:
+; 
+; The above copyright notice and this permission notice shall be included in
+; all copies or substantial portions of the Software.
+; 
+; THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+; IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+; FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+; AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+; LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+; OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+; THE SOFTWARE.
+; =============================================================================
+
 #NoEnv
 SendMode Input
 SetWorkingDir %A_ScriptDir%
 
 #Include %A_ScriptDir%\includes\IncludeScript.ahk
-SetDefaultMouseSpeed 0
 ;============================================
 ;Init Global by invoking the following 
 ;GlobalConstants.ahk function.
-
 Init_globals() ; Found in GlobalConstants.ahk
 ;============================================
+SetDefaultMouseSpeed 0
 
 
-; =================================================================================================
-; ------------------------------------------ Variables here ---------------------------------------
+; =============================================================================
+; -------------------------- Define variables here ----------------------------
 PATH_OF_FATE_EVENT := Decorate("FANTASICA IMAGES/Event/PathsOfFate/eventicon.png")
 PATH_OF_FATE_BATTLE := Decorate("FANTASICA IMAGES/Event/PathsOfFate/battle.png")
 PATH_OF_FATE_OPPSEL := Decorate("FANTASICA IMAGES/Event/PathsOfFate/OpponentSelection/battle.png")
@@ -36,7 +64,11 @@ PATH_OF_FATE_REMATCH := Decorate("FANTASICA IMAGES/Event/PathsOfFate/History/rem
 hasSelectedPath := 0
 useFlask := 0
 rematch := 0
-; =================================================================================================
+; =============================================================================
+
+
+; =============================================================================
+; ------------------ Define functions and procedures here ---------------------
 
 ; setPathFlag - Sets the by referenced variable to the decimal value 1
 ; @param ByRef int - The referenced variable to set to 1
@@ -91,85 +123,90 @@ toggleRematchFlag(ByRef var)
 
   Sleep 1000
 }
+; =============================================================================
+
 
 loop,
 {
-  if (DetectObject(PATH_OF_FATE_ARCHRIVAL, 15)) {
-  	ClickObject(PATH_OF_FATE_ARCHRIVAL, 15)
+  if (detectObject(PATH_OF_FATE_ARCHRIVAL, 15)) {
+  	clickObject(PATH_OF_FATE_ARCHRIVAL, 15)
   }
-  else if (DetectObject(PATH_OF_FATE_HISTORY)) {
-    ClickObject(PATH_OF_FATE_HISTORY)
+  else if (detectObject(PATH_OF_FATE_HISTORY)) {
+    clickObject(PATH_OF_FATE_HISTORY)
   }
-  else if (DetectObject(PATH_OF_FATE_BATTLE)) {
-    ClickObject(PATH_OF_FATE_BATTLE)
+  else if (detectObject(PATH_OF_FATE_BATTLE)) {
+    clickObject(PATH_OF_FATE_BATTLE)
   }
   
-  if (DetectObject(PATH_OF_FATE_DEF_HIST)) {
-    if (DetectObject(PATH_OF_FATE_RECEIVE_ALL)) {
-      ClickObject(PATH_OF_FATE_RECEIVE_ALL)
+  if (detectObject(PATH_OF_FATE_DEF_HIST)) {
+    if (detectObject(PATH_OF_FATE_RECEIVE_ALL)) 
+    {
+      clickObject(PATH_OF_FATE_RECEIVE_ALL)
     }
-    else if (rematch) {
-      if (DetectObject(PATH_OF_FATE_VIEW_DEFEATS)) {
-        ClickObject(PATH_OF_FATE_VIEW_DEFEATS)
+    else if (rematch) 
+    {
+      if (detectObject(PATH_OF_FATE_VIEW_DEFEATS)) {
+        clickObject(PATH_OF_FATE_VIEW_DEFEATS)
       }
 
-      if(DetectObject(PATH_OF_FATE_REMATCH)) {
-        ClickObject(PATH_OF_FATE_REMATCH)
+      if(detectObject(PATH_OF_FATE_REMATCH)) {
+        clickObject(PATH_OF_FATE_REMATCH)
       }
     }
-    else if (DetectObject(BACK_BUTTON)) {
-      ClickObject(BACK_BUTTON)
+    else if (detectObject(BACK_BUTTON)) 
+    {
+      clickObject(BACK_BUTTON)
     }
   }
 
-  if (DetectObject(PATH_OF_FATE_EVENT)) {
-    ClickObject(PATH_OF_FATE_EVENT)
+  if (detectObject(PATH_OF_FATE_EVENT)) {
+    clickObject(PATH_OF_FATE_EVENT)
   }
 
-  if (DetectObject(PATH_OF_FATE_OPPSEL)) {
-    ClickObject(PATH_OF_FATE_OPPSEL)
+  if (detectObject(PATH_OF_FATE_OPPSEL)) {
+    clickObject(PATH_OF_FATE_OPPSEL)
   }
 
-  if (DetectObject(PATH_OF_FATE_6FP)) {
-    ClickObject(PATH_OF_FATE_6FP)
+  if (detectObject(PATH_OF_FATE_6FP)) {
+    clickObject(PATH_OF_FATE_6FP)
   }
 
-  if (DetectObject(PATH_OF_FATE_FLASK) && useFlask) {
-    ClickObject(PATH_OF_FATE_FLASK) 
+  if (detectObject(PATH_OF_FATE_FLASK) && useFlask) {
+    clickObject(PATH_OF_FATE_FLASK) 
   }
-  else if (DetectObject(PATH_OF_FATE_NO)) {
-    ClickObject(PATH_OF_FATE_NO)
+  else if (detectObject(PATH_OF_FATE_NO)) {
+    clickObject(PATH_OF_FATE_NO)
   }
   
   ; Begin the game only if a path was choosen
-  if (DetectObject(PATH_OF_FATE_BEGIN) && hasSelectedPath) {
-    ClickObject(PATH_OF_FATE_BEGIN)
-    
+  if (detectObject(PATH_OF_FATE_BEGIN) && hasSelectedPath) 
+  {
+    clickObject(PATH_OF_FATE_BEGIN)  
     resetPathFlag(hasSelectedPath) ; Lowers the flag indicating that the path needs to be reselected for the next iteration
   }
-  else if (DetectObject(PATH_OF_FATE_SINGLE)) {
-    ClickObject(PATH_OF_FATE_SINGLE) ; Select the singles path
-
+  else if (detectObject(PATH_OF_FATE_SINGLE)) 
+  {
+    clickObject(PATH_OF_FATE_SINGLE) ; Select the singles path
     setPathFlag(hasSelectedPath) ; Raises the flag indicating that a path was selected
   }
-  else if (DetectObject(PATH_OF_FATE_DEPLOY)) {
-    ClickObject(PATH_OF_FATE_DEPLOY)
+  else if (detectObject(PATH_OF_FATE_DEPLOY)) {
+    clickObject(PATH_OF_FATE_DEPLOY)
   }
 
-  if (DetectObject(PATH_OF_FATE_SKIP)) {
-    ClickObject(PATH_OF_FATE_SKIP)
+  if (detectObject(PATH_OF_FATE_SKIP)) {
+    clickObject(PATH_OF_FATE_SKIP)
   }
 
-  if (DetectObject(PATH_OF_FATE_POT)) {
-    ClickObject(PATH_OF_FATE_POT)
+  if (detectObject(PATH_OF_FATE_POT)) {
+    clickObject(PATH_OF_FATE_POT)
   }
 
-  if (DetectObject(PATH_OF_FATE_POT_YES)) {
-    ClickObject(PATH_OF_FATE_POT_YES)
+  if (detectObject(PATH_OF_FATE_POT_YES)) {
+    clickObject(PATH_OF_FATE_POT_YES)
   }
 
-  if (DetectObject(PATH_OF_FATE_BACK)) {
-    ClickObject(PATH_OF_FATE_BACK)
+  if (detectObject(PATH_OF_FATE_BACK)) {
+    clickObject(PATH_OF_FATE_BACK)
   }
 }
 
