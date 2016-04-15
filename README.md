@@ -3,6 +3,7 @@
 Clash of Legends<br>
 Error Connection<br>
 Legion Battle<br>
+Login<br>
 Paths of Fate<br>
 Quest<br>
 Tactics<br> 
