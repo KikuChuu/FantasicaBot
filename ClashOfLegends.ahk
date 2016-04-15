@@ -1,16 +1,45 @@
-﻿#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
-; #Warn  ; Enable warnings to assist with detecting common errors.
+﻿; =============================================================================
+; ClashOfLegends.ahk
+;
+; - Automates the Clash of Legends event
+;
+;
+; The MIT License
+;
+; Copyright (c) 2016 Ricky Tran <rickytran991@gmail.com>
+;
+; Permission is hereby granted, free of charge, to any person obtaining a copy
+; of this software and associated documentation files (the "Software"), to deal
+; in the Software without restriction, including without limitation the rights
+; to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+; copies of the Software, and to permit persons to whom the Software is
+; furnished to do so, subject to the following conditions:
+; 
+; The above copyright notice and this permission notice shall be included in
+; all copies or substantial portions of the Software.
+; 
+; THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+; IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+; FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+; AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+; LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+; OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+; THE SOFTWARE.
+; =============================================================================
+
+#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 #include %A_ScriptDir%\includes\IncludeScript.ahk
-;------- INITIALIZE -------------------------
+; ============================= INITIALIZE ====================================
 Init_globals() ; Found in GlobalConstants.ahk
-;--------------------------------------------
+; =============================================================================
 SetDefaultMouseSpeed 0
 
-; ======================
-; === Variables here ===
+
+; =============================================================================
+; ============================= Variables here ================================
 CLASH_FIGHT := Decorate("FANTASICA IMAGES/Event/ClashofLegends/selection/fight.png")
 CLASH_NO := Decorate("FANTASICA IMAGES/Event/ClashofLegends/selection/no.png")
 CLASH_BREW := Decorate("FANTASICA IMAGES/Event/ClashofLegends/selection/yes.png")
@@ -24,63 +53,11 @@ CLASH_BATTLE := Decorate("FANTASICA IMAGES/Event/ClashofLegends/result/battle.pn
 CLASH_RETRY := Decorate("FANTASICA IMAGES/Event/ClashofLegends/battle/potion.png")
 CLASH_RETRY_YES := Decorate("FANTASICA IMAGES/Event/ClashofLegends/battle/yes.png")
 useBrew := 0
-; ======================
+; =============================================================================
 
-loop
-{
-  if (DetectObject(CLASH_FIGHT)) {
-    ClickObject(CLASH_FIGHT)
-  }
 
-  if (useBrew) {
-    if (DetectObject(CLASH_BREW)) {
-      ClickObject(CLASH_BREW)
-    }
-    if (DetectObject(CLASH_YES)) {
-      ClickObject(CLASH_YES)
-    }
-  }
-  else {
-    if (DetectObject(CLASH_NO)) {
-      ClickObject(CLASH_NO)
-    }
-  }
-
-  if (DetectObject(CLASH_START)) {
-    ClickObject(CLASH_START)
-  }
-
-  if (DetectObject(CLASH_YES)) {
-    ClickObject(CLASH_YES)
-  }
-
-  if (DetectObject(CLASH_SKIP)) {
-    ClickObject(CLASH_SKIP)
-  }
-
-  if (DetectObject(CLASH_SKIP_ACTIVE)) {
-    if (DetectObject(CLASH_OFFENSIVE_SKILL, 50)) {
-      ClickObject(CLASH_OFFENSIVE_SKILL, 50)
-    }
-    else if (DetectObject(CLASH_DEFENSIVE_SKILL, 50)) {
-      ClickObject(CLASH_DEFENSIVE_SKILL, 50)
-    }
-  }
-  
-  if (DetectObject(CLASH_RETRY)) {
-    ClickObject(CLASH_RETRY)
-  }
-
-  if (DetectObject(CLASH_RETRY_YES)) {
-    ClickObject(CLASH_RETRY_YES)
-  }
-
-  if (DetectObject(CLASH_BATTLE)) {
-    ClickObject(CLASH_BATTLE)
-  }
-}
-; ==============================================================================
-
+; =============================================================================
+; ================== Functions and Procedures here ============================
 ToggleBrew(ByRef brew)
 {
   static x := 0
@@ -95,6 +72,64 @@ ToggleBrew(ByRef brew)
     SB_SetText("Brew usage turned off")
   }
   sleep 1000
+}
+; =============================================================================
+
+loop
+{
+  if (detectObject(CLASH_FIGHT)) {
+    clickObject(CLASH_FIGHT)
+  }
+
+  if (useBrew) 
+  {
+    if (detectObject(CLASH_BREW)) {
+      clickObject(CLASH_BREW)
+    }
+    if (detectObject(CLASH_YES)) {
+      clickObject(CLASH_YES)
+    }
+  }
+  else 
+  {
+    if (detectObject(CLASH_NO)) {
+      clickObject(CLASH_NO)
+    }
+  }
+
+  if (detectObject(CLASH_START)) {
+    clickObject(CLASH_START)
+  }
+
+  if (detectObject(CLASH_YES)) {
+    clickObject(CLASH_YES)
+  }
+
+  if (detectObject(CLASH_SKIP)) {
+    clickObject(CLASH_SKIP)
+  }
+
+  if (detectObject(CLASH_SKIP_ACTIVE)) 
+  {
+    if (detectObject(CLASH_OFFENSIVE_SKILL, 50)) {
+      clickObject(CLASH_OFFENSIVE_SKILL, 50)
+    }
+    else if (detectObject(CLASH_DEFENSIVE_SKILL, 50)) {
+      clickObject(CLASH_DEFENSIVE_SKILL, 50)
+    }
+  }
+  
+  if (detectObject(CLASH_RETRY)) {
+    clickObject(CLASH_RETRY)
+  }
+
+  if (detectObject(CLASH_RETRY_YES)) {
+    clickObject(CLASH_RETRY_YES)
+  }
+
+  if (detectObject(CLASH_BATTLE)) {
+    clickObject(CLASH_BATTLE)
+  }
 }
 
 F1::ExitApp
