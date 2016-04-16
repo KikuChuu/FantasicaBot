@@ -129,84 +129,84 @@ toggleRematchFlag(ByRef var)
 loop,
 {
   if (detectObject(PATH_OF_FATE_ARCHRIVAL, 15)) {
-  	clickObject(PATH_OF_FATE_ARCHRIVAL, 15)
+    clickAt(BUFFER_X, BUFFER_Y)
   }
   else if (detectObject(PATH_OF_FATE_HISTORY)) {
-    clickObject(PATH_OF_FATE_HISTORY)
+    clickAt(BUFFER_X, BUFFER_Y)
   }
   else if (detectObject(PATH_OF_FATE_BATTLE)) {
-    clickObject(PATH_OF_FATE_BATTLE)
+    clickAt(BUFFER_X, BUFFER_Y)
   }
   
   if (detectObject(PATH_OF_FATE_DEF_HIST)) {
     if (detectObject(PATH_OF_FATE_RECEIVE_ALL)) 
     {
-      clickObject(PATH_OF_FATE_RECEIVE_ALL)
+      clickAt(BUFFER_X, BUFFER_Y)
     }
     else if (rematch) 
     {
       if (detectObject(PATH_OF_FATE_VIEW_DEFEATS)) {
-        clickObject(PATH_OF_FATE_VIEW_DEFEATS)
+        clickAt(BUFFER_X, BUFFER_Y)
       }
 
       if(detectObject(PATH_OF_FATE_REMATCH)) {
-        clickObject(PATH_OF_FATE_REMATCH)
+        clickAt(BUFFER_X, BUFFER_Y)
       }
     }
     else if (detectObject(BACK_BUTTON)) 
     {
-      clickObject(BACK_BUTTON)
+      clickAt(BUFFER_X, BUFFER_Y)
     }
   }
 
   if (detectObject(PATH_OF_FATE_EVENT)) {
-    clickObject(PATH_OF_FATE_EVENT)
+    clickAt(BUFFER_X, BUFFER_Y)
   }
 
   if (detectObject(PATH_OF_FATE_OPPSEL)) {
-    clickObject(PATH_OF_FATE_OPPSEL)
+    clickAt(BUFFER_X, BUFFER_Y)
   }
 
   if (detectObject(PATH_OF_FATE_6FP)) {
-    clickObject(PATH_OF_FATE_6FP)
+    clickAt(BUFFER_X, BUFFER_Y)
   }
 
   if (detectObject(PATH_OF_FATE_FLASK) && useFlask) {
-    clickObject(PATH_OF_FATE_FLASK) 
+    clickAt(BUFFER_X, BUFFER_Y)
   }
   else if (detectObject(PATH_OF_FATE_NO)) {
-    clickObject(PATH_OF_FATE_NO)
+    clickAt(BUFFER_X, BUFFER_Y)
   }
   
   ; Begin the game only if a path was choosen
   if (detectObject(PATH_OF_FATE_BEGIN) && hasSelectedPath) 
   {
-    clickObject(PATH_OF_FATE_BEGIN)  
+    clickAt(BUFFER_X, BUFFER_Y)
     resetPathFlag(hasSelectedPath) ; Lowers the flag indicating that the path needs to be reselected for the next iteration
   }
   else if (detectObject(PATH_OF_FATE_SINGLE)) 
   {
-    clickObject(PATH_OF_FATE_SINGLE) ; Select the singles path
+    clickAt(BUFFER_X, BUFFER_Y)
     setPathFlag(hasSelectedPath) ; Raises the flag indicating that a path was selected
   }
   else if (detectObject(PATH_OF_FATE_DEPLOY)) {
-    clickObject(PATH_OF_FATE_DEPLOY)
+    clickAt(BUFFER_X, BUFFER_Y)
   }
 
   if (detectObject(PATH_OF_FATE_SKIP)) {
-    clickObject(PATH_OF_FATE_SKIP)
+    clickAt(BUFFER_X, BUFFER_Y)
   }
 
   if (detectObject(PATH_OF_FATE_POT)) {
-    clickObject(PATH_OF_FATE_POT)
+    clickAt(BUFFER_X, BUFFER_Y)
   }
 
   if (detectObject(PATH_OF_FATE_POT_YES)) {
-    clickObject(PATH_OF_FATE_POT_YES)
+    clickAt(BUFFER_X, BUFFER_Y)
   }
 
   if (detectObject(PATH_OF_FATE_BACK)) {
-    clickObject(PATH_OF_FATE_BACK)
+    clickAt(BUFFER_X, BUFFER_Y)
   }
 }
 

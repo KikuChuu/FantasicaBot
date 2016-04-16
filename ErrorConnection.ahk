@@ -42,15 +42,15 @@ initGlobals() ; Found in GlobalConstants.ahk
 loop
 {
 	if (detectObject(FANTASICAAPP_BUTTON)) {
-    clickObject(FANTASICAAPP_BUTTON)
+    clickAt(BUFFER_X, BUFFER_Y)
 	}
   
   if (detectObject(STARTGAME_BUTTON)) {
-    clickObject(STARTGAME_BUTTON)
+    clickAt(BUFFER_X, BUFFER_Y)
   }
 
 	if (detectObject(CONNECTIONERROR_BUTTON)) {
-		clickObject(CONNECTIONERROR_BUTTON)
+    clickAt(BUFFER_X, BUFFER_Y)
 	}
 
 	if (detectObject(CONNECTIONERROR_TEXT))
@@ -61,7 +61,7 @@ loop
 	}
 
 	if (detectObject(CONFIRMEXITAPP_BUTTON)) {
-		clickObject(CONFIRMEXITAPP_BUTTON)
+    clickAt(BUFFER_X, BUFFER_Y)
 	}
 }
 

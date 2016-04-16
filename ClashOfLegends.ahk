@@ -78,57 +78,57 @@ ToggleBrew(ByRef brew)
 loop
 {
   if (detectObject(CLASH_FIGHT)) {
-    clickObject(CLASH_FIGHT)
+    clickAt(BUFFER_X, BUFFER_Y)
   }
 
   if (useBrew) 
   {
     if (detectObject(CLASH_BREW)) {
-      clickObject(CLASH_BREW)
+      clickAt(BUFFER_X, BUFFER_Y)
     }
     if (detectObject(CLASH_YES)) {
-      clickObject(CLASH_YES)
+      clickAt(BUFFER_X, BUFFER_Y)
     }
   }
   else 
   {
     if (detectObject(CLASH_NO)) {
-      clickObject(CLASH_NO)
+      clickAt(BUFFER_X, BUFFER_Y)
     }
   }
 
   if (detectObject(CLASH_START)) {
-    clickObject(CLASH_START)
+    clickAt(BUFFER_X, BUFFER_Y)
   }
 
   if (detectObject(CLASH_YES)) {
-    clickObject(CLASH_YES)
+    clickAt(BUFFER_X, BUFFER_Y)
   }
 
   if (detectObject(CLASH_SKIP)) {
-    clickObject(CLASH_SKIP)
+    clickAt(BUFFER_X, BUFFER_Y)
   }
 
   if (detectObject(CLASH_SKIP_ACTIVE)) 
   {
     if (detectObject(CLASH_OFFENSIVE_SKILL, 50)) {
-      clickObject(CLASH_OFFENSIVE_SKILL, 50)
+      clickAt(BUFFER_X, BUFFER_Y)
     }
     else if (detectObject(CLASH_DEFENSIVE_SKILL, 50)) {
-      clickObject(CLASH_DEFENSIVE_SKILL, 50)
+      clickAt(BUFFER_X, BUFFER_Y)
     }
   }
   
   if (detectObject(CLASH_RETRY)) {
-    clickObject(CLASH_RETRY)
+    clickAt(BUFFER_X, BUFFER_Y)
   }
 
   if (detectObject(CLASH_RETRY_YES)) {
-    clickObject(CLASH_RETRY_YES)
+    clickAt(BUFFER_X, BUFFER_Y)
   }
 
   if (detectObject(CLASH_BATTLE)) {
-    clickObject(CLASH_BATTLE)
+    clickAt(BUFFER_X, BUFFER_Y)
   }
 }
 

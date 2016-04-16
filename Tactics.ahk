@@ -56,31 +56,31 @@ TACTICS_AUTO := Decorate("FANTASICA IMAGES/Event/Tactics/battle/auto.png")
 loop
 {
   if (detectObject(TACTICS_EVENTICON)) {
-    clickObject(TACTICS_EVENTICON)
+    clickAt(BUFFER_X, BUFFER_Y)
   }  
 
   if (detectObject(TACTICS_FORMTEAM)) {
-    clickObject(TACTICS_FORMTEAM)
+    clickAt(BUFFER_X, BUFFER_Y)
   }
 
   if (detectObject(TACTICS_BATTLE)) {
-    clickObject(TACTICS_BATTLE)
+    clickAt(BUFFER_X, BUFFER_Y)
   }
 
   if (detectObject(TACTICS_BOSS)) {
-    clickObject(TACTICS_BOSS)
+    clickAt(BUFFER_X, BUFFER_Y)
   }
 
   if (detectObject(TACTICS_NO)) {
-    clickObject(TACTICS_NO)
+    clickAt(BUFFER_X, BUFFER_Y)
   }
 
   if (detectObject(TACTICS_AUTO)) {
-    clickObject(TACTICS_AUTO)
+    clickAt(BUFFER_X, BUFFER_Y)
   }
 
   if (detectObject(TACTICS_SKIP)) {
-    clickObject(TACTICS_SKIP)
+    clickAt(BUFFER_X, BUFFER_Y)
   }
 
   if (detectObject(TACTICS_ALL, 75)) {
@@ -89,11 +89,11 @@ loop
   }
 
   if (detectObject(TACTICS_TOP)) {
-    clickObject(TACTICS_TOP)
+    clickAt(BUFFER_X, BUFFER_Y)
   }
 
   if (detectObject(TACTICS_NEXT)) {
-    clickObject(TACTICS_NEXT)
+    clickAt(BUFFER_X, BUFFER_Y)
   }
 }
 

@@ -42,29 +42,29 @@ loop
 	if (detectObject(LOGINBINGO_TEXT))
 	{
     if (detectObject(LOGINBINGOMYPAGE_BUTTON)) {
-      clickObject(LOGINBINGOMYPAGE_BUTTON)
+      clickAt(BUFFER_X, BUFFER_Y)
     }
 		else if (detectObject(LOGINBINGORECEIVE_BUTTON)) {
-			clickObject(LOGINBINGORECEIVE_BUTTON)
+      clickAt(BUFFER_X, BUFFER_Y)
 		}
 		else if (detectObject(LOGINBINGOPANEL_ICON), 50) {
-		  clickObject(LOGINBINGOPANEL_ICON, 50)
+      clickAt(BUFFER_X, BUFFER_Y)
 		}
 	}	
 
 	if (detectObject(LOGINBONUSMYPAGE_BUTTON)) {
-		clickObject(LOGINBONUSMYPAGE_BUTTON)
+    clickAt(BUFFER_X, BUFFER_Y)
 	}
 
 	if (detectObject(ALLYPENDINGREQUEST_TEXT)) {
-		clickObject(BACK_BUTTON)
+    clickAt(BUFFER_X, BUFFER_Y)
 	}
 	else if (detectObject(ALLY_TEXT))	{
-		clickObject(BACK_BUTTON)
+    clickAt(BUFFER_X, BUFFER_Y)
 	}
 
 	if (detectObject(POPUPCLOSE_BUTTON)) {
-		clickObject(POPUPCLOSE_BUTTON)
+    clickAt(BUFFER_X, BUFFER_Y)
 	}
 }
 

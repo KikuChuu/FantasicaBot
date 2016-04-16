@@ -61,62 +61,62 @@ LEGION_ENEMY_LIST := Decorate("FANTASICA IMAGES/Event/LegionBattle/enemylist/ene
 loop
 {
   if (detectObject(LEGION_ENEMY_LIST)) {
-    clickObject(LEGION_FIELD_CLEARED_BACK)
+    clickAt(BUFFER_X, BUFFER_Y)
   }  
 
   if (detectObject(LEGION_RESULT)) {
-    clickObject(LEGION_FIELD_CLEARED_BACK)
+    clickAt(BUFFER_X, BUFFER_Y)
   }
 
   if (detectObject(LEGION_SPECIAL_AREA)) {
-    clickObject(LEGION_SPECIAL_AREA)
+    clickAt(BUFFER_X, BUFFER_Y)
   } 
   else if (detectObject(LEGION_SEAAREA)) {
-    clickObject(LEGION_SEAAREA)
+    clickAt(BUFFER_X, BUFFER_Y)
   }
 
   if (detectObject(LEGION_YESAREA)) {
-    clickObject(LEGION_YESAREA)
+    clickAt(BUFFER_X, BUFFER_Y)
   }
 
   if (detectObject(LEGION_WALK)) {
-    clickObject(LEGION_WALK)
+    clickAt(BUFFER_X, BUFFER_Y)
   }
 
   if (detectObject(LEGION_HEAL)) {
-    clickObject(LEGION_FIELD_CLEARED_BACK)
+    clickAt(BUFFER_X, BUFFER_Y)
   }
 
   if (detectObject(LEGION_ARCH_ENEMY_LIST)) {
-    clickObject(LEGION_FIELD_CLEARED_BACK)
+    clickAt(BUFFER_X, BUFFER_Y)
   }
 
   if (detectObject(LEGION_WALK_AFTER_SENT_BRAVE)) {
-    clickObject(LEGION_WALK_AFTER_SENT_BRAVE)
+    clickAt(BUFFER_X, BUFFER_Y)
   }
 
   if (detectObject(LEGION_SENDBRAVE)) {
-    clickObject(LEGION_SENDBRAVE)
+    clickAt(BUFFER_X, BUFFER_Y)
   }
 
   if (detectObject(LEGION_FIGHT)) {
-    clickObject(LEGION_FIGHT)
+    clickAt(BUFFER_X, BUFFER_Y)
   }
 
   if (detectObject(LEGION_YESFIGHT)) {
-    clickObject(LEGION_YESFIGHT)
+    clickAt(BUFFER_X, BUFFER_Y)
   }
 
   if (detectObject(LEGION_AUTOBATTLE)) {
-    clickObject(LEGION_AUTOBATTLE)
+    clickAt(BUFFER_X, BUFFER_Y)
   }
 
   if (detectObject(LEGION_FIELD_CLEARED)) {
-    clickObject(LEGION_FIELD_CLEARED_BACK)
+    clickAt(BUFFER_X, BUFFER_Y)
   }
 
   if (detectObject(LEGION_BACK)) {
-    clickObject(LEGION_BACK)
+    clickAt(BUFFER_X, BUFFER_Y)
   }
 }
 
