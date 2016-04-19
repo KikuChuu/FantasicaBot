@@ -56,8 +56,28 @@ TREE_HEAL := Decorate("FANTASICA IMAGES/Event/Tree/Training/heal.png")
 TREE_BACK_TO_EVENT := Decorate("FANTASICA IMAGES/Event/Tree/Result/backtoevent.png")
 deployUnitNum := 0
 pendingAllies := 1
+usePotion := 0
 ; =============================================================================
 
+
+; =============================================================================
+; -------------------------- Define functions here ---------------------------
+togglePotion(ByRef var) 
+{
+  static x := 1
+  var := Mod(x, 2)
+  x++
+
+  if (var) {
+    SB_SetText("Potion usage is turned on")
+  }
+  else {
+    SB_SetText("Potion usage is turned off"
+  }
+
+  sleep 1000
+} 
+; =============================================================================
 
 loop,
 {
@@ -148,3 +168,4 @@ loop,
 F1::ExitApp
 F2::PAUSE
 F3::Reload
+F4::togglePotion(usePotion)
