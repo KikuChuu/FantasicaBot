@@ -296,6 +296,7 @@ findCoordinate()
           else {
             currCol++
           }
+          currPass := 0
           return 1
         }
         else 
