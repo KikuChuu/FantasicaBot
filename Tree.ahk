@@ -53,6 +53,7 @@ TREE_BRAVE := Decorate("FANTASICA IMAGES/Event/Tree/Training/sendbrave.png")
 TREE_BACK := Decorate("FANTASICA IMAGES/Event/Tree/Training/back.png")
 TREE_FIGHT := Decorate("FANTASICA IMAGES/Event/Tree/Training/fight.png")
 TREE_HEAL := Decorate("FANTASICA IMAGES/Event/Tree/Training/heal.png")
+TREE_YES := Decorate("FANTASICA IMAGES/Event/Tree/yes.png")
 TREE_BACK_TO_EVENT := Decorate("FANTASICA IMAGES/Event/Tree/Result/backtoevent.png")
 deployUnitNum := 0
 pendingAllies := 1
@@ -112,7 +113,16 @@ loop,
   }
 
   if (detectObject(TREE_HEAL)) {
-    clickObject(TREE_BACK)
+    if (usePotion) {
+      clickAt(BUFFER_X, BUFFER_Y)
+    }
+    else {
+      clickObject(TREE_BACK)
+    }
+  }
+
+  if (detectObject(TREE_YES) && usePotion) {
+    clickAt(BUFFER_X, BUFFER_Y)
   }
 
 
