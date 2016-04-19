@@ -44,7 +44,8 @@ SetDefaultMouseSpeed 0
 ; =============================================================================
 ; ------------------------- Define variables here -----------------------------
 TREE_EVENT := Decorate("FANTASICA IMAGES/Event/Tree/eventicon.png")
-TREE_START := Decorate("FANTASICA IMAGES/Event/Tree/start.png")
+TREE_START_NEW := Decorate("FANTASICA IMAGES/Event/Tree/startnew.png")
+TREE_START_CURRENT := Decorate("FANTASICA IMAGES/Event/Tree/startcurrent.png")
 TREE_ADVANCE := Decorate("FANTASICA IMAGES/Event/Tree/Training/advance.png")
 TREE_BRAVE := Decorate("FANTASICA IMAGES/Event/Tree/Training/sendbrave.png")
 TREE_BACK := Decorate("FANTASICA IMAGES/Event/Tree/Training/back.png")
@@ -67,7 +68,7 @@ loop,
     clickAt(BUFFER_X, BUFFER_Y)
   }
 
-  if (detectObject(TREE_START)) {
+  if (detectObject(TREE_START_NEW) || detectObject(TREE_START_CURRENT) {
     clickAt(BUFFER_X, BUFFER_Y)
     deployUnitNum := 0
     pendingAllies := 1
@@ -85,7 +86,7 @@ loop,
   }
 
   if (detectObject(TREE_FIGHT)) {
-    clickAt(BUFFER_X, BUFFER_Y))
+    clickAt(BUFFER_X, BUFFER_Y)
   }
 
   if (detectObject(TREE_HEAL)) {
