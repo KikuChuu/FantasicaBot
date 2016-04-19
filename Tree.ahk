@@ -68,7 +68,7 @@ loop,
     clickAt(BUFFER_X, BUFFER_Y)
   }
 
-  if (detectObject(TREE_START_NEW) || detectObject(TREE_START_CURRENT) {
+  if (detectObject(TREE_START_NEW) || detectObject(TREE_START_CURRENT)) {
     clickAt(BUFFER_X, BUFFER_Y)
     deployUnitNum := 0
     pendingAllies := 1
