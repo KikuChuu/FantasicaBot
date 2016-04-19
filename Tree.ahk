@@ -46,7 +46,9 @@ SetDefaultMouseSpeed 0
 TREE_EVENT := Decorate("FANTASICA IMAGES/Event/Tree/eventicon.png")
 TREE_START_NEW := Decorate("FANTASICA IMAGES/Event/Tree/startnew.png")
 TREE_START_CURRENT := Decorate("FANTASICA IMAGES/Event/Tree/startcurrent.png")
+TREE_START_BOSS := Decorate("FANTASICA IMAGES/Event/Tree/bossfight.png")
 TREE_ADVANCE := Decorate("FANTASICA IMAGES/Event/Tree/Training/advance.png")
+TREE_ADVANCE_AFTER_CARD := Decorate("FANTASICA IMAGES/Event/Tree/Training/cardadvance.png")
 TREE_BRAVE := Decorate("FANTASICA IMAGES/Event/Tree/Training/sendbrave.png")
 TREE_BACK := Decorate("FANTASICA IMAGES/Event/Tree/Training/back.png")
 TREE_FIGHT := Decorate("FANTASICA IMAGES/Event/Tree/Training/fight.png")
@@ -68,7 +70,7 @@ loop,
     clickAt(BUFFER_X, BUFFER_Y)
   }
 
-  if (detectObject(TREE_START_NEW) || detectObject(TREE_START_CURRENT)) {
+  if (detectObject(TREE_START_NEW) || detectObject(TREE_START_CURRENT) || detectObject(TREE_START_BOSS) {
     clickAt(BUFFER_X, BUFFER_Y)
     deployUnitNum := 0
     pendingAllies := 1
@@ -77,7 +79,7 @@ loop,
 ; ========
 ; Training
 ; ========
-  if (detectObject(TREE_ADVANCE)) {
+  if (detectObject(TREE_ADVANCE) || detectObject(TREE_ADVANCE_AFTER_CARD)) {
     clickAt(BUFFER_X, BUFFER_Y)
   }
 
