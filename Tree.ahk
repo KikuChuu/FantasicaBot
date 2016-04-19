@@ -58,6 +58,7 @@ pendingAllies := 1
 
 loop,
 {
+  clickAt(WAIT_X, WAIT_Y)
 
 ; =========
 ; Main page
@@ -68,6 +69,8 @@ loop,
 
   if (detectObject(TREE_START)) {
     clickAt(BUFFER_X, BUFFER_Y)
+    deployUnitNum := 0
+    pendingAllies := 1
   }
 
 ; ========
@@ -121,10 +124,10 @@ loop,
 	if (detectObject(CALLALLYPAGE_TEXT))
 	{
 		if (deployAlly(ATTACK_TYPE, ATTRIB_TYPE)) {
-			pendingAllies = 1
+			pendingAllies := 1
 		}
 		else {
-			pendingAllies = 0
+			pendingAllies := 0
 		}
   }
 
