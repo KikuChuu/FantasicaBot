@@ -46,7 +46,7 @@ SetDefaultMouseSpeed 0
 TREE_EVENT := Decorate("FANTASICA IMAGES/Event/Tree/eventicon.png")
 TREE_START_NEW := Decorate("FANTASICA IMAGES/Event/Tree/startnew.png")
 TREE_START_CURRENT := Decorate("FANTASICA IMAGES/Event/Tree/startcurrent.png")
-TREE_START_BOSS := Decorate("FANTASICA IMAGES/Event/Tree/bossfight.png")
+TREE_START_BOSS := Decorate("FANTASICA IMAGES/Event/Tree/fightboss.png")
 TREE_ADVANCE := Decorate("FANTASICA IMAGES/Event/Tree/Training/advance.png")
 TREE_ADVANCE_AFTER_CARD := Decorate("FANTASICA IMAGES/Event/Tree/Training/cardadvance.png")
 TREE_BRAVE := Decorate("FANTASICA IMAGES/Event/Tree/Training/sendbrave.png")
@@ -73,7 +73,7 @@ togglePotion(ByRef var)
     SB_SetText("Potion usage is turned on")
   }
   else {
-    SB_SetText("Potion usage is turned off"
+    SB_SetText("Potion usage is turned off")
   }
 
   sleep 1000
@@ -91,7 +91,7 @@ loop,
     clickAt(BUFFER_X, BUFFER_Y)
   }
 
-  if (detectObject(TREE_START_NEW) || detectObject(TREE_START_CURRENT) || detectObject(TREE_START_BOSS) {
+  if (detectObject(TREE_START_NEW) || detectObject(TREE_START_CURRENT) || detectObject(TREE_START_BOSS)) {
     clickAt(BUFFER_X, BUFFER_Y)
     deployUnitNum := 0
     pendingAllies := 1
