@@ -23,55 +23,58 @@ DICE_OPEN := Decorate("FANTASICA IMAGES/Event/Dice/board/open.png")
 DICE_DICEMENU := Decorate("FANTASICA IMAGES/Event/Dice/board/dice.png")
 DICE_DOUBLEDIE := Decorate("FANTASICA IMAGES/Event/Dice/board/doubledie.png")
 DICE_CLOSEDIEMENU := Decorate("FANTASICA IMAGES/Event/Dice/board/closediemenu.png")
+selectedDice := 0
 ; ======================
 loop
 { 
-  if (DetectObject(DICE_DOUBLEDIE)) {
-	ClickObject(DICE_DOUBLEDIE)
+  if (detectObject(DICE_DOUBLEDIE)) {
+	  clickObject(DICE_DOUBLEDIE)
+    selectedDice := 1
   }
 	
-  if (DetectObject(DICE_CLOSEDIEMENU)) {
-	ClickObject(DICE_CLOSEDIEMENU)
+  if (detectObject(DICE_CLOSEDIEMENU)) {
+	  clickObject(DICE_CLOSEDIEMENU)
   }
 
-  if (DetectObject(DICE_DICEMENU, 20)) {
-	ClickObject(DICE_DICEMENU, 20)
+  if (detectObject(DICE_DICEMENU, 20)) {
+	  clickObject(DICE_DICEMENU, 20)
   }
   
-  if (DetectObject(DICE_ROLL)) {
-    ClickObject(DICE_ROLL)
+  if (detectObject(DICE_ROLL)) {
+    clickObject(DICE_ROLL)
   }
 
-  if (DetectObject(DICE_STOP)) {
-    ClickObject(DICE_STOP)
+  if (detectObject(DICE_STOP)) {
+    clickObject(DICE_STOP)
+    selectedDice := 0
   }
 
-  if (DetectObject(DICE_FIGHT)) {
-    ClickObject(DICE_FIGHT)
+  if (detectObject(DICE_FIGHT)) {
+    clickObject(DICE_FIGHT)
   }
 
-  if (DetectObject(DICE_NEXT)) {
-    ClickObject(DICE_NEXT)
+  if (detectObject(DICE_NEXT)) {
+    clickObject(DICE_NEXT)
   }
 
-  if (DetectObject(DICE_BOARD)) {
-    ClickObject(DICE_BOARD)
+  if (detectObject(DICE_BOARD)) {
+    clickObject(DICE_BOARD)
   }
 
-  if (DetectObject(DICE_CLOSE)) {
-    ClickObject(DICE_CLOSE)
+  if (detectObject(DICE_CLOSE)) {
+    clickObject(DICE_CLOSE)
   }
 
-  if (DetectObject(DICE_MOVE)) {
-    ClickObject(DICE_MOVE)
+  if (detectObject(DICE_MOVE)) {
+    clickObject(DICE_MOVE)
   }
   
-  if (DetectObject(DICE_ARROW,50)) {
-	ClickObject(DICE_ARROW, 50)
+  if (detectObject(DICE_ARROW,50)) {
+	  clickObject(DICE_ARROW, 50)
   }
   
-  if (DetectObject(DICE_OPEN)) {
-	ClickObject(DICE_OPEN)
+  if (detectObject(DICE_OPEN)) {
+	  clickObject(DICE_OPEN)
   }
 }
 ; ==============================================================================
