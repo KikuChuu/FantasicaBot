@@ -81,8 +81,34 @@ initGlobals()
 	  Y2 := height
   }
 
+  if (width == 436 && height == 718)
+	{
+		WAIT_X := 50
+		WAIT_Y := 150
 
-	if (width == 632 && height == 1030)
+		BINGO_START_X := 110
+		BINGO_START_Y := 265
+		BINGO_TILE_SIZE := 110
+
+		QUEST_X1 := 200
+		QUEST_Y1 := 550
+		QUEST_X2 := 200
+		QUEST_Y2 := 100
+
+		MENU_X1 := 520
+		MENU_Y1 := 975
+		MENU_X2 := 30
+		MENU_Y2 := 975
+		
+		SCAN_START_X := 66
+		SCAN_START_Y := 50
+    SCAN_TILE_HEIGHT := 25
+		SCAN_TILE_WIDTH := 25
+        
+    CARDMENU_X := 100
+		CARDMENU_Y := 800
+	}
+	else if (width == 632 && height == 1030)
 	{
 		; The two coordinates tells the bot where it should idly click
 		WAIT_X := 325
