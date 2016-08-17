@@ -1,4 +1,4 @@
-﻿; =============================================================================
+﻿;=============================================================================
 ; GlobalConstants.ahk
 ;
 ; - This script is responsible for initializing the variables used by other
@@ -100,8 +100,8 @@ initGlobals()
 		MENU_X2 := 30
 		MENU_Y2 := 975
 		
-		SCAN_START_X := 66
-		SCAN_START_Y := 50
+		SCAN_START_X := 69
+		SCAN_START_Y := 53
     SCAN_TILE_HEIGHT := 25
 		SCAN_TILE_WIDTH := 25
         
