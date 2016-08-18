@@ -100,7 +100,7 @@ initGlobals()
 		MENU_X2 := 30
 		MENU_Y2 := 975
 		
-		SCAN_START_X := 69
+		SCAN_START_X := 63
 		SCAN_START_Y := 53
     SCAN_TILE_HEIGHT := 25
 		SCAN_TILE_WIDTH := 25
