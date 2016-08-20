@@ -6,14 +6,12 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 #include %A_ScriptDir%\includes\IncludeScript.ahk
 
 ;------- INITIALIZE -------------------------
-Init_globals() ; Found in GlobalConstants.ahk
+initGlobals() ; Found in GlobalConstants.ahk
 ;--------------------------------------------
 
 ;========================================================
 ;=================== QUEST ==============================
 ;========================================================
-
-SetTimer, RandomPopupOrCrash, 300000 ;handles crashes, popup advertisements
 
 loop
 {
@@ -125,52 +123,8 @@ loop
 	EPISODE++
 	QUEST=1
 }
-Reload
-
-;QUEST-ALL ENDS HERE
-;QUEST-ALL ENDS HERE
-;========================================================
-
-RandomPopupOrCrash:
-if (LaunchGame() || ConnectionError() || Maintenance())
-	Reload
-else
-{
-	Advertisement()
-	LoginBingo()
-}
-return
 
 
-
-
-
-
-TestFunction()
-{
-	global CHOOSEQUESTCOMPLETED_BUTTON, CONNECTIONERROR_BUTTON, BATTLEOFHEROES_TEXT, QUEST_ICON, QUEST_ICON2, SELECTEPISODE_BUTTON
-	while not DetectObject(SELECTEPISODE_BUTTON)
-	{
-		if DetectObject(QUEST_ICON)
-		{
-			WaitObject(QUEST_ICON)
-			ClickObject(QUEST_ICON)
-			break
-		}
-		else if DetectObject(QUEST_ICON2)
-		{
-			WaitObject(QUEST_ICON2)
-			ClickObject(QUEST_ICON2)
-			break
-		}
-	}
-}
-Move(coord1,coord2)
-{
-	MouseMove, %Coord1%,%Coord2%
-}
 F1::ExitApp
 F2::Pause
 F3::Reload
-F4::ConnectionError()
-F5::LoginBingo()

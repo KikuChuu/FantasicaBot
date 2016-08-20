@@ -95,10 +95,10 @@ initGlobals()
 		QUEST_X2 := 200
 		QUEST_Y2 := 100
 
-		MENU_X1 := 520
-		MENU_Y1 := 975
-		MENU_X2 := 30
-		MENU_Y2 := 975
+		MENU_X1 := 340
+		MENU_Y1 := 640
+		MENU_X2 := 40
+		MENU_Y2 := 640
 		
 		SCAN_START_X := 63
 		SCAN_START_Y := 53
