@@ -34,8 +34,10 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ; skipDialog - Skip dialogs when detected on-screen
 ; @return string - Returns a blank value (empty string) to its caller
 skipDialog() {
-  if (DetectObject(dialogSubset)) ; dialogSubset represents a general subset image of the dialog)
+  global DIALOG
+
+  if (DetectObject(DIALOG)) ; dialogSubset represents a general subset image of the dialog)
   {
-    ClickAt(imageLocation) ; image location is the coordnates of the detected image
+    ClickAt(DIALOG) ; image location is the coordnates of the detected image
   }
 }
