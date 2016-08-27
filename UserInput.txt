@@ -16,8 +16,8 @@ potion := 0
 	
 ;Quest Selection Specification
 ;-----------------------------
-	QUEST = 7 ; Enter 1,2,3,4,5,6, or 7
-	EPISODE = 59
+	QUEST = 1 ; Enter 1,2,3,4,5,6, or 7
+	EPISODE = 1
 ;Quest Battle specification
 ;--------------------------												 
 	DEPLOY_NUMBER = 3 	;number of units to deploy

@@ -38,6 +38,6 @@ skipDialog() {
 
   if (DetectObject(DIALOG)) ; dialogSubset represents a general subset image of the dialog)
   {
-    ClickAt(DIALOG) ; image location is the coordnates of the detected image
+    ClickObject(DIALOG) ; image location is the coordnates of the detected image
   }
 }
