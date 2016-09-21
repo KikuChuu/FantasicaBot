@@ -1,36 +1,4 @@
-﻿; =============================================================================
-; ObjectInteraction.ahk
-;
-; - A series of functions designed to interact with image-based GUI components
-;
-;
-; The MIT License
-;
-; Copyright (c) 2016 Ricky Tran <rickytran991@gmail.com>
-;
-; Permission is hereby granted, free of charge, to any person obtaining a copy
-; of this software and associated documentation files (the "Software"), to deal
-; in the Software without restriction, including without limitation the rights
-; to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-; copies of the Software, and to permit persons to whom the Software is
-; furnished to do so, subject to the following conditions:
-; 
-; The above copyright notice and this permission notice shall be included in
-; all copies or substantial portions of the Software.
-; 
-; THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-; IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-; FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-; AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-; LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-; OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-; THE SOFTWARE.
-; =============================================================================
-
-#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
-SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
-SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
-
+﻿SetDefaultMouseSpeed 0
 
 ;clickAt() - Performs a left-mouse click at the coordinates specified by the arguments
 ;@param int - The x coordinate
@@ -41,14 +9,34 @@ clickAt(coordX, coordY)
 	global SLEEPTIME
 	global BLUESTACK_WINDOW_TITLE
 	
-  if (winExist(BLUESTACK_WINDOW_TITLE)) {
+  if (!winActive(BLUESTACK_WINDOW_TITLE)) {
 	  WinActivate, %BLUESTACK_WINDOW_TITLE%
   }
 
-  SendEvent { Click down %coordX%, %coordY%}
+  ; We are going to perform an elaborate mouse click. 
+  ; Initially, we will click down on the mouse. Then release the mouse (click up).
+  ; Before the initial click down, we'll retrieve the hex value in rgb format at the specificied click coordinates.
+  ; After the mouse is down and while it is down, we'll retrieve a temporary rgb hex value.
+  ; We'll compare the two values immediately and if the values differ, then we'll release the mouse immediately.
+  ; If the values do not differ (match), we'll release the mouse after the speficied delay (SLEEPTIME).
+  ; In both cases, the mouse will be released, but the former case is intended release the mouse sooner than the latter case.
+
+  PixelGetColor, initialRgbValue, coordX, coordY, alt, RGB ; Retrieve the initial rgb hex value
+  Send { Click down %coordX%, %coordY%}
+  PixelGetColor, tempRgbValue, coordX, coordY, alt, RGB ; Retrieve the temporary rgb hex value
+
+  ; Compare the two rgb hex values and release the mouse accordingly
+  if (initialRgbValue != tempRgbValue) {
+    Send { Click up }
+  } 
+  else {
+    sleep SLEEPTIME
+    Send { Click up }
+  }
   sleep SLEEPTIME
-  SendEvent { Click up }
 }
+
+
 
 ;clickObject() - Searchs for the image specified as an argument. If the image
 ;                is found, performs a click on the image
@@ -96,17 +84,19 @@ clickObject(path, variation := 0)
 ;             pixel's color. Specify between 0 to 255 (inclusive)
 ;@return int - Returns 1 if the image matched within the window. 
 ;              Otherwise, returns 0.
-detectObject(path, variation := 0)
+detectObject(path, fromX, fromY, variation := 0)
 {
-	global X1,X2,Y1,Y2, BACK_BUTTON, SLEEEPTIME
+	global X2,Y2, BACK_BUTTON, SLEEEPTIME
 	global BLUESTACK_WINDOW_TITLE
 	global BUFFER_X, BUFFER_Y
+
+  WinGetPos,,,X2, Y2,%BLUESTACK_WINDOW_TITLE%
 
   if (winExist(BLUESTACK_WINDOW_TITLE)) {
 	  WinActivate, %BLUESTACK_WINDOW_TITLE%
   }
 
-	ImageSearch, FoundX, FoundY, X1, Y1, X2, Y2, *TransBlack *%variation% %path%
+	ImageSearch, FoundX, FoundY, fromX, fromY, X2, Y2, *TransBlack *%variation% %path%
 	if (ErrorLevel = 2)
   {
 		msg := "File Missing(DetectObject), We can't seem to find this file: " . path

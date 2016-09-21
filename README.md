@@ -1,5 +1,6 @@
-<h2>Sorry, no description at the moment, but here's a list of working scripts</h2> 
+<h2>List of working scripts</h2> 
 <p> 
+BotAllQuests<br>
 Clash of Legends<br>
 Error Connection<br>
 Legion Battle<br>
