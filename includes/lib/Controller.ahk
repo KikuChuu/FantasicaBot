@@ -11,15 +11,17 @@ class Controller {
     return this.point
   }
 
-  clickAndUpdateHistory() {
-    global SLEEPTIME
-
-    x := this.point[1]
-    y := this.point[2]
-    Send { Click down %x%, %y% }
+  clickAt(theX, theY) {
+    global SLEEPTIME 
+    Send { Click down %theX%, %theY% }
     Sleep SLEEPTIME
     Send { Click up }
     Sleep SLEEPTIME
+  }
+
+  clickAndUpdateHistory() {
+    global SLEEPTIME
+    this.clickAt(this.point[1], this.point[2])
     this.updatePointHistory()
   }
 

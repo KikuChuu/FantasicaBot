@@ -62,6 +62,9 @@ loop
     }
   }
   else if (startPageBot.isStartPage()) {
+    questBattleBot.setMapSquareStateOn()
+    questBattleBot.setDeployUnitOn()
+    questBattleBot.setDeployAllyOn()
     startPageBot.startGame()
     startPageBot.resumeQuest()
   }
@@ -84,27 +87,52 @@ loop
     }
   }
   else if (questBattleBot.isPlacingUnit()) {
-    if (questBattleBot.searchPoint()) {
-      questBattleBot.placeUnit()
+    if (questBattleBot.isMapFull() == true) {
+      questBattleBot.cancelDeployUnit()
+      questBattleBot.cancelDeployAlly()
+    }
+    else if (questBattleBot.searchPoint()) {
+      questBattleBot.confirmPlacement()
     }
   }
   else if (questBattleBot.isUnitList()) {
-    questBattleBot.deployUnit()
+    if (questBattleBot.isMapFull() == false) {
+      if (questBattleBot.getDeployUnitState() == true) {
+        questBattleBot.deployUnit()
+      }
+    }
     questBattleBot.exitUnitList()
   }
   else if (questBattleBot.isAllyList()) {
-    questBattleBot.deployAlly()
+    if (questBattleBot.isMapFull() == false) {
+      if (questBattleBot.getDeployAllyState() == true) {
+        questBattleBot.deployAlly()
+      } 
+    }
     questBattleBot.exitAllyList()
   }
   else if (questBattleBot.isQuestBattle()) {
     questBattleBot.skipDialog()
-    questBattleBot.unitList()
-    questBattleBot.allyList()
+    
+    if (questBattleBot.isMapFull() == false) {
+      if (questBattleBot.getDeployUnitState() == true) {
+        questBattleBot.unitList()
+      }
+      if (questBattleBot.getDeployAllyState() == true) {
+        questBattleBot.allyList()
+      }
+    }
   }
   else if (questMenuBot.isQuestMenuDetected()) {
-    if (questMenuBot.selectQuest(currentEpisode, currentQuest) == false) {
-      questMenuBot.episodeList()
+    questBattleBot.setMapSquareStateOn()
+    questBattleBot.setDeployUnitOn()
+    questBattleBot.setDeployAllyOn()
+
+    if (questMenuBot.isEpisodeSelection()) {
       questMenuBot.selectEpisode(currentEpisode)
+    }
+    else if (questMenuBot.selectQuest(currentEpisode, currentQuest) == false) {
+      questMenuBot.episodeList()
     }
   }
   else if (mainPageBot.isQuestCooldownDone()) {

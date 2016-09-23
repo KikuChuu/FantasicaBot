@@ -16,6 +16,56 @@ class QuestBattleBot {
   DEPLOY_ALLY := "FANTASICA IMAGES/Quest/QuestBattle/AllyList/deploy_ally-" . width . "_" . height . ".png" 
   EXIT_UNIT_LIST := "FANTASICA IMAGES/Quest/QuestBattle/UnitList/back-" . width . "_" . height . ".png"
   EXIT_ALLY_LIST := "FANTASICA IMAGES/Quest/QuestBattle/AllyList/back-" . width . "_" . height . ".png"
+  questBattlePoints := new QuestBattlePoints
+  
+  deployableMapSquareState := true
+  deployUnitState := true
+  deployAllyState := true
+
+  setMapSquareStateOff() {
+    this.deployableMapSquareState := false
+  }
+
+  setMapSquareStateOn() {
+    this.deployableMapSquareState := true
+  }
+
+  getMapSquareState() {
+    return this.deployableMapSquareState
+  }
+
+  isMapFull() {
+    if (this.getMapSquareState() == false) {
+      return true
+    }
+    else {
+      return false
+    }
+  }
+
+  setDeployUnitOff() {
+    this.deployUnitState := false
+  }
+
+  setDeployUnitOn() {
+    this.deployUnitState := true
+  }
+
+  getDeployUnitState() {
+    return this.deployUnitState
+  }
+
+  setDeployAllyOff() {
+    this.deployAllyState := false
+  }
+
+  setDeployAllyOn() {
+    this.deployAllyState := true
+  }
+
+  getDeployAllyState() {
+    return this.deployAllyState
+  }
 
   skipDialog() {
     global BUFFER_X, BUFFER_Y
@@ -76,30 +126,71 @@ class QuestBattleBot {
     }
   }
 
-  searchPoint() {
-    questBattlePoints := new QuestBattlePoints
-    loop, % questBattlePoints.getKeySetSize() {
-      key := questBattlePoints.getKey(A_Index)
-      point := questBattlePoints.getPoint(key)
-      if (detectObject(this.CONFIRM, 0, 0)) {
-        return true
-      }
-      controller := new Controller
-      controller.setPoint(point[1], point[2])
-      controller.clickAndUpdateHistory()
+  cancelDeployUnit() {
+    if (this.isPlacingUnit()) {
+      this.cancelPlacement()
+    }
+    else if (this.isUnitList()) {
+      this.exitUnitList()
     }
   }
 
-  placeUnit() {
+  cancelDeployAlly() {
+    if (this.isPlacingUnit()) {
+      this.cancelPlacement()
+    }
+    else if (this.isAllyList()) {
+      this.exitAllyList()
+    }
+  }
+
+  searchPoint() {
+    index := "" 
+    if (!this.questBattlePoints.isIndexValid(this.questBattlePoints.getSavedIndex())) {
+      index := 1
+    }
+    else {
+      index := this.questBattlePoints.getSavedIndex()
+    }
+
+    loop % this.questBattlePoints.getKeySetSize() {
+      key := this.questBattlePoints.getKey(index)
+      point := this.questBattlePoints.getPoint(key)
+      controller := new Controller
+      controller.setPoint(point[1], point[2])
+      controller.clickAndUpdateHistory()
+      if (detectObject(this.CONFIRM, 0, 0)) {
+        this.questBattlePoints.setSavedIndex(index)
+        return true
+      }
+
+      index++
+      if (index > this.questBattlePoints.getKeySetSize()) {
+        index := 1
+      }
+    }
+    
+    this.setMapSquareStateOff()  
+    return false
+  }
+
+  confirmPlacement() {
     global BUFFER_X, BUFFER_Y
     if (detectObject(this.CONFIRM, 0, 0)) {
       clickAt(BUFFER_X, BUFFER_Y)
     }
   }
 
+  cancelPlacement() {
+    global BUFFER_X, BUFFER_Y
+    if (detectObject(this.CANCEL, 0, 0)) {
+      clickAt(BUFFER_X, BUFFER_Y)
+    }
+  }
+
   speedUpQuest() {
     global BUFFER_X, BUFFER_Y
-    if (detectObject(this.SPEED_UP_QUEST, 0, 0)) {
+    if (detectObject(this.SPEED_UP_QUEST, 0, 0, 50)) {
       clickAt(BUFFER_X, BUFFER_Y)
     }
   }

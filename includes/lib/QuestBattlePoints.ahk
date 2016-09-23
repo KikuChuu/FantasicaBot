@@ -1,4 +1,7 @@
 class QuestBattlePoints {
+  savedKey := ""
+  savedIndex := 0
+
   keys := [ "a15", "b15", "c15", "d15", "e15", "f15", "g15", "h15", "i15", "j15", "k15", "l15", "m15", "n15", "o15"
     , "a14", "b14", "c14", "d14", "e14", "f14", "g14", "h14", "i14", "j14", "k14", "l14", "m14", "n14", "o14"
     , "a13", "b13", "c13", "d13", "e13", "f13", "g13", "h13", "i13", "j13", "k13", "l13", "m13", "n13", "o13"
@@ -251,7 +254,42 @@ class QuestBattlePoints {
     return this.keys[theIndex]
   }
 
+  setSavedIndex(theIndex) {
+    this.savedIndex := theIndex
+  }
+
+  getSavedIndex() {
+    return this.savedIndex
+  }
+
+  setSavedKey(theKey) {
+    this.savedKey := theKey
+  }
+
+  getSavedKey() {
+    return this.savedKey
+  }
+
   getKeySetSize() {
     return this.keys.length()
+  }
+
+  isIndexValid(theIndex) {
+    if (theIndex >= 1 && theIndex <= this.getKeySetSize()) {
+      return true
+    }
+    else {
+      return false
+    }
+  }
+
+  isKeyValid(theSearchKey) {
+    loop % this.getKeySetSize() {
+      if (theSearchKey == this.getKey(A_Index)) {
+        return true
+      }
+    }
+
+    return false
   }
 }

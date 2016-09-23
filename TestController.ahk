@@ -55,6 +55,7 @@ test5() {
       point := controller.getHistoryPoint(A_Index)
       output .= "P" . A_Index . "(" . point[1] . ", " . point[2] . "),`n"
     }
+    output := subStr(output, 1, strLen(output) - 2)
     MsgBox % "History of Clicks (1 = newest, 10 = oldest)`n" . output
   }
 

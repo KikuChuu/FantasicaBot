@@ -1164,6 +1164,15 @@ class QuestMenuBot {
     }
   }
 
+  isEpisodeSelection() {
+    if (detectObject(this.SELECT, 0, 0)) {
+      return true
+    }
+    else {
+      return false
+    }
+  }
+
   selectEpisode(theEpisode) {
     global BUFFER_X, BUFFER_Y
     episodePath := this.getEpisode(theEpisode)

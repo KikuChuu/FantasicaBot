@@ -15,38 +15,51 @@ initGlobals() ; Found in GlobalConstants.ahk
 
 questMenuBot := new QuestMenuBot()
 
+
 test1() {
-  questMenuBot.selectEpisode(questMenuBot.EPISODE_1)
+  SB_SetText("Test isEpisodeSelection()")
+  result:= ""
+  if (questMenuBot.isEpisodeSelection()) {
+    result := "PASSED"
+  }
+  else {
+    result := "FAILED"
+  }
+  SB_SetText("Tested isEpisodeSelection() -- " . result)
 }
 
 test2() {
-  questMenuBot.selectEpisode(questMenuBot.EPISODE_64)
+  questMenuBot.selectEpisode(1)
 }
 
 test3() {
-  questMenuBot.selectPisode(questMenuBot.EPISODE_11)
+  questMenuBot.selectEpisode(64)
 }
 
 test4() {
-  questMenuBot.selectQuest(questMenuBot.QUEST_10_1)
+  questMenuBot.selectPisode(11)
 }
 
 test5() {
-  questMenuBot.selectQuest(questMenuBot.QUEST_10_4)
+  questMenuBot.selectQuest(10, 1)
 }
 
 test6() {
-  questMenuBot.selectQuest(questMenuBot.QUEST_10_10)
+  questMenuBot.selectQuest(10, 4)
 }
 
 test7() {
+  questMenuBot.selectQuest(10, 10)
+}
+
+test8() {
   SB_SetText("Test openOrCreateDB()")
   questMenuBot.openOrCreateDB()
   questMenuBot.closeDB()
   SB_SetText("Tested openOrCreateDB()")
 }
 
-test8() {
+test9() {
   SB_SetText("Test createQuestDataTable()")
   questMenuBot.openOrCreateDB()
   questMenuBot.createQuestDataTable()
@@ -54,7 +67,7 @@ test8() {
   questMenuBot.closeDB()
 }
 
-test9() {
+test10() {
   SB_SetText("Test dropTable()")
   questMenuBot.openOrCreateDB()
   questMenuBot.dropTable()
@@ -62,14 +75,14 @@ test9() {
   questMenuBot.closeDB()
 }
 
-test10() {
+test11() {
   SB_SetText("Test deleteDB()")
   startCount := A_TickCount
   questMenuBot.deleteDB()
   SB_SetText("Tested deleteDB() in " . (A_TickCount - startCount) . " ms")
 }
 
-test11() {
+test12() {
   SB_SetText("Test addQuestEntry(int,int)")
   questMenuBot.openOrCreateDB()
   questMenuBot.addQuestEntry(1, 1)
@@ -77,7 +90,7 @@ test11() {
   questMenuBot.closeDB()
 }
 
-test12() {
+test13() {
   SB_SetText("Test isCleared(int,int)")
   questMenuBot.openOrCreateDB()
   if (questMenuBot.isCleared(1, 1)) {
@@ -87,7 +100,7 @@ test12() {
   questMenuBot.closeDB()
 }
 
-test13() {
+test14() {
   SB_SetText("Test 25 addQuestEntry(int,int)")
   questMenuBot.openOrCreateDB()
   startCount := A_TickCount
@@ -102,7 +115,7 @@ test13() {
   questMenuBot.closeDB()
 }
 
-test14() {
+test15() {
   SB_SetText("Test isCleared(int,int) for 25 quest entries")
   questMenuBot.openOrCreateDB()
   totalCleared := 0
@@ -128,7 +141,7 @@ test14() {
   questMenuBot.closeDB()
 }
 
-test15() {
+test16() {
   SB_SetText("Test getEpisode(int) 64 times")
   result := ""
   startCount := A_TickCount
@@ -139,7 +152,7 @@ test15() {
   MsgBox % result
 }
 
-test16() {
+test17() {
   SB_SetText("Test getQuest(int,int) about 640 times or more")
   result := ""
   startCount := A_TickCount
@@ -164,7 +177,7 @@ test16() {
   MsgBox % result
 }
 
-test17() {
+test18() {
   SB_SetText("Test createAndFillEpisodeDataTable()")
   questMenuBot.openOrCreateDB()
   startCount := A_TickCount
@@ -173,7 +186,7 @@ test17() {
   questMenuBot.closeDB()
 }
 
-test18() {
+test19() {
   SB_SetText("Test printEpisodeDataTable")
   questMenuBot.openOrCreateDB()
   questMenuBot.printEpisodeDataTable()
@@ -202,3 +215,4 @@ F12::test9()
 ^F7::test16()
 ^F8::test17()
 ^F9::test18()
+^F10::test19()
