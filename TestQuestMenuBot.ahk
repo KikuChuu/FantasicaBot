@@ -5,18 +5,19 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 #include %A_ScriptDir%\includes\IncludeScript.ahk
 
-;------- INITIALIZE -------------------------
-initGlobals() ; Found in GlobalConstants.ahk
-;--------------------------------------------
-
 ;========================================================
 ;=================== QUEST ==============================
 ;========================================================
 
 questMenuBot := new QuestMenuBot()
 
-
 test1() {
+  SB_SetText("Test episodeList()")
+  questMenuBot.episodeList()
+  SB_SetText("Tested episodeList()")
+}
+
+test2() {
   SB_SetText("Test isEpisodeSelection()")
   result:= ""
   if (questMenuBot.isEpisodeSelection()) {
@@ -28,38 +29,38 @@ test1() {
   SB_SetText("Tested isEpisodeSelection() -- " . result)
 }
 
-test2() {
+test3() {
   questMenuBot.selectEpisode(1)
 }
 
-test3() {
+test4() {
   questMenuBot.selectEpisode(64)
 }
 
-test4() {
-  questMenuBot.selectPisode(11)
-}
-
 test5() {
-  questMenuBot.selectQuest(10, 1)
+  questMenuBot.selectEpisode(10)
 }
 
 test6() {
-  questMenuBot.selectQuest(10, 4)
+  questMenuBot.selectQuest(10, 1)
 }
 
 test7() {
-  questMenuBot.selectQuest(10, 10)
+  questMenuBot.selectQuest(10, 4)
 }
 
 test8() {
+  questMenuBot.selectQuest(10, 10)
+}
+
+test9() {
   SB_SetText("Test openOrCreateDB()")
   questMenuBot.openOrCreateDB()
   questMenuBot.closeDB()
   SB_SetText("Tested openOrCreateDB()")
 }
 
-test9() {
+test10() {
   SB_SetText("Test createQuestDataTable()")
   questMenuBot.openOrCreateDB()
   questMenuBot.createQuestDataTable()
@@ -67,7 +68,7 @@ test9() {
   questMenuBot.closeDB()
 }
 
-test10() {
+test11() {
   SB_SetText("Test dropTable()")
   questMenuBot.openOrCreateDB()
   questMenuBot.dropTable()
@@ -75,14 +76,14 @@ test10() {
   questMenuBot.closeDB()
 }
 
-test11() {
+test12() {
   SB_SetText("Test deleteDB()")
   startCount := A_TickCount
   questMenuBot.deleteDB()
   SB_SetText("Tested deleteDB() in " . (A_TickCount - startCount) . " ms")
 }
 
-test12() {
+test13() {
   SB_SetText("Test addQuestEntry(int,int)")
   questMenuBot.openOrCreateDB()
   questMenuBot.addQuestEntry(1, 1)
@@ -90,7 +91,7 @@ test12() {
   questMenuBot.closeDB()
 }
 
-test13() {
+test14() {
   SB_SetText("Test isCleared(int,int)")
   questMenuBot.openOrCreateDB()
   if (questMenuBot.isCleared(1, 1)) {
@@ -100,7 +101,7 @@ test13() {
   questMenuBot.closeDB()
 }
 
-test14() {
+test15() {
   SB_SetText("Test 25 addQuestEntry(int,int)")
   questMenuBot.openOrCreateDB()
   startCount := A_TickCount
@@ -115,7 +116,7 @@ test14() {
   questMenuBot.closeDB()
 }
 
-test15() {
+test16() {
   SB_SetText("Test isCleared(int,int) for 25 quest entries")
   questMenuBot.openOrCreateDB()
   totalCleared := 0
@@ -141,7 +142,7 @@ test15() {
   questMenuBot.closeDB()
 }
 
-test16() {
+test17() {
   SB_SetText("Test getEpisode(int) 64 times")
   result := ""
   startCount := A_TickCount
@@ -152,7 +153,7 @@ test16() {
   MsgBox % result
 }
 
-test17() {
+test18() {
   SB_SetText("Test getQuest(int,int) about 640 times or more")
   result := ""
   startCount := A_TickCount
@@ -177,7 +178,7 @@ test17() {
   MsgBox % result
 }
 
-test18() {
+test19() {
   SB_SetText("Test createAndFillEpisodeDataTable()")
   questMenuBot.openOrCreateDB()
   startCount := A_TickCount
@@ -186,7 +187,7 @@ test18() {
   questMenuBot.closeDB()
 }
 
-test19() {
+test20() {
   SB_SetText("Test printEpisodeDataTable")
   questMenuBot.openOrCreateDB()
   questMenuBot.printEpisodeDataTable()
@@ -216,3 +217,4 @@ F12::test9()
 ^F8::test17()
 ^F9::test18()
 ^F10::test19()
+^F11::test20()

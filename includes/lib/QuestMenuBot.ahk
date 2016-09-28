@@ -3,10 +3,36 @@ class QuestMenuBot {
   questDataTableName := "QuestData"
   DB := ""
 
+  __New() {
+    global width, height
+    if (width == 436 && height == 718) {
+      this.EPISODE_X1 := 200
+      this.EPISODE_Y1 := 415
+      this.EPISODE_X2 := 200
+      this.EPISODE_Y2 := 530
+
+      this.QUEST_X1 := 200
+      this.QUEST_Y1 := 380
+      this.QUEST_X2 := 200
+      this.QUEST_Y2 := 530
+    }
+    else {
+      this.EPISODE_X1 := 200
+      this.EPISODE_Y1 := 380
+      this.EPISODE_X2 := 200
+      this.EPISODE_Y2 := 530
+
+      this.QUEST_X1 := 200
+      this.QUEST_Y1 := 340
+      this.QUEST_X2 := 200
+      this.QUEST_Y2 := 530
+    }
+  }
+
   openOrCreateDB() {
-    this.DB := new SQLiteDB()
+    this.DB := new SQLiteDB
     if (this.DB.openDB(this.dbFileName) == false) {
-      MsgBox, 16, SQLite Error, % "Msg: `t" . this.DB.errorMsg . "`nCode: `t" . this.DB.errorCode
+     MsgBox, 16, SQLite Error, % "Msg: `t" . this.DB.errorMsg . "`nCode: `t" . this.DB.errorCode
       ExitApp
     }
   }
@@ -1067,88 +1093,125 @@ class QuestMenuBot {
   }
 
   scrollDownEpisode() {
-    global EPISODE_X1, EPISODE_Y1, EPISODE_X2, EPISODE_Y2
-
-    MouseMove, EPISODE_X1, EPISODE_Y1
+    episodeX1 := this.EPISODE_X1
+    episodeY1 := this.EPISODE_Y1
+    episodeX2 := this.EPISODE_X2
+    episodeY2 := this.EPISODE_Y2 
+    MouseMove, this.EPISODE_X2, this.EPISODE_Y2
 
     tempSpeed := A_DefaultMouseSpeed
     SetDefaultMouseSpeed 30
-    SendEvent { click, %EPISODE_X1%, %EPISODE_Y1%, down}{ click, %EPISODE_X2%, %EPISODE_Y2%, up}
+    SendEvent {click, %episodeX2%, %episodeY2%, down}{click, %episodeX1%, %episodeY1%, up}
     SetDefaultMouseSpeed %tempSpeed%
   }
 
   scrollUpEpisode() {
-    global EPISODE_X1, EPISODE_Y1, EPISODE_X2, EPISODE_Y2
-
-    MouseMove, EPISODE_X2, EPISODE_Y2
+    episodeX1 := this.EPISODE_X1
+    episodeY1 := this.EPISODE_Y1
+    episodeX2 := this.EPISODE_X2
+    episodeY2 := this.EPISODE_Y2 
+    MouseMove, this.EPISODE_X1, this.EPISODE_Y1
 
     tempSpeed := A_DefaultMouseSpeed
     SetDefaultMouseSpeed 30
-    SendEvent { click, %EPISODE_X2%, %EPISODE_Y2%, down}{ click, %EPISODE_X1%, %EPISODE_Y1%, up}
+    SendEvent {click, %episodeX1%, %episodeY1%, down}{click, %episodeX2%, %episodeY2%, up}
     SetDefaultMouseSpeed %tempSpeed%
   }
 
   scrollTopEpisode() {
-    global EPISODE_X1, EPISODE_Y1, EPISODE_X2, EPISODE_Y2
 
-    MouseMove, EPISODE_X2, EPISODE_Y2
+    episodeX1 := this.EPISODE_X1
+    episodeY1 := this.EPISODE_Y1
+    episodeX2 := this.EPISODE_X2
+    episodeY2 := this.EPISODE_Y2 
+    MouseMove, this.EPISODE_X1, this.EPISODE_Y1
 
     tempSpeed := A_DefaultMouseSpeed
     SetDefaultMouseSpeed 2
     loop, 5 {
-      SendEvent { click, %EPISODE_X2%, %EPISODE_Y2%, down}{ click, %EPISODE_X1%, %EPISODE_Y1%, up}
+      SendEvent {click, %episodeX1%, %episodeY1%, down}{click, %episodeX2%, %episodeY2%, up}
     }
     SetDefaultMouseSpeed %tempSpeed%
   }
 
   scrollBottomEpisode() {
-    global EPISODE_X1, EPISODE_Y1, EPISODE_X2, EPISODE_Y2
-
-    MouseMove, EPISODE_X1, EPISODE_Y1
+    episodeX1 := this.EPISODE_X1
+    episodeY1 := this.EPISODE_Y1
+    episodeX2 := this.EPISODE_X2
+    episodeY2 := this.EPISODE_Y2 
+    MouseMove, this.EPISODE_X2, this.EPISODE_Y2
 
     tempSpeed := A_DefaultMouseSpeed
     SetDefaultMouseSpeed 2
     loop, 5 {
-      SendEvent { click, %EPISODE_X1%, %EPISODE_Y1%, down}{ click, %EPISODE_X2%, %EPISODE_Y2%, up} 
+      SendEvent {click, %episodeX2%, %episodeY2%, down}{click, %episodeX1%, %episodeY1%, up}
     }
     SetDefaultMouseSpeed %tempSpeed%
   }
 
   scrollDownQuest() {
-    global QUEST_X1, QUEST_Y1, QUEST_X2, QUEST_Y2
+    questX1 := this.QUEST_X1
+    questY1 := this.QUEST_Y1
+    questX2 := this.QUEST_X2
+    questY2 := this.QUEST_Y2
 
-    MouseMove, QUEST_X1, QUEST_Y1
+    MouseMove, this.QUEST_X2, this.QUEST_Y2
 
     tempSpeed := A_DefaultMouseSpeed
     SetDefaultMouseSpeed 30
-    SendEvent { click, %QUEST_X1%, %QUEST_Y1%, down}{ click, %QUEST_X2%, %QUEST_Y2%, up}
+    SendEvent { click, %questX2%, %questY2%, down}{ click, %questX1%, %questY1%, up}
     SetDefaultMouseSpeed %tempSpeed%
   }
 
   scrollUpQuest() {
-   
+    questX1 := this.QUEST_X1
+    questY1 := this.QUEST_Y1
+    questX2 := this.QUEST_X2
+    questY2 := this.QUEST_Y2
+
+    MouseMove, this.QUEST_X1, this.QUEST_Y1
+
+    tempSpeed := A_DefaultMouseSpeed
+    SetDefaultMouseSpeed 30
+    SendEvent { click, %questX1%, %questY1%, down}{ click, %questX2%, %questY2%, up}
+    SetDefaultMouseSpeed %tempSpeed%
   }
 
   scrollBottomQuest() {
-    global QUEST_X1, QUEST_Y1, QUEST_X2, QUEST_Y2
+    questX1 := this.QUEST_X1
+    questY1 := this.QUEST_Y1
+    questX2 := this.QUEST_X2
+    questY2 := this.QUEST_Y2
 
-    MouseMove, QUEST_X1, QUEST_Y1
+    MouseMove, this.QUEST_X2, this.QUEST_Y2
 
     tempSpeed := A_DefaultMouseSpeed
     SetDefaultMouseSpeed 2
     loop, 5 {
-      SendEvent { click, %QUEST_X1%, %QUEST_Y1%, down}{ click, %QUEST_X2%, %QUEST_Y2%, up} 
+      SendEvent { click, %questX2%, %questY2%, down}{ click, %questX1%, %questY1%, up}
     }
     SetDefaultMouseSpeed %tempSpeed%
   }
 
   scrollTopQuest() {
+    questX1 := this.QUEST_X1
+    questY1 := this.QUEST_Y1
+    questX2 := this.QUEST_X2
+    questY2 := this.QUEST_Y2
 
+    MouseMove, this.QUEST_X1, this.QUEST_Y1
+
+    tempSpeed := A_DefaultMouseSpeed
+    SetDefaultMouseSpeed 2
+    loop, 5 {
+      SendEvent { click, %questX1%, %questY1%, down}{ click, %questX2%, %questY2%, up}
+    }
+    SetDefaultMouseSpeed %tempSpeed%
   }
 
   episodeList() {
     global BUFFER_X, BUFFER_Y
-    if (detectObject(this.SELECT_EPISODE, 0, 0)) {
+    if (detectObject(this.SELECT_EPISODE, 0, 0, 50)) {
       clickAt(BUFFER_X, BUFFER_Y)
       sleep 1000
     }

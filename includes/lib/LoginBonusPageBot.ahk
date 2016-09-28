@@ -16,28 +16,28 @@ class LoginBonusPageBot {
 
   selectDetails() {
     global BUFFER_X, BUFFER_Y
-    if (detectObject(this.DETAILS, 0, 0)) {
+    if (detectObject(this.DETAILS, 0, 0, 50)) {
       clickAt(BUFFER_X, BUFFER_Y)
     }
   }
 
   selectInbox() {
     global BUFFER_X, BUFFER_Y
-    if (detectObject(this.INBOX, 0, 0)) {
+    if (detectObject(this.INBOX, 0, 0, 50)) {
       clickAt(BUFFER_X, BUFFER_Y)
     }
   }
 
   selectMyPage() {
     global BUFFER_X, BUFFER_Y
-    if (detectObject(this.MY_PAGE, 0, 0)) {
+    if (detectObject(this.MY_PAGE, 0, 0, 50)) {
       clickAt(BUFFER_X, BUFFER_Y)
     }
   }
 
   selectBack() {
     global BUFFER_X, BUFFER_Y
-    if (detectObject(this.BACK, 0, 0)) {
+    if (detectObject(this.BACK, 0, 0, 50)) {
       clickAt(BUFFER_X, BUFFER_Y)
     }
   }

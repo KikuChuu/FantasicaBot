@@ -13,14 +13,29 @@ class QuestBattleBot {
   CANCEL := "FANTASICA IMAGES/Quest/QuestBattle/cancel-" . width . "_" . height . ".png"
   MINA_DIALOG := "FANTASICA IMAGES/Quest/QuestBattle/mina_dialog-" . width . "_" . height . ".png"
   ALLY_LIST_TITLE := "FANTASICA IMAGES/Quest/QuestBattle/AllyList/title-" . width . "_" . height . ".png"
-  DEPLOY_ALLY := "FANTASICA IMAGES/Quest/QuestBattle/AllyList/deploy_ally-" . width . "_" . height . ".png" 
+  DEPLOY_ALLY := "FANTASICA IMAGES/Quest/QuestBattle/AllyList/deploy_ally-" . width . "_" . height . ".png"
   EXIT_UNIT_LIST := "FANTASICA IMAGES/Quest/QuestBattle/UnitList/back-" . width . "_" . height . ".png"
   EXIT_ALLY_LIST := "FANTASICA IMAGES/Quest/QuestBattle/AllyList/back-" . width . "_" . height . ".png"
-  questBattlePoints := new QuestBattlePoints
-  
+  DEFAULT_UNIT_USED_VALUE := 0
+  unitSize := DEPLOY_NUMBER ; DEPLOY_NUMBER is defined in the UserInput.txt file
+  unitUsed := this.DEFAULT_UNIT_USED_VALUE
   deployableMapSquareState := true
   deployUnitState := true
   deployAllyState := true
+  questBattlePoints := new QuestBattlePoints
+  controller := new Controller
+
+  getUnitSize() {
+    return this.unitSize
+  }
+
+  getUnitUsed() {
+    return this.unitUsed
+  }
+
+  setUnitUsed(theValue) {
+    this.unitUsed := theValue
+  }
 
   setMapSquareStateOff() {
     this.deployableMapSquareState := false
@@ -92,6 +107,15 @@ class QuestBattleBot {
     }
   }
 
+  isAlly() {
+    if (detectObject(this.DEPLOY_ALLY, 0, 0)) {
+      return true
+    }
+    else {
+      return false
+    }
+  }
+
   deployAlly() {
     global BUFFER_X, BUFFER_Y
     if (detectObject(this.DEPLOY_ALLY, 0, 0)) {
@@ -109,11 +133,30 @@ class QuestBattleBot {
     }
   }
 
+  isUnit() {
+    if (detectObject(this.DEPLOY_UNIT, 0, 0, 100)) {
+      return true
+    }
+    else {
+      return false
+    }
+  }
+
   deployUnit() {
     global BUFFER_X, BUFFER_Y
     if (detectObject(this.DEPLOY_UNIT, 0, 0, 100)) {
       clickAt(BUFFER_X, BUFFER_Y)
       sleep 500
+      return true
+    }
+    else {
+      return false
+    }
+  }
+
+  deployUnitAndUpdateUsed() {
+    if (this.deployUnit() == true) {
+      this.unitUsed++
     }
   }
 
@@ -156,9 +199,9 @@ class QuestBattleBot {
     loop % this.questBattlePoints.getKeySetSize() {
       key := this.questBattlePoints.getKey(index)
       point := this.questBattlePoints.getPoint(key)
-      controller := new Controller
-      controller.setPoint(point[1], point[2])
-      controller.clickAndUpdateHistory()
+      this.controller.setPoint(point[1], point[2])
+      this.controller.clickAndUpdateHistory()
+
       if (detectObject(this.CONFIRM, 0, 0)) {
         this.questBattlePoints.setSavedIndex(index)
         return true
@@ -171,6 +214,8 @@ class QuestBattleBot {
     }
     
     this.setMapSquareStateOff()  
+    this.setDeployUnitOff()
+    this.setDeployAllyOff()
     return false
   }
 
@@ -178,6 +223,7 @@ class QuestBattleBot {
     global BUFFER_X, BUFFER_Y
     if (detectObject(this.CONFIRM, 0, 0)) {
       clickAt(BUFFER_X, BUFFER_Y)
+      sleep 1000
     }
   }
 
@@ -185,12 +231,13 @@ class QuestBattleBot {
     global BUFFER_X, BUFFER_Y
     if (detectObject(this.CANCEL, 0, 0)) {
       clickAt(BUFFER_X, BUFFER_Y)
+      sleep 1000
     }
   }
 
   speedUpQuest() {
     global BUFFER_X, BUFFER_Y
-    if (detectObject(this.SPEED_UP_QUEST, 0, 0, 50)) {
+    if (detectObject(this.SPEED_UP_QUEST, 0, 0)) {
       clickAt(BUFFER_X, BUFFER_Y)
     }
   }
@@ -199,6 +246,16 @@ class QuestBattleBot {
     global BUFFER_X, BUFFER_Y
     if (detectObject(this.EXIT_UNIT_LIST, 0, 0)) {
       clickAt(BUFFER_X, BUFFER_Y)
+      sleep 1000
+    }
+  }
+
+  isUnitListAvailable() {
+    if (detectObject(this.UNIT_LIST, 0, 0)) {
+      return true
+    }
+    else {
+      return false
     }
   }
 
@@ -210,10 +267,20 @@ class QuestBattleBot {
     }
   }
 
+  isAllyListAvailable() {
+    if (detectObject(this.ALLY_LIST, 0, 0)) {
+      return true
+    }
+    else {
+      return false
+    }
+  }
+
   allyList() {
     global BUFFER_X, BUFFER_Y
     if (detectObject(this.ALLY_LIST, 0, 0)) {
       clickAt(BUFFER_X, BUFFER_Y)
+      sleep 500
     }
   }
 
@@ -221,6 +288,10 @@ class QuestBattleBot {
     global BUFFER_X, BUFFER_Y
     if (detectObject(this.EXIT_ALLY_LIST, 0, 0)) {
       clickAt(BUFFER_X, BUFFER_Y)
+      this.setDeployAllyOff()
+      sleep 500
     }
   }
+
+
 }

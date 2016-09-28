@@ -18,7 +18,7 @@ class StartPageBot {
     }
   }
 
-  isGameUnderMaintenence() {
+  isGameUnderMaintenance() {
     if (detectObject(this.START_GAME, 0, 0)) {
       return false
     }
@@ -41,9 +41,9 @@ class StartPageBot {
 
   quitGame() {
     global BUFFER_X, BUFFER_Y
-    if (this.isStartPageDetected()) {
+    if (this.isStartPage) {
       Send {ESC down}
-      sleep 1000
+      sleep 2000
       Send {ESC up}
     }
 

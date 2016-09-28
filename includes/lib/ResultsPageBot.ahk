@@ -7,6 +7,7 @@ class ResultsPageBot {
   QUEST_MENU := "FANTASICA IMAGES/Quest/QuestResult/quest_menu-" . width . "_" . height . ".png"
   MAIN_PAGE := "FANTASICA IMAGES/Quest/QuestResult/main_page-" . width . "_" . height . ".png"
   CLEARED := "FANTASICA IMAGES/Quest/QuestResult/100_percent_cleared-" . width . "_" . height . ".png"
+  TOWER_PAGE := "FANTASICA IMAGES/Quest/QuestResult/tower_page-" . width . "_" . height . ".png"
 
   isResultsPageDetected() {
     if (detectObject(this.TITLE, 0, 0)) {
@@ -39,6 +40,14 @@ class ResultsPageBot {
     global BUFFER_X, BUFFER_Y
 
     if (detectObject(this.MAIN_PAGE, 0, 0)) {
+      clickAt(BUFFER_X, BUFFER_Y)
+      sleep 1000
+    }
+  }
+
+  toTower() {
+    global BUFFER_X, BUFFER_Y
+    if (detectObject(this.TOWER_PAGE, 0, 0)) {
       clickAt(BUFFER_X, BUFFER_Y)
       sleep 1000
     }

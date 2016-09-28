@@ -1,114 +1,166 @@
-﻿#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
-; #Warn  ; Enable warnings to assist with detecting common errors.
-SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
-SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
-
+﻿#NoEnv
+SendMode Input
+SetWorkingDir %A_ScriptDir%
 #include %A_ScriptDir%\includes\IncludeScript.ahk
 
-;------- INITIALIZE -------------------------
-Init_globals() ; Found in GlobalConstants.ahk
-;--------------------------------------------
 
-;========================================================
-;=================== QUEST START =====================
-;========================================================
+; Define some variables
+appPlayerBot := new AppPlayerBot
+clubRookPageBot := new ClubRookPageBot
+loginBonusPageBot := new LoginBonusPageBot
+bingoPageBot := new BingoPageBot
+connectionErrorBot := new ConnectionErrorBot
+mainPageBot := new MainPageBot
+questMenuBot := new QuestMenuBot
+questBattleBot := new QuestBattleBot
+resultsPageBot := new ResultsPageBot
+startPageBot := new StartPageBot
+currentEpisode := EPISODE
+currentQuest := QUEST
 
-SetTimer, RandomPopupOrCrash, 300000 ;handles crashes, popup advertisements every 5 minutes
 
-waitobject(selectepisode_button)
-
-if quest >= 4
+loop
 {
-  global QUEST_X1, QUEST_Y1, QUEST_X2, QUEST_Y2
-  scroll(QUEST_X1, QUEST_Y1, QUEST_X2, QUEST_Y2)
+  mainPageBot.closeAnnouncement()
+
+  if (connectionErrorBot.isConnectionError()) {
+    connectionErrorBot.startPage()
+  }
+  else if (connectionError.isConnectionErrorRequiresRestart()) {
+    connectionErrorBot.exitGame()
+  }
+  else if (appPlayerBot.isAppPlayerHomePage()) {
+    if (appPlayerBot.isFantasicaRecentlyPlayed()) {
+      appPlayerBot.startGame()
+    }
+    else {
+      appPlayerBot.openAppDrawer()
+      appPlayerBot.startGame()
+    }
+  }
+  else if (startPageBot.isStartPage()) {
+    questBattleBot.setMapSquareStateOn()
+    questBattleBot.setDeployUnitOn()
+    questBattleBot.setDeployAllyOn()
+    questBattleBot.setUnitUsed(questBattleBot.DEFAULT_UNIT_USED_VALUE)
+
+    startPageBot.startGame()
+    startPageBot.resumeQuest()
+  }
+  else if (clubRookPageBot.isClubRookPage()) {
+    clubRookPageBot.exitPage()
+  }
+  else if (loginBonusPageBot.isLoginBonusPage()) {
+    loginBonusPageBot.selectMyPage()
+  }
+  else if (bingoPageBot.isBingoPage()) {
+    bingoPageBot.doBingo()
+  }
+  else if (resultsPageBot.isResultsPageDetected()) {
+    if (resultsPageBot.isQuestCleared()) {
+      resultsPageBot.toQuestMenu() 
+    }
+    else {
+      resultsPageBot.toMainPage()
+    }
+  }
+  else if (questBattleBot.isPlacingUnit()) {
+    if (questBattleBot.isMapFull() == true) {
+      questBattleBot.cancelPlacement()
+    }
+    else if (questBattleBot.searchPoint()) {
+      questBattleBot.confirmPlacement()
+    }
+  }
+  else if (questBattleBot.isAllyList()) {
+    if (questBattleBot.isMapFull() == false) {
+      if (questBattleBot.getDeployAllyState() == true) {
+        if (questBattleBot.isAlly()) {
+          questBattleBot.deployAlly()
+        }
+        else {
+          questBattleBot.setDeployAllyOff()
+          questBattleBot.exitAllyList()
+        } 
+      }
+      else {
+        questBattleBot.exitAllyList()
+      }
+    }
+    else {
+      questBattleBot.setDeployAllyOff()
+      questBattleBot.exitAllyList()
+    } 
+  }
+  else if (questBattleBot.isUnitList()) {
+    if (questBattleBot.isMapFull() == false) {
+      if (questBattleBot.getDeployUnitState() == true) {
+        if (questBattleBot.isUnit()) {
+          questBattleBot.deployUnit()
+          questBattleBot.unitUsed++
+          if (questBattleBot.getUnitUsed() >= questBattleBot.getUnitSize()) {
+            questBattleBot.setDeployUnitOff()
+          }
+        }
+        else {
+          questBattleBot.exitUnitList()
+        }
+      }
+      else {
+        questBattleBot.exitUnitList()
+      }
+    }
+    else {
+      questBattleBot.exitUnitList()
+    }
+  }
+  else if (questBattleBot.isQuestBattle()) {
+    questBattleBot.skipDialog()
+
+    if (questBattleBot.isMapFull() == false) {
+      if (questBattleBot.getDeployAllyState() == true) {
+        if (questBattleBot.isAllyListAvailable()) {
+          questBattleBot.allyList()
+        }
+        else {
+          questBattleBot.setDeployAllyOff()
+        }
+      }
+      else if (questBattleBot.getDeployUnitState() == true) {
+        if (questBattleBot.isUnitListAvailable()) {
+          questBattleBot.unitList()
+        }
+        else {
+          questBattleBot.setDeployUnitOff()
+        }
+      }
+      else {
+        questBattleBot.speedUpQuest()
+      }
+    }
+    else {
+      questBattleBot.speedUpQuest()
+    }
+  }
+  else if (questMenuBot.isQuestMenuDetected()) {
+    questBattleBot.setMapSquareStateOn()
+    questBattleBot.setDeployUnitOn()
+    questBattleBot.setDeployAllyOn()
+    questBattleBot.setUnitUsed(questBattleBot.DEFAULT_UNIT_USED_VALUE)
+
+    if (questMenuBot.isEpisodeSelection()) {
+      questMenuBot.selectEpisode(currentEpisode)
+    }
+    else if (questMenuBot.selectQuest(currentEpisode, currentQuest) == false) {
+      questMenuBot.episodeList()
+    }
+  }
+  else if (mainPageBot.isQuestCooldownDone()) {
+    mainPageBot.selectMenu(mainPageBot.QUEST)
+  }
 }
 
-questindex := assignquest(quest)
-waitobject(questindex)
-sleep 500
 
-clickobject(questindex)
-waitobject(DEPLOYUNIT_BUTTON)
-
-hasDeployedAllAllies := 0
-while (A_index <= DEPLOY_NUMBER AND DetectObject(DEPLOYUNIT_BUTTON))
-{
-	DeployUnit()
-  
-	if (!hasDeployedAllAllies)
-	{		
-		while DetectObject(CALLALLY_BUTTON)
-		{   
-			if DetectObject(BACKQUEST_BUTTON)
-			{
-				while DetectObject(BACKQUEST_BUTTON)
-				{
-					WaitObject(BACKQUEST_BUTTON)
-					ClickObject(BACKQUEST_BUTTON)
-				}
-			}
-			if (CallAlly(SORTINDEX, TYPEINDEX) == 0)
-			{
-				hasDeployedAllAllies := 1
-				break
-			}
-		}
-	}
-}
-
-
-;quick fix
-Sleep 500
-if DetectObject(BACKQUEST_BUTTON)
-{
-	while DetectObject(BACKQUEST_BUTTON)
-	{
-		WaitObject(BACKQUEST_BUTTON)
-		ClickObject(BACKQUEST_BUTTON)
-	}
-}
-
-WaitObject(CHOOSEQUESTCOMPLETED_BUTTON) ;Basically waits until questing ends and we get our results
-ClickObject(CHOOSEQUESTCOMPLETED_BUTTON) ;return to quest selection
-
-Reload
-
-
-RandomPopupOrCrash:
-if (LaunchGame() || ConnectionError() || Maintenance())
-	Reload
-else
-	Advertisement()
-return
-
-InitGlobals:
-  Init_globals() ; Found in GlobalConstants.ahk
-return
-
-;QUEST ENDS HERE
-;========================================================
-
-
-
-
-;=====================
-TestFunction()
-{
-	Send { ESC down}
-	Sleep 1000
-	
-	
-	
-}
-TestFunction2()
-{
-	Roulette()
-}
-Move(coord1,coord2)
-{
-	SendEvent {Click 780, 500}
-}
 F1::ExitApp
 F2::Pause
 F3::Reload
-F4::DetectObject("E:/Programmingasdfsdf")

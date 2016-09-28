@@ -11,7 +11,6 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 #include %A_ScriptDir%\includes\lib\Log.ahk
 #include %A_ScriptDir%\includes\lib\Decorate.ahk
 #include %A_ScriptDir%\includes\lib\SB.ahk
-#include %A_ScriptDir%\includes\lib\SkipDialog.ahk
 #include %A_ScriptDir%\includes\lib\MainPageBot.ahk
 #include %A_ScriptDir%\includes\lib\QuestMenuBot.ahk
 #include %A_ScriptDir%\includes\lib\ResultsPageBot.ahk
@@ -24,3 +23,6 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 #include %A_ScriptDir%\includes\lib\QuestBattlePoints.ahk
 #include %A_ScriptDir%\includes\lib\Controller.ahk
 #include %A_ScriptDir%\includes\lib\ClubRookPageBot.ahk
+#include %A_ScriptDir%\includes\lib\Class_SQLiteDB.ahk
+#include %A_ScriptDir%\includes\lib\TowerBot.ahk
+;#include %A_ScriptDir%\includes\lib\ScreenBot.ahk

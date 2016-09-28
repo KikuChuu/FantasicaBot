@@ -1,18 +1,11 @@
-﻿#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
-; #Warn  ; Enable warnings to assist with detecting common errors.
-SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
-SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
+﻿#NoEnv
+SendMode Input
+SetWorkingDir %A_ScriptDir%
 
 #include %A_ScriptDir%\includes\IncludeScript.ahk
 
-;------- INITIALIZE -------------------------
-initGlobals() ; Found in GlobalConstants.ahk
-;--------------------------------------------
 
-;========================================================
-;=================== QUEST ==============================
-;========================================================
-
+; Define some variables
 appPlayerBot := new AppPlayerBot
 clubRookPageBot := new ClubRookPageBot
 loginBonusPageBot := new LoginBonusPageBot
@@ -23,8 +16,9 @@ questMenuBot := new QuestMenuBot
 questBattleBot := new QuestBattleBot
 resultsPageBot := new ResultsPageBot
 startPageBot := new StartPageBot
-currentEpisode := 1
-currentQuest := 1
+currentEpisode := EPISODE
+currentQuest := QUEST
+
 
 updateQuestProgress() {
   global currentEpisode, currentQuest
@@ -41,7 +35,7 @@ updateQuestProgress() {
   }
 }
 
-; Initialize some variables
+
 loop
 {
   mainPageBot.closeAnnouncement()
@@ -65,6 +59,8 @@ loop
     questBattleBot.setMapSquareStateOn()
     questBattleBot.setDeployUnitOn()
     questBattleBot.setDeployAllyOn()
+    questBattleBot.setUnitUsed(questBattleBot.DEFAULT_UNIT_USED_VALUE)
+
     startPageBot.startGame()
     startPageBot.resumeQuest()
   }
@@ -88,45 +84,87 @@ loop
   }
   else if (questBattleBot.isPlacingUnit()) {
     if (questBattleBot.isMapFull() == true) {
-      questBattleBot.cancelDeployUnit()
-      questBattleBot.cancelDeployAlly()
+      questBattleBot.cancelPlacement()
     }
     else if (questBattleBot.searchPoint()) {
       questBattleBot.confirmPlacement()
     }
   }
-  else if (questBattleBot.isUnitList()) {
-    if (questBattleBot.isMapFull() == false) {
-      if (questBattleBot.getDeployUnitState() == true) {
-        questBattleBot.deployUnit()
-      }
-    }
-    questBattleBot.exitUnitList()
-  }
   else if (questBattleBot.isAllyList()) {
     if (questBattleBot.isMapFull() == false) {
       if (questBattleBot.getDeployAllyState() == true) {
-        questBattleBot.deployAlly()
-      } 
+        if (questBattleBot.isAlly()) {
+          questBattleBot.deployAlly()
+        }
+        else {
+          questBattleBot.setDeployAllyOff()
+          questBattleBot.exitAllyList()
+        } 
+      }
+      else {
+        questBattleBot.exitAllyList()
+      }
     }
-    questBattleBot.exitAllyList()
+    else {
+      questBattleBot.setDeployAllyOff()
+      questBattleBot.exitAllyList()
+    } 
+  }
+  else if (questBattleBot.isUnitList()) {
+    if (questBattleBot.isMapFull() == false) {
+      if (questBattleBot.getDeployUnitState() == true) {
+        if (questBattleBot.isUnit()) {
+          questBattleBot.deployUnit()
+          questBattleBot.unitUsed++
+          if (questBattleBot.getUnitUsed() >= questBattleBot.getUnitSize()) {
+            questBattleBot.setDeployUnitOff()
+          }
+        }
+        else {
+          questBattleBot.exitUnitList()
+        }
+      }
+      else {
+        questBattleBot.exitUnitList()
+      }
+    }
+    else {
+      questBattleBot.exitUnitList()
+    }
   }
   else if (questBattleBot.isQuestBattle()) {
     questBattleBot.skipDialog()
-    
+
     if (questBattleBot.isMapFull() == false) {
-      if (questBattleBot.getDeployUnitState() == true) {
-        questBattleBot.unitList()
-      }
       if (questBattleBot.getDeployAllyState() == true) {
-        questBattleBot.allyList()
+        if (questBattleBot.isAllyListAvailable()) {
+          questBattleBot.allyList()
+        }
+        else {
+          questBattleBot.setDeployAllyOff()
+        }
       }
+      else if (questBattleBot.getDeployUnitState() == true) {
+        if (questBattleBot.isUnitListAvailable()) {
+          questBattleBot.unitList()
+        }
+        else {
+          questBattleBot.setDeployUnitOff()
+        }
+      }
+      else {
+        questBattleBot.speedUpQuest()
+      }
+    }
+    else {
+      questBattleBot.speedUpQuest()
     }
   }
   else if (questMenuBot.isQuestMenuDetected()) {
     questBattleBot.setMapSquareStateOn()
     questBattleBot.setDeployUnitOn()
     questBattleBot.setDeployAllyOn()
+    questBattleBot.setUnitUsed(questBattleBot.DEFAULT_UNIT_USED_VALUE)
 
     if (questMenuBot.isEpisodeSelection()) {
       questMenuBot.selectEpisode(currentEpisode)

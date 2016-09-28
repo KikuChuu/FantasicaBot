@@ -17,21 +17,21 @@ class BingoPageBot {
 
   selectSquare() {
     global BUFFER_X, BUFFER_Y
-    if (detectObject(this.SQUARE, 0, 0, 50)) {
+    if (detectObject(this.SQUARE, 0, 0, 75)) {
       clickAt(BUFFER_X, BUFFER_Y)
     }
   }
 
   receiveItem() {
     global BUFFER_X, BUFFER_Y
-    if (detectObject(this.RECEIVE, 0, 0)) {
+    if (detectObject(this.RECEIVE, 0, 0, 50)) {
       clickAt(BUFFER_X, BUFFER_Y)
     }
   }
 
   selectMyPage() {
     global BUFFER_X, BUFFER_Y
-    if (detectObject(this.MY_PAGE, 0, 0)) {
+    if (detectObject(this.MY_PAGE, 0, 0, 50)) {
       clickAt(BUFFER_X, BUFFER_Y)
     }
   }
@@ -46,14 +46,14 @@ class BingoPageBot {
 
   selectInbox() {
     global BUFFER_X, BUFFER_Y
-    if (detectObject(this.INBOX, 0, 0)) {
+    if (detectObject(this.INBOX, 0, 0, 50)) {
       clickAt(BUFFER_X, BUFFER_Y)
     }
   }
 
   selectNotice() {
     global BUFFER_X, BUFFER_Y
-    if (detectObject(this.NOTICE, 0, 0)) {
+    if (detectObject(this.NOTICE, 0, 0, 50)) {
       clickAt(BUFFER_X, BUFFER_Y)
     }
   }

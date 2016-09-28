@@ -1,5 +1,7 @@
 ﻿class MainPageBot {
+  TITLE := "FANTASICA IMAGES/MainPage/title-" . width . "_" . height . ".png"
   QUEST_COOLDOWN := "FANTASICA IMAGES\MainPage\Status\quest_cooldown-" . width . "_" . height . ".png"
+  TOWER := "FANTASICA IMAGES/MainPage/Menu/tower-" . width . "_" . height . ".png"
   QUEST := "FANTASICA IMAGES\MainPage\Menu\quest-" . width . "_" . height . ".png"
   TRAINING := "FANTASICA IMAGES\MainPage\Menu\training-" . width . "_" . height . ".png"
   CARD_PACK := "FANTASICA IMAGES\MainPage\Menu\card_pack-" . width . "_" . height . ".png"
@@ -22,7 +24,32 @@
   OPTIONS := "FANTASICA IMAGES\MainPage\Menu\options-" . width . "_" . height . ".png"
   HELP := "FANTASICA IMAGES\MainPage\Menu\help-" . width . "_" . height . ".png"
   ANNOUNCEMENT_HEADER := "FANTASICA IMAGES/MainPage/Announcement/announcement_header-" . width . "_" . height . ".png"
-  CLOSE_ANNOUNCEMENT := "FANTASICA IMAGES/MainPage/Announcement/close-" . width . "_" . height . ".png"
+  CLOSE_ANNOUNCEMENT := "FANTASICA IMAGES/MainPage/Announcement/close-" . width . "_" . height . ".png" 
+
+  __New() {
+    global width, height
+    if (width == 418 && height == 718) {
+      this.MENU_X1 := 30
+      this.MENU_Y1 := 650
+      this.MENU_X2 := 130
+      this.MENU_Y2 := 650
+    }
+    else {
+      this.MENU_X1 := 30
+      this.MENU_Y1 := 650
+      this.MENU_X2 := 130
+      this.MENU_Y2 := 650
+    }
+  }
+
+  isMainPage() {
+    if (detectObject(this.TITLE, 0, 0)) {
+      return true
+    }
+    else {
+      return false
+    }
+  }
 
   isQuestCooldownDone() {
     if (detectObject(this.QUEST_COOLDOWN, 0, 0)) {
@@ -35,57 +62,69 @@
 
   scrollLeft()
   {
-    global MENU_X1, MENU_X2, MENU_Y1, MENU_Y2
+    menuX1 := this.MENU_X1
+    menuY1 := this.MENU_Y1
+    menuX2 := this.MENU_X2
+    menuY2 := this.MENU_Y2
 
-    MouseMove %MENU_X2%, %MENU_Y2%
+    MouseMove this.MENU_X1, this.MENU_Y1
 
     tempMouseSpeed := A_DefaultMouseSpeed
     SetDefaultMouseSpeed 30
-    SendEvent { click %MENU_X2%, %MENU_Y2%, down }{ click %MENU_X1%, %MENU_Y1%, up }
+    SendEvent { click %menuX1%, %menuY1%, down }{ click %menuX2%, %menuY2%, up }
+    sleep 500
     SetDefaultMouseSpeed tempMouseSpeed
   }
 
   scrollRight()
   {
-    global MENU_X1, MENU_X2, MENU_Y1, MENU_Y2
+    menuX1 := this.MENU_X1
+    menuY1 := this.MENU_Y1
+    menuX2 := this.MENU_X2
+    menuY2 := this.MENU_Y2
 
-    MouseMove %MENU_X1%, %MENU_Y1%
+    MouseMove this.MENU_X2, this.MENU_Y2
 
     tempMouseSpeed := A_DefaultMouseSpeed
     SetDefaultMouseSpeed 30
-    SendEvent { click %MENU_X1%, %MENU_Y1%, down }{ click %MENU_X2%, %MENU_Y2%, up }
+    SendEvent { click %menuX2%, %menuY2%, down }{ click %menuX1%, %menuY1%, up }
+    sleep 500
     SetDefaultMouseSpeed tempMouseSpeed
   }
 
   scrollFirst() {
-    global MENU_X1, MENU_X2, MENU_Y1, MENU_Y2, width
+    menuX1 := this.MENU_X1
+    menuY1 := this.MENU_Y1
+    menuX2 := this.MENU_X2
+    menuY2 := this.MENU_Y2
 
-    menuStartPointInPixels := 25
-    menuLengthInPixels := width - 25
-
-    MouseMove %menuStartPointInPixels%, %MENU_Y2%
+    MouseMove this.MENU_X1, this.MENU_Y1
 
     tempMouseSpeed := A_DefaultMouseSpeed
-    SetDefaultMouseSpeed 0
-    loop, 5 {
-      SendEvent { click %menuStartPointInPixels%, %MENU_Y2%, down }{ click %menuLengthInPixels%, %MENU_Y1%, up }
+    SetDefaultMouseSpeed 2
+    loop, 10 {
+      SendEvent { click %menuX1%, %menuY1%, down }{ click %menuX2%, %menuY2%, up }
+      sleep 50
     }
+    sleep 500
     SetDefaultMouseSpeed tempMouseSpeed
   }
 
   scrollLast() {
-    global MENU_X1, MENU_X2, MENU_Y1, MENU_Y2, width
+    menuX1 := this.MENU_X1
+    menuY1 := this.MENU_Y1
+    menuX2 := this.MENU_X2
+    menuY2 := this.MENU_Y2
 
-    menuStartPointInPixels := 25
-    menuLengthInPixels := width - 25
+    MouseMove this.MENU_X2, this.MENU_Y2
 
-    MouseMove %menuLengthInPixels%, %MENU_Y1%
-    
     tempMouseSpeed := A_DefaultMouseSpeed
-    SetDefaultMouseSpeed 0
-    loop, 5 {
-      SendEvent { click %menuLengthInPixels%, %MENU_Y1%, down }{ click %menuStartPointInPixels%, %MENU_Y2%, up }
+    SetDefaultMouseSpeed 2
+    loop, 10 {
+      SendEvent { click %menuX2%, %menuY2%, down }{ click %menuX1%, %menuY1%, up }
+      sleep 50
     }
+    sleep 500
     SetDefaultMouseSpeed tempMouseSpeed
   }
 
@@ -113,10 +152,19 @@
     return ""
   }
 
+  isAnnouncement() {
+    if (detectObject(this.ANNOUNCEMENT_HEADER, 0, 0)) {
+      return true
+    }
+    else {
+      return false
+    }
+  }
+
   closeAnnouncement() 
   {
     global BUFFER_X, BUFFER_Y
-    if (detectObject(this.ANNOUNCEMENT_HEADER, 0, 0, 50)) {
+    if (detectObject(this.ANNOUNCEMENT_HEADER, 0, 0)) {
       fromX := BUFFER_X
       fromY := BUFFER_Y
       if (detectObject(this.CLOSE_ANNOUNCEMENT, fromX, fromY)) {
