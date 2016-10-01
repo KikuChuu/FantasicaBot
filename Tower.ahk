@@ -5,6 +5,9 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 #include %A_ScriptDir%\includes\IncludeScript.ahk
 
 
+; =================================================================================================
+; ---------------------------------- Variable declarations ----------------------------------------
+; =================================================================================================
 towerBot := new TowerBot
 questBattleBot := new QuestBattleBot
 resultsPageBot := new ResultsPageBot
@@ -14,11 +17,20 @@ startPageBot := new StartPageBot
 mainPageBot := new MainPageBot
 bingoPageBot := new BingoPageBot
 loginBonusPageBot := new LoginBonusPageBot
+clubRookPageBot := new ClubRookPageBot
+questAllyPageBot := new QuestAllyPageBot
+questUnitPageBot := new QuestUnitPageBot
 
+; =================================================================================================
+; -------------------------------------------- Main loop ------------------------------------------
+; =================================================================================================
 loop
 {
   if (resultsPageBot.isResultsPageDetected()) {
     resultsPageBot.toTower()
+  }
+  else if (clubRookPageBot.isClubRookPage()) {
+    clubRookPageBot.exitPage()
   }
   else if (questBattleBot.isPlacingUnit()) {
     if (questBattleBot.isMapFull() == true) {
@@ -27,47 +39,52 @@ loop
     else if (questBattleBot.searchPoint()) {
       questBattleBot.confirmPlacement()
     }
+    else {
+      questBattleBot.setMapSquareStateOff()
+      questBattleBot.setDeployUnitOff()
+      questBattleBot.setDeployAllyOff()
+    }
   }
-  else if (questBattleBot.isAllyList()) {
+  else if (questAllyPageBot.isAllyList()) {
     if (questBattleBot.isMapFull() == false) {
       if (questBattleBot.getDeployAllyState() == true) {
-        if (questBattleBot.isAlly()) {
-          questBattleBot.deployAlly()
+        if (questAllyPageBot.isAlly()) {
+          questAllyPageBot.deployAlly()
         }
         else {
           questBattleBot.setDeployAllyOff()
-          questBattleBot.exitAllyList()
+          questAllyPageBot.exitList()
         } 
       }
       else {
-        questBattleBot.exitAllyList()
+        questAllyPageBot.exitList()
       }
     }
     else {
       questBattleBot.setDeployAllyOff()
-      questBattleBot.exitAllyList()
+      questAllyPageBot.exitList()
     } 
   }
-  else if (questBattleBot.isUnitList()) {
+  else if (questUnitPageBot.isUnitList()) {
     if (questBattleBot.isMapFull() == false) {
       if (questBattleBot.getDeployUnitState() == true) {
-        if (questBattleBot.isUnit()) {
-          questBattleBot.deployUnit()
+        if (questUnitPageBot.isUnit()) {
+          questUnitPageBot.deployUnit()
           questBattleBot.unitUsed++
           if (questBattleBot.getUnitUsed() >= questBattleBot.getUnitSize()) {
             questBattleBot.setDeployUnitOff()
           }
         }
         else {
-          questBattleBot.exitUnitList()
+          questUnitPageBot.exitList()
         }
       }
       else {
-        questBattleBot.exitUnitList()
+        questUnitPageBot.exitList()
       }
     }
     else {
-      questBattleBot.exitUnitList()
+      questUnitPageBot.exitList()
     }
   }
   else if (questBattleBot.isQuestBattle()) {
@@ -145,6 +162,9 @@ loop
   }
 }
 
+; =================================================================================================
+; -------------------------------------------- Hotkeys --------------------------------------------
+; =================================================================================================
 
 F1::ExitApp
 F2::Pause

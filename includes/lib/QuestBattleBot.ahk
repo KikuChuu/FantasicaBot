@@ -7,24 +7,24 @@ class QuestBattleBot {
   REMAINING_UNIT_POINTS_45 := "FANTASICA IMAGES/Quest/QuestBattle/45_remaining_points-" . width . "_" . height . ".png"
   DEPLOYABLE_UNITS_4 := "FANTASICA IMAGES/Quest/QuestBattle/four_units_deployable-" . width . "_" . height . ".png"
   DEPLOYABLE_ALLIES_2 := "FANTASICA IMAGES/Quest/QuestBattle/two_deployable_allies-" . width . "_" . height . ".png"
-  UNIT_LIST_TITLE := "FANTASICA IMAGES/Quest/QuestBattle/UnitList/title-" . width . "_" . height . ".png"
-  DEPLOY_UNIT := "FANTASICA IMAGES/Quest/QuestBattle/UnitList/deploy_unit-" . width . "_" . height . ".png"
   CONFIRM := "FANTASICA IMAGES/Quest/QuestBattle/confirm-" . width . "_" . height . ".png"
   CANCEL := "FANTASICA IMAGES/Quest/QuestBattle/cancel-" . width . "_" . height . ".png"
   MINA_DIALOG := "FANTASICA IMAGES/Quest/QuestBattle/mina_dialog-" . width . "_" . height . ".png"
-  ALLY_LIST_TITLE := "FANTASICA IMAGES/Quest/QuestBattle/AllyList/title-" . width . "_" . height . ".png"
-  DEPLOY_ALLY := "FANTASICA IMAGES/Quest/QuestBattle/AllyList/deploy_ally-" . width . "_" . height . ".png"
-  EXIT_UNIT_LIST := "FANTASICA IMAGES/Quest/QuestBattle/UnitList/back-" . width . "_" . height . ".png"
-  EXIT_ALLY_LIST := "FANTASICA IMAGES/Quest/QuestBattle/AllyList/back-" . width . "_" . height . ".png"
-  DEFAULT_UNIT_USED_VALUE := 0
-  unitSize := DEPLOY_NUMBER ; DEPLOY_NUMBER is defined in the UserInput.txt file
-  unitUsed := this.DEFAULT_UNIT_USED_VALUE
-  deployableMapSquareState := true
-  deployUnitState := true
-  deployAllyState := true
-  questBattlePoints := new QuestBattlePoints
-  controller := new Controller
 
+  __New() {
+    global DEPLOY_NUMBER
+    this.questBattlePoints := new QuestBattlePoints
+    this.controller := new Controller
+
+    this.deployableMapSquareState := true
+    this.deployUnitState := true
+    this.deployAllyState := true
+
+    this.DEFAULT_UNIT_USED_VALUE := 0
+    this.unitSize := DEPLOY_NUMBER ; DEPLOY_NUMBER is defined in the UserInput.txt file
+    this.unitUsed := this.DEFAULT_UNIT_USED_VALUE
+  }
+ 
   getUnitSize() {
     return this.unitSize
   }
@@ -98,68 +98,6 @@ class QuestBattleBot {
     }
   }
 
-  isAllyList() {
-    if (detectObject(this.ALLY_LIST_TITLE, 0, 0)) {
-      return true
-    }
-    else {
-      return false
-    }
-  }
-
-  isAlly() {
-    if (detectObject(this.DEPLOY_ALLY, 0, 0)) {
-      return true
-    }
-    else {
-      return false
-    }
-  }
-
-  deployAlly() {
-    global BUFFER_X, BUFFER_Y
-    if (detectObject(this.DEPLOY_ALLY, 0, 0)) {
-      clickAt(BUFFER_X, BUFFER_Y)
-      sleep 500
-    }
-  }
-
-  isUnitList() {
-    if (detectObject(this.UNIT_LIST_TITLE, 0, 0)) {
-      return true
-    }
-    else {
-      return false
-    }
-  }
-
-  isUnit() {
-    if (detectObject(this.DEPLOY_UNIT, 0, 0, 100)) {
-      return true
-    }
-    else {
-      return false
-    }
-  }
-
-  deployUnit() {
-    global BUFFER_X, BUFFER_Y
-    if (detectObject(this.DEPLOY_UNIT, 0, 0, 100)) {
-      clickAt(BUFFER_X, BUFFER_Y)
-      sleep 500
-      return true
-    }
-    else {
-      return false
-    }
-  }
-
-  deployUnitAndUpdateUsed() {
-    if (this.deployUnit() == true) {
-      this.unitUsed++
-    }
-  }
-
   isPlacingUnit() {
     if (detectObject(this.CANCEL, 0, 0)) {
       return true
@@ -169,53 +107,18 @@ class QuestBattleBot {
     }
   }
 
-  cancelDeployUnit() {
-    if (this.isPlacingUnit()) {
-      this.cancelPlacement()
-    }
-    else if (this.isUnitList()) {
-      this.exitUnitList()
-    }
-  }
-
-  cancelDeployAlly() {
-    if (this.isPlacingUnit()) {
-      this.cancelPlacement()
-    }
-    else if (this.isAllyList()) {
-      this.exitAllyList()
-    }
-  }
-
   searchPoint() {
-    index := "" 
-    if (!this.questBattlePoints.isIndexValid(this.questBattlePoints.getSavedIndex())) {
-      index := 1
-    }
-    else {
-      index := this.questBattlePoints.getSavedIndex()
-    }
-
     loop % this.questBattlePoints.getKeySetSize() {
-      key := this.questBattlePoints.getKey(index)
-      point := this.questBattlePoints.getPoint(key)
+      this.questBattlePoints.nextKey(key)
+      point := this.questBattlePoints.getPoint()
       this.controller.setPoint(point[1], point[2])
       this.controller.clickAndUpdateHistory()
 
       if (detectObject(this.CONFIRM, 0, 0)) {
-        this.questBattlePoints.setSavedIndex(index)
+        this.questBattlePoints.index--
         return true
       }
-
-      index++
-      if (index > this.questBattlePoints.getKeySetSize()) {
-        index := 1
-      }
     }
-    
-    this.setMapSquareStateOff()  
-    this.setDeployUnitOff()
-    this.setDeployAllyOff()
     return false
   }
 
@@ -242,13 +145,6 @@ class QuestBattleBot {
     }
   }
 
-  exitUnitList() {
-    global BUFFER_X, BUFFER_Y
-    if (detectObject(this.EXIT_UNIT_LIST, 0, 0)) {
-      clickAt(BUFFER_X, BUFFER_Y)
-      sleep 1000
-    }
-  }
 
   isUnitListAvailable() {
     if (detectObject(this.UNIT_LIST, 0, 0)) {
@@ -283,15 +179,4 @@ class QuestBattleBot {
       sleep 500
     }
   }
-
-  exitAllyList() {
-    global BUFFER_X, BUFFER_Y
-    if (detectObject(this.EXIT_ALLY_LIST, 0, 0)) {
-      clickAt(BUFFER_X, BUFFER_Y)
-      this.setDeployAllyOff()
-      sleep 500
-    }
-  }
-
-
 }

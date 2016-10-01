@@ -38,7 +38,7 @@ Class SQLiteDB Extends SQLiteDB.BaseClass {
    ; ===================================================================================================================
    Class BaseClass {
       Static Version := ""
-      Static _SQLiteDLL := A_ScriptDir . "\DLLs\SQLite3.dll"
+      Static _SQLiteDLL := A_ScriptDir . "\db\SQLite3.dll"
       Static _RefCount := 0
       Static _MinVersion := "3.6"
    }

@@ -5,7 +5,9 @@ SetWorkingDir %A_ScriptDir%
 #include %A_ScriptDir%\includes\IncludeScript.ahk
 
 
-; Define some variables
+; =================================================================================================
+; ---------------------------------- Variable declarations ----------------------------------------
+; =================================================================================================
 appPlayerBot := new AppPlayerBot
 clubRookPageBot := new ClubRookPageBot
 loginBonusPageBot := new LoginBonusPageBot
@@ -14,12 +16,16 @@ connectionErrorBot := new ConnectionErrorBot
 mainPageBot := new MainPageBot
 questMenuBot := new QuestMenuBot
 questBattleBot := new QuestBattleBot
+questAllyPageBot := new QuestAllyPageBot
+questUnitPageBot := new QuestUnitPageBot
 resultsPageBot := new ResultsPageBot
 startPageBot := new StartPageBot
 currentEpisode := EPISODE
 currentQuest := QUEST
 
-
+; =================================================================================================
+; --------------------------------- Non-member functions defs -------------------------------------
+; =================================================================================================
 updateQuestProgress() {
   global currentEpisode, currentQuest
   
@@ -36,6 +42,9 @@ updateQuestProgress() {
 }
 
 
+; =================================================================================================
+; -------------------------------------------- Main loop ------------------------------------------
+; =================================================================================================
 loop
 {
   mainPageBot.closeAnnouncement()
@@ -43,7 +52,7 @@ loop
   if (connectionErrorBot.isConnectionError()) {
     connectionErrorBot.startPage()
   }
-  else if (connectionError.isConnectionErrorRequiresRestart()) {
+  else if (connectionErrorBot.isConnectionErrorRequiresRestart()) {
     connectionErrorBot.exitGame()
   }
   else if (appPlayerBot.isAppPlayerHomePage()) {
@@ -89,47 +98,52 @@ loop
     else if (questBattleBot.searchPoint()) {
       questBattleBot.confirmPlacement()
     }
+    else {
+      questBattleBot.setMapSquareStateOff()
+      questBattleBot.setDeployUnitOff()
+      questBattleBot.setDeployAllyOff()
+    }
   }
-  else if (questBattleBot.isAllyList()) {
+  else if (questAllyPageBot.isAllyList()) {
     if (questBattleBot.isMapFull() == false) {
       if (questBattleBot.getDeployAllyState() == true) {
-        if (questBattleBot.isAlly()) {
-          questBattleBot.deployAlly()
+        if (questAllyPageBot.isAlly()) {
+          questAllyPageBot.deployAlly()
         }
         else {
           questBattleBot.setDeployAllyOff()
-          questBattleBot.exitAllyList()
+          questAllyPageBot.exitList()
         } 
       }
       else {
-        questBattleBot.exitAllyList()
+        questAllyPageBot.exitList()
       }
     }
     else {
       questBattleBot.setDeployAllyOff()
-      questBattleBot.exitAllyList()
+      questAllyPageBot.exitList()
     } 
   }
-  else if (questBattleBot.isUnitList()) {
+  else if (questUnitPageBot.isUnitList()) {
     if (questBattleBot.isMapFull() == false) {
       if (questBattleBot.getDeployUnitState() == true) {
-        if (questBattleBot.isUnit()) {
-          questBattleBot.deployUnit()
+        if (questUnitPageBot.isUnit()) {
+          questUnitPageBot.deployUnit()
           questBattleBot.unitUsed++
           if (questBattleBot.getUnitUsed() >= questBattleBot.getUnitSize()) {
             questBattleBot.setDeployUnitOff()
           }
         }
         else {
-          questBattleBot.exitUnitList()
+          questUnitPageBot.exitList()
         }
       }
       else {
-        questBattleBot.exitUnitList()
+        questUnitPageBot.exitList()
       }
     }
     else {
-      questBattleBot.exitUnitList()
+      questUnitPageBot.exitList()
     }
   }
   else if (questBattleBot.isQuestBattle()) {
@@ -178,7 +192,9 @@ loop
   }
 }
 
-
+; =================================================================================================
+; -------------------------------------------- Hotkeys --------------------------------------------
+; =================================================================================================
 F1::ExitApp
 F2::Pause
 F3::Reload

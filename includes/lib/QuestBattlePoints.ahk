@@ -1,25 +1,28 @@
+#include %A_ScriptDir%/includes/lib/GlobalConstants.ahk
+
 class QuestBattlePoints {
-  savedKey := ""
-  savedIndex := 0
-
-  keys := [ "a15", "b15", "c15", "d15", "e15", "f15", "g15", "h15", "i15", "j15", "k15", "l15", "m15", "n15", "o15"
-    , "a14", "b14", "c14", "d14", "e14", "f14", "g14", "h14", "i14", "j14", "k14", "l14", "m14", "n14", "o14"
-    , "a13", "b13", "c13", "d13", "e13", "f13", "g13", "h13", "i13", "j13", "k13", "l13", "m13", "n13", "o13"
-    , "a12", "b12", "c12", "d12", "e12", "f12", "g12", "h12", "i12", "j12", "k12", "l12", "m12", "n12", "o12"
-    , "a11", "b11", "c11", "d11", "e11", "f11", "g11", "h11", "i11", "j11", "k11", "l11", "m11", "n11", "o11"
-    , "a10", "b10", "c10", "d10", "e10", "f10", "g10", "h10", "i10", "j10", "k10", "l10", "m10", "n10", "o10"
-    , "a9", "b9", "c9", "d9", "e9", "f9", "g9", "h9", "i9", "j9", "k9", "l9", "m9", "n9", "o9"
-    , "a8", "b8", "c8", "d8", "e8", "f8", "g8", "h8", "i8", "j8", "k8", "l8", "m8", "n8", "o8"
-    , "a7", "b7", "c7", "d7", "e7", "f7", "g7", "h7", "i7", "j7", "k7", "l7", "m7", "n7", "o7"
-    , "a6", "b6", "c6", "d6", "e6", "f6", "g6", "h6", "i6", "j6", "k6", "l6", "m6", "n6", "o6"
-    , "a5", "b5", "c5", "d5", "e5", "f5", "g5", "h5", "i5", "j5", "k5", "l5", "m5", "n5", "o5"
-    , "a4", "b4", "c4", "d4", "e4", "f4", "g4", "h4", "i4", "j4", "k4", "l4", "m4", "n4", "o4"
-    , "a3", "b3", "c3", "d3", "e3", "f3", "g3", "h3", "i3", "j3", "k3", "l3", "m3", "n3", "o3"
-    , "a2", "b2", "c2", "d2", "e2", "f2", "g2", "h2", "i2", "j2", "k2", "l2", "m2", "n2", "o2"
-    , "a1", "b1", "c1", "d1", "e1", "f1", "g1", "h1", "i1", "j1", "k1", "l1", "m1", "n1", "o1"]
-
   __New() {
     global width, height
+   
+    this.index := 0
+    this.key := ""
+
+    this.keys := [ "a15", "b15", "c15", "d15", "e15", "f15", "g15", "h15", "i15", "j15", "k15", "l15", "m15", "n15", "o15"
+      , "a14", "b14", "c14", "d14", "e14", "f14", "g14", "h14", "i14", "j14", "k14", "l14", "m14", "n14", "o14"
+      , "a13", "b13", "c13", "d13", "e13", "f13", "g13", "h13", "i13", "j13", "k13", "l13", "m13", "n13", "o13"
+      , "a12", "b12", "c12", "d12", "e12", "f12", "g12", "h12", "i12", "j12", "k12", "l12", "m12", "n12", "o12"
+      , "a11", "b11", "c11", "d11", "e11", "f11", "g11", "h11", "i11", "j11", "k11", "l11", "m11", "n11", "o11"
+      , "a10", "b10", "c10", "d10", "e10", "f10", "g10", "h10", "i10", "j10", "k10", "l10", "m10", "n10", "o10"
+      , "a9", "b9", "c9", "d9", "e9", "f9", "g9", "h9", "i9", "j9", "k9", "l9", "m9", "n9", "o9"
+      , "a8", "b8", "c8", "d8", "e8", "f8", "g8", "h8", "i8", "j8", "k8", "l8", "m8", "n8", "o8"
+      , "a7", "b7", "c7", "d7", "e7", "f7", "g7", "h7", "i7", "j7", "k7", "l7", "m7", "n7", "o7"
+      , "a6", "b6", "c6", "d6", "e6", "f6", "g6", "h6", "i6", "j6", "k6", "l6", "m6", "n6", "o6"
+      , "a5", "b5", "c5", "d5", "e5", "f5", "g5", "h5", "i5", "j5", "k5", "l5", "m5", "n5", "o5"
+      , "a4", "b4", "c4", "d4", "e4", "f4", "g4", "h4", "i4", "j4", "k4", "l4", "m4", "n4", "o4"
+      , "a3", "b3", "c3", "d3", "e3", "f3", "g3", "h3", "i3", "j3", "k3", "l3", "m3", "n3", "o3"
+      , "a2", "b2", "c2", "d2", "e2", "f2", "g2", "h2", "i2", "j2", "k2", "l2", "m2", "n2", "o2"
+      , "a1", "b1", "c1", "d1", "e1", "f1", "g1", "h1", "i1", "j1", "k1", "l1", "m1", "n1", "o1"]
+
     if (width == 436 && height == 718) {
       this.points["a15"] := [55, 55]
       this.points["b15"] := [75, 55]
@@ -474,52 +477,36 @@ class QuestBattlePoints {
       this.points["n1"] := [585, 625]
       this.points["o1"] := [625, 625]
     }
+    else {
+      MsgBox, 16, % "The window size of your Fantasica App Player is not supported"
+      ExitApp
+    }
   }
 
-  getPoint(thePoint) {
-    return this.points[thePoint] 
+  nextKey(ByRef key) {
+    if (this.index <  this.getKeySetSize()) {
+      this.index++
+    }
+    else {
+      this.reset()
+      this.index++
+    }
+    this.key := this.keys[this.index] 
+    key := this.key
   }
 
-  getKey(theIndex) {
-    return this.keys[theIndex]
-  }
-
-  setSavedIndex(theIndex) {
-    this.savedIndex := theIndex
-  }
-
-  getSavedIndex() {
-    return this.savedIndex
-  }
-
-  setSavedKey(theKey) {
-    this.savedKey := theKey
-  }
-
-  getSavedKey() {
-    return this.savedKey
+  getPoint() {
+    return this.points[this.key] 
   }
 
   getKeySetSize() {
     return this.keys.length()
   }
 
-  isIndexValid(theIndex) {
-    if (theIndex >= 1 && theIndex <= this.getKeySetSize()) {
-      return true
-    }
-    else {
-      return false
-    }
-  }
-
-  isKeyValid(theSearchKey) {
-    loop % this.getKeySetSize() {
-      if (theSearchKey == this.getKey(A_Index)) {
-        return true
-      }
-    }
-
-    return false
+; =================================================================================================
+; ----------------------------------- PRIVATE MEMBER FUNCTIONS ------------------------------------
+; =================================================================================================
+  reset() {
+    this.index := 0
   }
 }
