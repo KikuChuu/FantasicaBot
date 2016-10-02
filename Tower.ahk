@@ -8,18 +8,19 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ; =================================================================================================
 ; ---------------------------------- Variable declarations ----------------------------------------
 ; =================================================================================================
-towerBot := new TowerBot
-questBattleBot := new QuestBattleBot
-resultsPageBot := new ResultsPageBot
-connectionErrorBot := new connectionErrorBot
 appPlayerBot := new AppPlayerBot
-startPageBot := new StartPageBot
-mainPageBot := new MainPageBot
 bingoPageBot := new BingoPageBot
-loginBonusPageBot := new LoginBonusPageBot
 clubRookPageBot := new ClubRookPageBot
+connectionErrorBot := new ConnectionErrorBot
+loginBonusPageBot := new LoginBonusPageBot
+mainPageBot := new MainPageBot
+questMenuBot := new QuestMenuBot
+questBattleBot := new QuestBattleBot
 questAllyPageBot := new QuestAllyPageBot
 questUnitPageBot := new QuestUnitPageBot
+resultsPageBot := new ResultsPageBot
+startPageBot := new StartPageBot
+towerBot := new TowerBot
 
 ; =================================================================================================
 ; -------------------------------------------- Main loop ------------------------------------------

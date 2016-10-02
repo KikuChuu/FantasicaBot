@@ -1,21 +1,26 @@
-#include %A_ScriptDir%\includes\lib\QuestBattlePoints.ahk
-#include %A_ScriptDir%\includes\lib\EncloseInSingleQuotes.ahk
-
 class DatabaseQuestBattlePoints {
-  db := new SQLiteDB
-  dbPath := QUEST_DB_PATH
-  questBattlePoints := new QuestBattlePoints
+
+  __New() {
+    global QUEST_DB_PATH
+    this.dbPath := QUEST_DB_PATH
+    this.db := new SQLiteDB
+
+    this.index :=  0
+    this.key := ""
+    this.keys := []
+    this.points := {}
+    this.priorities := {}
+  }
+
 ; =================================================================================================
-; METHOD getKeys - Performs a database query, populate and returns an array of keys
-; @param theEpisode - An integer value for the episode
-; @param theQuest   - An integer value for the quest
-; @return keys      - An array of keys or an empty array
+; METHOD readFromTable - Reads key, x, y, priority values from the database into this object's members
+; @param theEpisode - The table's episode
+; @param theQuest   - The table's quest
+; @return           - True if no error in retrieving the values. Exits the app on failure
 ; =================================================================================================
-  getKeysFromDatabase(theEpisode, theQuest) {
-    keys := []
+  readFromTable(theEpisode, theQuest) {
     table := "QUEST_" . theEpisode . "_" . theQuest
-    _sql := "SELECT * from #QUEST# ORDER BY priority DESC;"
-    sql := strReplace(_sql, "#QUEST#", table)
+    sql := strReplace("SELECT * from #QUEST# ORDER BY priority DESC;", "#QUEST#", table)
 
     if (!this.db.openDb(this.dbPath)) {
       MsgBox % "Error Message: `t" . this.db.ErrorMsg . "`nError Code: " . this.db.ErrorCode
@@ -29,131 +34,109 @@ class DatabaseQuestBattlePoints {
 
     if (rs.hasRows) {
       while (rs.next(row) > 0) {
-        keys.push(row[1])
+        key := row[1]
+        x := row[2]
+        y := row[3]
+        priority := row[4]
+
+        this.keys.push(key)
+        this.points[key] := [x, y]
+        this.priorities[key] := priority
       }
     }
-    return keys
+    
+    if (!this.db.closeDb()) {
+      MsgBox % "Error Message: `t" . this.db.ErrorMsg . "`nError Code: " . this.db.ErrorCode
+      ExitApp
+    }
+
+    return true
   }
 
-  incrementPriority(theEpisode, theQuest, theKeys) {
-    _sql := "SELECT key, priority FROM #QUEST# WHERE #EXPR#;"
-    sql := ""
-    _quest := "Quest_" . theEpisode . "_" . theQuest
-    _sql := strReplace(_sql, "#QUEST#", _quest)
-    key := ""
-    _expr := "key='#value#'"
-    expr := ""
-    loop % theKeys.length() {
-      key := theKeys[A_Index]
-      expr := expr . strReplace(_expr, "#value#", key) . " OR "
+; =================================================================================================
+; METHOD writeToTable - Writes key, x, y, priority values from the database into this object's members
+; @param theEpisode - The table's episode
+; @param theQuest   - The table's quest
+; @return           - True if no error in writing the values. Exits the app on failure
+; =================================================================================================
+  writeToTable(theEpisode, theQuest) {
+    quest := "Quest_" . theEpisode . "_" . theQuest ; i.e. Quest_1_1
+    __sql := "INSERT OR REPLACE INTO #QUEST# VALUES#EXPR#;"
+    _sql := strReplace(__sql, "#QUEST#", quest) ; "INSERT OR REPLACE INTO #QUEST# VALUES#EXPR#;"
+    
+    _expr := "(#EXPR#),"
+    loop % this.getKeySetSize() {
+      key := this.keys[A_Index]
+      point := this.points[key]
+      x := point[1]
+      y := point[2]
+      priority := this.priorities[key]
+      valueStr := encloseInSingleQuotes(key) . ", " 
+              . encloseInSingleQuotes(x) . ", " 
+              . encloseInSingleQuotes(y) . ", " 
+              . encloseInSingleQuotes(priority)
+      expr := expr . strReplace(_expr, "#EXPR#", valueStr)
     }
-    expr := subStr(expr, 1, -4)
-    sql := sql . strReplace(_sql, "#EXPR#", expr)
-
+    expr := subStr(expr, 1, -1) ; omit the last comma
+    sql := strReplace(_sql, "#EXPR#", expr)
+  
     if (!this.db.openDb(this.dbPath)) {
       MsgBox % "Error Message: `t" . this.db.ErrorMsg . "`nError Code: " . this.db.ErrorCode
       ExitApp
     }
 
-    if (!this.db.query(sql, rs)) {
-      MsgBox % "Error Message: `t" . this.db.ErrorMsg . "`nError Code: " . this.db.ErrorCode
-      ExitApp
-    }
-
-    tempMap := {}
-    if (rs.hasRows) {
-      while (rs.next(row) > 0) {
-        tempMap[row[1]] := row[2]
-        MsgBox % row[1] . " " . row[2]
-      }
-    }
-
-    loop % theKeys.length() {
-      key := theKeys[A_Index]
-      tempMap[key]++
-    }
-
-    _sql := "INSERT OR REPLACE INTO #QUEST# VALUES#EXPR#;"
-    _sql := strReplace(_sql, "#QUEST#", _quest)
-    _expr := "(#EXPR#)"
-    expr := "" 
-    loop % theKeys.length() {
-      key := theKeys[A_Index]
-      point := this.questBattlePoints.getPoint(key)
-      priority := tempMap[key]
-      valueStr := encloseInSingleQuotes(key) . ", " 
-                . encloseInSingleQuotes(point[1]) . ", " 
-                . encloseInSingleQuotes(point[2]) . ", " 
-                . encloseInSingleQuotes(priority)
-      expr := expr . strReplace(_expr, "#EXPR#", valueStr) . ", "
-    }
-    expr := subStr(expr, 1, -2)
-    sql := sql . strReplace(_sql, "#EXPR#", expr)
-   
     if (!this.db.exec(sql)) {
       MsgBox % "Error Message: `t" . this.db.ErrorMsg . "`nError Code: " . this.db.ErrorCode
       ExitApp
     }
+
+    if (!this.db.closeDb()) {
+      MsgBox % "Error Message: `t" . this.db.ErrorMsg . "`nError Code: " . this.db.ErrorCode
+      ExitApp
+    }
+
+    return true
   }
 
-  decrementPriority(theEpisode, theQuest, theKeys) {
-    _sql := "SELECT key, priority FROM #QUEST# WHERE #EXPR#;"
-    sql := ""
-    _quest := "Quest_" . theEpisode . "_" . theQuest
-    _sql := strReplace(_sql, "#QUEST#", _quest)
-    key := ""
-    _expr := "key='#value#'"
-    expr := ""
-    loop % theKeys.length() {
-      key := theKeys[A_Index]
-      expr := expr . strReplace(_expr, "#value#", key) . " OR "
-    }
-    expr := subStr(expr, 1, -4)
-    sql := sql . strReplace(_sql, "#EXPR#", expr)
+  incrementPriority(key) {
+    this.priorities[key]++
+  }
 
-    if (!this.db.openDb(this.dbPath)) {
-      MsgBox % "Error Message: `t" . this.db.ErrorMsg . "`nError Code: " . this.db.ErrorCode
-      ExitApp
-    }
+  decrementPriority(key) {
+    this.priorities[key]--
+  }
 
-    if (!this.db.query(sql, rs)) {
-      MsgBox % "Error Message: `t" . this.db.ErrorMsg . "`nError Code: " . this.db.ErrorCode
-      ExitApp
+  nextKey(ByRef key) {
+    if (this.index <  this.getKeySetSize()) {
+      this.index++
     }
+    else {
+      this.reset()
+      this.index++
+    }
+    this.key := this.keys[this.index]
+    key := this.key
+  }
 
-    tempMap := {}
-    if (rs.hasRows) {
-      while (rs.next(row) > 0) {
-        tempMap[row[1]] := row[2]
-        MsgBox % row[1] . " " . row[2]
-      }
-    }
+  getPoint() {
+    return this.points[this.key]
+  }
 
-    loop % theKeys.length() {
-      key := theKeys[A_Index]
-      tempMap[key]--
-    }
+  getKeySetSize() {
+    return this.keys.length()
+  }
+; =================================================================================================
+; ----------------------------------- PRIVATE MEMBER FUNCTIONS ------------------------------------
+; =================================================================================================
+  reset() {
+    this.index := 0
+    this.key := ""
+  }
 
-    _sql := "INSERT OR REPLACE INTO #QUEST# VALUES#EXPR#;"
-    _sql := strReplace(_sql, "#QUEST#", _quest)
-    _expr := "(#EXPR#)"
-    expr := "" 
-    loop % theKeys.length() {
-      key := theKeys[A_Index]
-      point := this.questBattlePoints.getPoint(key)
-      priority := tempMap[key]
-      valueStr := encloseInSingleQuotes(key) . ", " 
-                . encloseInSingleQuotes(point[1]) . ", " 
-                . encloseInSingleQuotes(point[2]) . ", " 
-                . encloseInSingleQuotes(priority)
-      expr := expr . strReplace(_expr, "#EXPR#", valueStr) . ", "
-    }
-    expr := subStr(expr, 1, -2)
-    sql := sql . strReplace(_sql, "#EXPR#", expr)
-   
-    if (!this.db.exec(sql)) {
-      MsgBox % "Error Message: `t" . this.db.ErrorMsg . "`nError Code: " . this.db.ErrorCode
-      ExitApp
-    }
+  clear() {
+    this.reset()
+    this.keys := []
+    this.points := {}
+    this.priorities := {}
   }
 }

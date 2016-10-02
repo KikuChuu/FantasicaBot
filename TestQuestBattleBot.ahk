@@ -50,20 +50,26 @@ test5() {
   questBattleBot.searchPoint()
   SB_SetText("Tested searchPoint()")
 }
-  
+
 test6() {
+  SB_SetText("Test searchDatabasePoint(1,1)")
+  questBattleBot.searchDatabasePoint(1,1)
+  SB_SetText("Tested searchDatabasePoint(1,1)")
+}
+  
+test7() {
   SB_SetText("Test confirmPlacement()")
   questBattleBot.confirmPlacement()
   SB_SetText("Tested confirmPlacement()")
 }
 
-test7() {
+test8() {
   SB_SetText("Test cancelPlacement()")
   questBattleBot.cancelPlacement()
   SB_SetText("Test cancelPlacement()")
 }
 
-test8() {
+test9() {
   SB_SetText("Test isAllyListAvailable()")
   result := ""
   if (questBattleBot.isAllyListAvailable()) {
@@ -75,19 +81,19 @@ test8() {
   SB_SetText("Tested isAllyListAvailable() -- " . result)
 }
 
-test9() {
+test10() {
   SB_SetText("Test allyList()")
   questBattleBot.allyList()
   SB_SetText("Tested allyList()")
 }
 
-test10() {
+test11() {
   SB_SetText("Test skipDialog()")
   questBattleBot.skipDialog()
   SB_SetText("Tested skipDialog()")
 }
 
-test11() {
+test12() {
   SB_SetText("Test isPlacingUnit()")
   if (questBattleBot.isPlacingUnit()) {
     MsgBox % "Test 8 -- PASSED"
@@ -98,7 +104,7 @@ test11() {
   SB_SetText("Tested isPlacingUnit()")
 }
 
-test12() {
+test13() {
   SB_SetText("Test setDeployUnitOff()")
   result := ""
   questBattleBot.setDeployUnitOff()
@@ -111,7 +117,7 @@ test12() {
   SB_SetText("Tested setDeployUnitOff() -- " . result)
 }
 
-test13() {
+test14() {
   SB_SetText("Test setDeployUnitOn()")
   result := ""
   questBattleBot.setDeployUnitOn()
@@ -124,7 +130,7 @@ test13() {
   SB_SetText("Tested setDeployUnitOn() -- " . result)
 }
 
-test14() {
+test15() {
   SB_SetText("Test setDeployAllyOff()")
   result := ""
   questBattleBot.setDeployAllyOff()
@@ -137,7 +143,7 @@ test14() {
   SB_SetText("Tested setDeployAllyOff() -- " . result)
 }
 
-test15() {
+test16() {
   SB_SetText("Test setDeployAllyOn()")
   result := ""
   questBattleBot.setDeployAllyOn()
@@ -150,7 +156,7 @@ test15() {
   SB_SetText("Tested setDeployAllyOn() -- " . result)
 }
 
-test16() {
+test17() {
   SB_SetText("Test setMapSquareStateOff()")
   result := ""
   questBattleBot.setMapSquareStateOff()
@@ -163,7 +169,7 @@ test16() {
   SB_SetText("Tested setMapSquareStateOff() -- " . result)
 }
 
-test17() {
+test18() {
   SB_SetText("Test setMapSquareStateOn()")
   result := ""
   questBattleBot.setMapSquareStateOn()
@@ -176,7 +182,7 @@ test17() {
   SB_SetText("Test setMapSquareStateOn() -- " . result)
 }
 
-test18() {
+test19() {
   SB_SetText("Test isMapFull()")
   result := ""
   questBattleBot.setMapSquareStateOff()
@@ -189,17 +195,44 @@ test18() {
   SB_SetText("Tested isMapFull() -- " . result)
 }
 
-test19() {
+test20() {
   SB_SetText("Test getUnitSize()")
   MsgBox % questBattleBot.getUnitSize()
   SB_SetText("Tested getUnitSize()")
 } 
 
-test20() {
+test21() {
   SB_SetText("Test getUnitUsed()")
   MsgBox % questBattleBot.getUnitUsed()
   SB_SetText("Tested getUnitUsed()")
 } 
+
+test22() {
+  key := "a15"
+  result := ""
+  SB_SetText("Test pushKey('a15')")
+  questBattleBot.pushKey(key)
+  if (questBattleBot.keys[1] == key) {
+    result := "PASSED"
+  }
+  else {
+    result := "FAILED"
+  }
+  SB_SetText("Tested pushKey('a15') -- " . result)
+}
+
+test23() {
+  SB_SetText("Test clearKeys()")
+  result := ""
+  questBattleBot.clearKeys()
+  if (questBattleBot.keys.length() == 0) {
+    result := "PASSED"
+  }
+  else {
+    result := "FAILED"
+  }
+  SB_SetText("Tested clearKeys() -- " . result)
+}
 
 F1::ExitApp
 F2::Pause
@@ -224,3 +257,6 @@ F12::test9()
 ^F9::test18()
 ^F10::test19()
 ^F11::test20()
+^F12::test21()
+^!F1::test22()
+^!F2::test23()

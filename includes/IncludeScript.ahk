@@ -8,16 +8,12 @@ SetWorkingDir %A_ScriptDir%
 #include UserInput.txt
 
 ; =================================================================================================
-; ----------------------------------- Global variables --------------------------------------------
-; =================================================================================================
-#include %A_ScriptDir%\includes\lib\GlobalConstants.ahk
-
-; =================================================================================================
 ; ---------------------------------- Non-member helper functions ----------------------------------
 ; =================================================================================================
+#include %A_ScriptDir%\includes\lib\Decorate.ahk
+#include %A_ScriptDir%/includes/lib/EncloseInSingleQuotes.ahk
 #include %A_ScriptDir%\includes\lib\GuiConstructor.ahk
 #include %A_ScriptDir%\includes\lib\Log.ahk
-#include %A_ScriptDir%\includes\lib\Decorate.ahk
 #include %A_ScriptDir%\includes\lib\SB.ahk
 
 ; =================================================================================================
@@ -28,6 +24,7 @@ SetWorkingDir %A_ScriptDir%
 #include %A_ScriptDir%\includes\lib\ClubRookPageBot.ahk
 #include %A_ScriptDir%\includes\lib\ConnectionErrorBot.ahk
 #include %A_ScriptDir%\includes\lib\Controller.ahk
+#include %A_ScriptDir%\includes\lib\DatabaseQuestBattlePoints.ahk
 #include %A_ScriptDir%\includes\lib\LoginBonusPageBot.ahk
 #include %A_ScriptDir%\includes\lib\MainPageBot.ahk
 #include %A_ScriptDir%\includes\lib\ObjectInteraction.ahk 
@@ -45,3 +42,9 @@ SetWorkingDir %A_ScriptDir%
 ; --------------------------------------- SQLite scripts -------------------------------------------
 ; =================================================================================================
 #include %A_ScriptDir%\includes\setup\InitializeDatabaseQuestBattlePoints.ahk
+
+; =================================================================================================
+; ----------------------------------- Global variables --------------------------------------------
+; =================================================================================================
+#include %A_ScriptDir%\includes\lib\GlobalConstants.ahk
+

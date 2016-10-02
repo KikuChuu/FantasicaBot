@@ -9,30 +9,29 @@ SetWorkingDir %A_ScriptDir%
 ; ---------------------------------- Variable declarations ----------------------------------------
 ; =================================================================================================
 appPlayerBot := new AppPlayerBot
-clubRookPageBot := new ClubRookPageBot
-loginBonusPageBot := new LoginBonusPageBot
 bingoPageBot := new BingoPageBot
+clubRookPageBot := new ClubRookPageBot
 connectionErrorBot := new ConnectionErrorBot
+loginBonusPageBot := new LoginBonusPageBot
 mainPageBot := new MainPageBot
-questMenuBot := new QuestMenuBot
-questBattleBot := new QuestBattleBot
 questAllyPageBot := new QuestAllyPageBot
+questBattleBot := new QuestBattleBot
+questMenuBot := new QuestMenuBot
 questUnitPageBot := new QuestUnitPageBot
 resultsPageBot := new ResultsPageBot
 startPageBot := new StartPageBot
 currentEpisode := EPISODE
 currentQuest := QUEST
 
+
 ; =================================================================================================
 ; -------------------------------------------- Main loop ------------------------------------------
 ; =================================================================================================
 loop
 {
+
   if (connectionErrorBot.isConnectionError()) {
     connectionErrorBot.startPage()
-  }
-  else if (mainPageBot.isAnnouncement()) {
-    mainPageBot.closeAnnouncement()
   }
   else if (connectionErrorBot.isConnectionErrorRequiresRestart()) {
     connectionErrorBot.exitGame()
@@ -66,15 +65,39 @@ loop
   }
   else if (resultsPageBot.isResultsPageDetected()) {
     if (resultsPageBot.isQuestCleared()) {
+      loop % questBattleBot.keys.length() {
+        key := questBattleBot.keys[A_Index]
+        questBattleBot.databaseQuestBattlePoints.incrementPriority(key)
+      }
+
+      if (questBattleBot.databaseQuestBattlePoints.getKeySetSize() > 0) {
+        questBattleBot.databaseQuestBattlePoints.writeToTable(currentEpisode, currentQuest)
+      }
+
+      questBattleBot.clearKeys()
       resultsPageBot.toQuestMenu() 
     }
     else {
+      loop % questBattleBot.keys.length() {
+        key := questBattleBot.keys[A_Index]
+        questBattleBot.databaseQuestBattlePoints.decrementPriority(key)
+      }
+
+      if (questBattleBot.databaseQuestBattlePoints.getKeySetSize() > 0) {
+        questBattleBot.databaseQuestBattlePoints.writeToTable(currentEpisode, currentQuest)
+      }
+
+      questBattleBot.clearKeys()
       resultsPageBot.toMainPage()
     }
   }
   else if (questBattleBot.isPlacingUnit()) {
     if (questBattleBot.isMapFull() == true) {
       questBattleBot.cancelPlacement()
+    }
+    else if (questBattleBot.searchDatabasePoint(currentEpisode, currentQuest)) {
+      questBattleBot.pushKey(questBattleBot.databaseQuestBattlePoints.key)
+      questBattleBot.confirmPlacement()
     }
     else if (questBattleBot.searchPoint()) {
       questBattleBot.confirmPlacement()
@@ -103,7 +126,7 @@ loop
     else {
       questBattleBot.setDeployAllyOff()
       questAllyPageBot.exitList()
-    } 
+    }
   }
   else if (questUnitPageBot.isUnitList()) {
     if (questBattleBot.isMapFull() == false) {
@@ -164,12 +187,19 @@ loop
     if (questMenuBot.isEpisodeSelection()) {
       questMenuBot.selectEpisode(currentEpisode)
     }
-    else if (questMenuBot.selectQuest(currentEpisode, currentQuest) == false) {
+    else if (questMenuBot.selectQuest(currentEpisode, currentQuest)) {
+      questBattleBot.databaseQuestBattlePoints.clear()
+      questBattleBot.databaseQuestBattlePoints.readFromDatabase(currentEpisode, currentQuest)
+    }
+    else {
       questMenuBot.episodeList()
     }
   }
   else if (mainPageBot.isQuestCooldownDone()) {
     mainPageBot.selectMenu(mainPageBot.QUEST)
+  }
+  else if (mainPageBot.isAnnouncement()) {
+    mainPageBot.closeAnnouncement()
   }
 }
 

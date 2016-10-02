@@ -491,12 +491,12 @@ class QuestBattlePoints {
       this.reset()
       this.index++
     }
-    this.key := this.keys[this.index] 
+    this.key := this.keys[this.index]
     key := this.key
   }
 
   getPoint() {
-    return this.points[this.key] 
+    return this.points[this.key]
   }
 
   getKeySetSize() {

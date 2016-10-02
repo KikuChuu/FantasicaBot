@@ -14,6 +14,7 @@ class QuestBattleBot {
   __New() {
     global DEPLOY_NUMBER
     this.questBattlePoints := new QuestBattlePoints
+    this.databaseQuestBattlePoints := new databaseQuestBattlePoints
     this.controller := new Controller
 
     this.deployableMapSquareState := true
@@ -23,6 +24,16 @@ class QuestBattleBot {
     this.DEFAULT_UNIT_USED_VALUE := 0
     this.unitSize := DEPLOY_NUMBER ; DEPLOY_NUMBER is defined in the UserInput.txt file
     this.unitUsed := this.DEFAULT_UNIT_USED_VALUE
+
+    this.keys := []
+  }
+
+  pushKey(key) {
+    this.keys.push(key)
+  }
+
+  clearKeys() {
+    this.keys := []
   }
  
   getUnitSize() {
@@ -116,6 +127,25 @@ class QuestBattleBot {
 
       if (detectObject(this.CONFIRM, 0, 0)) {
         this.questBattlePoints.index--
+        return true
+      }
+    }
+    return false
+  }
+
+  searchDatabasePoint(theEpisode, theQuest) {
+    if (this.databaseQuestBattlePoints.getKeySetSize() == 0) {
+      this.databaseQuestBattlePoints.readFromTable(theEpisode, theQuest)
+    }
+
+    loop % this.databaseQuestBattlePoints.getKeySetSize() {
+      this.databaseQuestBattlePoints.nextKey(key)
+      point := this.databaseQuestBattlePoints.getPoint()
+      this.controller.setPoint(point[1], point[2])
+      this.controller.clickAndUpdateHistory()
+
+      if (detectObject(this.CONFIRM, 0, 0)) {
+        this.databaseQuestBattlePoints.index--
         return true
       }
     }
