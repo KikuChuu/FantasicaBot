@@ -28,7 +28,7 @@
 
   __New() {
     global width, height
-    if (width == 418 && height == 718) {
+    if (width == 436 && height == 718) {
       this.MENU_X1 := 30
       this.MENU_Y1 := 650
       this.MENU_X2 := 130
@@ -36,9 +36,9 @@
     }
     else {
       this.MENU_X1 := 30
-      this.MENU_Y1 := 650
+      this.MENU_Y1 := 1000
       this.MENU_X2 := 130
-      this.MENU_Y2 := 650
+      this.MENU_Y2 := 1000
     }
   }
 
@@ -153,7 +153,7 @@
   }
 
   isAnnouncement() {
-    if (detectObject(this.ANNOUNCEMENT_HEADER, 0, 0)) {
+    if (detectObject(this.ANNOUNCEMENT_HEADER, 0, 0, 50)) {
       return true
     }
     else {
@@ -164,12 +164,8 @@
   closeAnnouncement() 
   {
     global BUFFER_X, BUFFER_Y
-    if (detectObject(this.ANNOUNCEMENT_HEADER, 0, 0)) {
-      fromX := BUFFER_X
-      fromY := BUFFER_Y
-      if (detectObject(this.CLOSE_ANNOUNCEMENT, fromX, fromY)) {
-        clickAt(BUFFER_X, BUFFER_Y)
-      }
+    if (detectObject(this.CLOSE_ANNOUNCEMENT, 0, 0)) {
+      clickAt(BUFFER_X, BUFFER_Y)
     }
   }
 }

@@ -37,6 +37,8 @@ SetWorkingDir %A_ScriptDir%
 #include %A_ScriptDir%\includes\lib\SQLiteDB.ahk
 #include %A_ScriptDir%\includes\lib\StartPageBot.ahk
 #include %A_ScriptDir%\includes\lib\TowerBot.ahk
+#include %A_ScriptDir%\includes\lib\TrainingBot.ahk
+#include %A_ScriptDir%\includes\lib\TrainingPageBot.ahk
 
 ; =================================================================================================
 ; --------------------------------------- SQLite scripts -------------------------------------------

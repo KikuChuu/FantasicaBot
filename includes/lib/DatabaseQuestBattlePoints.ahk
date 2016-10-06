@@ -14,9 +14,9 @@ class DatabaseQuestBattlePoints {
 
 ; =================================================================================================
 ; METHOD readFromTable - Reads key, x, y, priority values from the database into this object's members
-; @param theEpisode - The table's episode
-; @param theQuest   - The table's quest
-; @return           - True if no error in retrieving the values. Exits the app on failure
+; @param theEpisode    - The table's episode
+; @param theQuest      - The table's quest
+; @return              - True if no error in retrieving the values. Exits the app on failure
 ; =================================================================================================
   readFromTable(theEpisode, theQuest) {
     table := "QUEST_" . theEpisode . "_" . theQuest

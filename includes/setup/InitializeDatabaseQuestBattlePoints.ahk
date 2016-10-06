@@ -22,7 +22,7 @@ initializeQuestDB(dbPath) {
     ; =================================================================================================
     ; --- Generate SQL command to create a table for each quest. The command will create 643 tables ---
     ; =================================================================================================
-    _sql := "CREATE TABLE IF NOT EXISTS quest#(key, x, y, priority, PRIMARY KEY(key));" ; template for generating sql statements
+    _sql := "CREATE TABLE IF NOT EXISTS quest#(key, x, y, priority INTEGER, PRIMARY KEY(key));" ; template for generating sql statements
     sql := "" ; variable to store our generated sql statements
 
     loop, 64 {

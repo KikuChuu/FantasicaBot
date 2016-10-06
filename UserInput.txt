@@ -18,6 +18,8 @@ QUEST_DB_PATH := "questData/QUEST.db"
 ;----------------------
 	MAXTP = 300 ;your maximum training points
 	USE_POTION := 0
+  TRAINING_EPISODE := 1
+  TRAINING_STAGE := 1
 	
 ;Quest Selection Specification
 ;-----------------------------
@@ -42,7 +44,7 @@ QUEST_DB_PATH := "questData/QUEST.db"
 ;********************************************
 ;============================================
 ; -- First icon starts at index 0 --
-	QUEST_INDEX := 4
+	  QUEST_INDEX := 4
     TRAINING_INDEX := 5
     INBOX_INDEX := 14
     BATTLE_INDEX := 13

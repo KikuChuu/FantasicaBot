@@ -80,6 +80,7 @@ loop
   }
   else if (bingoPageBot.isBingoPage()) {
     bingoPageBot.doBingo()
+    sleep 5000
   }
   else if (resultsPageBot.isResultsPageDetected()) {
     if (resultsPageBot.isQuestCleared()) {
