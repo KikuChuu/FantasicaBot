@@ -84,7 +84,7 @@ clickObject(path, variation := 0)
 ;             pixel's color. Specify between 0 to 255 (inclusive)
 ;@return int - Returns 1 if the image matched within the window. 
 ;              Otherwise, returns 0.
-detectObject(path, fromX, fromY, variation := 0)
+detectObject(path, fromX := 0, fromY := 0, variation := 0)
 {
 	global X2,Y2, BACK_BUTTON, SLEEEPTIME
 	global BLUESTACK_WINDOW_TITLE

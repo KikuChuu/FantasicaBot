@@ -18,21 +18,16 @@ QUEST_DB_PATH := "questData/QUEST.db"
 ;----------------------
 	MAXTP = 300 ;your maximum training points
 	USE_POTION := 0
-  TRAINING_EPISODE := 1
-  TRAINING_STAGE := 1
+  TRAINING_EPISODE := 44
+  STAGE := 2
 	
 ;Quest Selection Specification
 ;-----------------------------
-	QUEST = 1 ; Enter 1,2,3,4,5,6, or 7
-	EPISODE = 1
+	QUEST_EPISODE = 59
+	QUEST = 6
 ;Quest Battle specification
 ;--------------------------												 
 	DEPLOY_NUMBER = 10 	;number of units to deploy
-	ATTACK_TYPE = 0 	 	;land = 1, air = 2, sea = 3, default = 0
-	ATTRIB_TYPE = 0		;Melee = 1, missile = 2, magic = 3, all = 0
-	LEVELBOT = 1		;0 = no, 1 = set starting point specifically for quest 2-7
-	BOTALLQUEST = 0     ;0 = repeat the same quest, 1 = quest progression
-	SKIPQUEST = 1		;1 = speeds up quest battle, 0 = ignore the skip quest button in quest
 
 ; Inbox Specification
 ;--------------------

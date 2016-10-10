@@ -20,7 +20,7 @@ questMenuBot := new QuestMenuBot
 questUnitPageBot := new QuestUnitPageBot
 resultsPageBot := new ResultsPageBot
 startPageBot := new StartPageBot
-currentEpisode := EPISODE
+currentEpisode := QUEST_EPISODE
 currentQuest := QUEST
 
 

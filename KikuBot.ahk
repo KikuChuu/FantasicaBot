@@ -20,26 +20,14 @@ questMenuBot := new QuestMenuBot
 questUnitPageBot := new QuestUnitPageBot
 resultsPageBot := new ResultsPageBot
 startPageBot := new StartPageBot
-currentEpisode := EPISODE
+trainingBot := new TrainingBot
+trainingPageBot := new TrainingPageBot
+
+currentQuestEpisode := QUEST_EPISODE 
 currentQuest := QUEST
 
-; =================================================================================================
-; --------------------------------- Non-member functions defs -------------------------------------
-; =================================================================================================
-updateQuestProgress() {
-  global currentEpisode, currentQuest
-  
-  currentQuest++
-  x := currentQuest // (questMenuBot.getQuestCount(currentEpisode) + 1)
-  y := Mod(currentQuest, (questMenuBot.getQuestCount(currentEpisode) + 1))
-  currentEpisode += x
-  if (y == 0) {
-    currentQuest := 1
-  }
-  else {
-    currentQuest := y
-  }
-}
+currentTrainingEpisode := TRAINING_EPISODE
+currentStage := STAGE
 
 
 ; =================================================================================================
@@ -47,7 +35,6 @@ updateQuestProgress() {
 ; =================================================================================================
 loop
 {
-
   if (connectionErrorBot.isConnectionError()) {
     connectionErrorBot.startPage()
   }
@@ -90,10 +77,9 @@ loop
       }
 
       if (questBattleBot.databaseQuestBattlePoints.getKeySetSize() > 0) {
-        questBattleBot.databaseQuestBattlePoints.writeToTable(currentEpisode, currentQuest)
+        questBattleBot.databaseQuestBattlePoints.writeToTable(currentQuestEpisode, currentQuest)
       }
 
-      updateQuestProgress()
       questBattleBot.clearKeys()
       resultsPageBot.toQuestMenu() 
     }
@@ -104,7 +90,7 @@ loop
       }
 
       if (questBattleBot.databaseQuestBattlePoints.getKeySetSize() > 0) {
-        questBattleBot.databaseQuestBattlePoints.writeToTable(currentEpisode, currentQuest)
+        questBattleBot.databaseQuestBattlePoints.writeToTable(currentQuestEpisode, currentQuest)
       }
 
       questBattleBot.clearKeys()
@@ -115,7 +101,7 @@ loop
     if (questBattleBot.isMapFull() == true) {
       questBattleBot.cancelPlacement()
     }
-    else if (questBattleBot.searchDatabasePoint(currentEpisode, currentQuest)) {
+    else if (questBattleBot.searchDatabasePoint(currentQuestEpisode, currentQuest)) {
       questBattleBot.pushKey(questBattleBot.databaseQuestBattlePoints.key)
       questBattleBot.confirmPlacement()
     }
@@ -205,18 +191,40 @@ loop
     questBattleBot.setUnitUsed(questBattleBot.DEFAULT_UNIT_USED_VALUE)
 
     if (questMenuBot.isEpisodeSelection()) {
-      questMenuBot.selectEpisode(currentEpisode)
+      questMenuBot.selectEpisode(currentQuestEpisode)
     }
-    else if (questMenuBot.selectQuest(currentEpisode, currentQuest)) {
+    else if (questMenuBot.selectQuest(currentQuestEpisode, currentQuest)) {
       questBattleBot.databaseQuestBattlePoints.clear()
-      questBattleBot.databaseQuestBattlePoints.readFromDatabase(currentEpisode, currentQuest)
+      questBattleBot.databaseQuestBattlePoints.readFromDatabase(currentQuestEpisode, currentQuest)
     }
     else {
       questMenuBot.episodeList()
     }
   }
-  else if (mainPageBot.isQuestCooldownDone()) {
-    mainPageBot.selectMenu(mainPageBot.QUEST)
+  else if (trainingBot.isTraining()) {
+    if (trainingBot.isExitTraining()) {
+      trainingBot.advance()
+      trainingBot.summonAlly()
+      trainingBot.fight()
+      trainingBot.exitTraining()
+    }
+  }
+  else if (trainingBot.isCard()) {
+    trainingBot.continueTraining()
+  }
+  else if (trainingBot.isFriend()) {
+    trainingBot.continueTraining()
+  }
+  else if (trainingPageBot.isTrainingPage()) {
+    trainingPageBot.selectStage(currentTrainingEpisode, currentStage)
+  }
+  else if (mainPageBot.isMainPage()) {
+    if (mainPageBot.isQuestCooldownDone()) {
+      mainPageBot.selectMenu(mainPageBot.QUEST)
+    }
+    else {
+      mainPageBot.selectMenu(mainPageBot.TRAINING)
+    }
   }
   else if (mainPageBot.isAnnouncement()) {
     mainPageBot.closeAnnouncement()
