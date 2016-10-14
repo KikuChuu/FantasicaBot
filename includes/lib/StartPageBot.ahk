@@ -18,7 +18,7 @@ class StartPageBot {
     }
   }
 
-  isGameUnderMaintenance() {
+  isMaintenance() {
     if (detectObject(this.START_GAME, 0, 0)) {
       return false
     }

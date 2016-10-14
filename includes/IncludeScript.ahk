@@ -14,6 +14,7 @@ SetWorkingDir %A_ScriptDir%
 #include %A_ScriptDir%/includes/lib/EncloseInSingleQuotes.ahk
 #include %A_ScriptDir%\includes\lib\GuiConstructor.ahk
 #include %A_ScriptDir%\includes\lib\Log.ahk
+#include %A_ScriptDir%\includes\lib\PrettyPrintAssociativeArray.ahk
 #include %A_ScriptDir%\includes\lib\SB.ahk
 
 ; =================================================================================================
@@ -27,6 +28,7 @@ SetWorkingDir %A_ScriptDir%
 #include %A_ScriptDir%\includes\lib\DatabaseQuestBattlePoints.ahk
 #include %A_ScriptDir%\includes\lib\LoginBonusPageBot.ahk
 #include %A_ScriptDir%\includes\lib\MainPageBot.ahk
+#include %A_ScriptDir%\includes\lib\MaintenanceBot.ahk
 #include %A_ScriptDir%\includes\lib\ObjectInteraction.ahk 
 #include %A_ScriptDir%\includes\lib\QuestAllyPageBot.ahk
 #include %A_ScriptDir%\includes\lib\QuestBattleBot.ahk

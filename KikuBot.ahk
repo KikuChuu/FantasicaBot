@@ -14,6 +14,7 @@ clubRookPageBot := new ClubRookPageBot
 connectionErrorBot := new ConnectionErrorBot
 loginBonusPageBot := new LoginBonusPageBot
 mainPageBot := new MainPageBot
+maintenanceBot := new MaintenanceBot
 questAllyPageBot := new QuestAllyPageBot
 questBattleBot := new QuestBattleBot
 questMenuBot := new QuestMenuBot
@@ -23,9 +24,8 @@ startPageBot := new StartPageBot
 trainingBot := new TrainingBot
 trainingPageBot := new TrainingPageBot
 
-currentQuestEpisode := QUEST_EPISODE 
+currentQuestEpisode := QUEST_EPISODE
 currentQuest := QUEST
-
 currentTrainingEpisode := TRAINING_EPISODE
 currentStage := STAGE
 
@@ -35,7 +35,10 @@ currentStage := STAGE
 ; =================================================================================================
 loop
 {
-  if (connectionErrorBot.isConnectionError()) {
+  if (maintenanceBot.isMaintenance()) {
+    maintenanceBot.startPage()
+  }
+  else if (connectionErrorBot.isConnectionError()) {
     connectionErrorBot.startPage()
   }
   else if (connectionErrorBot.isConnectionErrorRequiresRestart()) {
@@ -201,6 +204,20 @@ loop
       questMenuBot.episodeList()
     }
   }
+  else if (mainPageBot.isMainPage()) {
+    if (mainPageBot.isQuestCooldownDone()) {
+      mainPageBot.selectMenu(mainPageBot.QUEST)
+    }
+    else {
+      mainPageBot.selectMenu(mainPageBot.TRAINING)
+    }
+  }
+  else if (mainPageBot.isAnnouncement()) {
+    mainPageBot.closeAnnouncement()
+  }
+  else if (trainingPageBot.isTrainingPage()) {
+    trainingPageBot.selectStage(currentTrainingEpisode, currentStage)
+  }
   else if (trainingBot.isTraining()) {
     if (trainingBot.isExitTraining()) {
       trainingBot.advance()
@@ -214,20 +231,6 @@ loop
   }
   else if (trainingBot.isFriend()) {
     trainingBot.continueTraining()
-  }
-  else if (trainingPageBot.isTrainingPage()) {
-    trainingPageBot.selectStage(currentTrainingEpisode, currentStage)
-  }
-  else if (mainPageBot.isMainPage()) {
-    if (mainPageBot.isQuestCooldownDone()) {
-      mainPageBot.selectMenu(mainPageBot.QUEST)
-    }
-    else {
-      mainPageBot.selectMenu(mainPageBot.TRAINING)
-    }
-  }
-  else if (mainPageBot.isAnnouncement()) {
-    mainPageBot.closeAnnouncement()
   }
 }
 

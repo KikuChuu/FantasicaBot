@@ -14,6 +14,7 @@ clubRookPageBot := new ClubRookPageBot
 connectionErrorBot := new ConnectionErrorBot
 loginBonusPageBot := new LoginBonusPageBot
 mainPageBot := new MainPageBot
+maintenanceBot := new MaintenanceBot
 questAllyPageBot := new QuestAllyPageBot
 questBattleBot := new QuestBattleBot
 questMenuBot := new QuestMenuBot
@@ -47,8 +48,10 @@ updateQuestProgress() {
 ; =================================================================================================
 loop
 {
-
-  if (connectionErrorBot.isConnectionError()) {
+  if (maintenanceBot.isMaintenance()) {
+    maintenanceBot.startPage()
+  }
+  else if (connectionErrorBot.isConnectionError()) {
     connectionErrorBot.startPage()
   }
   else if (connectionErrorBot.isConnectionErrorRequiresRestart()) {
@@ -215,8 +218,10 @@ loop
       questMenuBot.episodeList()
     }
   }
-  else if (mainPageBot.isQuestCooldownDone()) {
-    mainPageBot.selectMenu(mainPageBot.QUEST)
+  else if (mainPageBot.isMainPage()) {
+    if (mainPageBot.isQuestCooldownDone()) {
+      mainPageBot.selectMenu(mainPageBot.QUEST)
+    }
   }
   else if (mainPageBot.isAnnouncement()) {
     mainPageBot.closeAnnouncement()

@@ -14,6 +14,7 @@ clubRookPageBot := new ClubRookPageBot
 connectionErrorBot := new ConnectionErrorBot
 loginBonusPageBot := new LoginBonusPageBot
 mainPageBot := new MainPageBot
+maintenanceBot := new MaintenanceBot
 questAllyPageBot := new QuestAllyPageBot
 questBattleBot := new QuestBattleBot
 questMenuBot := new QuestMenuBot
@@ -23,14 +24,15 @@ startPageBot := new StartPageBot
 currentEpisode := QUEST_EPISODE
 currentQuest := QUEST
 
-
 ; =================================================================================================
 ; -------------------------------------------- Main loop ------------------------------------------
 ; =================================================================================================
 loop
 {
-
-  if (connectionErrorBot.isConnectionError()) {
+  if (maintenanceBot.isMaintenance()) {
+    maintenanceBot.startPage()
+  }
+  else if (connectionErrorBot.isConnectionError()) {
     connectionErrorBot.startPage()
   }
   else if (connectionErrorBot.isConnectionErrorRequiresRestart()) {
@@ -62,6 +64,7 @@ loop
   }
   else if (bingoPageBot.isBingoPage()) {
     bingoPageBot.doBingo()
+    sleep 5000
   }
   else if (resultsPageBot.isResultsPageDetected()) {
     if (resultsPageBot.isQuestCleared()) {

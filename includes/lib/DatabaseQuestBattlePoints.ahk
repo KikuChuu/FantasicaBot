@@ -100,10 +100,12 @@ class DatabaseQuestBattlePoints {
 
   incrementPriority(key) {
     this.priorities[key]++
+    prettyPrintAssociativeArraySubset(this.keys, this.priorities, "priorities_output.txt")
   }
 
   decrementPriority(key) {
     this.priorities[key]--
+    prettyPrintAssociativeArraySubset(this.keys, this.priorities, "priorities_output.txt")
   }
 
   nextKey(ByRef key) {

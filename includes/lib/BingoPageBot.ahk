@@ -17,7 +17,7 @@ class BingoPageBot {
 
   selectSquare() {
     global BUFFER_X, BUFFER_Y
-    if (detectObject(this.SQUARE, 0, 0, 75)) {
+    if (detectObject(this.SQUARE, 0, 0, 100)) {
       clickAt(BUFFER_X, BUFFER_Y)
     }
   }
