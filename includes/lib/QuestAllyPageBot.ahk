@@ -2,9 +2,10 @@ class QuestAllyPageBot {
   ALLY_LIST_TITLE := "FANTASICA IMAGES/Quest/QuestBattle/AllyList/title-" . width . "_" . height . ".png"
   DEPLOY_ALLY := "FANTASICA IMAGES/Quest/QuestBattle/AllyList/deploy_ally-" . width . "_" . height . ".png"
   EXIT_ALLY_LIST := "FANTASICA IMAGES/Quest/QuestBattle/AllyList/back-" . width . "_" . height . ".png"
+  detector := new Detector
 
   isAllyList() {
-    if (detectObject(this.ALLY_LIST_TITLE, 0, 0)) {
+    if (this.detector.detect(this.ALLY_LIST_TITLE)) {
       return true
     }
     else {
@@ -13,7 +14,7 @@ class QuestAllyPageBot {
   }
 
   isAlly() {
-    if (detectObject(this.DEPLOY_ALLY, 0, 0)) {
+    if (this.detector.detect(this.DEPLOY_ALLY)) {
       return true
     }
     else {
@@ -22,17 +23,15 @@ class QuestAllyPageBot {
   }
 
   deployAlly() {
-    global BUFFER_X, BUFFER_Y
-    if (detectObject(this.DEPLOY_ALLY, 0, 0)) {
-      clickAt(BUFFER_X, BUFFER_Y)
+    if (this.detector.detect(this.DEPLOY_ALLY)) {
+      clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
       sleep 500
     }
   }
 
   exitList() {
-    global BUFFER_X, BUFFER_Y
-    if (detectObject(this.EXIT_ALLY_LIST, 0, 0)) {
-      clickAt(BUFFER_X, BUFFER_Y)
+    if (this.detector.detect(this.EXIT_ALLY_LIST)) {
+      clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
       this.setDeployAllyOff()
       sleep 500
     }

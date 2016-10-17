@@ -11,21 +11,31 @@ SetWorkingDir %A_ScriptDir%
 ; ---------------------------------- Non-member helper functions ----------------------------------
 ; =================================================================================================
 #include %A_ScriptDir%\includes\lib\Decorate.ahk
-#include %A_ScriptDir%/includes/lib/EncloseInSingleQuotes.ahk
+#include %A_ScriptDir%\includes\lib\EncloseInSingleQuotes.ahk
 #include %A_ScriptDir%\includes\lib\GuiConstructor.ahk
 #include %A_ScriptDir%\includes\lib\Log.ahk
 #include %A_ScriptDir%\includes\lib\PrettyPrintAssociativeArray.ahk
+#include %A_ScriptDir%\includes\lib\PrintAssociativeArrayOfArrays.ahk
 #include %A_ScriptDir%\includes\lib\SB.ahk
+
+; =================================================================================================
+; ---------------------------------------- GDI+ functions -----------------------------------------
+; =================================================================================================
+#include %A_ScriptDir%\includes\lib\Gdip.ahk
 
 ; =================================================================================================
 ; ------------------------------------------- Classes ---------------------------------------------
 ; =================================================================================================
+#include %A_ScriptDir%\includes\lib\AllyApprovalPageBot.ahk
+#include %A_ScriptDir%\includes\lib\AllyPageBot.ahk
 #include %A_ScriptDir%\includes\lib\AppPlayerBot.ahk
 #include %A_ScriptDir%\includes\lib\BingoPageBot.ahk
 #include %A_ScriptDir%\includes\lib\ClubRookPageBot.ahk
 #include %A_ScriptDir%\includes\lib\ConnectionErrorBot.ahk
 #include %A_ScriptDir%\includes\lib\Controller.ahk
 #include %A_ScriptDir%\includes\lib\DatabaseQuestBattlePoints.ahk
+#include %A_ScriptDir%\includes\lib\DatabaseTowerBattlePoints.ahk
+#include %A_ScriptDir%\includes\lib\Detector.ahk
 #include %A_ScriptDir%\includes\lib\LoginBonusPageBot.ahk
 #include %A_ScriptDir%\includes\lib\MainPageBot.ahk
 #include %A_ScriptDir%\includes\lib\MaintenanceBot.ahk
@@ -46,6 +56,7 @@ SetWorkingDir %A_ScriptDir%
 ; --------------------------------------- SQLite scripts -------------------------------------------
 ; =================================================================================================
 #include %A_ScriptDir%\includes\setup\InitializeDatabaseQuestBattlePoints.ahk
+#include %A_ScriptDir%\includes\setup\InitializeTowerPoints.ahk
 
 ; =================================================================================================
 ; ----------------------------------- Global variables --------------------------------------------

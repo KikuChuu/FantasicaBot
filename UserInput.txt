@@ -13,6 +13,7 @@ potion := 0
 ; ----------------------------------------- Database Paths ----------------------------------------
 ; =================================================================================================
 QUEST_DB_PATH := "questData/QUEST.db"
+TOWER_DB_PATH := "towerData/TOWER.db"
 
 ;Training Specification
 ;----------------------
@@ -25,6 +26,11 @@ QUEST_DB_PATH := "questData/QUEST.db"
 ;-----------------------------
 	QUEST_EPISODE = 59
 	QUEST = 6
+
+; Tower Specification
+; -------------------
+  TOWER := 1
+
 ;Quest Battle specification
 ;--------------------------												 
 	DEPLOY_NUMBER = 10 	;number of units to deploy
@@ -81,7 +87,7 @@ QUEST_DB_PATH := "questData/QUEST.db"
 
 	;Revelations Event
 	;-----------------
-		SELECTEDTOWER := 2	;0 = agony, 1 = chains, 2 = light
+		SELECTEDTOWER := 0	;0 = agony, 1 = chains, 2 = light
 		FIGHTBOSS = 0 		;0 = flee, 1 = fight
 		;REVELATIONTOWER := 0 	;1 = yes, it is this event and will affect the unit placement algorithm
 						; 0 = no, it is not this event and use the default unit placement algorithm

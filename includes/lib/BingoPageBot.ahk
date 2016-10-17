@@ -5,9 +5,10 @@ class BingoPageBot {
   NOTICE := "FANTASICA IMAGES/BingoPage/notice-" . width . "_" . height . ".png"
   MY_PAGE := "FANTASICA IMAGES/BingoPage/my_page-" . width . "_" . height . ".png"
   INBOX := "FANTASICA IMAGES/BingoPage/inbox-" . width . "_" . height . ".png"
-  
+  detector := new Detector
+ 
   isBingoPage() {
-    if (detectObject(this.TITLE, 0, 0)) {
+    if (this.detector.detect(this.TITLE)) {
       return true
     }
     else {
@@ -16,23 +17,20 @@ class BingoPageBot {
   }
 
   selectSquare() {
-    global BUFFER_X, BUFFER_Y
-    if (detectObject(this.SQUARE, 0, 0, 100)) {
-      clickAt(BUFFER_X, BUFFER_Y)
+    if (this.detector.detect(this.SQUARE, 0, 0, 75)) {
+      clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
     }
   }
 
   receiveItem() {
-    global BUFFER_X, BUFFER_Y
-    if (detectObject(this.RECEIVE, 0, 0, 50)) {
-      clickAt(BUFFER_X, BUFFER_Y)
+    if (this.detector.detect(this.RECEIVE, 0, 0, 50)) {
+      clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
     }
   }
 
   selectMyPage() {
-    global BUFFER_X, BUFFER_Y
-    if (detectObject(this.MY_PAGE, 0, 0, 50)) {
-      clickAt(BUFFER_X, BUFFER_Y)
+    if (this.detector.detect(this.MY_PAGE, 0, 0, 50)) {
+      clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
     }
   }
 
@@ -45,16 +43,14 @@ class BingoPageBot {
   }
 
   selectInbox() {
-    global BUFFER_X, BUFFER_Y
-    if (detectObject(this.INBOX, 0, 0, 50)) {
-      clickAt(BUFFER_X, BUFFER_Y)
+    if (this.detector.detect(this.INBOX, 0, 0, 50)) {
+      clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
     }
   }
 
   selectNotice() {
-    global BUFFER_X, BUFFER_Y
-    if (detectObject(this.NOTICE, 0, 0, 50)) {
-      clickAt(BUFFER_X, BUFFER_Y)
+    if (this.detector.detect(this.NOTICE, 0, 0, 50)) {
+      clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
     }
   }
 }

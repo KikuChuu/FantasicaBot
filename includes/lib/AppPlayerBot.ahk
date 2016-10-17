@@ -3,9 +3,10 @@ class AppPlayerBot {
   APP_DRAWER := "FANTASICA IMAGES/AppPlayer/app_drawer-" . width . "_" . height . ".png"
   ALL_APPS := "FANTASICA IMAGES/AppPlayer/all_apps-" . width . "_" . height . ".png"
   RECENTLY_PLAYED := "FANTASICA IMAGES/AppPlayer/recently_played-" . width . "_" . height . ".png"
+  detector := new Detector
 
   isAppPlayerHomePage() {
-    if (detectObject(this.RECENTLY_PLAYED, 0, 0) || detectObject(this.ALL_APPS, 0, 0)) {
+    if (this.detector.detect(this.RECENTLY_PLAYED) || this.detector.detect(this.ALL_APPS)) {
       return true
     }
     else {
@@ -14,7 +15,7 @@ class AppPlayerBot {
   }
 
   isFantasicaRecentlyPlayed() {
-    if (detectObject(this.FANTASICA, 0, 0, 150)) {
+    if (this.detector.detect(this.FANTASICA, 0, 0, 150)) {
       return true
     }
     else {
@@ -23,9 +24,8 @@ class AppPlayerBot {
   }
 
   openAppDrawer() {
-    global BUFFER_X, BUFFER_Y
-    if (detectObject(this.APP_DRAWER, 0, 0)) {
-      clickAt(BUFFER_X, BUFFER_Y)
+    if (this.detector.detect(this.APP_DRAWER)) {
+      clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
       sleep 2000
       return true
     }
@@ -35,9 +35,8 @@ class AppPlayerBot {
   }
 
   startGame() {
-    global BUFFER_X, BUFFER_Y
-    if (detectObject(this.FANTASICA, 0, 0, 150)) {
-      clickAt(BUFFER_X, BUFFER_Y)
+    if (this.detector.detect(this.FANTASICA, 0, 0, 150)) {
+      clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
       sleep 2000
       return true
     }

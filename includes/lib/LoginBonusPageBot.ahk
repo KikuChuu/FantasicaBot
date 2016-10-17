@@ -4,9 +4,10 @@ class LoginBonusPageBot {
   INBOX := "FANTASICA IMAGES/LoginBonusPage/inbox-" . width . "_" . height . ".png"
   MY_PAGE := "FANTASICA IMAGES/LoginBonusPage/my_page-" . width . "_" . height . ".png"
   BACK := "FANTASICA IMAGES/LoginBonusPage/back-" . width . "_" . height . ".png"
+  detector := new Detector
 
   isLoginBonusPage() {
-    if (detectObject(this.LOGIN_BONUS, 0, 0)) {
+    if (this.detector.detect(this.LOGIN_BONUS)) {
       return true
     }
     else {
@@ -15,30 +16,26 @@ class LoginBonusPageBot {
   }
 
   selectDetails() {
-    global BUFFER_X, BUFFER_Y
-    if (detectObject(this.DETAILS, 0, 0, 50)) {
-      clickAt(BUFFER_X, BUFFER_Y)
+    if (this.detector.detect(this.DETAILS, 0, 0, 50)) {
+      clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
     }
   }
 
   selectInbox() {
-    global BUFFER_X, BUFFER_Y
-    if (detectObject(this.INBOX, 0, 0, 50)) {
-      clickAt(BUFFER_X, BUFFER_Y)
+    if (this.detector.detect(this.INBOX, 0, 0, 50)) {
+      clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
     }
   }
 
   selectMyPage() {
-    global BUFFER_X, BUFFER_Y
-    if (detectObject(this.MY_PAGE, 0, 0, 50)) {
-      clickAt(BUFFER_X, BUFFER_Y)
+    if (this.detector.detect(this.MY_PAGE, 0, 0, 50)) {
+      clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
     }
   }
 
   selectBack() {
-    global BUFFER_X, BUFFER_Y
-    if (detectObject(this.BACK, 0, 0, 50)) {
-      clickAt(BUFFER_X, BUFFER_Y)
+    if (this.detector.detect(this.BACK, 0, 0, 50)) {
+      clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
     }
   }
 }

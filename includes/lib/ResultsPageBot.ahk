@@ -8,9 +8,10 @@ class ResultsPageBot {
   MAIN_PAGE := "FANTASICA IMAGES/Quest/QuestResult/main_page-" . width . "_" . height . ".png"
   CLEARED := "FANTASICA IMAGES/Quest/QuestResult/100_percent_cleared-" . width . "_" . height . ".png"
   TOWER_PAGE := "FANTASICA IMAGES/Quest/QuestResult/tower_page-" . width . "_" . height . ".png"
+  detector := new Detector
 
   isResultsPageDetected() {
-    if (detectObject(this.TITLE, 0, 0)) {
+    if (this.detector.detect(this.TITLE)) {
       return true
     }
     else {
@@ -19,7 +20,7 @@ class ResultsPageBot {
   }
 
   isQuestCleared() {
-    if (detectObject(this.CLEARED, 0, 0)) {
+    if (this.detector.detect(this.CLEARED)) {
       return true
     }
     else {
@@ -28,27 +29,22 @@ class ResultsPageBot {
   }
 
   toQuestMenu() {
-    global BUFFER_X, BUFFER_Y
-
-    if (detectObject(this.QUEST_MENU, 0, 0)) {
-      clickAt(BUFFER_X, BUFFER_Y)
+    if (this.detector.detect(this.QUEST_MENU)) {
+      clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
       sleep 1000
     }
   }
 
   toMainPage() {
-    global BUFFER_X, BUFFER_Y
-
-    if (detectObject(this.MAIN_PAGE, 0, 0)) {
-      clickAt(BUFFER_X, BUFFER_Y)
+    if (this.detector.detect(this.MAIN_PAGE)) {
+      clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
       sleep 1000
     }
   }
 
   toTower() {
-    global BUFFER_X, BUFFER_Y
-    if (detectObject(this.TOWER_PAGE, 0, 0)) {
-      clickAt(BUFFER_X, BUFFER_Y)
+    if (this.detector.detect(this.TOWER_PAGE)) {
+      clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
       sleep 1000
     }
   }

@@ -2,9 +2,10 @@ class QuestUnitPageBot {
   UNIT_LIST_TITLE := "FANTASICA IMAGES/Quest/QuestBattle/UnitList/title-" . width . "_" . height . ".png"
   DEPLOY_UNIT := "FANTASICA IMAGES/Quest/QuestBattle/UnitList/deploy_unit-" . width . "_" . height . ".png"
   EXIT_UNIT_LIST := "FANTASICA IMAGES/Quest/QuestBattle/UnitList/back-" . width . "_" . height . ".png"
+  detector := new Detector
 
   isUnitList() {
-    if (detectObject(this.UNIT_LIST_TITLE, 0, 0)) {
+    if (this.detector.detect(this.UNIT_LIST_TITLE)) {
       return true
     }
     else {
@@ -13,7 +14,7 @@ class QuestUnitPageBot {
   }
 
   isUnit() {
-    if (detectObject(this.DEPLOY_UNIT, 0, 0, 100)) {
+    if (this.detector.detect(this.DEPLOY_UNIT, 0, 0, 100)) {
       return true
     }
     else {
@@ -22,9 +23,8 @@ class QuestUnitPageBot {
   }
 
   deployUnit() {
-    global BUFFER_X, BUFFER_Y
-    if (detectObject(this.DEPLOY_UNIT, 0, 0, 100)) {
-      clickAt(BUFFER_X, BUFFER_Y)
+    if (this.detector.detect(this.DEPLOY_UNIT, 0, 0, 100)) {
+      clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
       sleep 500
       return true
     }
@@ -34,9 +34,8 @@ class QuestUnitPageBot {
   }
 
   exitList() {
-    global BUFFER_X, BUFFER_Y
-    if (detectObject(this.EXIT_UNIT_LIST, 0, 0)) {
-      clickAt(BUFFER_X, BUFFER_Y)
+    if (this.detector.detect(this.EXIT_UNIT_LIST)) {
+      clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
       sleep 1000
     }
   }

@@ -1052,8 +1052,10 @@ class QuestMenuBot {
   quest_64_11 := "FANTASICA IMAGES/Quest/QuestMenu/quest_64_11-" . width . "_" . height . ".png" 
 
 
+  detector := new Detector
+
   isQuestMenuDetected() {
-    if (detectObject(this.QUEST_MENU_TITLE, 0, 0)) {
+    if (this.detector.detect(this.QUEST_MENU_TITLE)) {
       return true
     } else {
       return false
@@ -1061,33 +1063,29 @@ class QuestMenuBot {
   }
 
   nextPage() {
-    global BUFFER_X, BUFFER_Y
-    if (detectObject(this.NEXT_PAGE, 0, 0)) {
-      clickAt(BUFFER_X, BUFFER_Y)
+    if (this.detector.detect(this.NEXT_PAGE)) {
+      clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
     }
   }
 
   previousPage() {
-    global BUFFER_X, BUFFER_Y
-    if (detectObject(this.PREVIOUS_PAGE, 0, 0)) {
-      clickAt(BUFFER_X, BUFFER_Y)
+    if (this.detector.detect(this.PREVIOUS_PAGE)) {
+      clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
     }
   }
 
   firstPage() {
-    global BUFFER_X, BUFFER_Y
-    if (detectObject(this.PREVIOUS_PAGE, 0, 0)) {
+    if (this.detector.detect(this.PREVIOUS_PAGE)) { 
       loop, 10 {
-        clickAt(BUFFER_X, BUFFER_Y)
+        clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
       }
     }
   }
 
   lastPage() {
-    global BUFFER_X, BUFFER_Y
-    if (detectObject(this.NEXT_PAGE, 0, 0)) {
+    if (this.detector.detect(this.NEXT_PAGE)) {
       loop, 10 {
-        clickAt(BUFFER_X, BUFFER_Y)
+        clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
       }
     }
   }
@@ -1210,9 +1208,8 @@ class QuestMenuBot {
   }
 
   episodeList() {
-    global BUFFER_X, BUFFER_Y
-    if (detectObject(this.SELECT_EPISODE, 0, 0, 50)) {
-      clickAt(BUFFER_X, BUFFER_Y)
+    if (this.detector.detect(this.SELECT_EPISODE, 0, 0, 50)) {
+      clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
       sleep 1000
     }
   }
@@ -1228,7 +1225,7 @@ class QuestMenuBot {
   }
 
   isEpisodeSelection() {
-    if (detectObject(this.SELECT, 0, 0)) {
+    if (this.detector.detect(this.SELECT)) {
       return true
     }
     else {
@@ -1237,15 +1234,14 @@ class QuestMenuBot {
   }
 
   selectEpisode(theEpisode) {
-    global BUFFER_X, BUFFER_Y
     episodePath := this.getEpisode(theEpisode)
     loop, {
       loop, 5 {
-        if (detectObject(episodePath, 0, 0, 150)) {
-          fromX := BUFFER_X
-          fromY := BUFFER_Y
-          if (detectObject(this.SELECT, fromX, fromY, 150)) {
-            clickAt(BUFFER_X, BUFFER_Y)
+        if (this.detector.detect(episodePath, 0, 0, 150)) {
+          fromX := this.detector.foundPoint[1]
+          fromY := this.detector.foundPoint[2]
+          if (this.detector.detect(this.SELECT, fromX, fromY, 150)) {
+            clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
             sleep 1000
             return ""
           }
@@ -1253,11 +1249,11 @@ class QuestMenuBot {
         else if (A_Index < 5) {
           this.scrollDownEpisode()
         } 
-        else if (detectObject(this.NEXT_PAGE, 0, 0)) {
-          clickAt(BUFFER_X, BUFFER_Y)
+        else if (this.detector.detect(this.NEXT_PAGE)) {
+          clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
           sleep 1000
         }
-        else if (detectObject(this.LAST_PAGE, 0, 0)) {
+        else if (this.detector.detect(this.LAST_PAGE)) {
           this.firstPage()
         }
       }
@@ -1280,23 +1276,21 @@ class QuestMenuBot {
   }
 
   selectQuest(theEpisode, theQuest) {
-    global BUFFER_X, BUFFER_Y
-
     questPath := this.getQuest(theEpisode, theQuest)
     
     while (this.isQuestMenuDetected() && A_Index <= this.getMaxScrollCountForQuest(theEpisode)) {
-      if (detectObject(questPath, 0, 0, 175)) {
-        fromX := BUFFER_X
-        fromY := BUFFER_Y
+      if (this.detector.detect(questPath, 0, 0, 175)) {
+        fromX := this.detector.foundPoint[1]
+        fromY := this.detector.foundPoint[2]
 
-        if (detectObject(this.START_QUEST, fromX, fromY, 150)) {
-          clickAt(BUFFER_X, BUFFER_Y)
+        if (this.detector.detect(this.START_QUEST, fromX, fromY, 150)) {
+          clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
           sleep 500
           return true
         }
-        else if (detectObject(this.START_QUEST_USING_TIME_ELIXIR, fromX, fromY, 150)) {
-          if (detectObject(this.EXIT_QUEST_MENU, 0, 0)) {
-            clickAt(BUFFER_X, BUFFER_Y)
+        else if (this.detector.detect(this.START_QUEST_USING_TIME_ELIXIR, fromX, fromY, 150)) {
+          if (this.detector.detect(this.EXIT_QUEST_MENU)) {
+            clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
             sleep 500
             return true
           } 

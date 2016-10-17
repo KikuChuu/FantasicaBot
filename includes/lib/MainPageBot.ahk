@@ -25,6 +25,7 @@
   HELP := "FANTASICA IMAGES\MainPage\Menu\help-" . width . "_" . height . ".png"
   ANNOUNCEMENT_HEADER := "FANTASICA IMAGES/MainPage/Announcement/announcement_header-" . width . "_" . height . ".png"
   CLOSE_ANNOUNCEMENT := "FANTASICA IMAGES/MainPage/Announcement/close-" . width . "_" . height . ".png" 
+  detector := new Detector
 
   __New() {
     global width, height
@@ -43,7 +44,7 @@
   }
 
   isMainPage() {
-    if (detectObject(this.TITLE, 0, 0)) {
+    if (this.detector.detect(this.TITLE)) {
       return true
     }
     else {
@@ -52,7 +53,7 @@
   }
 
   isQuestCooldownDone() {
-    if (detectObject(this.QUEST_COOLDOWN, 0, 0)) {
+    if (this.detector.detect(this.QUEST_COOLDOWN)) {
       return true
     }
     else {
@@ -131,13 +132,11 @@
   ; selectMenu - It accepts a menu as input and selects it in the main page. This function must be invoked in the main page
   selectMenu(theMenu)
   {
-    global BUFFER_X, BUFFER_Y
-
     numOfMenu := 23 ; Allow this value to be set in configs
     i := 0
     while (i < numOfMenu) {
-      if (detectObject(theMenu, 0, 0, 150)) {
-        clickAt(BUFFER_X, BUFFER_Y) ; click on the menu whose coords are stored in BUFFER vars
+      if (this.detector.detect(theMenu, 0, 0, 150)) {
+        clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2]) ; click on the menu whose coords are stored in BUFFER vars
         sleep 1000
         return "" ; end the function
       }
@@ -153,7 +152,7 @@
   }
 
   isAnnouncement() {
-    if (detectObject(this.ANNOUNCEMENT_HEADER, 0, 0, 50)) {
+    if (this.detector.detect(this.ANNOUNCEMENT_HEADER, 0, 0, 50)) {
       return true
     }
     else {
@@ -163,9 +162,8 @@
 
   closeAnnouncement() 
   {
-    global BUFFER_X, BUFFER_Y
-    if (detectObject(this.CLOSE_ANNOUNCEMENT, 0, 0)) {
-      clickAt(BUFFER_X, BUFFER_Y)
+    if (this.detector.detect(this.CLOSE_ANNOUNCEMENT)) {
+      clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
     }
   }
 }

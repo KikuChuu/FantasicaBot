@@ -5,14 +5,6 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 #include %A_ScriptDir%\includes\IncludeScript.ahk
 
-;------- INITIALIZE -------------------------
-initGlobals() ; Found in GlobalConstants.ahk
-;--------------------------------------------
-
-;========================================================
-;=================== QUEST ==============================
-;========================================================
-
 towerBot := new TowerBot
 
 test1() {
@@ -33,15 +25,8 @@ test2() {
   SB_SetText("Tested startTower()")
 }
 
-test3() {
-  SB_SetText("Test toTower()")
-  towerBot.toTower() 
-  SB_SetText("Tested toTower()")
-}
-
 F1::ExitApp
 F2::Pause
 F3::Reload
 F4::test1()
 F5::test2()
-F6::test3()

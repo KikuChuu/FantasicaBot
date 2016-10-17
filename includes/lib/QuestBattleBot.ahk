@@ -10,11 +10,13 @@ class QuestBattleBot {
   CONFIRM := "FANTASICA IMAGES/Quest/QuestBattle/confirm-" . width . "_" . height . ".png"
   CANCEL := "FANTASICA IMAGES/Quest/QuestBattle/cancel-" . width . "_" . height . ".png"
   MINA_DIALOG := "FANTASICA IMAGES/Quest/QuestBattle/mina_dialog-" . width . "_" . height . ".png"
-
+  detector := new Detector
+ 
   __New() {
     global DEPLOY_NUMBER
     this.questBattlePoints := new QuestBattlePoints
     this.databaseQuestBattlePoints := new databaseQuestBattlePoints
+    this.databaseTowerBattlePoints := new databaseTowerBattlePoints
     this.controller := new Controller
 
     this.deployableMapSquareState := true
@@ -94,14 +96,13 @@ class QuestBattleBot {
   }
 
   skipDialog() {
-    global BUFFER_X, BUFFER_Y
-    if (detectObject(this.MINA_DIALOG, 0, 0)) {
-      clickAt(BUFFER_X, BUFFER_Y)
+    if (this.detector.detect(this.MINA_DIALOG)) {
+      clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
     }
   }
 
   isQuestBattle() {
-    if (detectObject(this.UNIT_POINTS, 0, 0)) {
+    if (this.detector.detect(this.UNIT_POINTS)) {
       return true
     }
     else {
@@ -110,7 +111,7 @@ class QuestBattleBot {
   }
 
   isPlacingUnit() {
-    if (detectObject(this.CANCEL, 0, 0)) {
+    if (this.detector.detect(this.CANCEL)) {
       return true
     }
     else {
@@ -125,8 +126,27 @@ class QuestBattleBot {
       this.controller.setPoint(point[1], point[2])
       this.controller.clickAndUpdateHistory()
 
-      if (detectObject(this.CONFIRM, 0, 0)) {
+      if (this.detector.detect(this.CONFIRM)) {
         this.questBattlePoints.index--
+        return true
+      }
+    }
+    return false
+  }
+
+  searchTowerDatabasePoint(theTower) {
+    if (this.databaseTowerBattlePoints.getKeySetSize() == 0) {
+      this.databaseTowerBattlePoints.readFromTable(theTower)
+    }
+
+    loop % this.databaseTowerBattlePoints.getKeySetSize() {
+      this.databaseTowerBattlePoints.nextKey(key)
+      point := this.databaseTowerBattlePoints.getPoint()
+      this.controller.setPoint(point[1], point[2])
+      this.controller.clickAndUpdateHistory()
+
+      if (this.detector.detect(this.CONFIRM)) {
+        this.databaseTowerBattlePoints.index--
         return true
       }
     }
@@ -144,7 +164,7 @@ class QuestBattleBot {
       this.controller.setPoint(point[1], point[2])
       this.controller.clickAndUpdateHistory()
 
-      if (detectObject(this.CONFIRM, 0, 0)) {
+      if (this.detector.detect(this.CONFIRM)) {
         this.databaseQuestBattlePoints.index--
         return true
       }
@@ -153,31 +173,28 @@ class QuestBattleBot {
   }
 
   confirmPlacement() {
-    global BUFFER_X, BUFFER_Y
-    if (detectObject(this.CONFIRM, 0, 0)) {
-      clickAt(BUFFER_X, BUFFER_Y)
+    if (this.detector.detect(this.CONFIRM)) {
+      clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
       sleep 1000
     }
   }
 
   cancelPlacement() {
-    global BUFFER_X, BUFFER_Y
-    if (detectObject(this.CANCEL, 0, 0)) {
-      clickAt(BUFFER_X, BUFFER_Y)
+    if (this.detector.detect(this.CANCEL)) {
+      clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
       sleep 1000
     }
   }
 
   speedUpQuest() {
-    global BUFFER_X, BUFFER_Y
-    if (detectObject(this.SPEED_UP_QUEST, 0, 0)) {
-      clickAt(BUFFER_X, BUFFER_Y)
+    if (this.detector.detect(this.SPEED_UP_QUEST)) {
+      clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
     }
   }
 
 
   isUnitListAvailable() {
-    if (detectObject(this.UNIT_LIST, 0, 0)) {
+    if (this.detector.detect(this.UNIT_LIST)) {
       return true
     }
     else {
@@ -186,15 +203,14 @@ class QuestBattleBot {
   }
 
   unitList() {
-    global BUFFER_X, BUFFER_Y
-    if (detectObject(this.UNIT_LIST, 0, 0)) {
-      clickAt(BUFFER_X, BUFFER_Y)
+    if (this.detector.detect(this.UNIT_LIST)) {
+      clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
       sleep 500
     }
   }
 
   isAllyListAvailable() {
-    if (detectObject(this.ALLY_LIST, 0, 0)) {
+    if (this.detector.detect(this.ALLY_LIST)) {
       return true
     }
     else {
@@ -203,9 +219,8 @@ class QuestBattleBot {
   }
 
   allyList() {
-    global BUFFER_X, BUFFER_Y
-    if (detectObject(this.ALLY_LIST, 0, 0)) {
-      clickAt(BUFFER_X, BUFFER_Y)
+    if (this.detector.detect(this.ALLY_LIST)) {
+      clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
       sleep 500
     }
   }

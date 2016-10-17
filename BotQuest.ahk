@@ -8,6 +8,8 @@ SetWorkingDir %A_ScriptDir%
 ; =================================================================================================
 ; ---------------------------------- Variable declarations ----------------------------------------
 ; =================================================================================================
+allyApprovalPageBot := new AllyApprovalPageBot
+allyPageBot := new AllyPageBot
 appPlayerBot := new AppPlayerBot
 bingoPageBot := new BingoPageBot
 clubRookPageBot := new ClubRookPageBot
@@ -24,12 +26,26 @@ startPageBot := new StartPageBot
 currentEpisode := QUEST_EPISODE
 currentQuest := QUEST
 
+; Start gdi+
+If !pToken := Gdip_Startup()
+{
+  MsgBox, 48, gdiplus error!, Gdiplus failed to start. Please ensure you have gdiplus on your system
+  ExitApp
+}
+OnExit, Exit
+
 ; =================================================================================================
 ; -------------------------------------------- Main loop ------------------------------------------
 ; =================================================================================================
 loop
 {
-  if (maintenanceBot.isMaintenance()) {
+  if (allyApprovalPageBot.isAllyApprovalPage()) {
+    allyApprovalPageBot.allyPage()
+  }
+  else if (allyPageBot.isAllyPage()) {
+    allyPageBot.mainPage()
+  }
+  else if (maintenanceBot.isMaintenance()) {
     maintenanceBot.startPage()
   }
   else if (connectionErrorBot.isConnectionError()) {
@@ -205,6 +221,12 @@ loop
     mainPageBot.closeAnnouncement()
   }
 }
+
+Exit:
+; gdi+ may now be shutdown on exiting the program
+Gdip_Shutdown(pToken)
+ExitApp
+Return
 
 ; =================================================================================================
 ; -------------------------------------------- Hotkeys --------------------------------------------

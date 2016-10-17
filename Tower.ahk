@@ -4,7 +4,6 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 #include %A_ScriptDir%\includes\IncludeScript.ahk
 
-
 ; =================================================================================================
 ; ---------------------------------- Variable declarations ----------------------------------------
 ; =================================================================================================
@@ -21,6 +20,27 @@ questUnitPageBot := new QuestUnitPageBot
 resultsPageBot := new ResultsPageBot
 startPageBot := new StartPageBot
 towerBot := new TowerBot
+currentTower := TOWER
+
+; Start gdi+
+If !pToken := Gdip_Startup()
+{
+  MsgBox, 48, gdiplus error!, Gdiplus failed to start. Please ensure you have gdiplus on your system
+  ExitApp
+}
+OnExit, Exit
+
+; =================================================================================================
+; --------------------------------- Non-member functions defs -------------------------------------
+; =================================================================================================
+updateTowerProgress() {
+  global currentTower
+  
+  currentTower++
+  if (currentTower > 20) {
+    currentTower := 1
+  }
+}
 
 ; =================================================================================================
 ; -------------------------------------------- Main loop ------------------------------------------
@@ -28,6 +48,29 @@ towerBot := new TowerBot
 loop
 {
   if (resultsPageBot.isResultsPageDetected()) {
+    if (resultsPageBot.isQuestCleared()) {
+      loop % questBattleBot.keys.length() {
+        key := questBattleBot.keys[A_Index]
+        questBattleBot.databaseTowerBattlePoints.incrementPriority(key)
+      }
+
+      if (questBattleBot.databaseTowerBattlePoints.getKeySetSize() > 0) {
+        questBattleBot.databaseTowerBattlePoints.writeToTable(currentTower)
+      }
+      updateTowerProgress()
+    }
+    else {
+      loop % questBattleBot.keys.length() {
+        key := questBattleBot.keys[A_Index]
+        questBattleBot.databaseTowerBattlePoints.decrementPriority(key)
+      }
+
+      if (questBattleBot.databaseTowerBattlePoints.getKeySetSize() > 0) {
+        questBattleBot.databaseTowerBattlePoints.writeToTable(currentTower)
+      }
+    }
+
+    questBattleBot.clearKeys()
     resultsPageBot.toTower()
   }
   else if (clubRookPageBot.isClubRookPage()) {
@@ -36,6 +79,10 @@ loop
   else if (questBattleBot.isPlacingUnit()) {
     if (questBattleBot.isMapFull() == true) {
       questBattleBot.cancelPlacement()
+    }
+    else if (questBattleBot.searchTowerDatabasePoint(currentTower)) {
+      questBattleBot.pushKey(questBattleBot.databaseTowerBattlePoints.key)
+      questBattleBot.confirmPlacement()
     }
     else if (questBattleBot.searchPoint()) {
       questBattleBot.confirmPlacement()
@@ -163,6 +210,12 @@ loop
   }
 }
 
+Exit:
+; gdi+ may now be shutdown on exiting the program
+Gdip_Shutdown(pToken)
+ExitApp
+Return
+
 ; =================================================================================================
 ; -------------------------------------------- Hotkeys --------------------------------------------
 ; =================================================================================================
@@ -170,3 +223,4 @@ loop
 F1::ExitApp
 F2::Pause
 F3::Reload
+F4::prettyPrintAssociativeArray(questBattleBot.databaseTowerBattlePoints.priorities, "tower_priority.txt")

@@ -8,9 +8,10 @@ class StartPageBot {
   ACCEPT_RESUME_QUEST := "FANTASICA IMAGES/StartPage/resume_quest-" . width . "_" . height . ".png"
   REJECT_RESUME_QUEST := "FANTASICA IMAGES/StartPage/do_not_resume_quest-" . width . "_" . height . ".png"
   OPTIONS := "FANTASICA IMAGES/StartPage/options-" . width . "_" . height . ".png"
+  detector := new Detector
 
   isStartPage() {
-    if (detectObject(this.ANNOUNCEMENT, 0, 0) || detectObject(this.NOTICE, 0, 0)) {
+    if (this.detector.detect(this.ANNOUNCEMENT) || this.detector.detect(this.NOTICE)) {
       return true
     }
     else {
@@ -19,7 +20,7 @@ class StartPageBot {
   }
 
   isMaintenance() {
-    if (detectObject(this.START_GAME, 0, 0)) {
+    if (this.detector.detect(this.START_GAME)) {
       return false
     }
     else {
@@ -28,9 +29,8 @@ class StartPageBot {
   }
 
   startGame() {
-    global BUFFER_X, BUFFER_Y
-    if (detectObject(this.START_GAME, 0, 0)) {
-      clickAt(BUFFER_X, BUFFER_Y)
+    if (this.detector.detect(this.START_GAME)) {
+      clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
       sleep 5000
       return true
     }
@@ -40,8 +40,7 @@ class StartPageBot {
   }
 
   quitGame() {
-    global BUFFER_X, BUFFER_Y
-    if (this.isStartPage) {
+    if (this.isStartPage()) {
       Send {ESC down}
       sleep 2000
       Send {ESC up}
@@ -49,17 +48,15 @@ class StartPageBot {
 
     sleep 1000
 
-    if (detectObject(this.QUIT_GAME, 0, 0, 150)) {
-      if (detectObject(this.CONFIRM_EXIT, 0, 0)) {
-        clickAt(BUFFER_X, BUFFER_Y)
+    if (this.detector.detect(this.QUIT_GAME, 0, 0, 150)) {
+      if (this.detector.detect(this.CONFIRM_EXIT, 0, 0)) {
+        clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
       }
     }
   }
 
   isQuestInterrupted() {
-    global BUFFER_X, BUFFER_Y
-
-    if (detectObject(this.QUEST_INTERRUPTED, 0, 0)) {
+    if (this.detector.detect(this.QUEST_INTERRUPTED)) {
       return true 
     }
     else {
@@ -68,13 +65,11 @@ class StartPageBot {
   }
 
   resumeQuest() {
-    global BUFFER_X, BUFFER_Y
-
     if (this.isQuestInterrupted()) {
-      fromX := BUFFER_X
-      fromY := BUFFER_Y
-      if (detectObject(this.ACCEPT_RESUME_QUEST, 0, 0)) {
-        clickAt(BUFFER_X, BUFFER_Y)
+      fromX := this.detector.foundPoint[1]
+      fromY := this.detector.foundPoint[2]
+      if (this.detector.detect(this.ACCEPT_RESUME_QUEST)) {
+        clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
         sleep 1000
         return true
       }
@@ -88,12 +83,11 @@ class StartPageBot {
   }
 
   doNotResumeQuest() {
-    global BUFFER_X, BUFFER_Y
     if (this.isQuestInterrupted()) {
-      fromX := BUFFER_X
-      fromY := BUFFER_Y
-      if (detectObject(this.REJECT_RESUME_QUEST, fromX, fromY)) {
-        clickAt(BUFFER_X, BUFFER_Y)
+      fromX := this.detector.foundPoint[1]
+      fromY := this.detector.foundPoint[2]
+      if (this.detector.detect(this.REJECT_RESUME_QUEST, fromX, fromY)) {
+        clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
         sleep 1000
         return true
       }
@@ -107,9 +101,8 @@ class StartPageBot {
   }
 
   openOrCloseAnnouncement() {
-    global BUFFER_X, BUFFER_Y
-    if (detectObject(this.ANNOUNCEMENT, 0, 0)) {
-      clickAt(BUFFER_X, BUFFER_Y)
+    if (this.detector.detect(this.ANNOUNCEMENT)) {
+      clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
       sleep 1000
       return true
     }
@@ -119,9 +112,8 @@ class StartPageBot {
   }
   
   openOrCloseNotice() {
-    global BUFFER_X, BUFFER_Y
-    if (detectObject(this.NOTICE, 0, 0)) {
-      clickAt(BUFFER_X, BUFFER_Y)
+    if (this.detector.detect(this.NOTICE)) {
+      clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
       sleep 1000
       return true
     }
@@ -131,9 +123,8 @@ class StartPageBot {
   }
 
   selectOptions() {
-    global BUFFER_X, BUFFER_Y
-    if (detectObject(this.OPTIONS, 0, 0)) {
-      clickAt(BUFFER_X, BUFFER_Y)
+    if (this.detector.detect(this.OPTIONS)) {
+      clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
     }
   }
 }
