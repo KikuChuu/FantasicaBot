@@ -7,6 +7,8 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ; =================================================================================================
 ; ---------------------------------- Variable declarations ----------------------------------------
 ; =================================================================================================
+allyApprovalPageBot := new AllyApprovalPageBot
+allyPageBot := new AllyPageBot
 appPlayerBot := new AppPlayerBot
 bingoPageBot := new BingoPageBot
 clubRookPageBot := new ClubRookPageBot
@@ -47,7 +49,13 @@ updateTowerProgress() {
 ; =================================================================================================
 loop
 {
-  if (resultsPageBot.isResultsPageDetected()) {
+  if (allyApprovalPageBot.isAllyApprovalPage()) {
+    allyApprovalPageBot.allyPage()
+  }
+  else if (allyPageBot.isAllyPage()) {
+    allyPageBot.mainPage()
+  }
+  else if (resultsPageBot.isResultsPageDetected()) {
     if (resultsPageBot.isQuestCleared()) {
       loop % questBattleBot.keys.length() {
         key := questBattleBot.keys[A_Index]
@@ -143,16 +151,10 @@ loop
         if (questBattleBot.isAllyListAvailable()) {
           questBattleBot.allyList()
         }
-        else {
-          questBattleBot.setDeployAllyOff()
-        }
       }
       else if (questBattleBot.getDeployUnitState() == true) {
         if (questBattleBot.isUnitListAvailable()) {
           questBattleBot.unitList()
-        }
-        else {
-          questBattleBot.setDeployUnitOff()
         }
       }
       else {
