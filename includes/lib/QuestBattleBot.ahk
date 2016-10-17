@@ -36,6 +36,8 @@ class QuestBattleBot {
 
   clearKeys() {
     this.keys := []
+    this.databaseQuestBattlePoints.clear()
+    this.databaseTowerBattlePoints.clear()
   }
  
   getUnitSize() {
@@ -130,7 +132,11 @@ class QuestBattleBot {
         this.questBattlePoints.index--
         return true
       }
+      else if (this.isPlacingUnit() == false) {
+        return false
+      }
     }
+
     return false
   }
 
@@ -149,7 +155,11 @@ class QuestBattleBot {
         this.databaseTowerBattlePoints.index--
         return true
       }
+      else if (this.isPlacingUnit() == false) {
+        return false
+      }
     }
+
     return false
   }
 
@@ -168,14 +178,17 @@ class QuestBattleBot {
         this.databaseQuestBattlePoints.index--
         return true
       }
+      else if (this.isPlacingUnit() == false) {
+        return false
+      }
     }
+
     return false
   }
 
   confirmPlacement() {
     if (this.detector.detect(this.CONFIRM)) {
       clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
-      sleep 1000
     }
   }
 

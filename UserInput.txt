@@ -29,7 +29,7 @@ TOWER_DB_PATH := "towerData/TOWER.db"
 
 ; Tower Specification
 ; -------------------
-  TOWER := 1
+  TOWER_FLOOR := 1
 
 ;Quest Battle specification
 ;--------------------------												 

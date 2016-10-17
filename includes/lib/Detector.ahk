@@ -37,7 +37,7 @@ class Detector {
     pBitmap := 0
 
     if (!this.isValidKey(path)) {
-      pBitmap := Gdip_CreateBitmapFromFile(path)
+;      pBitmap := Gdip_CreateBitmapFromFile(path)
       WinGetPos,,,width, height, %BLUESTACK_WINDOW_TITLE%
     }
     else if (fromX == 0) {
@@ -76,9 +76,9 @@ class Detector {
       return false
     }
     else if (ErrorLevel == 1) {
-      if (this.isKeyValid(path)) {
-        ImageSearch, foundX, foundY, 0, 0, width, height, *%variation% %path%
-      }
+;      if (this.isKeyValid(path)) {
+;        ImageSearch, foundX, foundY, 0, 0, width, height, *%variation% %path%
+;      }
       msg := "Image not detected on the screen: " . path
       SB_SetText(msg)
       return false

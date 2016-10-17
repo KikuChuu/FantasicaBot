@@ -22,7 +22,7 @@ questUnitPageBot := new QuestUnitPageBot
 resultsPageBot := new ResultsPageBot
 startPageBot := new StartPageBot
 towerBot := new TowerBot
-currentTower := TOWER
+currentFloor := TOWER_FLOOR
 
 ; Start gdi+
 If !pToken := Gdip_Startup()
@@ -36,11 +36,11 @@ OnExit, Exit
 ; --------------------------------- Non-member functions defs -------------------------------------
 ; =================================================================================================
 updateTowerProgress() {
-  global currentTower
+  global currentFloor
   
-  currentTower++
-  if (currentTower > 20) {
-    currentTower := 1
+  currentFloor++
+  if (currentFloor > 20) {
+    currentFloor := 1
   }
 }
 
@@ -63,7 +63,7 @@ loop
       }
 
       if (questBattleBot.databaseTowerBattlePoints.getKeySetSize() > 0) {
-        questBattleBot.databaseTowerBattlePoints.writeToTable(currentTower)
+        questBattleBot.databaseTowerBattlePoints.writeToTable(currentFloor)
       }
       updateTowerProgress()
     }
@@ -74,7 +74,7 @@ loop
       }
 
       if (questBattleBot.databaseTowerBattlePoints.getKeySetSize() > 0) {
-        questBattleBot.databaseTowerBattlePoints.writeToTable(currentTower)
+        questBattleBot.databaseTowerBattlePoints.writeToTable(currentFloor)
       }
     }
 
@@ -88,7 +88,7 @@ loop
     if (questBattleBot.isMapFull() == true) {
       questBattleBot.cancelPlacement()
     }
-    else if (questBattleBot.searchTowerDatabasePoint(currentTower)) {
+    else if (questBattleBot.searchTowerDatabasePoint(currentFloor)) {
       questBattleBot.pushKey(questBattleBot.databaseTowerBattlePoints.key)
       questBattleBot.confirmPlacement()
     }
@@ -151,10 +151,24 @@ loop
         if (questBattleBot.isAllyListAvailable()) {
           questBattleBot.allyList()
         }
+        else if (questBattleBot.getDeployUnitState() == true) {
+          if (questBattleBot.isUnitListAvailable()) {
+            questBattleBot.unitList()
+          }
+          else {
+            questBattleBot.speedUpQuest()
+          }
+        }
+        else {
+          questBattleBot.speedUpQuest()
+        }
       }
       else if (questBattleBot.getDeployUnitState() == true) {
         if (questBattleBot.isUnitListAvailable()) {
           questBattleBot.unitList()
+        }
+        else {
+          questBattleBot.speedUpQuest()
         }
       }
       else {

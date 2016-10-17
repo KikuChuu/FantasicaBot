@@ -177,10 +177,24 @@ loop
         if (questBattleBot.isAllyListAvailable()) {
           questBattleBot.allyList()
         }
+        else if (questBattleBot.getDeployUnitState() == true) {
+          if (questBattleBot.isUnitListAvailable()) {
+            questBattleBot.unitList()
+          }
+          else {
+            questBattleBot.speedUpQuest()
+          }
+        }
+        else {
+          questBattleBot.speedUpQuest()
+        }
       }
       else if (questBattleBot.getDeployUnitState() == true) {
         if (questBattleBot.isUnitListAvailable()) {
           questBattleBot.unitList()
+        }
+        else {
+          questBattleBot.speedUpQuest()
         }
       }
       else {
