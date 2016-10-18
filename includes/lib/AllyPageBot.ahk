@@ -17,4 +17,10 @@ class AllyPageBot {
       clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
     }
   }
+
+  play() {
+    if (this.isAllyPage()) {
+      this.mainPage()
+    }
+  }
 }

@@ -36,4 +36,13 @@ class ConnectionErrorBot {
       Send {ESC up}
     }
   }
+
+  play() {
+    if (this.isConnectionError()) {
+      this.startPage()
+    }
+    else if (this.isConnectionErrorRequiresRestart()) {
+      this.exitGame()
+    }
+  }
 }

@@ -1054,7 +1054,7 @@ class QuestMenuBot {
 
   detector := new Detector
 
-  isQuestMenuDetected() {
+  isQuestMenu() {
     if (this.detector.detect(this.QUEST_MENU_TITLE)) {
       return true
     } else {
@@ -3555,6 +3555,25 @@ class QuestMenuBot {
       }
       else if (quest == 11) {
         return this.QUEST_64_11
+      }
+    }
+  }
+
+  play(ByRef theBot, theEpisode, theQuest) {
+    if (this.isQuestMenu()) {
+      theBot.setMapSquareStateOn()
+      theBot.setDeployUnitOn()
+      theBot.setDeployAllyOn()
+      theBot.setUnitUsed(questBattleBot.DEFAULT_UNIT_USED_VALUE)
+
+      if (this.isEpisodeSelection()) {
+        this.selectEpisode(theEpisode)
+      }
+      else if (this.selectQuest(theEpisode, theQuest)) {
+        theBot.databaseQuestBattlePoints.clear()
+      }
+      else {
+        this.episodeList()
       }
     }
   }

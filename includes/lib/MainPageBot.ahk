@@ -52,12 +52,85 @@
     }
   }
 
-  isQuestCooldownDone() {
+  isQuestTimerReady() {
     if (this.detector.detect(this.QUEST_COOLDOWN)) {
       return true
     }
     else {
       return false
+    }
+  }
+
+  isValidMenu(theMenu) {
+    if (theMenu == this.TOWER) {
+      return true
+    }
+    else if (theMenu == this.QUEST) {
+      return true
+    }
+    else if (theMenu == this.TRAINING) {
+      return true
+    }
+    else if (theMenu == this.CARD_PACK) {
+      return true
+    }
+    else if (theMenu == this.UPGRADE_UNITS) {
+      return true
+    }
+    else if (theMenu == this.LEANA_EXCHANGE_SHOP) {
+      return true
+    }
+    else if (theMenu == this.BAZAAR) {
+      return true
+    }
+    else if (theMenu == this.INN) {
+      return true
+    }
+    else if (theMenu == this.SANCTUM) {
+      return true
+    }
+    else if (theMenu == this.SELL) {
+      return true
+    }
+    else if (theMenu == this.UNITS) {
+      return true
+    }
+    else if (theMenu == this.ALLIES) {
+      return true
+    }
+    else if (theMenu == this.MONSTER_FAMILIAR) {
+      return true
+    }
+    else if (theMenu == this.BATTLE) {
+      return true
+    }
+    else if (theMenu == this.INBOX) {
+      return true
+    }
+    else if (theMenu == this.SHOP) {
+      return true
+    }
+    else if (theMenu == this.PROFILE) {
+      return true
+    }
+    else if (theMenu == this.SKILL) {
+      return true
+    }
+    else if (theMenu == this.TRADE) {
+      return true
+    }
+    else if (theMenu == this.HISTORY) {
+      return true
+    }
+    else if (theMenu == this.OPTIONS) {
+      return true
+    }
+    else if (theMenu == this.HELP) {
+      return true
+    }
+    else {
+      MsgBox % "Features for this menu is not yet implemented"
+      ExitApp
     }
   }
 
@@ -135,7 +208,10 @@
     numOfMenu := 23 ; Allow this value to be set in configs
     i := 0
     while (i < numOfMenu) {
-      if (this.detector.detect(theMenu, 0, 0, 150)) {
+      if (this.isAnnouncement()) {
+        return false
+      }
+      else if (this.detector.detect(theMenu, 0, 0, 150)) {
         clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2]) ; click on the menu whose coords are stored in BUFFER vars
         sleep 1000
         return "" ; end the function
@@ -145,10 +221,11 @@
         i := i + 1
       }
     }
+
     if (i >= numOfMenu) {
       this.scrollFirst()
     }
-    return ""
+    return false
   }
 
   isAnnouncement() {
@@ -164,6 +241,21 @@
   {
     if (this.detector.detect(this.CLOSE_ANNOUNCEMENT)) {
       clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
+    }
+  }
+
+  play(theMenu) {
+    if (this.isMainPage()) {
+      if (this.isValidMenu(theMenu)) {
+        if (theMenu == this.QUEST) {
+          if (this.isQuestTimerReady()) {
+            this.selectMenu(theMenu)
+          }
+        }
+      }
+    }
+    else if (this.isAnnouncement()) {
+      this.closeAnnouncement()
     }
   }
 }

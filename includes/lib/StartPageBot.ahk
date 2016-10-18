@@ -11,8 +11,21 @@ class StartPageBot {
   detector := new Detector
 
   isStartPage() {
-    if (this.detector.detect(this.ANNOUNCEMENT) || this.detector.detect(this.NOTICE)) {
-      return true
+    if (this.detector.detect(this.ANNOUNCEMENT)) {
+      if (this.detector.detect(this.NOTICE)) {
+        return true
+      }
+      else {
+        return false
+      }
+    }
+    else if (this.detector.detect(this.NOTICE)) {
+      if (this.detector.detect(this.ANNOUNCEMENT)) {
+        return true
+      }
+      else {
+        return false
+      }
     }
     else {
       return false
@@ -31,7 +44,6 @@ class StartPageBot {
   startGame() {
     if (this.detector.detect(this.START_GAME)) {
       clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
-      sleep 5000
       return true
     }
     else {
@@ -39,7 +51,7 @@ class StartPageBot {
     }
   }
 
-  quitGame() {
+  homeScreen() {
     if (this.isStartPage()) {
       Send {ESC down}
       sleep 2000
@@ -64,13 +76,17 @@ class StartPageBot {
     }
   }
 
-  resumeQuest() {
+  resumeQuest(ByRef theBot) {
     if (this.isQuestInterrupted()) {
       fromX := this.detector.foundPoint[1]
       fromY := this.detector.foundPoint[2]
-      if (this.detector.detect(this.ACCEPT_RESUME_QUEST)) {
+      if (this.detector.detect(this.ACCEPT_RESUME_QUEST, fromX, fromY)) {
+        theBot.setMapSquareStateOn()
+        theBot.setDeployUnitOn()
+        theBot.setDeployAllyOn()
+        theBot.setUnitUsed(theBot.DEFAULT_UNIT_USED_VALUE)
+
         clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
-        sleep 1000
         return true
       }
       else {
@@ -127,5 +143,16 @@ class StartPageBot {
       clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
     }
   }
-}
 
+  play(ByRef theBot) {
+    if (this.isStartPage()) {
+      if (this.isMaintenance()) {
+        this.homeScreen()
+      }
+      else {
+        this.startGame()
+        this.resumeQuest(theBot)
+      }
+    }
+  }
+}

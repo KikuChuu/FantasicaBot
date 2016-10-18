@@ -10,10 +10,11 @@ class QuestBattleBot {
   CONFIRM := "FANTASICA IMAGES/Quest/QuestBattle/confirm-" . width . "_" . height . ".png"
   CANCEL := "FANTASICA IMAGES/Quest/QuestBattle/cancel-" . width . "_" . height . ".png"
   MINA_DIALOG := "FANTASICA IMAGES/Quest/QuestBattle/mina_dialog-" . width . "_" . height . ".png"
-  detector := new Detector
  
-  __New() {
-    global DEPLOY_NUMBER
+  __New(theEpisode, theQuest, theDeployLimit) {
+    this.detector := new Detector
+    this.questAllyBot := new QuestAllyBot
+    this.questUnitBot := new QuestUnitBot
     this.questBattlePoints := new QuestBattlePoints
     this.databaseQuestBattlePoints := new databaseQuestBattlePoints
     this.databaseTowerBattlePoints := new databaseTowerBattlePoints
@@ -24,10 +25,26 @@ class QuestBattleBot {
     this.deployAllyState := true
 
     this.DEFAULT_UNIT_USED_VALUE := 0
-    this.unitSize := DEPLOY_NUMBER ; DEPLOY_NUMBER is defined in the UserInput.txt file
+    this.unitSize := theDeployLimit
     this.unitUsed := this.DEFAULT_UNIT_USED_VALUE
+    
+    this.currentEpisode := theEpisode
+    this.currentQuest := theQuest
 
     this.keys := []
+  }
+
+  updateQuestProgress() {
+    this.currentQuest++
+    x := this.currentQuest // (questMenuBot.getQuestCount(this.currentEpisode) + 1)
+    y := Mod(this.currentQuest, (questMenuBot.getQuestCount(this.currentEpisode) + 1))
+    this.currentEpisode += x
+    if (y == 0) {
+      this.currentQuest := 1
+    }
+    else {
+      this.currentQuest := y
+    }
   }
 
   pushKey(key) {
@@ -163,9 +180,9 @@ class QuestBattleBot {
     return false
   }
 
-  searchDatabasePoint(theEpisode, theQuest) {
+  searchDatabasePoint() {
     if (this.databaseQuestBattlePoints.getKeySetSize() == 0) {
-      this.databaseQuestBattlePoints.readFromTable(theEpisode, theQuest)
+      this.databaseQuestBattlePoints.readFromTable(this.currentEpisode, this.currentQuest)
     }
 
     loop % this.databaseQuestBattlePoints.getKeySetSize() {
@@ -235,6 +252,68 @@ class QuestBattleBot {
     if (this.detector.detect(this.ALLY_LIST)) {
       clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
       sleep 500
+    }
+  }
+
+  play() {
+    if (this.questAllyBot.isAllyList()) {
+      this.questAllyBot.play(this)
+    }
+    else if (this.questUnitBot.isUnitList()) {
+      this.questUnitBot.play(this) 
+    }
+    else if (this.isPlacingUnit()) {
+      if (this.isMapFull()) {
+        this.cancelPlacement()
+      }
+      else if (this.searchDatabasePoint()) {
+        this.pushKey(this.databaseQuestBattlePoints.key)
+        this.confirmPlacement()
+      }
+      else if (this.searchPoint()) {
+        this.confirmPlacement()
+      }
+      else {
+        this.setMapSquareStateOff()
+        this.setDeployUnitOff()
+        this.setDeployAllyOff()
+      }
+    }
+    else if (this.isQuestBattle()) {
+      this.skipDialog()
+
+      if (this.isMapFull() == false) {
+        if (this.getDeployAllyState() == true) {
+          if (this.isAllyListAvailable()) {
+            this.allyList()
+          }
+          else if (this.getDeployUnitState() == true) {
+            if (this.isUnitListAvailable()) {
+              this.unitList()
+            }
+            else {
+              this.speedUpQuest()
+            }
+          }
+          else {
+            this.speedUpQuest()
+          }
+        }
+        else if (this.getDeployUnitState() == true) {
+          if (this.isUnitListAvailable()) {
+            this.unitList()
+          }
+          else {
+            this.speedUpQuest()
+          }
+        }
+        else {
+          this.speedUpQuest()
+        }
+      }
+      else {
+        this.speedUpQuest()
+      }
     }
   }
 }
