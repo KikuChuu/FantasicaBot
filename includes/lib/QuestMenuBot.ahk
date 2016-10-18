@@ -3,7 +3,7 @@ class QuestMenuBot {
   questDataTableName := "QuestData"
   DB := ""
 
-  __New() {
+  __New(ByRef theBot) {
     global width, height
     if (width == 436 && height == 718) {
       this.EPISODE_X1 := 200
@@ -27,6 +27,8 @@ class QuestMenuBot {
       this.QUEST_X2 := 200
       this.QUEST_Y2 := 530
     }
+
+    this.questBot := theBot
   }
 
   openOrCreateDB() {
@@ -1278,7 +1280,7 @@ class QuestMenuBot {
   selectQuest(theEpisode, theQuest) {
     questPath := this.getQuest(theEpisode, theQuest)
     
-    while (this.isQuestMenuDetected() && A_Index <= this.getMaxScrollCountForQuest(theEpisode)) {
+    while (this.isQuestMenu() && A_Index <= this.getMaxScrollCountForQuest(theEpisode)) {
       if (this.detector.detect(questPath, 0, 0, 175)) {
         fromX := this.detector.foundPoint[1]
         fromY := this.detector.foundPoint[2]
@@ -3559,18 +3561,18 @@ class QuestMenuBot {
     }
   }
 
-  play(ByRef theBot, theEpisode, theQuest) {
+  play() {
     if (this.isQuestMenu()) {
-      theBot.setMapSquareStateOn()
-      theBot.setDeployUnitOn()
-      theBot.setDeployAllyOn()
-      theBot.setUnitUsed(questBattleBot.DEFAULT_UNIT_USED_VALUE)
+      this.questBot.setMapSquareStateOn()
+      this.questBot.setDeployUnitOn()
+      this.questBot.setDeployAllyOn()
+      this.questBot.setUnitUsed(questBattleBot.DEFAULT_UNIT_USED_VALUE)
 
       if (this.isEpisodeSelection()) {
-        this.selectEpisode(theEpisode)
+        this.selectEpisode(this.questBot.currentEpisode)
       }
-      else if (this.selectQuest(theEpisode, theQuest)) {
-        theBot.databaseQuestBattlePoints.clear()
+      else if (this.selectQuest(this.questBot.currentEpisode, this.questBot.currentQuest)) {
+        this.questBot.databaseQuestBattlePoints.clear()
       }
       else {
         this.episodeList()

@@ -15,16 +15,12 @@ bingoBot := new BingoBot
 clubRookBot := new ClubRookBot
 connectionErrorBot := new ConnectionErrorBot
 loginBonusBot := new LoginBonusBot
-mainPageBot := new MainPageBot
+mainPageBot := new MainPageBot("QUEST")
 maintenanceBot := new MaintenanceBot
 questBattleBot := new QuestBattleBot(QUEST_EPISODE, QUEST, DEPLOY_NUMBER)
-questMenuBot := new QuestMenuBot
+questMenuBot := new QuestMenuBot(questBattleBot)
 questResultsBot := new QuestResultsBot(questBattleBot)
-startPageBot := new StartPageBot
-
-; =================================================================================================
-; --------------------------------- Non-member functions defs -------------------------------------
-; =================================================================================================
+startPageBot := new StartPageBot(questBattleBot)
 
 ; =================================================================================================
 ; -------------------------------------------- Main loop ------------------------------------------
@@ -37,14 +33,13 @@ loop
   bingoBot.play()
   clubRookBot.play()
   connectionErrorBot.play()
-  mainPageBot.play(mainPageBot.QUEST)
+  mainPageBot.play()
   maintenanceBot.play()
   loginBonusBot.play()
   questBattleBot.play()
-  questMenuBot.play(questBattleBot, currentEpisode, currentQuest)
-  questResultsBot.play(questBattleBot)
-  startPageBot.play(questBattleBot)
-
+  questMenuBot.play()
+  questResultsBot.play(true)
+  startPageBot.play()
 }
 
 ; =================================================================================================

@@ -27,7 +27,7 @@
   CLOSE_ANNOUNCEMENT := "FANTASICA IMAGES/MainPage/Announcement/close-" . width . "_" . height . ".png" 
   detector := new Detector
 
-  __New() {
+  __New(theMenuName) {
     global width, height
     if (width == 436 && height == 718) {
       this.MENU_X1 := 30
@@ -40,6 +40,10 @@
       this.MENU_Y1 := 1000
       this.MENU_X2 := 130
       this.MENU_Y2 := 1000
+    }
+
+    if (this.isValidMenu(theMenuName)) {
+      this._menu := this.getMenu(theMenuName)
     }
   }
 
@@ -61,71 +65,71 @@
     }
   }
 
-  isValidMenu(theMenu) {
-    if (theMenu == this.TOWER) {
+  isValidMenu(theMenuName) {
+    if (theMenuName == "TOWER") {
       return true
     }
-    else if (theMenu == this.QUEST) {
+    else if (theMenuName == "QUEST") {
       return true
     }
-    else if (theMenu == this.TRAINING) {
+    else if (theMenuName == "TRAINING") {
       return true
     }
-    else if (theMenu == this.CARD_PACK) {
+    else if (theMenuName == "CARD PACK") {
       return true
     }
-    else if (theMenu == this.UPGRADE_UNITS) {
+    else if (theMenuName == "UPGRADE UNITS") {
       return true
     }
-    else if (theMenu == this.LEANA_EXCHANGE_SHOP) {
+    else if (theMenuName == "LEANA EXCHANGE SHOP") {
       return true
     }
-    else if (theMenu == this.BAZAAR) {
+    else if (theMenuName == "BAZAAR") {
       return true
     }
-    else if (theMenu == this.INN) {
+    else if (theMenuName == "INN") {
       return true
     }
-    else if (theMenu == this.SANCTUM) {
+    else if (theMenuName == "SANCTUM") {
       return true
     }
-    else if (theMenu == this.SELL) {
+    else if (theMenuName == "SELL") {
       return true
     }
-    else if (theMenu == this.UNITS) {
+    else if (theMenuName == "UNITS") {
       return true
     }
-    else if (theMenu == this.ALLIES) {
+    else if (theMenuName == "ALLIES") {
       return true
     }
-    else if (theMenu == this.MONSTER_FAMILIAR) {
+    else if (theMenuName == "MONSTER FAMILIAR") {
       return true
     }
-    else if (theMenu == this.BATTLE) {
+    else if (theMenuName == "BATTLE") {
       return true
     }
-    else if (theMenu == this.INBOX) {
+    else if (theMenuName == "INBOX") {
       return true
     }
-    else if (theMenu == this.SHOP) {
+    else if (theMenuName == "SHOP") {
       return true
     }
-    else if (theMenu == this.PROFILE) {
+    else if (theMenuName == "PROFILE") {
       return true
     }
-    else if (theMenu == this.SKILL) {
+    else if (theMenuName == "SKILL") {
       return true
     }
-    else if (theMenu == this.TRADE) {
+    else if (theMenuName == "TRADE") {
       return true
     }
-    else if (theMenu == this.HISTORY) {
+    else if (theMenuName == "HISTORY") {
       return true
     }
-    else if (theMenu == this.OPTIONS) {
+    else if (theMenuName == "OPTIONS") {
       return true
     }
-    else if (theMenu == this.HELP) {
+    else if (theMenuName == "HELP") {
       return true
     }
     else {
@@ -134,6 +138,78 @@
     }
   }
 
+  getMenu(theMenuName) {
+    if (theMenuName == "TOWER") {
+      return this.TOWER
+    }
+    else if (theMenuName == "QUEST") {
+      return this.QUEST
+    }
+    else if (theMenuName == "TRAINING") {
+      return this.TRAINING
+    }
+    else if (theMenuName == "CARD PACK") {
+      return this.CARD_PACK
+    }
+    else if (theMenuName == "UPGRADE UNITS") {
+      return this.UPGRADE_UNITS
+    }
+    else if (theMenuName == "LEANA EXCHANGE SHOP") {
+      return this.LEANA_EXCHANGE_SHOP
+    }
+    else if (theMenuName == "BAZAAR") {
+      return this.BAZAAR
+    }
+    else if (theMenuName == "INN") {
+      return this.INN
+    }
+    else if (theMenuName == "SANCTUM") {
+      return this.SANCTUM
+    }
+    else if (theMenuName == "SELL") {
+      return this.SELL
+    }
+    else if (theMenuName == "UNITS") {
+      return this.UNITS
+    }
+    else if (theMenuName == "ALLIES") {
+      return this.ALLIES
+    }
+    else if (theMenuName == "MONSTER FAMILIAR") {
+      return this.MONSTER_FAMILIAR
+    }
+    else if (theMenuName == "BATTLE") {
+      return this.BATTLE
+    }
+    else if (theMenuName == "INBOX") {
+      return this.INBOX
+    }
+    else if (theMenuName == "SHOP") {
+      return this.SHOP
+    }
+    else if (theMenuName == "PROFILE") {
+      return this.PROFILE
+    }
+    else if (theMenuName == "SKILL") {
+      return this.SKILL
+    }
+    else if (theMenuName == "TRADE") {
+      return this.TRADE
+    }
+    else if (theMenuName == "HISTORY") {
+      return this.HISTORY
+    }
+    else if (theMenuName == "OPTIONS") {
+      return this.OPTIONS
+    }
+    else if (theMenuName == "HELP") {
+      return this.HELP
+    }
+    else {
+      MsgBox % "This menu isn't implemented"
+      ExitApp
+    }
+  }
   scrollLeft()
   {
     menuX1 := this.MENU_X1
@@ -244,13 +320,11 @@
     }
   }
 
-  play(theMenu) {
+  play() {
     if (this.isMainPage()) {
-      if (this.isValidMenu(theMenu)) {
-        if (theMenu == this.QUEST) {
-          if (this.isQuestTimerReady()) {
-            this.selectMenu(theMenu)
-          }
+      if (this._menu == this.QUEST) {
+        if (this.isQuestTimerReady()) {
+          this.selectMenu(this._menu)
         }
       }
     }

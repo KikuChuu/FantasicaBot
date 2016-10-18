@@ -1,4 +1,4 @@
-class QuestBattleBot {
+class TowerBattleBot {
   SPEED_UP_QUEST := "FANTASICA IMAGES/Quest/QuestBattle/speed_up_quest-" . width . "_" . height . ".png"
   UNIT_POINTS := "FANTASICA IMAGES/Quest/QuestBattle/unit_points-" . width . "_" . height . ".png"
   UNIT_LIST := "FANTASICA IMAGES/Quest/QuestBattle/unit_list-" . width . "_" . height . ".png"
@@ -11,12 +11,12 @@ class QuestBattleBot {
   CANCEL := "FANTASICA IMAGES/Quest/QuestBattle/cancel-" . width . "_" . height . ".png"
   MINA_DIALOG := "FANTASICA IMAGES/Quest/QuestBattle/mina_dialog-" . width . "_" . height . ".png"
  
-  __New(theEpisode, theQuest, theDeployLimit) {
+  __New(theFloor, theDeployLimit) {
     this.detector := new Detector
     this.questAllyBot := new QuestAllyBot
     this.questUnitBot := new QuestUnitBot
     this.questBattlePoints := new QuestBattlePoints
-    this.databaseQuestBattlePoints := new databaseQuestBattlePoints
+    this.databaseTowerBattlePoints := new databaseTowerBattlePoints
     this.controller := new Controller
 
     this.deployableMapSquareState := true
@@ -27,23 +27,13 @@ class QuestBattleBot {
     this.unitSize := theDeployLimit
     this.unitUsed := this.DEFAULT_UNIT_USED_VALUE
     
-    this.currentEpisode := theEpisode
-    this.currentQuest := theQuest
+    this.currentFloor := theFloor
 
     this.keys := []
   }
 
   updateQuestProgress() {
-    this.currentQuest++
-    x := this.currentQuest // (questMenuBot.getQuestCount(this.currentEpisode) + 1)
-    y := Mod(this.currentQuest, (questMenuBot.getQuestCount(this.currentEpisode) + 1))
-    this.currentEpisode += x
-    if (y == 0) {
-      this.currentQuest := 1
-    }
-    else {
-      this.currentQuest := y
-    }
+    this.currentFloor := Mod(this.currentFloor - 1, 20) + 1
   }
 
   pushKey(key) {
@@ -52,7 +42,7 @@ class QuestBattleBot {
 
   clearKeys() {
     this.keys := []
-    this.databaseQuestBattlePoints.clear()
+    this.databaseTowerBattlePoints.clear()
   }
  
   getUnitSize() {
@@ -155,19 +145,19 @@ class QuestBattleBot {
     return false
   }
 
-  searchDatabasePoint() {
-    if (this.databaseQuestBattlePoints.getKeySetSize() == 0) {
-      this.databaseQuestBattlePoints.readFromTable(this.currentEpisode, this.currentQuest)
+  searchDatabasePoint(theFloor) {
+    if (this.databaseTowerBattlePoints.getKeySetSize() == 0) {
+      this.databaseTowerBattlePoints.readFromTable(theFloor)
     }
 
-    loop % this.databaseQuestBattlePoints.getKeySetSize() {
-      this.databaseQuestBattlePoints.nextKey(key)
-      point := this.databaseQuestBattlePoints.getPoint()
+    loop % this.databaseTowerBattlePoints.getKeySetSize() {
+      this.databaseTowerBattlePoints.nextKey(key)
+      point := this.databaseTowerBattlePoints.getPoint()
       this.controller.setPoint(point[1], point[2])
       this.controller.clickAndUpdateHistory()
 
       if (this.detector.detect(this.CONFIRM)) {
-        this.databaseQuestBattlePoints.index--
+        this.databaseTowerBattlePoints.index--
         return true
       }
       else if (this.isPlacingUnit() == false) {
@@ -242,7 +232,7 @@ class QuestBattleBot {
         this.cancelPlacement()
       }
       else if (this.searchDatabasePoint()) {
-        this.pushKey(this.databaseQuestBattlePoints.key)
+        this.pushKey(this.databaseTowerBattlePoints.key)
         this.confirmPlacement()
       }
       else if (this.searchPoint()) {

@@ -10,6 +10,10 @@ class StartPageBot {
   OPTIONS := "FANTASICA IMAGES/StartPage/options-" . width . "_" . height . ".png"
   detector := new Detector
 
+  __New(ByRef theBot) {
+    this.questBot := theBot
+  }
+
   isStartPage() {
     if (this.detector.detect(this.ANNOUNCEMENT)) {
       if (this.detector.detect(this.NOTICE)) {
@@ -144,14 +148,14 @@ class StartPageBot {
     }
   }
 
-  play(ByRef theBot) {
+  play() {
     if (this.isStartPage()) {
       if (this.isMaintenance()) {
         this.homeScreen()
       }
       else {
         this.startGame()
-        this.resumeQuest(theBot)
+        this.resumeQuest(this.questBot)
       }
     }
   }
