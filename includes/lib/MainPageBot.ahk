@@ -1,6 +1,7 @@
 ﻿class MainPageBot {
   TITLE := "FANTASICA IMAGES/MainPage/title-" . width . "_" . height . ".png"
   QUEST_COOLDOWN := "FANTASICA IMAGES\MainPage\Status\quest_cooldown-" . width . "_" . height . ".png"
+  FANTA_TACTICS := "FANTASICA IMAGES/MainPage/Menu/fanta_tactics-" . width . "_" . height . ".png"
   TOWER := "FANTASICA IMAGES/MainPage/Menu/tower-" . width . "_" . height . ".png"
   QUEST := "FANTASICA IMAGES\MainPage\Menu\quest-" . width . "_" . height . ".png"
   TRAINING := "FANTASICA IMAGES\MainPage\Menu\training-" . width . "_" . height . ".png"
@@ -66,7 +67,10 @@
   }
 
   isValidMenu(theMenuName) {
-    if (theMenuName == "TOWER") {
+    if (theMenuName == "FANTA TACTICS") {
+      return true
+    }
+    else if (theMenuName == "TOWER") {
       return true
     }
     else if (theMenuName == "QUEST") {
@@ -139,7 +143,10 @@
   }
 
   getMenu(theMenuName) {
-    if (theMenuName == "TOWER") {
+    if (theMenuName == "FANTA TACTICS") {
+      return this.FANTA_TACTICS
+    }
+    else if (theMenuName == "TOWER") {
       return this.TOWER
     }
     else if (theMenuName == "QUEST") {
@@ -326,6 +333,9 @@
         if (this.isQuestTimerReady()) {
           this.selectMenu(this._menu)
         }
+      }
+      else if (this._menu == this.FANTA_TACTICS) {
+        this.selectMenu(this._menu)
       }
     }
     else if (this.isAnnouncement()) {

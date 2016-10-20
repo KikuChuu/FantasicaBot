@@ -36,6 +36,8 @@ SetWorkingDir %A_ScriptDir%
 #include %A_ScriptDir%\includes\lib\DatabaseQuestBattlePoints.ahk
 #include %A_ScriptDir%\includes\lib\DatabaseTowerBattlePoints.ahk
 #include %A_ScriptDir%\includes\lib\Detector.ahk
+#include %A_ScriptDir%\includes\lib\FantaTacticsBot.ahk
+#include %A_ScriptDir%\includes\lib\InboxBot.ahk
 #include %A_ScriptDir%\includes\lib\LoginBonusBot.ahk
 #include %A_ScriptDir%\includes\lib\MainPageBot.ahk
 #include %A_ScriptDir%\includes\lib\MaintenanceBot.ahk
