@@ -337,6 +337,9 @@
       else if (this._menu == this.FANTA_TACTICS) {
         this.selectMenu(this._menu)
       }
+      else if (this._menu == this.TRAINING) {
+        this.selectMenu(this._menu)
+      }
     }
     else if (this.isAnnouncement()) {
       this.closeAnnouncement()

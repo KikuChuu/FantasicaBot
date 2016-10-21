@@ -10,6 +10,8 @@ class TrainingPageBot {
   NEXT_PAGE := "FANTASICA IMAGES/Training/menu/next_page-" . width . "_" . height . ".png"
   LAST_PAGE := "FANTASICA IMAGES/Training/menu/last_page-" . width . "_" . height . ".png"
   EXIT_EPISODE_LIST := "FANTASICA IMAGES/Training/menu/exit_episode_list-" . width . "_" . height . ".png"
+  HIDDEN_EPISODES_TOP := "FANTASICA IMAGES/Training/menu/hidden_episodes_top-" . width . "_" . height . ".png"
+  HIDDEN_EPISODES_BOTTOM := "FANTASICA IMAGES/Training/menu/hidden_episodes_bottom-" . width . "_" . height . ".png"
 
   EPISODE_1 := "FANTASICA IMAGES/Training/menu/episode_1-" . width . "_" . height . ".png"
   EPISODE_2 := "FANTASICA IMAGES/Training/menu/episode_2-" . width . "_" . height . ".png"
@@ -414,7 +416,7 @@ class TrainingPageBot {
 
   detector := new Detector
 
-  __New() {
+  __new(theEpisode, theStage) {
     global width, height
 
     if (width == 436 && height == 718) {
@@ -439,10 +441,31 @@ class TrainingPageBot {
       this.MENU_X2 := "200"
       this.MENU_Y2 := "620"
     }
+
+    this.currentEpisode := theEpisode
+    this.currentStage := theStage
   }
 
   isTrainingPage() {
     if (this.detector.detect(this.TITLE)) {
+      return true
+    }
+    else {
+      return false
+    }
+  }
+
+  isHiddenEpisodesTop() {
+    if (this.detector.detect(this.HIDDEN_EPISODES_TOP)) {
+      return true
+    }
+    else {
+      return false
+    }
+  }
+
+  isHiddenEpisodesBottom() {
+    if (this.detector.detect(this.HIDDEN_EPISODES_BOTTOM)) {
       return true
     }
     else {
@@ -586,21 +609,10 @@ class TrainingPageBot {
           return true
         }
       }
-      else {
+      else if (this.isHiddenEpisodesTop()) {
         this.scrollTopEpisode()
-
-        if (this.detector.detect(episode)) {
-          fromX := this.detector.foundPoint[1]
-          fromY := this.detector.foundPoint[2]
-          if (this.detector.detect(this.SELECT, fromX, fromY, 150)) {
-            clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
-            sleep 1000
-            return true
-          }
-        }
       }
-
-      if (this.isLastPage()) {
+      else if (this.isLastPage()) {
         this.firstPage()
       }
       else {
@@ -769,7 +781,7 @@ class TrainingPageBot {
     stage := this.getStagePath(theEpisode, theStage)
     loop, {
       loop, 5 {
-        if (this.detector.detect(stage, 0, 0, 25)) {
+        if (this.detector.detect(stage, 0, 0, 175)) {
           fromX := this.detector.foundPoint[1]
           fromY := this.detector.foundPoint[2]
           if (this.detector.detect(this.START, fromX, fromY, 150)) {
@@ -777,13 +789,14 @@ class TrainingPageBot {
             sleep 5000
             return true
           }
-          else if (this.detector.detect(this.CHALLENGE, fromX, fromY)) {
+          else if (this.detector.detect(this.CHALLENGE, fromX, fromY, 150)) {
             clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
             sleep 5000
             return true
           }
           else if (theStage == 6) {
-            return false
+            this.updateProgress()
+            return true
           }
         }
         else {
@@ -1881,6 +1894,24 @@ class TrainingPageBot {
     if (this.detector.detect(this.EXIT_TRAINING_MENU)) {
       clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
       sleep 2000
+    }
+  }
+
+  updateProgress() {
+    this.currentStage++
+    this.currentEpisode += this.currentStage // 7
+    this.currentStage := Mod(this.currentStage - 1, 6) + 1
+
+    ; this.currentStage++
+    ; if (this.currentStage > 6) {
+    ;   this.currentEpisode++
+    ;   this.currentStage := 1
+    ; }
+  }
+
+  play() {
+    if (this.isTrainingPage()) {
+      this.selectStage(this.currentEpisode, this.currentStage)
     }
   }
 }

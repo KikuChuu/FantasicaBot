@@ -34,14 +34,6 @@ class BingoBot {
     }
   }
 
-  play() {
-    if (this.isBingo()) {
-      this.selectSquare()
-      this.receiveItem()
-      this.selectMyPage()
-    }
-  }
-
   selectInbox() {
     if (this.detector.detect(this.INBOX, 0, 0, 50)) {
       clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
@@ -51,6 +43,16 @@ class BingoBot {
   selectNotice() {
     if (this.detector.detect(this.NOTICE, 0, 0, 50)) {
       clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
+    }
+  }
+
+  play() {
+    if (this.isBingo()) {
+      while (this.isBingo()) {
+        this.selectSquare()
+        this.receiveItem()
+        this.selectMyPage()
+      }
     }
   }
 }

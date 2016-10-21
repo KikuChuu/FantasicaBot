@@ -36,7 +36,7 @@ loop
   maintenanceBot.play()
   loginBonusBot.play()
   startPageBot.play()
-  trainingBot.play(false)
+  trainingBot.play(true)
   trainingPageBot.play()
 }
 
