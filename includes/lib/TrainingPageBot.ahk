@@ -804,7 +804,7 @@ class TrainingPageBot {
         }
       }
 
-      if (this.detector.detect(stage, 0, 0, 25)) {
+      if (this.detector.detect(stage, 0, 0, 175)) {
         fromX := this.detector.foundPoint[1]
         fromY := this.detector.foundPoint[2]
         if (this.detector.detect(this.START, fromX, fromY, 150)) {
@@ -812,7 +812,7 @@ class TrainingPageBot {
           sleep 5000
           return true
         }
-        else if (this.detector.detect(this.CHALLENGE, fromX, fromY)) {
+        else if (this.detector.detect(this.CHALLENGE, fromX, fromY, 150)) {
           clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
           sleep 5000
           return true

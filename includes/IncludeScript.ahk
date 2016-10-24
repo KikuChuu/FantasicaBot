@@ -48,6 +48,7 @@ SetWorkingDir %A_ScriptDir%
 #include %A_ScriptDir%\includes\lib\QuestMenuBot.ahk
 #include %A_ScriptDir%\includes\lib\QuestUnitBot.ahk
 #include %A_ScriptDir%\includes\lib\QuestResultsBot.ahk
+#include %A_ScriptDir%\includes\lib\RollTheDiceBot.ahk
 #include %A_ScriptDir%\includes\lib\SQLiteDB.ahk
 #include %A_ScriptDir%\includes\lib\StartPageBot.ahk
 #include %A_ScriptDir%\includes\lib\TowerBattleBot.ahk

@@ -1,6 +1,7 @@
 ﻿class MainPageBot {
   TITLE := "FANTASICA IMAGES/MainPage/title-" . width . "_" . height . ".png"
   QUEST_COOLDOWN := "FANTASICA IMAGES\MainPage\Status\quest_cooldown-" . width . "_" . height . ".png"
+  ROLL_THE_DICE := "FANTASICA IMAGES/MainPage/Menu/roll_the_dice-" . width . "_" . height . ".png"
   FANTA_TACTICS := "FANTASICA IMAGES/MainPage/Menu/fanta_tactics-" . width . "_" . height . ".png"
   TOWER := "FANTASICA IMAGES/MainPage/Menu/tower-" . width . "_" . height . ".png"
   QUEST := "FANTASICA IMAGES\MainPage\Menu\quest-" . width . "_" . height . ".png"
@@ -67,7 +68,10 @@
   }
 
   isValidMenu(theMenuName) {
-    if (theMenuName == "FANTA TACTICS") {
+    if (theMenuName == "ROLL THE DICE") {
+      return true
+    }
+    else if (theMenuName == "FANTA TACTICS") {
       return true
     }
     else if (theMenuName == "TOWER") {
@@ -143,7 +147,10 @@
   }
 
   getMenu(theMenuName) {
-    if (theMenuName == "FANTA TACTICS") {
+    if (theMenuName == "ROLL THE DICE") {
+      return this.ROLL_THE_DICE
+    }
+    else if (theMenuName == "FANTA TACTICS") {
       return this.FANTA_TACTICS
     }
     else if (theMenuName == "TOWER") {
@@ -333,6 +340,9 @@
         if (this.isQuestTimerReady()) {
           this.selectMenu(this._menu)
         }
+      }
+      else if (this._menu == this.ROLL_THE_DICE) {
+        this.selectMenu(this._menu)
       }
       else if (this._menu == this.FANTA_TACTICS) {
         this.selectMenu(this._menu)
