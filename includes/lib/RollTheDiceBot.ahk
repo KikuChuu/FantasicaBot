@@ -286,7 +286,7 @@ class RollTheDiceBot {
   closeCardsAcquiredPrompt() {
     if (this.detector.detect(this.CARDS_ACQUIRED_PROMPT_CLOSE)) {
       clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
-    }     
+    }
   }
 
   closeDiceMenu() {

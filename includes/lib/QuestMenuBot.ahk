@@ -1,10 +1,11 @@
 class QuestMenuBot {
-  dbFileName := "./QUEST_DATA.DB"
-  questDataTableName := "QuestData"
-  DB := ""
 
-  __New(ByRef theBot) {
+  __new(ByRef theBot) {
     global width, height
+
+    this.detector := new Detector
+    this.questBot := theBot
+
     if (width == 436 && height == 718) {
       this.EPISODE_X1 := 200
       this.EPISODE_Y1 := 415
@@ -27,131 +28,21 @@ class QuestMenuBot {
       this.QUEST_X2 := 200
       this.QUEST_Y2 := 530
     }
-
-    this.questBot := theBot
   }
 
-  openOrCreateDB() {
-    this.DB := new SQLiteDB
-    if (this.DB.openDB(this.dbFileName) == false) {
-     MsgBox, 16, SQLite Error, % "Msg: `t" . this.DB.errorMsg . "`nCode: `t" . this.DB.errorCode
-      ExitApp
-    }
-  }
-
-  createQuestDataTable() {
-    SQL := "CREATE TABLE " this.questDataTableName . "(episode, quest, PRIMARY KEY(episode ASC, quest ASC));"
-    if (this.DB.exec(SQL) == false) {
-      MsgBox, 16, SQLite Error, % "Msg: `t" . this.DB.errorMsg . "`nCode: `t" . this.DB.errorCode
-      ExitApp
-    }
-  }
-
-  createAndFillEpisodeDataTable() {
-    SQL := "CREATE TABLE IF NOT EXISTS EpisodeData(episode, path, PRIMARY KEY(episode ASC));"
-    if (this.DB.exec(SQL) == false) {
-      MsgBox, 16, SQLite Error, % "Msg: `t" . this.DB.errorMsg . "`nCode: `t" . this.DB.errorCode
-      ExitApp
-    }
-    _SQL := "INSERT OR IGNORE INTO EpisodeData VALUES('#', '" 
-    SQLStr := ""
-    loop, 64 {
-      StringReplace, SQL, _SQL, #, %A_Index%, All
-      SQLStr .= SQL . this.getEpisode(A_Index) . "');"
-    }
-    if (this.DB.exec(SQLStr) == false) {
-      MsgBox, 16, SQLite Error, % "Msg: `t" . this.DB.errorMsg . "`nCode: `t" . this.DB.errorCode
-      ExitApp
-    }
-  }
-
-  printEpisodeDataTable() {
-    SQL := "SELECT * FROM EpisodeData;"
-    if (this.DB.getTable(SQL, recordSet) == false) {
-      MsgBox, 16, SQLite Error: GetTable, % "Msg: `t" . this.DB.ErrorMsg . "`nCode: `t" . this.DB.ErrorCode
-      ExitApp
-    }
-
-    result := ""
-    if (recordSet.hasRows) {
-      while (recordSet.next(row) == true) {
-        result := result . row[1] . ", " . row[2] . "`n"
-      }
-      MsgBox % result
-      return true
-    }
-    else {
-      return false
-    }
-  }
-
-  createAndFillQuestTable() {
-    SQL := 
-  }
-  
-  dropTable() {
-    SQL := "DROP TABLE IF EXISTS " . this.questDataTableName . ";"
-    if (this.DB.exec(SQL) == false) {
-      MsgBox, 16, SQLite Error, % "Msg: `t" . this.DB.errorMsg . "`nCode: `t" . this.DB.errorCode
-      ExitApp
-    }
-  }
-
-  addQuestEntry(episode, quest) {
-    SQL := "INSERT INTO " . this.questDataTableName . " VALUES('" . episode . "', '" . quest . "');"
-    if (this.DB.exec(SQL) == false) {
-      MsgBox, 16, SQLite Error, % "Msg: `t" . this.DB.errorMsg . "`nCode: `t" . this.DB.errorCode
-      ExitApp
-    }
-  }
-
-  isCleared(episode, quest) {
-    SQL := "SELECT * FROM " . this.questDataTableName . " WHERE (episode == '" . episode . "' AND quest == '" . quest . "');"
-    if (this.DB.getTable(SQL, recordSet) == false) {
-      MsgBox, 16, SQLite Error, % "Msg: `t" . this.DB.errorMsg . "`nCode: `t" . this.DB.errorCode
-      ExitApp
-    }
-    if (recordSet.hasRows) {
-      if (recordSet.next(row) == true) {
-        if (row[1] == episode && row[2] == quest) {
-          return true
-        }
-      }
-      else {
-        MsgBox, 16, %A_ThisFunc%, % "Msg:`t" . RecordSet.ErrorMsg . "`nCode:`t" . RecordSet.ErrorCode
-        ExitApp
-      }
-    }
-    return false
-  }
-
-  deleteDB() {
-    If (fileExist(this.dbFileName)) {
-      tempFileName := this.dbFileName
-      FileDelete, %tempFileName%
-    } 
-  }
-
-  closeDB() {
-    if (this.DB.closeDB() == false) {
-      MsgBox, 16, SQLite Error, % "Msg: `t" . this.DB.errorMsg . "`nCode: `t" . this.DB.errorCode
-      ExitApp
-    }
-  }
-
+  CONFIRM_ALLIES := "FANTASICA IMAGES/Quest/QuestMenu/confirm_allies-" . width . "_" . height . ".png"
+  EXIT_ALLY_LIST := "FANTASICA IMAGES/Quest/QuestMenu/exit_ally_list-" . width . "_" . height . ".png"
+  EXIT_EPISODE_LIST := "FANTASICA IMAGES/Quest/QuestMenu/exit_episode_list-" . width . "_" . height . ".png"
+  EXIT_QUEST_MENU := "FANTASICA IMAGES/Quest/QuestMenu/exit_quest_menu-" . width . "_" . height . ".png"
+  FIRST_PAGE := "FANTASICA IMAGES/Quest/QuestMenu/first_page-" . width . "_" . height . ".png"
+  LAST_PAGE :=  "FANTASICA IMAGES/Quest/QuestMenu/last_page-" . width . "_" . height . ".png"
+  NEXT_PAGE := "FANTASICA IMAGES/Quest/QuestMenu/next_page-" . width . "_" . height . ".png"
+  PREVIOUS_PAGE := "FANTASICA IMAGES/Quest/QuestMenu/previous_page-" . width . "_" . height . ".png"
   QUEST_MENU_TITLE := "FANTASICA IMAGES/Quest/QuestSelection/textquest-" . width . "_" . height . ".png"
   START_QUEST := "FANTASICA IMAGES/Quest/QuestMenu/start_quest-" . width . "_" . height . ".png"
   START_QUEST_USING_TIME_ELIXIR := "FANTASICA IMAGES/Quest/QuestMenu/start_quest_using_time_elixir-" . width . "_" . height . ".png"
-  SELECT_EPISODE := "FANTASICA IMAGES/Quest/QuestMenu/select_episode-" . width . "_" . height . ".png"
-  CONFIRM_ALLIES := "FANTASICA IMAGES/Quest/QuestMenu/confirm_allies-" . width . "_" . height . ".png"
-  EXIT_QUEST_MENU := "FANTASICA IMAGES/Quest/QuestMenu/exit_quest_menu-" . width . "_" . height . ".png"
-  EXIT_ALLY_LIST := "FANTASICA IMAGES/Quest/QuestMenu/exit_ally_list-" . width . "_" . height . ".png"
-  EXIT_EPISODE_LIST := "FANTASICA IMAGES/Quest/QuestMenu/exit_episode_list-" . width . "_" . height . ".png"
   SELECT := "FANTASICA IMAGES/Quest/QuestMenu/select-" . width . "_" . height . ".png"
-  PREVIOUS_PAGE := "FANTASICA IMAGES/Quest/QuestMenu/previous_page-" . width . "_" . height . ".png"
-  NEXT_PAGE := "FANTASICA IMAGES/Quest/QuestMenu/next_page-" . width . "_" . height . ".png"
-  FIRST_PAGE := "FANTASICA IMAGES/Quest/QuestMenu/first_page-" . width . "_" . height . ".png"
-  LAST_PAGE :=  "FANTASICA IMAGES/Quest/QuestMenu/last_page-" . width . "_" . height . ".png"
+  SELECT_EPISODE := "FANTASICA IMAGES/Quest/QuestMenu/select_episode-" . width . "_" . height . ".png"
 
   EPISODE_1 := "FANTASICA IMAGES/Quest/QuestMenu/episode_1-" . width . "_" . height . ".png"
   EPISODE_2 := "FANTASICA IMAGES/Quest/QuestMenu/episode_2-" . width . "_" . height . ".png"
@@ -1053,9 +944,6 @@ class QuestMenuBot {
   quest_64_10 := "FANTASICA IMAGES/Quest/QuestMenu/quest_64_10-" . width . "_" . height . ".png" 
   quest_64_11 := "FANTASICA IMAGES/Quest/QuestMenu/quest_64_11-" . width . "_" . height . ".png" 
 
-
-  detector := new Detector
-
   isQuestMenu() {
     if (this.detector.detect(this.QUEST_MENU_TITLE)) {
       return true
@@ -1239,7 +1127,7 @@ class QuestMenuBot {
     episodePath := this.getEpisode(theEpisode)
     loop, {
       loop, 5 {
-        if (this.detector.detect(episodePath, 0, 0, 150)) {
+        if (this.detector.detect(episodePath, 0, 0, 175)) {
           fromX := this.detector.foundPoint[1]
           fromY := this.detector.foundPoint[2]
           if (this.detector.detect(this.SELECT, fromX, fromY, 150)) {
@@ -3563,16 +3451,15 @@ class QuestMenuBot {
 
   play() {
     if (this.isQuestMenu()) {
-      this.questBot.setMapSquareStateOn()
-      this.questBot.setDeployUnitOn()
-      this.questBot.setDeployAllyOn()
-      this.questBot.setUnitUsed(questBattleBot.DEFAULT_UNIT_USED_VALUE)
-
       if (this.isEpisodeSelection()) {
         this.selectEpisode(this.questBot.currentEpisode)
       }
       else if (this.selectQuest(this.questBot.currentEpisode, this.questBot.currentQuest)) {
         this.questBot.databaseQuestBattlePoints.clear()
+        this.questBot.setMapSquareStateOn()
+        this.questBot.setDeployUnitOn()
+        this.questBot.setDeployAllyOn()
+        this.questBot.setUnitUsed(questBattleBot.DEFAULT_UNIT_USED_VALUE)
       }
       else {
         this.episodeList()

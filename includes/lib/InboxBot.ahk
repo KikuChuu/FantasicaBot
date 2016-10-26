@@ -80,7 +80,7 @@ class InboxBot {
     }
   }
 
-  play(theGiftType) {
+  play(theGiftType := "") {
     if (this.isInbox()) {
       while (this.isInbox()) {
         if (theGiftType == "ITEMS") {
