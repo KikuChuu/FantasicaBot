@@ -1,7 +1,13 @@
-class AllyApprovalPageBot {
-  TITLE := "FANTASICA IMAGES/AllyPage/PendingApprovals/title-" . width . "_" . height . ".png"
-  ALLY_PAGE := "FANTASICA IMAGES/AllyPage/PendingApprovals/exit-" . width . "_" . height . ".png"
-  detector := new Detector
+class AllyApprovalBot{
+  TITLE := ""
+  ALLY_PAGE := ""
+  detector := ""
+
+  __new(theDetector) {
+    this.TITLE := "FANTASICA IMAGES/AllyPage/PendingApprovals/title.png"
+    this.ALLY_PAGE := "FANTASICA IMAGES/AllyPage/PendingApprovals/exit.png"
+    this.detector := theDetector
+  }
 
   isAllyApprovalPage() {
     if (this.detector.detect(this.TITLE)) {

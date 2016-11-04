@@ -1,13 +1,22 @@
 class LoginBonusBot {
-  LOGIN_BONUS := "FANTASICA IMAGES/LoginBonusPage/login_bonus-" . width . "_" . height . ".png"
-  DETAILS := "FANTASICA IMAGES/LoginBonusPage/details-" . width . "_" . height . ".png"
-  INBOX := "FANTASICA IMAGES/LoginBonusPage/inbox-" . width . "_" . height . ".png"
-  MY_PAGE := "FANTASICA IMAGES/LoginBonusPage/my_page-" . width . "_" . height . ".png"
-  BACK := "FANTASICA IMAGES/LoginBonusPage/back-" . width . "_" . height . ".png"
-  detector := new Detector
+  TITLE := ""
+  DETAILS := ""
+  INBOX := ""
+  MY_PAGE := ""
+  BACK := ""
+  detector := theDetector
+
+  __new(theDetector) {
+    this.TITLE := "FANTASICA IMAGES/LoginBonusPage/login_bonus.png"
+    this.DETAILS := "FANTASICA IMAGES/LoginBonusPage/detail.png"
+    this.INBOX := "FANTASICA IMAGES/LoginBonusPage/inbox.png"
+    this.MY_PAGE := "FANTASICA IMAGES/LoginBonusPage/my_page.png"
+    this.BACK := "FANTASICA IMAGES/LoginBonusPage/back.png"
+    this.detector := theDetector
+  }
 
   isLoginBonus() {
-    if (this.detector.detect(this.LOGIN_BONUS)) {
+    if (this.detector.detect(this.TITLE)) {
       return true
     }
     else {

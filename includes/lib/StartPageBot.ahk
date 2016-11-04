@@ -8,9 +8,9 @@ class StartPageBot {
   ACCEPT_RESUME_QUEST := "FANTASICA IMAGES/StartPage/resume_quest-" . width . "_" . height . ".png"
   REJECT_RESUME_QUEST := "FANTASICA IMAGES/StartPage/do_not_resume_quest-" . width . "_" . height . ".png"
   OPTIONS := "FANTASICA IMAGES/StartPage/options-" . width . "_" . height . ".png"
-  detector := new Detector
 
-  __New(ByRef theBot) {
+  __new(ByRef theBot) {
+    this.detector := Detector.getInstance()
     this.questBot := theBot
   }
 

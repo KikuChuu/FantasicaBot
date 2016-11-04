@@ -18,9 +18,9 @@ loginBonusBot := new LoginBonusBot
 mainPageBot := new MainPageBot("TOWER")
 maintenanceBot := new MaintenanceBot
 towerBattleBot := new TowerBattleBot(TOWER_FLOOR, DEPLOY_NUMBER)
-questMenuBot := new QuestMenuBot(questBattleBot)
-questResultsBot := new QuestResultsBot(questBattleBot)
-startPageBot := new StartPageBot(questBattleBot)
+towerBot := new TowerBot
+towerResultsBot := new TowerResultsBot(towerBattleBot)
+startPageBot := new StartPageBot(towerBattleBot)
 
 ; =================================================================================================
 ; -------------------------------------------- Main loop ------------------------------------------
@@ -40,6 +40,8 @@ loop
   questMenuBot.play()
   questResultsBot.play(true)
   startPageBot.play()
+  towerBattleBot.play()
+  towerBot.play()
 }
 
 ; =================================================================================================

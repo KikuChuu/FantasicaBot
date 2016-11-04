@@ -414,10 +414,9 @@ class TrainingPageBot {
   STAGE_50_5 := "FANTASICA IMAGES/Training/menu/stage_50_5-" . width . "_" . height . ".png"
   STAGE_50_6 := "FANTASICA IMAGES/Training/menu/stage_50_6-" . width . "_" . height . ".png"
 
-  detector := new Detector
-
   __new(theEpisode, theStage) {
     global width, height
+    this.detector := Detector.getInstance()
 
     if (width == 436 && height == 718) {
       this.EPISODE_X1 := "200"

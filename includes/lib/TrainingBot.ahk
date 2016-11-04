@@ -13,7 +13,7 @@ class TrainingBot {
 
   __new(ByRef theBot) {
     this.trainingPageBot := theBot
-    this.detector := new Detector
+    this.detector := Detector.getInstance()
   }
 
   isTraining() {

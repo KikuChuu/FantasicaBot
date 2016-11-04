@@ -3,12 +3,15 @@ class TowerBot {
   RULES := "FANTASICA IMAGES/Tower/rules-" . width . "_" . height . ".png" 
   RANKING := "FANTASICA IMAGES/Tower/ranking-" . width . "_" . height . ".png" 
   MAIN_PAGE := "FANTASICA IMAGES/Tower/my_page-" . width . "_" . height . ".png" 
-  detector := new Detector
+
+  __new() {
+    this.detector := Detector.getInstance()
+  }
   
   isTower() {
-    if (this.detector.detect(this.RULES)) {
-      if (this.detector.detect(this.RANKING)) {
-        if (this.detector.detect(this.MAIN_PAGE)) {
+    if (this.detector.detect(this.RULES, 0, 0, 50)) {
+      if (this.detector.detect(this.RANKING, 0, 0, 50)) {
+        if (this.detector.detect(this.MAIN_PAGE, 0, 0, 50)) {
           return true
         }
         else {
@@ -27,6 +30,12 @@ class TowerBot {
   startTower() {
     if (this.detector.detect(this.START, 0, 0, 100)) {
       clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
+    }
+  }
+
+  play() {
+    if (this.isTower()) {
+      this.startTower()
     }
   }
 }

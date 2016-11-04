@@ -1,4 +1,5 @@
 class DatabaseTowerBattlePoints {
+  __me := ""
 
   __New() {
     global TOWER_DB_PATH
@@ -12,13 +13,20 @@ class DatabaseTowerBattlePoints {
     this.priorities := {}
   }
 
+  getInstance() {
+    if (this.__me == "") {
+      this.__me := new DatabaseTowerBattlePoints
+    }
+    return this.__me
+  }
+
 ; =================================================================================================
 ; METHOD readFromTable - Reads key, x, y, priority values from the database into this object's members
-; @param theTower    - The table's tower
+; @param theFloor    - The table's floor
 ; @return              - True if no error in retrieving the values. Exits the app on failure
 ; =================================================================================================
-  readFromTable(theTower) {
-    table := "Tower_" . theTower
+  readFromTable(theFloor) {
+    table := "Tower_" . theFloor
     sql := strReplace("SELECT * from #TOWER# ORDER BY priority DESC;", "#TOWER#", table)
 
     if (!this.db.openDb(this.dbPath)) {
@@ -54,11 +62,11 @@ class DatabaseTowerBattlePoints {
 
 ; =================================================================================================
 ; METHOD writeToTable - Writes key, x, y, priority values from this object's members into the database
-; @param theTower - The table's tower
+; @param theFloor - The table's floor
 ; @return           - True if no error in writing the values. Exits the app on failure
 ; =================================================================================================
-  writeToTable(theTower) {
-    tower := "Tower_" . theTower ; i.e. Tower_1
+  writeToTable(theFloor) {
+    tower := "Tower_" . theFloor ; i.e. Tower_1
     __sql := "INSERT OR REPLACE INTO #TOWER# VALUES#EXPR#;"
     _sql := strReplace(__sql, "#TOWER#", tower) ; "INSERT OR REPLACE INTO #TOWER# VALUES#EXPR#;"
     

@@ -3,7 +3,7 @@ class QuestMenuBot {
   __new(ByRef theBot) {
     global width, height
 
-    this.detector := new Detector
+    this.detector := Detector.getInstance()
     this.questBot := theBot
 
     if (width == 436 && height == 718) {

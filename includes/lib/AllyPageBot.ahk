@@ -1,7 +1,13 @@
 class AllyPageBot {
-  TITLE := "FANTASICA IMAGES/AllyPage/title-" . width . "_" . height . ".png"
-  MAIN_PAGE := "FANTASICA IMAGES/AllyPage/exit-" . width . "_" . height . ".png"
-  detector := new Detector
+  TITLE := ""
+  MAIN_PAGE := ""
+  detector := ""
+
+  __new(theDetector) {
+    this.TITLE := "FANTASICA IMAGES/AllyPage/title.png"
+    this.MAIN_PAGE := "FANTASICA IMAGES/AllyPage/exit.png"
+    this.detector := theDetector
+  }
 
   isAllyPage() {
     if (this.detector.detect(this.TITLE)) {

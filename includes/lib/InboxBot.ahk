@@ -1,13 +1,20 @@
 class InboxBot {
-  _ITEMS := "FANTASICA IMAGES/Inbox/items-" . width . "_" . height . ".png"
-  _RECEIVE := "FANTASICA IMAGES/Inbox/receive-" . width . "_" . height . ".png"
-  EXIT_INBOX := "FANTASICA IMAGES/Inbox/exit_inbox-" . width . "_" . height . ".png"
-  FILTER_OPENED := "FANTASICA IMAGES/Inbox/filter_opened-" . width . "_" . height . ".png"
-  OPEN_FILTER := "FANTASICA IMAGES/Inbox/open_filter-" . width . "_" . height . ".png"
-  TITLE := "FANTASICA IMAGES/Inbox/title-" . width . "_" . height . ".png"
+  _ITEMS := ""
+  _RECEIVE := ""
+  EXIT_INBOX := ""
+  FILTER_OPENED := ""
+  OPEN_FILTER := ""
+  TITLE := ""
+  this.detector := ""
 
-  __new() {
-    this.detector := new Detector
+  __new(theDetector) {
+    _ITEMS := "FANTASICA IMAGES/Inbox/items.png"
+    _RECEIVE := "FANTASICA IMAGES/Inbox/receive.png"
+    EXIT_INBOX := "FANTASICA IMAGES/Inbox/exit_inbox.png"
+    FILTER_OPENED := "FANTASICA IMAGES/Inbox/filter_opened.png"
+    OPEN_FILTER := "FANTASICA IMAGES/Inbox/open_filter.png"
+    TITLE := "FANTASICA IMAGES/Inbox/title.png"
+    this.detector := theDetector
   }
 
   exitInbox() {

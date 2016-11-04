@@ -1,12 +1,13 @@
 class Detector {
-  foundPoint := []
+  __new() {
+    this.foundPoint := ""
+    this.generalConfiguration := GeneralConfiguration
+  }
 
-  detect(path, fromX := 0, fromY := 0, variation := 0) {
-    global BLUESTACK_WINDOW_TITLE
-    width := -1
-    height := -1
-
-    WinGetPos,,,width, height, %BLUESTACK_WINDOW_TITLE%
+  search(path, fromX := 0, fromY := 0, variation := 0) {
+    width := this.generalConfiguration.getWidth()
+    height := this.generalConfiguration.getHeight()
+    path := this.format(path)
 
     ImageSearch, foundX, foundY, fromX, fromY, width, height, *%variation% %path%
     if (ErrorLevel == 2) {
@@ -24,38 +25,20 @@ class Detector {
       msg := "Image detected: " . path
       SB_SetText(msg)
 
-      this.foundPoint[1] := foundX
-      this.foundPoint[2] := foundY
+      this.foundPoint := new Point(foundX, foundY)
       return true
     }
   }
 
-  detectBackwards(path, fromX := 0, fromY := 0, variation := 0) {
-    global BLUESTACK_WINDOW_TITLE
-    width := -1
-    height := -1
+  getPoint() {
+    return this.foundPoint
+  }
 
-    WinGetPos,,,width, height, %BLUESTACK_WINDOW_TITLE%
-
-    ImageSearch, foundX, foundY, width, height, fromX, fromY, *%variation% %path%
-    if (ErrorLevel == 2) {
-      msg := "File is missing: " . path
-      SB_SetText(msg)
-      Log("File is missing: " . path)
-      return false
-    }
-    else if (ErrorLevel == 1) {
-      msg := "Image not detected on the screen: " . path
-      SB_SetText(msg)
-      return false
-    }
-    else {
-      msg := "Image detected: " . path
-      SB_SetText(msg)
-
-      this.foundPoint[1] := foundX
-      this.foundPoint[2] := foundY
-      return true
-    }
+  format(str)
+  {
+    extension := "-" . this.generalConfiguration.getWidth . "_" . this.generalConfiguration.getHeight . ".png"
+    foundPos := InStr(str, ".png", false, 1)
+    length := foundPos - 1
+    return SubStr(str, 1, length) . extension
   }
 }

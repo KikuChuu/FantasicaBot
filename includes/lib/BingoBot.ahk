@@ -1,11 +1,21 @@
 class BingoBot {
-  TITLE := "FANTASICA IMAGES/BingoPage/title-" . width . "_" . height . ".png"
-  SQUARE := "FANTASICA IMAGES/BingoPage/square-" . width . "_" . height . ".png"
-  RECEIVE := "FANTASICA IMAGES/BingoPage/receive-" . width . "_" . height . ".png"
-  NOTICE := "FANTASICA IMAGES/BingoPage/notice-" . width . "_" . height . ".png"
-  MY_PAGE := "FANTASICA IMAGES/BingoPage/my_page-" . width . "_" . height . ".png"
-  INBOX := "FANTASICA IMAGES/BingoPage/inbox-" . width . "_" . height . ".png"
-  detector := new Detector
+  TITLE := ""
+  SQUARE := ""
+  RECEIVE := ""
+  NOTICE := ""
+  MY_PAGE := ""
+  INBOX := ""
+  detector := ""
+
+  __new(theDetector) {
+    this.TITLE := "FANTASICA IMAGES/BingoPage/title.png"
+    this.SQUARE := "FANTASICA IMAGES/BingoPage/square.png"
+    this.RECEIVE := "FANTASICA IMAGES/BingoPage/receive.png"
+    this.NOTICE := "FANTASICA IMAGES/BingoPage/notice.png"
+    this.MY_PAGE := "FANTASICA IMAGES/BingoPage/my_page.png"
+    this.INBOX := "FANTASICA IMAGES/BingoPage/inbox.png"
+    this.detector := theDetector
+  }
  
   isBingo() {
     if (this.detector.detect(this.TITLE)) {

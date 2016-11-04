@@ -12,11 +12,11 @@ class TowerBattleBot {
   MINA_DIALOG := "FANTASICA IMAGES/Quest/QuestBattle/mina_dialog-" . width . "_" . height . ".png"
  
   __New(theFloor, theDeployLimit) {
-    this.detector := new Detector
+    this.detector := Detector.getInstance()
     this.questAllyBot := new QuestAllyBot
     this.questUnitBot := new QuestUnitBot
     this.questBattlePoints := new QuestBattlePoints
-    this.databaseTowerBattlePoints := new databaseTowerBattlePoints
+    this.databaseBattlePoints := DatabaseTowerBattlePoints.getInstance()
     this.controller := new Controller
 
     this.deployableMapSquareState := true
@@ -42,7 +42,7 @@ class TowerBattleBot {
 
   clearKeys() {
     this.keys := []
-    this.databaseTowerBattlePoints.clear()
+    this.databaseBattlePoints.clear()
   }
  
   getUnitSize() {
@@ -146,18 +146,18 @@ class TowerBattleBot {
   }
 
   searchDatabasePoint(theFloor) {
-    if (this.databaseTowerBattlePoints.getKeySetSize() == 0) {
-      this.databaseTowerBattlePoints.readFromTable(theFloor)
+    if (this.databaseBattlePoints.getKeySetSize() == 0) {
+      this.databaseBattlePoints.readFromTable(theFloor)
     }
 
-    loop % this.databaseTowerBattlePoints.getKeySetSize() {
-      this.databaseTowerBattlePoints.nextKey(key)
-      point := this.databaseTowerBattlePoints.getPoint()
+    loop % this.databaseBattlePoints.getKeySetSize() {
+      this.databaseBattlePoints.nextKey(key)
+      point := this.databaseBattlePoints.getPoint()
       this.controller.setPoint(point[1], point[2])
       this.controller.clickAndUpdateHistory()
 
       if (this.detector.detect(this.CONFIRM)) {
-        this.databaseTowerBattlePoints.index--
+        this.databaseBattlePoints.index--
         return true
       }
       else if (this.isPlacingUnit() == false) {
@@ -232,7 +232,7 @@ class TowerBattleBot {
         this.cancelPlacement()
       }
       else if (this.searchDatabasePoint()) {
-        this.pushKey(this.databaseTowerBattlePoints.key)
+        this.pushKey(this.databaseBattlePoints.key)
         this.confirmPlacement()
       }
       else if (this.searchPoint()) {

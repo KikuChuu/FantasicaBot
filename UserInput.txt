@@ -35,6 +35,10 @@ TOWER_DB_PATH := "towerData/TOWER.db"
 ;--------------------------												 
 	DEPLOY_NUMBER = 10 	;number of units to deploy
 
+;Main page specification
+;-----------------------
+  MENU := "QUEST" ;Menus are QUEST, TRAINING, UNITS, ...
+
 ; Inbox Specification
 ;--------------------
     CheckInbox := 0

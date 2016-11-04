@@ -27,10 +27,11 @@
   HELP := "FANTASICA IMAGES\MainPage\Menu\help-" . width . "_" . height . ".png"
   ANNOUNCEMENT_HEADER := "FANTASICA IMAGES/MainPage/Announcement/announcement_header-" . width . "_" . height . ".png"
   CLOSE_ANNOUNCEMENT := "FANTASICA IMAGES/MainPage/Announcement/close-" . width . "_" . height . ".png" 
-  detector := new Detector
 
-  __New(theMenuName) {
+  __new(theMenuName) {
     global width, height
+    this.detector := ""
+
     if (width == 436 && height == 718) {
       this.MENU_X1 := 30
       this.MENU_Y1 := 650
@@ -46,6 +47,9 @@
 
     if (this.isValidMenu(theMenuName)) {
       this._menu := this.getMenu(theMenuName)
+    }
+    else {
+      ExitApp
     }
   }
 
@@ -224,6 +228,7 @@
       ExitApp
     }
   }
+
   scrollLeft()
   {
     menuX1 := this.MENU_X1
@@ -304,7 +309,7 @@
       else if (this.detector.detect(theMenu, 0, 0, 150)) {
         clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2]) ; click on the menu whose coords are stored in BUFFER vars
         sleep 1000
-        return "" ; end the function
+        return true
       }
       else {
         this.scrollRight()
@@ -348,6 +353,9 @@
         this.selectMenu(this._menu)
       }
       else if (this._menu == this.TRAINING) {
+        this.selectMenu(this._menu)
+      }
+      else if (this._menu == this.TOWER) {
         this.selectMenu(this._menu)
       }
     }

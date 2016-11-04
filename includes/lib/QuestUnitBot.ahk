@@ -2,7 +2,10 @@ class QuestUnitBot {
   UNIT_LIST_TITLE := "FANTASICA IMAGES/Quest/QuestBattle/UnitList/title-" . width . "_" . height . ".png"
   DEPLOY_UNIT := "FANTASICA IMAGES/Quest/QuestBattle/UnitList/deploy_unit-" . width . "_" . height . ".png"
   EXIT_UNIT_LIST := "FANTASICA IMAGES/Quest/QuestBattle/UnitList/back-" . width . "_" . height . ".png"
-  detector := new Detector
+
+  __new() {
+    this.detector := Detector.getInstance()
+  }
 
   isUnitList() {
     if (this.detector.detect(this.UNIT_LIST_TITLE)) {

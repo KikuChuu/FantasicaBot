@@ -37,7 +37,7 @@ class FantaTacticsBot {
   EXP_REWARD := "FANTASICA IMAGES/FantaTactics/experience_reward-" . width . "_" . height . ".png"
 
   __new() {
-    this.detector := new Detector
+    this.detector := Detector.getInstance()
   }
 
   isFantaTactics() {

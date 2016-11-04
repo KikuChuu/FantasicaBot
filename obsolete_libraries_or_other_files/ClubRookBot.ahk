@@ -1,12 +1,9 @@
-class ClubRookBot {
-  TITLE := ""
-  EXIT_PAGE := ""
-  detector := ""
+class ClubRookPageBot {
+  TITLE := "FANTASICA IMAGES/ClubRookPage/title-" . width . "_" . height . ".png"
+  EXIT_PAGE := "FANTASICA IMAGES/ClubRookPage/back-" . width . "_" . height . ".png"
 
-  __new(theDetector) {
-    this.TITLE := "FANTASICA IMAGES/ClubRookPage/title.png"
-    this.EXIT_PAGE := "FANTASICA IMAGES/ClubRookPage/back.png"
-    this.detector := theDetector
+  __new() {
+    this.detector := Detector.getInstance()
   }
 
   isClubRookPage() {

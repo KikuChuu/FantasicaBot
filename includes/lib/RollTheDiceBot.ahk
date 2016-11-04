@@ -98,7 +98,7 @@ class RollTheDiceBot {
 
   __new() {
     global width, height
-    this.detector := new Detector
+    this.detector := Detector.getInstance()
 
 ; =================================================================================================
 ;   I had plans for these booleans abyssalDiceInStock & this.caveDiceInStock, but they aren't      

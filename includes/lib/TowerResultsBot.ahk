@@ -52,11 +52,11 @@ class QuestResultsBot {
       if (this.isCleared()) {
         loop % this.questBot.keys.length() {
           key := this.questBot.keys[A_Index]
-          this.questBot.databaseQuestBattlePoints.incrementPriority(key)
+          this.questBot.databaseTowerBattlePoints.incrementPriority(key)
         }
 
-        if (this.questBot.databaseQuestBattlePoints.getKeySetSize() > 0) {
-          this.questBot.databaseQuestBattlePoints.writeToTable(this.questBot.currentEpisode, this.questBot.currentQuest)
+        if (this.questBot.databaseTowerBattlePoints.getKeySetSize() > 0) {
+          this.questBot.databaseTowerBattlePoints.writeToTable(this.questBot.currentEpisode, this.questBot.currentQuest)
         }
 
         if (isBottingAllQuests) {
@@ -71,11 +71,11 @@ class QuestResultsBot {
       else {
         loop % this.questBot.keys.length() {
           key := this.questBot.keys[A_Index]
-          this.questBot.databaseQuestBattlePoints.decrementPriority(key)
+          this.questBot.databaseTowerBattlePoints.decrementPriority(key)
         }
 
-        if (this.questBot.databaseQuestBattlePoints.getKeySetSize() > 0) {
-          this.questBot.databaseQuestBattlePoints.writeToTable(this.questBot.currentEpisode, this.questBot.currentQuest)
+        if (this.questBot.databaseTowerBattlePoints.getKeySetSize() > 0) {
+          this.questBot.databaseTowerBattlePoints.writeToTable(this.questBot.currentEpisode, this.questBot.currentQuest)
         }
 
         this.questBot.clearKeys()

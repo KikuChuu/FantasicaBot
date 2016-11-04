@@ -1,8 +1,10 @@
 class MaintenanceBot {
   MAINTENANCE := "FANTASICA IMAGES/Maintenance/maintenance-" . width . "_" . height . ".png"
   TO_START_PAGE := "FANTASICA IMAGES/Maintenance/yes-" . width . "_" . height . ".png"
-  detector := new Detector
 
+  __new() {
+    this.detector := Detector.getInstance()
+  }
   isMaintenance() {
     if (this.detector.detect(this.MAINTENANCE, 0, 0, 150)) {
       return true

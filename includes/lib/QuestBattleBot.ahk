@@ -12,11 +12,11 @@ class QuestBattleBot {
   MINA_DIALOG := "FANTASICA IMAGES/Quest/QuestBattle/mina_dialog-" . width . "_" . height . ".png"
  
   __New(theEpisode, theQuest, theDeployLimit) {
-    this.detector := new Detector
+    this.detector := Detector.getInstance()
     this.questAllyBot := new QuestAllyBot
     this.questUnitBot := new QuestUnitBot
     this.questBattlePoints := new QuestBattlePoints
-    this.databaseQuestBattlePoints := new databaseQuestBattlePoints
+    this.databaseBattlePoints := new DatabaseQuestBattlePoints
     this.controller := new Controller
 
     this.deployableMapSquareState := true
@@ -52,7 +52,7 @@ class QuestBattleBot {
 
   clearKeys() {
     this.keys := []
-    this.databaseQuestBattlePoints.clear()
+    this.databaseBattlePoints.clear()
   }
  
   getUnitSize() {
@@ -156,18 +156,18 @@ class QuestBattleBot {
   }
 
   searchDatabasePoint() {
-    if (this.databaseQuestBattlePoints.getKeySetSize() == 0) {
-      this.databaseQuestBattlePoints.readFromTable(this.currentEpisode, this.currentQuest)
+    if (this.databaseBattlePoints.getKeySetSize() == 0) {
+      this.databaseBattlePoints.readFromTable(this.currentEpisode, this.currentQuest)
     }
 
-    loop % this.databaseQuestBattlePoints.getKeySetSize() {
-      this.databaseQuestBattlePoints.nextKey(key)
-      point := this.databaseQuestBattlePoints.getPoint()
+    loop % this.databaseBattlePoints.getKeySetSize() {
+      this.databaseBattlePoints.nextKey(key)
+      point := this.databaseBattlePoints.getPoint()
       this.controller.setPoint(point[1], point[2])
       this.controller.clickAndUpdateHistory()
 
       if (this.detector.detect(this.CONFIRM)) {
-        this.databaseQuestBattlePoints.index--
+        this.databaseBattlePoints.index--
         return true
       }
       else if (this.isPlacingUnit() == false) {
@@ -242,7 +242,7 @@ class QuestBattleBot {
         this.cancelPlacement()
       }
       else if (this.searchDatabasePoint()) {
-        this.pushKey(this.databaseQuestBattlePoints.key)
+        this.pushKey(this.databaseBattlePoints.key)
         this.confirmPlacement()
       }
       else if (this.searchPoint()) {

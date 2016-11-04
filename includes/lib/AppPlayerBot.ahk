@@ -1,9 +1,17 @@
 class AppPlayerBot {
-  FANTASICA := "FANTASICA IMAGES/AppPlayer/fantasica-" . width . "_" . height . ".png"
-  APP_DRAWER := "FANTASICA IMAGES/AppPlayer/app_drawer-" . width . "_" . height . ".png"
-  ALL_APPS_TITLE := "FANTASICA IMAGES/AppPlayer/all_apps-" . width . "_" . height . ".png"
-  RECENTLY_PLAYED_TITLE := "FANTASICA IMAGES/AppPlayer/recently_played-" . width . "_" . height . ".png"
-  detector := new Detector
+  FANTASICA := ""
+  APP_DRAWER := ""
+  ALL_APPS_TITLE := ""
+  RECENTLY_PLAYED_TITLE := ""
+  detector := ""
+
+  __new(theDetector) {
+    this.FANTASICA := "FANTASICA IMAGES/AppPlayer/fantasica.png"
+    this.APP_DRAWER := "FANTASICA IMAGES/AppPlayer/app_drawer.png"
+    this.ALL_APPS_TITLE := "FANTASICA IMAGES/AppPlayer/all_apps.png"
+    this.RECENTLY_PLAYED_TITLE := "FANTASICA IMAGES/AppPlayer/recently_played.png"
+    this.detector := theDetector
+  }
 
   isHomeScreen() {
     if (this.detector.detect(this.RECENTLY_PLAYED_TITLE)) {
@@ -46,6 +54,9 @@ class AppPlayerBot {
         return false
       }
     }
+  }
+  else {
+    return false
   }
 
   installedApps() {

@@ -2,7 +2,10 @@ class QuestAllyBot {
   ALLY_LIST_TITLE := "FANTASICA IMAGES/Quest/QuestBattle/AllyList/title-" . width . "_" . height . ".png"
   DEPLOY_ALLY := "FANTASICA IMAGES/Quest/QuestBattle/AllyList/deploy_ally-" . width . "_" . height . ".png"
   EXIT_ALLY_LIST := "FANTASICA IMAGES/Quest/QuestBattle/AllyList/back-" . width . "_" . height . ".png"
-  detector := new Detector
+
+  __new() {
+    this.detector := Detector.getInstance()
+  }
 
   isAllyList() {
     if (this.detector.detect(this.ALLY_LIST_TITLE)) {

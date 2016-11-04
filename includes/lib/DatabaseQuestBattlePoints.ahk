@@ -5,11 +5,14 @@ class DatabaseQuestBattlePoints {
     this.dbPath := QUEST_DB_PATH
     this.db := new SQLiteDB
 
-    this.index :=  0
+    this.index := 0
     this.key := ""
     this.keys := []
     this.points := {}
     this.priorities := {}
+  }
+
+  makeTowerName(theFloor) {
   }
 
 ; =================================================================================================
@@ -54,7 +57,7 @@ class DatabaseQuestBattlePoints {
   }
 
 ; =================================================================================================
-; METHOD writeToTable - Writes key, x, y, priority values from the database into this object's members
+; METHOD writeToTable - Writes key, x, y, priority values from this object's members into the database
 ; @param theEpisode - The table's episode
 ; @param theQuest   - The table's quest
 ; @return           - True if no error in writing the values. Exits the app on failure
