@@ -1,17 +1,21 @@
 class StartPageBot {
-  START_GAME := "FANTASICA IMAGES/StartPage/start_game-" . width . "_" . height . ".png"
-  ANNOUNCEMENT := "FANTASICA IMAGES/StartPage/announcement-" . width . "_" . height . ".png"
-  NOTICE := "FANTASICA IMAGES/StartPage/notice-" . width . "_" . height . ".png"
-  QUIT_GAME := "FANTASICA IMAGES/StartPage/quit_game-" . width . "_" . height . ".png"
-  CONFIRM_EXIT := "FANTASICA IMAGES/StartPage/confirm_quit-" . width . "_" . height . ".png"
-  QUEST_INTERRUPTED := "FANTASICA IMAGES/StartPage/quest_interrupted-" . width . "_" . height . ".png"
-  ACCEPT_RESUME_QUEST := "FANTASICA IMAGES/StartPage/resume_quest-" . width . "_" . height . ".png"
-  REJECT_RESUME_QUEST := "FANTASICA IMAGES/StartPage/do_not_resume_quest-" . width . "_" . height . ".png"
-  OPTIONS := "FANTASICA IMAGES/StartPage/options-" . width . "_" . height . ".png"
+  START_GAME := "FANTASICA IMAGES/StartPage/start_game.png"
+  ANNOUNCEMENT := "FANTASICA IMAGES/StartPage/announcement.png"
+  NOTICE := "FANTASICA IMAGES/StartPage/notice.png"
+  QUIT_GAME := "FANTASICA IMAGES/StartPage/quit_game.png"
+  CONFIRM_EXIT := "FANTASICA IMAGES/StartPage/confirm_quit.png"
+  QUEST_INTERRUPTED := "FANTASICA IMAGES/StartPage/quest_interrupted.png"
+  ACCEPT_RESUME_QUEST := "FANTASICA IMAGES/StartPage/resume_quest.png"
+;  REJECT_RESUME_QUEST := "FANTASICA IMAGES/StartPage/do_not_resume_quest.png"
+;  OPTIONS := "FANTASICA IMAGES/StartPage/options.png"
+  deploymentConfiguration := ""
+  detector := ""
+  controller := ""
 
-  __new(ByRef theBot) {
-    this.detector := Detector.getInstance()
-    this.questBot := theBot
+  __new(theDeploymentConfiguration, theDetector, theController) {
+    this.deploymentConfiguration := theDeploymentConfiguration
+    this.detector := theDetector
+    this.controller := theController
   }
 
   isStartPage() {
@@ -45,13 +49,18 @@ class StartPageBot {
     }
   }
 
-  startGame() {
+  isStartGame() {
     if (this.detector.detect(this.START_GAME)) {
-      clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
       return true
     }
     else {
       return false
+    }
+  }
+
+  startGame() {
+    if (this.isStartGame()) {
+      this.controller.click(this.detector.getPoint())
     }
   }
 
@@ -66,7 +75,7 @@ class StartPageBot {
 
     if (this.detector.detect(this.QUIT_GAME, 0, 0, 150)) {
       if (this.detector.detect(this.CONFIRM_EXIT, 0, 0)) {
-        clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
+        this.controller.click(this.detector.getPoint())
       }
     }
   }
@@ -80,35 +89,23 @@ class StartPageBot {
     }
   }
 
-  resumeQuest(ByRef theBot) {
+  isResumeQuest() {
     if (this.isQuestInterrupted()) {
-      fromX := this.detector.foundPoint[1]
-      fromY := this.detector.foundPoint[2]
+      fromX := this.detector.getPoint().getX()
+      fromY := this.detector.getPoint().getY()
       if (this.detector.detect(this.ACCEPT_RESUME_QUEST, fromX, fromY)) {
-        theBot.setMapSquareStateOn()
-        theBot.setDeployUnitOn()
-        theBot.setDeployAllyOn()
-        theBot.setUnitUsed(theBot.DEFAULT_UNIT_USED_VALUE)
-
-        clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
         return true
       }
-      else {
-        return false
-      }
-    }
-    else {
-      return false
     }
   }
 
-  doNotResumeQuest() {
+  resumeQuest() {
     if (this.isQuestInterrupted()) {
-      fromX := this.detector.foundPoint[1]
-      fromY := this.detector.foundPoint[2]
-      if (this.detector.detect(this.REJECT_RESUME_QUEST, fromX, fromY)) {
-        clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
-        sleep 1000
+      fromX := this.detector.getPoint().getX()
+      fromY := this.detector.getPoint().getY()
+      if (this.detector.detect(this.ACCEPT_RESUME_QUEST, fromX, fromY)) {
+        this.updateDeploymentConfiguration()     
+        this.controller.click(this.detector.getPoint())
         return true
       }
       else {
@@ -120,32 +117,57 @@ class StartPageBot {
     }
   }
 
-  openOrCloseAnnouncement() {
-    if (this.detector.detect(this.ANNOUNCEMENT)) {
-      clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
-      sleep 1000
-      return true
-    }
-    else {
-      return false
-    }
-  }
-  
-  openOrCloseNotice() {
-    if (this.detector.detect(this.NOTICE)) {
-      clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
-      sleep 1000
-      return true
-    }
-    else {
-      return false
-    }
-  }
+;  doNotResumeQuest() {
+;    if (this.isQuestInterrupted()) {
+;      fromX := this.detector.foundPoint[1]
+;      fromY := this.detector.foundPoint[2]
+;      if (this.detector.detect(this.REJECT_RESUME_QUEST, fromX, fromY)) {
+;        this.controller.click(this.detector.getPoint())
+;        sleep 1000
+;        return true
+;      }
+;      else {
+;        return false
+;      }
+;    }
+;    else {
+;      return false
+;    }
+;  }
 
-  selectOptions() {
-    if (this.detector.detect(this.OPTIONS)) {
-      clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
-    }
+;  openOrCloseAnnouncement() {
+;    if (this.detector.detect(this.ANNOUNCEMENT)) {
+;      this.controller.click(this.detector.getPoint())
+;      sleep 1000
+;      return true
+;    }
+;    else {
+;      return false
+;    }
+;  }
+;  
+;  openOrCloseNotice() {
+;    if (this.detector.detect(this.NOTICE)) {
+;      this.controller.click(this.detector.getPoint())
+;      sleep 1000
+;      return true
+;    }
+;    else {
+;      return false
+;    }
+;  }
+
+;  selectOptions() {
+;    if (this.detector.detect(this.OPTIONS)) {
+;      this.controller.click(this.detector.getPoint())
+;    }
+;  }
+
+  updateDeploymentConfiguration() {
+    updatedUnitNumber := 0
+    updatedAllyNumber := 0
+    this.deploymentConfiguration.setDeployNumber(updatedUnitNumber)
+    this.deploymentConfiguration.setAllyNumber(updatedAllyNumber)
   }
 
   play() {
@@ -153,9 +175,13 @@ class StartPageBot {
       if (this.isMaintenance()) {
         this.homeScreen()
       }
+      else if (this.isQuestInterrupted()) {
+        if (this.isResumeQuest()) {
+          this.resumeQuest()
+        }
+      }
       else {
         this.startGame()
-        this.resumeQuest(this.questBot)
       }
     }
   }

@@ -2,6 +2,7 @@
 ;---------------------
 	SLEEPTIME = 200 ;DELAY OF BUTTON CLICKS
 	SHOULD_CLICK := 1
+  APP_PLAYER_TITLE := "Bluestacks App Player"
 
 ; Item Settings
 ; -------------
@@ -29,15 +30,16 @@ TOWER_DB_PATH := "towerData/TOWER.db"
 
 ; Tower Specification
 ; -------------------
-  TOWER_FLOOR := 1
+  TOWER_FLOOR := 1 ; not working right now
 
 ;Quest Battle specification
 ;--------------------------												 
-	DEPLOY_NUMBER = 10 	;number of units to deploy
+	UNIT_LIMIT = 10 	;number of units to deploy
+  ALLY_LIMIT := 10 ;number of allies to deploy
 
 ;Main page specification
 ;-----------------------
-  MENU := "QUEST" ;Menus are QUEST, TRAINING, UNITS, ...
+  MAIN_PAGE_MENU := "TOWER" ; Valid menus are QUEST and TOWER
 
 ; Inbox Specification
 ;--------------------

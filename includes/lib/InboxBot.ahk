@@ -6,8 +6,9 @@ class InboxBot {
   OPEN_FILTER := ""
   TITLE := ""
   this.detector := ""
+  this.controller := ""
 
-  __new(theDetector) {
+  __new(theDetector, theController) {
     _ITEMS := "FANTASICA IMAGES/Inbox/items.png"
     _RECEIVE := "FANTASICA IMAGES/Inbox/receive.png"
     EXIT_INBOX := "FANTASICA IMAGES/Inbox/exit_inbox.png"
@@ -15,6 +16,7 @@ class InboxBot {
     OPEN_FILTER := "FANTASICA IMAGES/Inbox/open_filter.png"
     TITLE := "FANTASICA IMAGES/Inbox/title.png"
     this.detector := theDetector
+    this.controller := theController
   }
 
   exitInbox() {

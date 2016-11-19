@@ -2,11 +2,14 @@ class AllyApprovalBot{
   TITLE := ""
   ALLY_PAGE := ""
   detector := ""
+  controller := ""
 
-  __new(theDetector) {
+  __new(theDetector, theController) {
     this.TITLE := "FANTASICA IMAGES/AllyPage/PendingApprovals/title.png"
     this.ALLY_PAGE := "FANTASICA IMAGES/AllyPage/PendingApprovals/exit.png"
     this.detector := theDetector
+    this.controller := theController
+
   }
 
   isAllyApprovalPage() {
@@ -18,15 +21,26 @@ class AllyApprovalBot{
     }
   }
 
-  allyPage() {
+  isAllyPage() {
     if (this.detector.detect(this.ALLY_PAGE)) {
-      clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
+      return true
+    }
+    else {
+      return false
+    }
+  }
+
+  allyPage() {
+    if (this.isAllyPage()) {
+      this.controller.click(this.detector.getPoint())
     }
   }
 
   play() {
     if (this.isAllyApprovalPage()) {
-      this.allyPage()
+      if (this.isAllyPage()) {
+        this.allyPage()
+      }
     }
   }
 }

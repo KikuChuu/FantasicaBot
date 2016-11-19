@@ -1,4 +1,4 @@
-class TowerBot {
+class TowerPageBot {
   START := "FANTASICA IMAGES/Tower/start-" . width . "_" . height . ".png"
   RULES := "FANTASICA IMAGES/Tower/rules-" . width . "_" . height . ".png" 
   RANKING := "FANTASICA IMAGES/Tower/ranking-" . width . "_" . height . ".png" 

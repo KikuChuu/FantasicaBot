@@ -2,11 +2,13 @@ class AllyPageBot {
   TITLE := ""
   MAIN_PAGE := ""
   detector := ""
+  controller := ""
 
-  __new(theDetector) {
+  __new(theDetector, theController) {
     this.TITLE := "FANTASICA IMAGES/AllyPage/title.png"
     this.MAIN_PAGE := "FANTASICA IMAGES/AllyPage/exit.png"
     this.detector := theDetector
+    this.controller := theController
   }
 
   isAllyPage() {
@@ -18,15 +20,26 @@ class AllyPageBot {
     }
   }
 
-  mainPage() {
+  isMainPage() {
     if (this.detector.detect(this.MAIN_PAGE)) {
-      clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
+      return true
+    }
+    else {
+      return false
+    }
+  }
+
+  mainPage() {
+    if (this.isMainPage()) {
+      this.controller.click(this.detector.getPoint())
     }
   }
 
   play() {
     if (this.isAllyPage()) {
-      this.mainPage()
+      if (this.isMainPage()) {
+        this.mainPage()
+      }
     }
   }
 }

@@ -4,13 +4,15 @@ class AppPlayerBot {
   ALL_APPS_TITLE := ""
   RECENTLY_PLAYED_TITLE := ""
   detector := ""
+  controller := ""
 
-  __new(theDetector) {
+  __new(theDetector, theController) {
     this.FANTASICA := "FANTASICA IMAGES/AppPlayer/fantasica.png"
     this.APP_DRAWER := "FANTASICA IMAGES/AppPlayer/app_drawer.png"
     this.ALL_APPS_TITLE := "FANTASICA IMAGES/AppPlayer/all_apps.png"
     this.RECENTLY_PLAYED_TITLE := "FANTASICA IMAGES/AppPlayer/recently_played.png"
     this.detector := theDetector
+    this.controller := theController
   }
 
   isHomeScreen() {
@@ -54,20 +56,23 @@ class AppPlayerBot {
         return false
       }
     }
-  }
-  else {
-    return false
+    else {
+      return false
+    }
   }
 
   installedApps() {
     if (this.detector.detect(this.APP_DRAWER)) {
-      clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
+      this.controller.click(this.detector.getPoint())
     }
   }
 
   startFantasica() {
-    if (this.detector.detect(this.FANTASICA, 0, 0, 150)) {
-      clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
+    if (this.isFantasicaRecentlyPlayed()) {
+      this.controller.click(this.detector.getPoint())
+    }
+    else if (this.isFantasicaInstalled()) {
+      this.controller.click(this.detector.getPoint())
     }
   }
 

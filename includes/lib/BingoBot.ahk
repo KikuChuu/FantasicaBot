@@ -6,8 +6,9 @@ class BingoBot {
   MY_PAGE := ""
   INBOX := ""
   detector := ""
+  controller := ""
 
-  __new(theDetector) {
+  __new(theDetector, theController) {
     this.TITLE := "FANTASICA IMAGES/BingoPage/title.png"
     this.SQUARE := "FANTASICA IMAGES/BingoPage/square.png"
     this.RECEIVE := "FANTASICA IMAGES/BingoPage/receive.png"
@@ -15,6 +16,7 @@ class BingoBot {
     this.MY_PAGE := "FANTASICA IMAGES/BingoPage/my_page.png"
     this.INBOX := "FANTASICA IMAGES/BingoPage/inbox.png"
     this.detector := theDetector
+    this.controller := theController
   }
  
   isBingo() {
@@ -28,31 +30,31 @@ class BingoBot {
 
   selectSquare() {
     if (this.detector.detect(this.SQUARE, 0, 0, 75)) {
-      clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
+      this.controller.click(this.detector.getPoint())
     }
   }
 
   receiveItem() {
     if (this.detector.detect(this.RECEIVE, 0, 0, 50)) {
-      clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
+      this.controller.click(this.detector.getPoint())
     }
   }
 
   selectMyPage() {
     if (this.detector.detect(this.MY_PAGE, 0, 0, 50)) {
-      clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
+      this.controller.click(this.detector.getPoint())
     }
   }
 
   selectInbox() {
     if (this.detector.detect(this.INBOX, 0, 0, 50)) {
-      clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
+      this.controller.click(this.detector.getPoint())
     }
   }
 
   selectNotice() {
     if (this.detector.detect(this.NOTICE, 0, 0, 50)) {
-      clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
+      this.controller.click(this.detector.getPoint())
     }
   }
 

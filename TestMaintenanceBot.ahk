@@ -4,27 +4,16 @@ SetWorkingDir %A_ScriptDir%
 
 #include includes\IncludeScript.ahk
 
-maintenanceBot := new MaintenanceBot
+generalConfiguration := new GeneralConfiguration(APP_PLAYER_TITLE)
+detector := new Detector(generalConfiguration)
+controller := new Controller
+maintenanceBot := new MaintenanceBot(detector, controller)
 
 test1() {
-  SB_SetText("Test isMaintenance()")
-  if (maintenanceBot.isMaintenance()) {
-    result := "PASSED"
-  }
-  else {
-    result := "FAILED"
-  }
-  SB_SetText("Tested isMaintenance() -- " . result)
-}
-
-test2() {
-  SB_SetText("Test startPage()")
-  maintenanceBot.startPage()
-  SB_SetText("Tested startPage()")
+  maintenanceBot.play()
 }
 
 F1::ExitApp
 F2::Pause
 F3::Reload
 F4::test1()
-F5::test2()

@@ -5,38 +5,16 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 #include %A_ScriptDir%\includes\IncludeScript.ahk
 
-;------- INITIALIZE -------------------------
-initGlobals() ; Found in GlobalConstants.ahk
-;--------------------------------------------
-
-;========================================================
-;=================== QUEST ==============================
-;========================================================
-
-clubRookPageBot := new ClubRookPageBot
+generalConfiguration := new GeneralConfiguration(APP_PLAYER_TITLE)
+detector := new Detector(generalConfiguration)
+controller := new Controller
+clubRookBot := new ClubRookBot(detector, controller)
 
 test1() {
-  SB_SetText("Test isClubRookPage()")
-  result := ""
-  if (clubRookPageBot.isClubRookPage()) {
-    result := "PASSED"
-    MsgBox % "Detected club rook page"
-  }
-  else {
-    result := "INVALID USAGE or FAILED"
-    MsgBox % "Failed to detect club rook page"
-  }
-  SB_SetText("Tested isClubRookPage() -- " . result)
-}
-
-test2() {
-  SB_SetText("Test exitPage()")
-  clubRookPageBot.exitPage()
-  SB_SetText("Test exitPage()")
+  clubRookBot.play()
 }
 
 F1::ExitApp
 F2::Pause
 F3::Reload
 F4::test1()
-F5::test2()

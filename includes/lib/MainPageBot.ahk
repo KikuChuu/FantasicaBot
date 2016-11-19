@@ -1,55 +1,81 @@
 ﻿class MainPageBot {
-  TITLE := "FANTASICA IMAGES/MainPage/title-" . width . "_" . height . ".png"
-  QUEST_COOLDOWN := "FANTASICA IMAGES\MainPage\Status\quest_cooldown-" . width . "_" . height . ".png"
-  ROLL_THE_DICE := "FANTASICA IMAGES/MainPage/Menu/roll_the_dice-" . width . "_" . height . ".png"
-  FANTA_TACTICS := "FANTASICA IMAGES/MainPage/Menu/fanta_tactics-" . width . "_" . height . ".png"
-  TOWER := "FANTASICA IMAGES/MainPage/Menu/tower-" . width . "_" . height . ".png"
-  QUEST := "FANTASICA IMAGES\MainPage\Menu\quest-" . width . "_" . height . ".png"
-  TRAINING := "FANTASICA IMAGES\MainPage\Menu\training-" . width . "_" . height . ".png"
-  CARD_PACK := "FANTASICA IMAGES\MainPage\Menu\card_pack-" . width . "_" . height . ".png"
-  UPGRADE_UNITS := "FANTASICA IMAGES\MainPage\Menu\upgrade_units-" . width . "_" . height . ".png"
-  LEANA_EXCHANGE_SHOP := "FANTASICA IMAGES\MainPage\Menu\leana_exchange_shop-" . width . "_" . height . ".png"
-  BAZAAR := "FANTASICA IMAGES\MainPage\Menu\bazaar-" . width . "_" . height . ".png"
-  INN := "FANTASICA IMAGES\MainPage\Menu\inn-" . width . "_" . height . ".png"
-  SANCTUM := "FANTASICA IMAGES\MainPage\Menu\sanctum-" . width . "_" . height . ".png"
-  SELL := "FANTASICA IMAGES\MainPage\Menu\sell-" . width . "_" . height . ".png"
-  UNITS := "FANTASICA IMAGES\MainPage\Menu\units-" . width . "_" . height . ".png"
-  ALLIES := "FANTASICA IMAGES\MainPage\Menu\allies-" . width . "_" . height . ".png"
-  MONSTER_FAMILIAR := "FANTASICA IMAGES\MainPage\Menu\monster_familiar-" . width . "_" . height . ".png"
-  BATTLE := "FANTASICA IMAGES\MainPage\Menu\battle-" . width . "_" . height . ".png"
-  INBOX := "FANTASICA IMAGES\MainPage\Menu\inbox-" . width . "_" . height . ".png"
-  SHOP := "FANTASICA IMAGES\MainPage\Menu\shop-" . width . "_" . height . ".png"
-  PROFILE := "FANTASICA IMAGES\MainPage\Menu\profile-" . width . "_" . height . ".png"
-  SKILL := "FANTASICA IMAGES\MainPage\Menu\skill-" . width . "_" . height . ".png"
-  TRADE := "FANTASICA IMAGES\MainPage\Menu\trade-" . width . "_" . height . ".png"
-  HISTORY := "FANTASICA IMAGES\MainPage\Menu\history-" . width . "_" . height . ".png"
-  OPTIONS := "FANTASICA IMAGES\MainPage\Menu\options-" . width . "_" . height . ".png"
-  HELP := "FANTASICA IMAGES\MainPage\Menu\help-" . width . "_" . height . ".png"
-  ANNOUNCEMENT_HEADER := "FANTASICA IMAGES/MainPage/Announcement/announcement_header-" . width . "_" . height . ".png"
-  CLOSE_ANNOUNCEMENT := "FANTASICA IMAGES/MainPage/Announcement/close-" . width . "_" . height . ".png" 
+  TITLE := ""
+  QUEST_COOLDOWN := ""
+  ROLL_THE_DICE := ""
+  FANTA_TACTICS := ""
+  TOWER := ""
+  QUEST := ""
+  TRAINING := ""
+  CARD_PACK := ""
+  UPGRADE_UNITS := ""
+  LEANA_EXCHANGE_SHOP := ""
+  BAZAAR := ""
+  INN := ""
+  SANCTUM := ""
+  SELL := ""
+  UNITS := ""
+  ALLIES := ""
+  MONSTER_FAMILIAR := ""
+  BATTLE := ""
+  INBOX := ""
+  SHOP := ""
+  PROFILE := ""
+  SKILL := ""
+  TRADE := ""
+  HISTORY := ""
+  OPTIONS := ""
+  HELP := ""
+  ANNOUNCEMENT_HEADER := ""
+  CLOSE_ANNOUNCEMENT := ""
+  MORE_MENUS := ""
+  generalConfiguration := ""
+  detector := ""
+  MENU_P1 := ""
+  MENU_P2 := ""
 
-  __new(theMenuName) {
-    global width, height
-    this.detector := ""
+  __new(theGeneralConfiguration, theMainPageConfiguration, theDetector, theController) {
+    this.TITLE := "FANTASICA IMAGES/MainPage/title.png"
+    this.QUEST_COOLDOWN := "FANTASICA IMAGES\MainPage\Status\quest_cooldown.png"
+    this.ROLL_THE_DICE := "FANTASICA IMAGES/MainPage/Menu/roll_the_dice.png"
+    this.FANTA_TACTICS := "FANTASICA IMAGES/MainPage/Menu/fanta_tactics.png"
+    this.TOWER := "FANTASICA IMAGES/MainPage/Menu/tower.png"
+    this.QUEST := "FANTASICA IMAGES\MainPage\Menu\quest.png"
+    this.TRAINING := "FANTASICA IMAGES\MainPage\Menu\training.png"
+    this.CARD_PACK := "FANTASICA IMAGES\MainPage\Menu\card_pack.png"
+    this.UPGRADE_UNITS := "FANTASICA IMAGES\MainPage\Menu\upgrade_units.png"
+    this.LEANA_EXCHANGE_SHOP := "FANTASICA IMAGES\MainPage\Menu\leana_exchange_shop.png"
+    this.BAZAAR := "FANTASICA IMAGES\MainPage\Menu\bazaar.png"
+    this.INN := "FANTASICA IMAGES\MainPage\Menu\inn.png"
+    this.SANCTUM := "FANTASICA IMAGES\MainPage\Menu\sanctum.png"
+    this.SELL := "FANTASICA IMAGES\MainPage\Menu\sell.png"
+    this.UNITS := "FANTASICA IMAGES\MainPage\Menu\units.png"
+    this.ALLIES := "FANTASICA IMAGES\MainPage\Menu\allies.png"
+    this.MONSTER_FAMILIAR := "FANTASICA IMAGES\MainPage\Menu\monster_familiar.png"
+    this.BATTLE := "FANTASICA IMAGES\MainPage\Menu\battle.png"
+    this.INBOX := "FANTASICA IMAGES\MainPage\Menu\inbox.png"
+    this.SHOP := "FANTASICA IMAGES\MainPage\Menu\shop.png"
+    this.PROFILE := "FANTASICA IMAGES\MainPage\Menu\profile.png"
+    this.SKILL := "FANTASICA IMAGES\MainPage\Menu\skill.png"
+    this.TRADE := "FANTASICA IMAGES\MainPage\Menu\trade.png"
+    this.HISTORY := "FANTASICA IMAGES\MainPage\Menu\history.png"
+    this.OPTIONS := "FANTASICA IMAGES\MainPage\Menu\options.png"
+    this.HELP := "FANTASICA IMAGES\MainPage\Menu\help.png"
+    this.ANNOUNCEMENT_HEADER := "FANTASICA IMAGES/MainPage/Announcement/announcement_header.png"
+    this.CLOSE_ANNOUNCEMENT := "FANTASICA IMAGES/MainPage/Announcement/close.png"
+    this.MORE_MENUS := "FANTASICA IMAGES/MainPage/more_menus.png"
 
-    if (width == 436 && height == 718) {
-      this.MENU_X1 := 30
-      this.MENU_Y1 := 650
-      this.MENU_X2 := 130
-      this.MENU_Y2 := 650
+    this.generalConfiguration := theGeneralConfiguration
+    this.mainPageConfiguration := theMainPageConfiguration
+    this.detector := theDetector
+    this.controller := theController
+
+    if (this.generalConfiguration.getWidth() == 436 && this.generalConfiguration.getHeight() == 718) {
+      this.MENU_P1 := new Point(30, 650)
+      this.MENU_P2 := new Point(130, 650)
     }
     else {
-      this.MENU_X1 := 30
-      this.MENU_Y1 := 1000
-      this.MENU_X2 := 130
-      this.MENU_Y2 := 1000
-    }
-
-    if (this.isValidMenu(theMenuName)) {
-      this._menu := this.getMenu(theMenuName)
-    }
-    else {
-      ExitApp
+      this.MENU_P1 := new Point(30, 1000)
+      this.MENU_P2 := new Point(130, 1000)
     }
   }
 
@@ -71,86 +97,8 @@
     }
   }
 
-  isValidMenu(theMenuName) {
-    if (theMenuName == "ROLL THE DICE") {
-      return true
-    }
-    else if (theMenuName == "FANTA TACTICS") {
-      return true
-    }
-    else if (theMenuName == "TOWER") {
-      return true
-    }
-    else if (theMenuName == "QUEST") {
-      return true
-    }
-    else if (theMenuName == "TRAINING") {
-      return true
-    }
-    else if (theMenuName == "CARD PACK") {
-      return true
-    }
-    else if (theMenuName == "UPGRADE UNITS") {
-      return true
-    }
-    else if (theMenuName == "LEANA EXCHANGE SHOP") {
-      return true
-    }
-    else if (theMenuName == "BAZAAR") {
-      return true
-    }
-    else if (theMenuName == "INN") {
-      return true
-    }
-    else if (theMenuName == "SANCTUM") {
-      return true
-    }
-    else if (theMenuName == "SELL") {
-      return true
-    }
-    else if (theMenuName == "UNITS") {
-      return true
-    }
-    else if (theMenuName == "ALLIES") {
-      return true
-    }
-    else if (theMenuName == "MONSTER FAMILIAR") {
-      return true
-    }
-    else if (theMenuName == "BATTLE") {
-      return true
-    }
-    else if (theMenuName == "INBOX") {
-      return true
-    }
-    else if (theMenuName == "SHOP") {
-      return true
-    }
-    else if (theMenuName == "PROFILE") {
-      return true
-    }
-    else if (theMenuName == "SKILL") {
-      return true
-    }
-    else if (theMenuName == "TRADE") {
-      return true
-    }
-    else if (theMenuName == "HISTORY") {
-      return true
-    }
-    else if (theMenuName == "OPTIONS") {
-      return true
-    }
-    else if (theMenuName == "HELP") {
-      return true
-    }
-    else {
-      MsgBox % "Features for this menu is not yet implemented"
-      ExitApp
-    }
-  }
 
-  getMenu(theMenuName) {
+  getMenuPath(theMenuName) {
     if (theMenuName == "ROLL THE DICE") {
       return this.ROLL_THE_DICE
     }
@@ -229,98 +177,52 @@
     }
   }
 
-  scrollLeft()
+  scrollMenuRight()
   {
-    menuX1 := this.MENU_X1
-    menuY1 := this.MENU_Y1
-    menuX2 := this.MENU_X2
-    menuY2 := this.MENU_Y2
-
-    MouseMove this.MENU_X1, this.MENU_Y1
-
-    tempMouseSpeed := A_DefaultMouseSpeed
-    SetDefaultMouseSpeed 30
-    SendEvent { click %menuX1%, %menuY1%, down }{ click %menuX2%, %menuY2%, up }
+    mouseSpeed := 30
+    dragCount := 1
+    this.controller.drag(this.MENU_P2, this.MENU_P1, mouseSpeed, dragCount)
     sleep 500
-    SetDefaultMouseSpeed tempMouseSpeed
   }
 
-  scrollRight()
-  {
-    menuX1 := this.MENU_X1
-    menuY1 := this.MENU_Y1
-    menuX2 := this.MENU_X2
-    menuY2 := this.MENU_Y2
-
-    MouseMove this.MENU_X2, this.MENU_Y2
-
-    tempMouseSpeed := A_DefaultMouseSpeed
-    SetDefaultMouseSpeed 30
-    SendEvent { click %menuX2%, %menuY2%, down }{ click %menuX1%, %menuY1%, up }
+  scrollMenuFirst() {
+    mouseSpeed := 2
+    dragCount := 10
+    this.controller.drag(this.MENU_P1, this.MENU_P2, mouseSpeed, dragCount)
     sleep 500
-    SetDefaultMouseSpeed tempMouseSpeed
   }
 
-  scrollFirst() {
-    menuX1 := this.MENU_X1
-    menuY1 := this.MENU_Y1
-    menuX2 := this.MENU_X2
-    menuY2 := this.MENU_Y2
-
-    MouseMove this.MENU_X1, this.MENU_Y1
-
-    tempMouseSpeed := A_DefaultMouseSpeed
-    SetDefaultMouseSpeed 2
-    loop, 10 {
-      SendEvent { click %menuX1%, %menuY1%, down }{ click %menuX2%, %menuY2%, up }
-      sleep 50
+  isMoreMenu() {
+    fromX := 0
+    fromY := this.generalConfiguration.getY() // 2
+    if (this.detector.detect(this.MORE_MENUS, fromX, fromY)) {
+      return true
     }
-    sleep 500
-    SetDefaultMouseSpeed tempMouseSpeed
-  }
-
-  scrollLast() {
-    menuX1 := this.MENU_X1
-    menuY1 := this.MENU_Y1
-    menuX2 := this.MENU_X2
-    menuY2 := this.MENU_Y2
-
-    MouseMove this.MENU_X2, this.MENU_Y2
-
-    tempMouseSpeed := A_DefaultMouseSpeed
-    SetDefaultMouseSpeed 2
-    loop, 10 {
-      SendEvent { click %menuX2%, %menuY2%, down }{ click %menuX1%, %menuY1%, up }
-      sleep 50
+    else {
+      return false
     }
-    sleep 500
-    SetDefaultMouseSpeed tempMouseSpeed
   }
 
-  ; selectMenu - It accepts a menu as input and selects it in the main page. This function must be invoked in the main page
-  selectMenu(theMenu)
+  selectMenu()
   {
-    numOfMenu := 23 ; Allow this value to be set in configs
-    i := 0
-    while (i < numOfMenu) {
+    menuPath := this.getMenuPath(this.mainPageConfiguration.getMenu())
+    loop {
       if (this.isAnnouncement()) {
         return false
       }
-      else if (this.detector.detect(theMenu, 0, 0, 150)) {
-        clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2]) ; click on the menu whose coords are stored in BUFFER vars
+      else if (this.detector.detect(menuPath, 0, 0, 150)) {
+        this.controller.click(this.detector.getPoint())
         sleep 1000
         return true
       }
+      else if (this.isMoreMenu()) {
+        this.scrollMenuRight()
+      }
       else {
-        this.scrollRight()
-        i := i + 1
+        this.scrollMenuFirst()
+        return false
       }
     }
-
-    if (i >= numOfMenu) {
-      this.scrollFirst()
-    }
-    return false
   }
 
   isAnnouncement() {
@@ -332,31 +234,31 @@
     }
   }
 
+  isCloseAnnouncement() {
+    if (this.detector.detect(this.CLOSE_ANNOUNCEMENT)) {
+      return true
+    }
+    else {
+      return false
+    }
+  }
+
   closeAnnouncement() 
   {
-    if (this.detector.detect(this.CLOSE_ANNOUNCEMENT)) {
-      clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
+    if (this.isCloseAnnouncement()) {
+      this.controller.click(this.detector.getPoint())
     }
   }
 
   play() {
     if (this.isMainPage()) {
-      if (this._menu == this.QUEST) {
+      if (this.mainPageConfiguration.getMenu() == "QUEST") {
         if (this.isQuestTimerReady()) {
-          this.selectMenu(this._menu)
+          this.selectMenu()
         }
       }
-      else if (this._menu == this.ROLL_THE_DICE) {
-        this.selectMenu(this._menu)
-      }
-      else if (this._menu == this.FANTA_TACTICS) {
-        this.selectMenu(this._menu)
-      }
-      else if (this._menu == this.TRAINING) {
-        this.selectMenu(this._menu)
-      }
-      else if (this._menu == this.TOWER) {
-        this.selectMenu(this._menu)
+      else {
+        this.selectMenu()
       }
     }
     else if (this.isAnnouncement()) {

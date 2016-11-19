@@ -1,16 +1,21 @@
 class QuestResultsBot {
-  TITLE := "FANTASICA IMAGES/Quest/QuestResult/title-" . width . "_" . height . ".png"
-  QUEST_MENU := "FANTASICA IMAGES/Quest/QuestResult/quest_menu-" . width . "_" . height . ".png"
-  MAIN_PAGE := "FANTASICA IMAGES/Quest/QuestResult/main_page-" . width . "_" . height . ".png"
-  CLEARED := "FANTASICA IMAGES/Quest/QuestResult/100_percent_cleared-" . width . "_" . height . ".png"
-  TOWER_PAGE := "FANTASICA IMAGES/Quest/QuestResult/tower_page-" . width . "_" . height . ".png"
+  TITLE :=  ""
+  QUEST_MENU := "" 
+  MAIN_PAGE := "" 
+  CLEARED := "" 
+  detector := ""
+  controller := ""
 
-  __new(ByRef theBot) {
-    this.detector := Detector.getInstance()
-    this.questBot := theBot
+  __new(theDetector, theController) {
+    this.TITLE := "FANTASICA IMAGES/Quest/QuestResult/title.png"
+    this.QUEST_MENU := "FANTASICA IMAGES/Quest/QuestResult/quest_menu.png"
+    this.MAIN_PAGE := "FANTASICA IMAGES/Quest/QuestResult/main_page.png"
+    this.CLEARED := "FANTASICA IMAGES/Quest/QuestResult/100_percent_cleared.png"
+    this.detector := theDetector
+    this.controller := theController
   }
 
-  isResults() {
+  isQuestResults() {
     if (this.detector.detect(this.TITLE)) {
       return true
     }
@@ -28,60 +33,47 @@ class QuestResultsBot {
     }
   }
 
-  questMenu() {
+  isQuestMenu() {
     if (this.detector.detect(this.QUEST_MENU)) {
-      clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
+      return true
+    }
+    else {
+      return false
+    }
+  }
+
+  isMainPage() {
+    if (this.detector.detect(this.MAIN_PAGE)) {
+      return true
+    }
+    else {
+      return false
+    }
+  }
+
+  questMenu() {
+    if (this.isQuestMenu()) {
+      this.controller.click(this.detector.getPoint())
     }
   }
 
   mainPage() {
-    if (this.detector.detect(this.MAIN_PAGE)) {
-      clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
+    if (this.isMainPage()) {
+      this.controller.click(this.detector.getPoint())
     }
   }
 
-  toTower() {
-    if (this.detector.detect(this.TOWER_PAGE)) {
-      clickAt(this.detector.foundPoint[1], this.detector.foundPoint[2])
-      sleep 1000
-    }
-  }
-
-  play(isBottingAllQuests := false) {
-    if (this.isResults()) {
+  play() {
+    if (this.isQuestResults()) {
       if (this.isCleared()) {
-        loop % this.questBot.keys.length() {
-          key := this.questBot.keys[A_Index]
-          this.questBot.databaseQuestBattlePoints.incrementPriority(key)
+        if (this.isQuestMenu()) {
+          this.questMenu()
         }
-
-        if (this.questBot.databaseQuestBattlePoints.getKeySetSize() > 0) {
-          this.questBot.databaseQuestBattlePoints.writeToTable(this.questBot.currentEpisode, this.questBot.currentQuest)
-        }
-
-        if (isBottingAllQuests) {
-          this.questBot.updateQuestProgress()
-        }
-
-        this.questBot.clearKeys()
-        this.questMenu()
-
-        return true
       }
       else {
-        loop % this.questBot.keys.length() {
-          key := this.questBot.keys[A_Index]
-          this.questBot.databaseQuestBattlePoints.decrementPriority(key)
+        if (this.isMainPage()) {
+          this.mainPage()
         }
-
-        if (this.questBot.databaseQuestBattlePoints.getKeySetSize() > 0) {
-          this.questBot.databaseQuestBattlePoints.writeToTable(this.questBot.currentEpisode, this.questBot.currentQuest)
-        }
-
-        this.questBot.clearKeys()
-        this.mainPage()
-
-        return false
       }
     }
   }
