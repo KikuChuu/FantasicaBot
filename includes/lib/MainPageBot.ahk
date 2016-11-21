@@ -193,7 +193,7 @@
   }
 
   isMoreMenu() {
-    fromX := 0
+    fromX := this.generalConfiguration.getX() // 2
     fromY := this.generalConfiguration.getY() // 2
     if (this.detector.detect(this.MORE_MENUS, fromX, fromY)) {
       return true

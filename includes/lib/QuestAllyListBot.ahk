@@ -59,15 +59,31 @@ class QuestAllyListBot {
     this.deploymentConfiguration.setAllyNumber(updatedAllyNumber)
   }
 
+  isAllAllyDeployed() {
+    allyNumber := this.deploymentConfiguration.getAllyNumber()
+    allyLimit := this.deploymentConfiguration.getAllyLimit()
+    if (allyNumber >= allyLimit) {
+      return true
+    }
+    else {
+      return false
+    }
+  }
+
   play() {
     if (this.isAllyList()) {
-      if (this.isDeploy()) {
-        this.deploy()
-        this.updatedDeploymentConfiguration()
+      if (!this.isAllAllyDeployed()) {
+        if (this.isDeploy()) {
+          this.deploy()
+          this.updatedDeploymentConfiguration()
+        }
+        else {
+          this.exit()
+          this.deploymentConfiguration.setAllyNumber(this.deploymentConfiguration.getAllyLimit())
+        }
       }
       else {
         this.exit()
-        this.deploymentConfiguration.setAllyNumber(this.deploymentConfiguration.getAllyLimit())
       }
     }
   }

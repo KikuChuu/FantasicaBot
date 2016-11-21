@@ -3,7 +3,7 @@ class Detector {
   generalConfiguration := ""
 
   __new(theGeneralConfiguration) {
-    this.foundPoint := ""
+    this.foundPoint := new Point(0, 0)
     this.generalConfiguration := theGeneralConfiguration
   }
 
@@ -31,7 +31,8 @@ class Detector {
         msg := "Image detected: " . path
         SB_SetText(msg)
 
-        this.foundPoint := new Point(foundX, foundY)
+        this.foundPoint.setX(foundX)
+        this.foundPOint.setY(foundY)
         return true
       }
     }

@@ -59,11 +59,27 @@ class QuestUnitListBot {
     this.deploymentConfiguration.setDeployNumber(updatedUnitNumber)
   }
 
+  isAllUnitDeployed() {
+    unitNumber := this.deploymentConfiguration.getDeployNumber()
+    unitLimit := this.deploymentConfiguration.getDeployLimit()
+    if (unitNumber >= unitLimit) {
+      return true
+    }
+    else {
+      return false
+    }
+  }
+
   play() {
     if (this.isUnitList()) {
-      if (this.isDeploy()) {
-        this.deploy()
-        this.updateDeploymentConfiguration()
+      if (!this.isAllUnitDeployed()) {
+        if (this.isDeploy()) {
+            this.deploy()
+            this.updateDeploymentConfiguration()
+        }
+        else {
+          this.exit()
+        }
       }
       else {
         this.exit()
