@@ -6,7 +6,7 @@ SetWorkingDir %A_ScriptDir%
 
 
 ; =================================================================================================
-; ---------------------------------- Variable declarations ----------------------------------------
+; -------------------------- Variable declarations & definitions ----------------------------------
 ; =================================================================================================
 generalConfiguration := new GeneralConfiguration(APP_PLAYER_TITLE)
 mainPageConfiguration := new MainPageConfiguration(MAIN_PAGE_MENU)
@@ -22,7 +22,6 @@ questUnitListBot := new QuestUnitListBot(deploymentConfiguration, detector, cont
 questAllyListBot := new QuestAllyListBot(deploymentConfiguration, detector, controller)
 questPlacementBot := new QuestPlacementBot(deploymentConfiguration, detector, controller, questPlacementPoints)
 allQuestResultsBot := new AllQuestResultsBot(questConfiguration, detector, controller)
-;clubRookBot := new ClubRookBot(detector, controller)
 maintenanceBot := new MaintenanceBot(detector, controller)
 connectionErrorBot := new ConnectionErrorBot(detector, controller)
 allyApprovalBot := new AllyApprovalBot(detector, controller)
@@ -34,7 +33,7 @@ startPageBot := new StartPageBot(deploymentConfiguration, detector, controller)
 
 
 ; =================================================================================================
-; -------------------------------------------- Main loop ------------------------------------------
+; -------------------------------------------- "Main" loop ------------------------------------------
 ; =================================================================================================
 loop {
   mainPageBot.play()
@@ -44,7 +43,6 @@ loop {
   questAllyListBot.play()
   questPlacementBot.play()
   allQuestResultsBot.play()
-  ;clubRookBot.play()
   maintenanceBot.play()
   connectionErrorBot.play()
   allyApprovalBot.play()

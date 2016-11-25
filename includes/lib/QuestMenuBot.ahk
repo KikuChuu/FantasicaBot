@@ -1133,12 +1133,15 @@ class QuestMenuBot {
       }
       else if (this.isMoreEpisodes()) {
         this.scrollBottomEpisodeList()
+        sleep 500
       }
       else if (this.isNextPage()) {
         this.nextPage()
+        sleep 500
       }
       else if (this.isLastPage()) {
         this.firstPage()
+        sleep 500
       }
       else {
         return false
