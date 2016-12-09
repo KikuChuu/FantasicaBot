@@ -7,7 +7,7 @@ SetWorkingDir %A_ScriptDir%
 generalConfiguration := new GeneralConfiguration(APP_PLAYER_TITLE)
 deploymentConfiguration := new DeploymentConfiguration(UNIT_LIMIT, ALLY_LIMIT)
 detector := new Detector(generalConfiguration)
-controller := new Controller
+controller := new Controller(generalConfiguration)
 towerPageBot := new TowerPageBot(deploymentConfiguration, detector, controller)
 
 test1() {
