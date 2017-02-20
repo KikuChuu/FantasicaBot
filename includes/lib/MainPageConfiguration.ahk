@@ -6,8 +6,8 @@ class MainPageConfiguration {
       this.menu := theMenu
     }
     else {
-      MsgBox % "Input a valid menu name in the User inputs."
-      ExitApp
+      MsgBox % "Input a valid menu name in the User inputs." 
+      ExitApp 
     }
   }
 

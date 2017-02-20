@@ -5,10 +5,15 @@ SetWorkingDir %A_ScriptDir%
 #include %A_ScriptDir%\includes\IncludeScript.ahk
 
 
+; 
 ; =================================================================================================
 ; ----------------------------- Variable declarations & definitions -------------------------------
 ; =================================================================================================
+; Instantiating a general configuration object and passing it the title of the Bluestacks program.
+; APP_PLAYER_TITLE is a variable initialized in the UserInput.txt file.
 generalConfiguration := new GeneralConfiguration(APP_PLAYER_TITLE)
+
+; Instantiating a main page configuration object and passing it the 
 mainPageConfiguration := new MainPageConfiguration(MAIN_PAGE_MENU)
 questConfiguration := new QuestConfiguration(QUEST_EPISODE, QUEST)
 deploymentConfiguration := new DeploymentConfiguration(UNIT_LIMIT, ALLY_LIMIT)

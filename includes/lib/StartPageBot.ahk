@@ -173,6 +173,8 @@ class StartPageBot {
   play() {
     if (this.isStartPage()) {
       if (this.isMaintenance()) {
+        SB_SetText("The game is under maintenance.")
+        sleep, 90000 ; put thread to sleep for 15 minutes
         this.homeScreen()
       }
       else if (this.isQuestInterrupted()) {
