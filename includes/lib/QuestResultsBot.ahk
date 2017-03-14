@@ -5,14 +5,16 @@ class QuestResultsBot {
   CLEARED := "" 
   detector := ""
   controller := ""
+  bestQuestBattlePoints := ""
 
-  __new(theDetector, theController) {
+  __new(theDetector, theController, theBestQuestBattlePoints) {
     this.TITLE := "FANTASICA IMAGES/Quest/QuestResult/title.png"
     this.QUEST_MENU := "FANTASICA IMAGES/Quest/QuestResult/quest_menu.png"
     this.MAIN_PAGE := "FANTASICA IMAGES/Quest/QuestResult/main_page.png"
     this.CLEARED := "FANTASICA IMAGES/Quest/QuestResult/100_percent_cleared.png"
     this.detector := theDetector
     this.controller := theController
+    this.bestQuestBattlePoints := theBestQuestBattlePoints
   }
 
   isQuestResults() {
@@ -67,11 +69,13 @@ class QuestResultsBot {
     if (this.isQuestResults()) {
       if (this.isCleared()) {
         if (this.isQuestMenu()) {
+          this.bestQuestBattlePoints.upValue()
           this.questMenu()
         }
       }
       else {
         if (this.isMainPage()) {
+          this.bestQuestBattlePoints.downValue()
           this.mainPage()
         }
       }

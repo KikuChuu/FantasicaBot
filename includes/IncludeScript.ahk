@@ -61,6 +61,7 @@ SetWorkingDir %A_ScriptDir%
 #include %A_ScriptDir%\includes\lib\TowerResultsBot.ahk
 ;#include %A_ScriptDir%\includes\lib\TrainingBot.ahk
 ;#include %A_ScriptDir%\includes\lib\TrainingPageBot.ahk
+#include %A_ScriptDir%\includes\lib\BestQuestBattlePoints.ahk
 
 ; =================================================================================================
 ; --------------------------------------- SQLite scripts -------------------------------------------
