@@ -1,6 +1,6 @@
 class QuestMenuBot {
 
-  __new(theGeneralConfiguration, theQuestConfiguration, theDeploymentConfiguration, theDetector, theController, theBestQuestBattlePoints) {
+  __new(theGeneralConfiguration, theQuestConfiguration, theDeploymentConfiguration, theDetector, theController, theBestQuestPlacementPoints) {
     ; Episode 1 Quests
     ; ----------------
     this.QUEST_1_1 := "FANTASICA IMAGES/Quest/QuestMenu/quest_1_1.png"
@@ -921,7 +921,7 @@ class QuestMenuBot {
     this.generalConfiguration := theGeneralConfiguration
     this.questConfiguration := theQuestConfiguration
     this.deploymentConfiguration := theDeploymentConfiguration
-    this.bestQuestBattlePoints := theBestQuestBattlePoints
+    this.bestQuestPlacementPoints := theBestQuestPlacementPoints
 
     if (theGeneralConfiguration.getWidth() == 436 && theGeneralConfiguration.getHeight() == 718) {
       this.EPISODE_P1 := new Point(200, 415)
@@ -1159,8 +1159,8 @@ class QuestMenuBot {
 
         if (this.isStart(fromPoint)) {
           this.start(fromPoint)
-          this.bestQuestBattlePoints.clearBestPointIndices()
-          this.bestQuestBattlePoints.clearCheck()
+          this.bestQuestPlacementPoints.clearBestIndexArray()
+          this.bestQuestPlacementPoints.clearBoolArray()
           sleep 500
           return true
         }

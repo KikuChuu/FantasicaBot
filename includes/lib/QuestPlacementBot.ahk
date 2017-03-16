@@ -5,16 +5,16 @@ class QuestPlacementBot {
   _CONFIRM := ""
   _CANCEL := ""
   questPlacementPoints := ""
-  bestQuestBattlePoints := ""
+  bestQuestPlacementPoints := ""
   
-  __new(theDeploymentConfiguration, theDetector, theController, theQuestPlacementPoints, theBestQuestBattlePoints) {
+  __new(theDeploymentConfiguration, theDetector, theController, theQuestPlacementPoints, theBestQuestPlacementPoints) {
     this.deploymentConfiguration := theDeploymentConfiguration
     this.detector := theDetector
     this.controller := theController
     this._CANCEL := "FANTASICA IMAGES/Quest/QuestBattle/cancel.png"
     this._CONFIRM := "FANTASICA IMAGES/Quest/QuestBattle/confirm.png"
     this.questPlacementPoints := theQuestPlacementPoints
-    this.bestQuestBattlePoints := theBestQuestBattlePoints
+    this.bestQuestPlacementPoints := theBestQuestPlacementPoints
   }
 
   isCancel() {
@@ -39,11 +39,11 @@ class QuestPlacementBot {
     loop % this.questPlacementPoints.size() {
       this.questPlacementPoints.nextPoint()
       ;point := this.questPlacementPoints.getPoint()
-      point := this.bestQuestBattlePoints.getPoint()
+      point := this.bestQuestPlacementPoints.getPoint()
       this.controller.click(point)
 
       if (this.isConfirm()) {
-        this.bestQuestBattlePoints.addBestPointIndex(bestQuestBattlePoints.getLastIndex())
+        this.bestQuestPlacementPoints.addBestIndex(bestQuestPlacementPoints.getLastIndexAccessed())
         return true
       }
     }
